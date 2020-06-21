@@ -21,12 +21,12 @@ Before the start of each week you will receive an email with more in-depth insig
 
 ## PART 1: How to build Applications with Cassandra
 
-| Decription | LiveStreams |
+| Decription | 👨‍🏫 Live Classes |
 |---|---|
-| **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1-getting-started-with-cassandra)**| <li>N/A and LATAM - July 1st 12EDT<li>APAC and EMEA - July 2nd 12:30 IST |
-| **[Data Modelling for Apache Cassandra™](./week1-getting-started-with-cassandra)** :  | asbc |
-| **[Application Development with Cassandra part 1](./week1-getting-started-with-cassandra)** :  | asbc |
-| **[Application Development with Cassandra part 2](./week1-getting-started-with-cassandra)** :  | asbc |
+| **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1-getting-started-with-cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
+| **From 7/8 to 7/15**<br/>**[Data Modelling for Apache Cassandra™](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
+| **From 7/15 to 7/22**<br/>**[Application Development with Cassandra part 1](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
+| **From 7/22 to 7/29**<br/>**[Application Development with Cassandra part 2](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
 
 ## PART II : Test, Deploy and monitor your clusters and applications
 
