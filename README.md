@@ -25,17 +25,17 @@ Before the start of each week you will receive an email with more in-depth insig
 |---|---|
 | **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1-getting-started-with-cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
 | **From 7/8 to 7/15**<br/>**[Data Modelling for Apache Cassandra™](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
-| **From 7/15 to 7/22**<br/>**[Application Development with Cassandra part 1](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
-| **From 7/22 to 7/29**<br/>**[Application Development with Cassandra part 2](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
+| **From 7/15 to 7/22**<br/>**[Application Development 1 CRUD with Cassandra](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
+| **From 7/22 to 7/29**<br/>**[Application Development 2 REST API with Cassandra](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
 
 ## PART II : Test, Deploy and monitor your clusters and applications
 
-| Decription | LiveStreams |
+| Decription | 👨‍🏫 Live Classes |
 |---|---|
-|Operating your Cassandra clusters| <li>N/A and LATAM - July 1st 12EDT<li>APAC and EMEA - July 2nd 12:30 IST |
-|Running Cassandra performance tests| <li>N/A and LATAM - July 1st 12EDT<li>APAC and EMEA - July 2nd 12:30 IST |
-|Testing your deployments and troubleshooting| <li>N/A and LATAM - July 1st 12EDT<li>APAC and EMEA - July 2nd 12:30 IST |
-|Deploying Cassandra with Kubernetes| <li>N/A and LATAM - July 1st 12EDT<li>APAC and EMEA - July 2nd 12:30 IST |
+| **From 29/7 to 8/5**<br/>**[Test your Cassandra Applications](./week1-getting-started-with-cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
+| **From 8/5 to 8/13**<br/>**[Administrating your Cassandra clusters](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
+| **From 8/13 to 8/20**<br/>**[Test your Cassandra Clusters](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
+| **From 8/20 to 8/27**<br/>**[Cassandra in Kubernetes](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
 
 As long as you register, you will receive 1 email per week with the streaming link and all of the course materials for that week, regardless of if you attended the live workshop or not. If for whatever reason you fall behind one week, you will have access to the recording of the live workshop, as well as our dedicated course space on community.datastax.com to get back up to speed ready for the next week. You can hang out with your course-mates on Discord too.
 Tags
