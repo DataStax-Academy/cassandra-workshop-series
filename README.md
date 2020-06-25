@@ -23,7 +23,7 @@ Before the start of each week you will receive an email with more in-depth insig
 
 | Decription | 👨‍🏫 Live Classes |
 |---|---|
-| **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1-getting-started-with-cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
+| **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1%20-%20Getting%20Started%20with%20Cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
 | **From 7/8 to 7/15**<br/>**[Data Modelling for Apache Cassandra™](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
 | **From 7/15 to 7/22**<br/>**[Application Development 1 CRUD with Cassandra](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
 | **From 7/22 to 7/29**<br/>**[Application Development 2 REST API with Cassandra](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
