@@ -41,18 +41,18 @@ git clone https://github.com/DataStax-Academy/cassandra-workshop-series.git
 
 - [Registration Page](https://astra.datastax.com/register)
 
-![Registration Image](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/astra-create-register.png?raw=true)
+![Registration Image](images/astra-create-register.png?raw=true)
 
 - [Authentication Page](https://astra.datastax.com/)
 
-![Login Image](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/astra-create-login.png?raw=true)
+![Login Image](images/astra-create-login.png?raw=true)
 
 
 ### Step 1b.Fill the Create New Database Form
 
 As you don't have have any instances the login will route through the instance creation form. You will find below which values to enter for each field.
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/03.png" height="400" />
+![Database Form](images/astra-create-2.png?raw=true)
 
 
 - **Set the Compute Size**: For the work we are doing please use `Free tier`. You instance will be there forever, free of charge
@@ -70,31 +70,31 @@ As you don't have have any instances the login will route through the instance c
 - **Launch the database**. Review all the fields to make sure they are as shown, and click the Launch Database button.
 
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/04.png" height="300" />
+![Launch Database](images/astra-create-3.png?raw=true)
 
 
 ### Step 1c.View your Database and connect
 
 View your database. It may take 2-3 minutes for your database to spin up. You will receive an email at that point. But, go ahead and continue with the rest of the exercise now.
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/05.png" height="300" />
+![View Database](images/astra-create-4.png?raw=true)
 
 
 Once Database is ready you should see the following home page:
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/06.png" height="100" />
+![Home Page](images/astra-create-5.png?raw=true)
 
 
 Let’s review the database you have configured. In the box on the top-left side of the window, you can see the database and keyspace name metadata. The box on the top-right describes the size and location of your database. The lower-left box shows your estimated cost. Once Astra initializes the database completely, the lower-right box will have connection details.
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/07.png" height="100" />
+![Launch Database](images/astra-create-6.png?raw=true)
 
 
 ### Step 1d.Open DataStax Studio
 
 You can click on `Launch Developer Studio` blue button to start the tool. Please enter the credentials you used for Astra instance creation.
 
-<img src="https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-online/master/images/08.png" height="300" />
+![Login Studio](images/astra-create-7.png?raw=true)
 
 
 - **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
