@@ -1,4 +1,4 @@
-Welcome to the Online Cassandra Developer Workshop
+Welcome to the Online Cassandra Workshop Series
 ======================================================
 
 In this repository, you'll find everything from the online Cassandra Workshop Series:
