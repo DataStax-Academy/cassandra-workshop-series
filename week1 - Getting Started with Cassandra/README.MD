@@ -12,7 +12,7 @@ Feel free to bookmark this page for future reference!
 
 | Title  | Description
 |---|---|
-| **Slide deck** | [Slidedeck for the workshop](slides/Presentation.pdf) |
+| **Slide deck** | [Slide deck for the workshop](slides/Presentation.pdf) |
 | **0. Bootstrapping** | [Setup your environment](#0-bootstrapping) |
 | **1. Create your Astra instance** | [Create your Astra instance](#1-create-your-astra-instance) |
 | **2 -  DataStax Studio** | Upload the notebook [2_-_Datastax_Studio.tar](notebooks/2_-_Datastax_Studio.tar) into running instance of DataStax Studio and follow the instructions  |
@@ -87,19 +87,21 @@ Once Database is ready you should see the following home page:
 
 Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details.
 
-![Launch Database](images/astra-create-6.png?raw=true)
-
-
 ### Step 1d.Open DataStax Studio
 
-You can click on `Launch Now` link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
+You can click the **Launch Now** link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
 
-![Login Studio](images/astra-create-7.png?raw=true)
-
+![Launch Database](images/astra-create-6.png?raw=true)
 
 - **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
 
 - **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
+
+- **Click Test**. Wait for a "connected successfully" message before saving.
+
+- **Click Save**. Once you have a positive test then click the **Save** button to launch DataStax Studio.
+
+We will be doing ALL of our exercises using Studio notebooks for this week.
 
 
 [🏠 Back to Table of Contents](#table-of-contents)
