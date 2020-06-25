@@ -13,17 +13,26 @@ Feel free to bookmark this page for future reference!
 
 | Title  | Description
 |---|---|
-| **Presentation** | [Here are the Slides](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/slides/Presentation.pdf)  |
+| **Presentation** | [Slidedeck for week 1 workshop](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/slides/Presentation.pdf)  |
 
 ## Exercises
 
 
 | Title  | Description
 |---|---|
-| **0 - Bootstraping your environment** | Follow the instructions [HERE](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/exercises/0_-_Bootstraping.md), this is dummy exercise to explain how it works  |
+| **0. Bootstrapping** | [Setup your environment](#0-bootstrapping) |
 | **1 - Create your Astra Instance** | Follow the instructions [HERE](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/exercises/1_-_Create_Astra_Instance.md) to register and create your first ASTRA instance  |
 | **2 -  DataStax Studio** | Upload the notebook [2_-_Datastax_Studio.tar](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/notebooks/2_-_Datastax_Studio.tar) into running instance of DataStax Studio and follow the instructions  |
 | **3 - Working with CQL** | Upload the notebook [3_-_Working_with_CQL.tar](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week1%20-%20Getting%20Started%20with%20Cassandra/notebooks/3_-_Working_with_CQL.tar) into running instance of DataStax Studio and follow the instructions  |
 
 
-Enjoy !
+## 0. Bootstrapping
+
+
+All information for the workshop today is available in the repository.
+
+You can either clone the repo with the following command or download as a ZIP.
+
+```
+git clone https://github.com/DataStax-Academy/cassandra-workshop-series.git
+```
