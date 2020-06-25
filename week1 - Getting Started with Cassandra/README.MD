@@ -87,15 +87,11 @@ Once Database is ready you should see the following home page:
 
 Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details.
 
-![Launch Database](images/astra-create-6.png?raw=true)
-
-
 ### Step 1d.Open DataStax Studio
 
 You can click on `Launch Now` link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
 
-![Login Studio](images/astra-create-7.png?raw=true)
-
+![Launch Database](images/astra-create-6.png?raw=true)
 
 - **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
 
