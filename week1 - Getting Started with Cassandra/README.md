@@ -1,7 +1,7 @@
-Welcome to WEEK 1 of the Cassandra Workshop Series
+🎓🔥 Welcome to WEEK 1 of the Cassandra Workshop Series 🔥🎓
 ======================================================
 
-In this repository, you'll find everything from the online Cassandra Workshop Series:
+In this repository, you'll find everything you need for week 1 of the online Cassandra Workshop Series:
 - Materials used during presentations
 - Hands-on exercises
 
