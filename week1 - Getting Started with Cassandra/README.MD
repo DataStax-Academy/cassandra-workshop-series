@@ -101,7 +101,8 @@ You can click on `Launch Developer Studio` blue button to start the tool. Please
 
 - **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
 
-TADA !
 
 [🏠 Back to Table of Contents](#table-of-contents)
+
+![Well Done](../materials/images/welldone.jpg?raw=true)
 
