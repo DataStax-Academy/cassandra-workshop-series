@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "select": "node select.js",
+    "insert": "node insert.js",
+    "delete": "node delete.js",
+    "update": "node update.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mando222/bootcamp-crud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mando222/bootcamp-crud/issues"
+  },
+  "homepage": "https://github.com/mando222/bootcamp-crud#readme",
+  "dependencies": {
+    "cassandra-driver": "^4.1.0",
+    "dse-driver": "^2.1.0"
+  }
+}

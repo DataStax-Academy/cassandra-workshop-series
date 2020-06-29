@@ -1,0 +1,9 @@
+${AnsiColor.RED}   ___        _                
+${AnsiColor.RED}  / _ \      | |               
+${AnsiColor.RED} / /_\ \ ___ | |_  _ __   __ _ 
+${AnsiColor.RED} |  _  |/ __|| __|| '__| / _` |
+${AnsiColor.RED} | | | |\__ \| |_ | |   | (_| |
+${AnsiColor.RED} \_| |_/|___/ \__||_|    \__,_|                         
+${AnsiColor.BLUE} 
+${AnsiColor.BLUE} Getting Started with Astra
+
