@@ -17,11 +17,11 @@ You can expect to end the 8 week course with a very high proficiency in Apache C
 
 # Syllabus
 
-Before the start of each week you will receive an email with more in-depth insight in to what we will cover, the resources you need, and where we are hanging out that week.
+Before the start of each week you will receive an email with more in-depth insight into what we will cover, the resources you need, and where we are hanging out that week.
 
 ## PART 1: How to build Applications with Cassandra
 
-| Decription | 👨‍🏫 Live Classes |
+| Description | 👨‍🏫 Live Classes |
 |---|---|
 | **From 7/1 to 7/8**<br/>**[Getting Started with Cassandra](./week1%20-%20Getting%20Started%20with%20Cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
 | **From 7/8 to 7/15**<br/>**[Data Modelling for Apache Cassandra™](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
@@ -30,15 +30,14 @@ Before the start of each week you will receive an email with more in-depth insig
 
 ## PART II : Test, Deploy and monitor your clusters and applications
 
-| Decription | 👨‍🏫 Live Classes |
+| Description | 👨‍🏫 Live Classes |
 |---|---|
 | **From 29/7 to 8/5**<br/>**[Test your Cassandra Applications](./week1-getting-started-with-cassandra)**| <li>📅 July 1st 12EDT *(NA, LATAM)*<li> 📅 July 2nd 12:30 IST *(APAC, EMEA)* -|
 | **From 8/5 to 8/13**<br/>**[Administrating your Cassandra clusters](./week1-getting-started-with-cassandra)**| <li>📅 July 8th 12EDT *(NA, LATAM)*<li> 📅 July 9th 12:30 IST *(APAC, EMEA)* -|
 | **From 8/13 to 8/20**<br/>**[Test your Cassandra Clusters](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* -|
 | **From 8/20 to 8/27**<br/>**[Cassandra in Kubernetes](./week1-getting-started-with-cassandra)**|<li>📅 July 22th 12EDT *(NA, LATAM)*<li> 📅 July 23th 12:30 IST *(APAC, EMEA)* -|
 
-As long as you register, you will receive 1 email per week with the streaming link and all of the course materials for that week, regardless of if you attended the live workshop or not. If for whatever reason you fall behind one week, you will have access to the recording of the live workshop, as well as our dedicated course space on community.datastax.com to get back up to speed ready for the next week. You can hang out with your course-mates on Discord too.
-Tags
+As long as you register, you will receive 1 email per week with the streaming link and all of the course materials for that week, regardless of if you attended the live workshop or not. If for whatever reason you fall behind one week, you will have access to the recording of the live workshop, as well as our dedicated course space on community.datastax.com to get back up to speed ready for the next week. You can hang out with your coursemates on Discord too.
 
 ![com](https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F104057250%2F312276190164%2F1%2Foriginal.20200619-144936?h=2000&w=720&auto=format%2Ccompress&q=75&sharp=10&s=f84ee0bb96e9b32caa7527e0f58cde30)
 
