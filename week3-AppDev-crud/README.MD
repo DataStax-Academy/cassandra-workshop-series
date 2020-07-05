@@ -1,5 +1,4 @@
-### Cassandra Developer workshop - WEEK 3:
-
+![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner.png)
 
 # ✨ Application Development  CRUD and Backend Services ✨
 
@@ -11,7 +10,7 @@
 
 In this repository, you'll find everything you need related to the `week 3` of the **Cassandra Worskhop Series**. As a pre-requisite you need to have you Astra instance ready and running. If this is not the case here is the link to [catchup](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week1%20-%20Getting%20Started%20with%20Cassandra#1-create-your-astra-instance)
 
-### 👨‍🏫 MATERIALS OF THE WEEK
+## 👨‍🏫 MATERIALS OF THE WEEK
 
 | Materials  | Description and Links
 |---|---|
@@ -20,12 +19,12 @@ In this repository, you'll find everything you need related to the `week 3` of t
 | 📹 Recording LIVESTREAM APAC, EMEA | 📅 July 16th 12:30 IST |
 | 📗 Homeworks  | here |
 
-### 👨‍🏫 INSTRUCTIONS FOR THE WORKSHOP
+## 👨‍🏫 INSTRUCTIONS FOR THE WORKSHOP
 
 For simplicity all exercises instructions will be listed in a single `README` for each language: Java, Javascript, Python, CSharp. We recommended you to have a previous experience with the language when you pick it. Now if you are not familiar with any of those, we recommended to use Python, the is the simplest and also we will try to add extra explanation. Ready ? go !
 
-| Sections  | Material Description
-|---|---|
+| Sections | Material Description
+| - |---|
 | **![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)** | [Do the workshop with JAVA](./README_JAVA.MD) |
 | **![PYTHON](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)** | [Do the workshop with PYTHON](./README_PYTHON.MD) |
 | **![JAVASCRIPT](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-javascript.png)** | [Do the workshop with JAVASCRIPT](./README_JAVASCRIPT.MD) |
