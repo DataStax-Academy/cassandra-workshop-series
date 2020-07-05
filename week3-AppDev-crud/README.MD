@@ -1,4 +1,4 @@
-![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner.png)
+![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
 # ✨ Application Development  CRUD and Backend Services ✨
 
