@@ -5,7 +5,7 @@
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
 
-*"In this repository, you'll find everything you need related to the week 3 of the **Cassandra Worskhop Series**.*
+*In this repository, you'll find everything you need related to the week 3 of the **Cassandra Worskhop Series**. As a pre-requisite you need to have you Astra instance ready and running. If this is not the case here is the link to [catchup](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week1%20-%20Getting%20Started%20with%20Cassandra#1-create-your-astra-instance) *
 
 | Description | 👨‍🏫 Live Classes |
 |---|---|
@@ -21,10 +21,10 @@ For simplicity all exercises instructions will be listed in a single `README` fo
 | Sections  | Material Description
 |---|---|
 | **Slide deck** | [Slidedeck for the workshop](4-materials/presentation.pdf) |
-| **1. Do the workshop with JAVA** | [JAVA](./README_JAVA.MD) |
-| **2. Do the workshop with PYTHON** | [PYTHON](./README_PYTHON.MD) |
-| **3. Do the workshop with JAVASCRIPT** | [JAVASCRIPT](./README_JAVASCRIPT.MD) |
-| **4. Do the workshop with CSHARP** | [CSHARP](./README_CSHARP.MD) |
+| **1. Do the workshop with JAVA** | [Do the workshop with JAVA](./README_JAVA.MD) |
+| **2. Do the workshop with PYTHON** | [Do the workshop with PYTHON](./README_PYTHON.MD) |
+| **3. Do the workshop with JAVASCRIPT** | [Do the workshop with JAVASCRIPT](./README_JAVASCRIPT.MD) |
+| **4. Do the workshop with CSHARP** | [Do the workshop with CSHARP](./README_CSHARP.MD) |
 
 [🏠Back to HOME workshop](https://github.com/DataStax-Academy/cassandra-workshop-series)
 
