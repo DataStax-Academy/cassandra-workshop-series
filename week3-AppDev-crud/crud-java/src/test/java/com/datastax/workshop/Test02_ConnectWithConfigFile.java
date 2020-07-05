@@ -29,17 +29,12 @@ public class Test02_ConnectWithConfigFile {
         String path = Test02_ConnectWithConfigFile.class.getResource("/application_test.conf").getFile();
         LOGGER.info("Loading file '{}'", path);
         File configFile = new File(path);
-        LOGGER.info("File exist ? '{}'", configFile);
+        LOGGER.info("File exist ? '{}'", configFile.exists());
         DriverConfigLoader loader = DriverConfigLoader.fromFile(configFile);
         LOGGER.info("Configuration Loaded");
         try (CqlSession cqlSession = CqlSession.builder().withConfigLoader(loader).build()) {
             LOGGER.info("Connection Established to Astra with Keyspace {}", cqlSession.getKeyspace().get());
         }
     }
-    
-    /Users/cedricklunven/dev/WORKSPACES/cassandra-workshop-series/week3%20-%20Application%20Development%201%20CRUD%20with%20Cassandra/crud-java/target/test-classes/application_test.conf
-
-
-    
 
 }
