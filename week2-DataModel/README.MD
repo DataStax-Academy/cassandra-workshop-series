@@ -27,11 +27,11 @@ In this repository, you'll find everything you need for week 2 of the online Cas
 
 ## 0. Prerequisites
 
-If you did all the steps of the [last week](../week1%20-%20Getting%20Started%20with%20Cassandra), then you are ready to go. If you didn't or note sure, please do the steps I and III:
+If you did all the steps of the [last week](../week1%20-%20Getting%20Started%20with%20Cassandra), then you are ready to go. If you didn't or not sure, please do the steps I and III:
 
-* Create your account in Cassandra-as-a-Service a.k.a [DataStax Astra](astra.datastax.com)
+* Create your account in Cassandra-as-a-Service a.k.a [DataStax Astra](https://astra.datastax.com)
 * Create a free tier database as specified in the last week exercises (Follow the credentials given!)
-* Upload and execute Notebook 3
+* Upload and execute Notebook 3 _Working with CQL_
 
 [🏠 Back to Table of Contents](#Materials)
 
@@ -51,7 +51,7 @@ To deal with the exercise, please download the notebook, upload it to your studi
 To deal with the exercise, please download the notebook, upload it to your studio and follow the instructions: 
 
 * Download [Advanced Data Types notebook](notebooks/AdvancedDataTypes.tar?raw=true)
-* Upload to [your Astra](astra.datastax.com)'s studio. If you not sure how to upload the notebook, please follow the instructions of the last week exercise.
+* Upload to [your Astra](https://astra.datastax.com)'s studio. If you not sure how to upload the notebook, please follow the instructions of the last week exercise.
 * Follow the instructions
 
 [🏠 Back to Table of Contents](#Materials)
