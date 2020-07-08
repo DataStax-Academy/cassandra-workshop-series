@@ -1,0 +1,21 @@
+version: '2'
+services:
+  cassandra:
+    image: cassandra:3.11.5
+    ports:
+      - 7000:7000
+      - 7001:7001
+      - 7199:7199
+      - 9042:9042
+      - 9160:9160
+    ulimits:
+      memlock: -1
+    # If you want to data
+    # volumes:
+    #   - ~/cassandra/:/var/lib/cassandra/data
+ 
+# If you want to have cqlsh
+#  docker exec -it `docker ps | grep cassandra:3.11.5 | cut -b 1-12` cqlsh
+
+    
+  

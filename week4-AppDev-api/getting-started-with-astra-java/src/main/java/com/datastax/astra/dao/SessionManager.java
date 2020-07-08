@@ -94,7 +94,8 @@ public class SessionManager {
             throw new IllegalStateException("Please initialize the connection parameters first with saveCredentials(...)");
         }
         if (null == cqlSession) {
-            cqlSession = CqlSession.builder().withCloudSecureConnectBundle(Paths.get(getSecureConnectionBundlePath()))
+            cqlSession = CqlSession.builder()
+                    .withCloudSecureConnectBundle(Paths.get(getSecureConnectionBundlePath()))
                     .withAuthCredentials(getUserName(),getPassword())
                     .withKeyspace(getKeySpace())
                     .build();
