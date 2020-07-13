@@ -8,22 +8,30 @@
 
 `Cassandra Workshop Series` are an interactive experience. Datastax Developer Advocates share some knowledge about  Apache Cassandra™ NoSQL database amd how yo build Cloud Native applicationss. You interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and  exercises. 
 
-## 👨‍🏫 MATERIALS OF THE WEEK
-
-In this repository, you'll find everything you need related to `week 3` of the **Cassandra Worskhop Series**. 
-
-For simplicity all exercises instructions will be listed in a single `README` for each language: Java, Javascript, Python, CSharp. We recommended you to have a previous experience with the language when you pick it. 
+In this repository, you'll find everything you need related to `week 3` of the **Cassandra Worskhop Series**. For simplicity all exercises instructions will be listed in a single `README` for each language: Java, Javascript, Python, CSharp. We recommended you to have a previous experience with the language when you pick it. 
 
 Now if you are NOT familiar with any of those, we recommended to use Python, the is the simplest. Ready ? go !
 
-## Table of Contents
+## Workshop Materials
 
 | Materials  | Description and Links
 |---|---|
-| 👨‍🏫Slidedeck | [Slidedeck for the workshop](4-materials/presentation.pdf) |
-| 📹 Recording LIVESTREAM NA, LATAM |  📅 [July 15th 12EDT](https://www.youtube.com/watch?v=JSDbX77NmFw) |
-| 📹 Recording LIVESTREAM APAC, EMEA | 📅 [July 16th 12:30 IST](https://www.youtube.com/watch?v=QJBep_4Iagw) |
-| 📗 Homeworks  | [here](#) |
+| Slidedeck | [SLIDEDECK](/presentation-week3.pdf) |
+| Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
+| Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
+| Recording LIVESTREAM NA, LATAM |  📅 [July 15th 12EDT](https://www.youtube.com/watch?v=JSDbX77NmFw) |
+| Recording LIVESTREAM APAC, EMEA | 📅 [July 16th 12:30 IST](https://www.youtube.com/watch?v=QJBep_4Iagw) |
+
+## Table of Contents
+
+| Exercises  | Description and Links
+|---|---|
+| 0. Create your Astra instance   | [here](#) |
+| 1. Exercise : The spacecraft nodebook | [here](#) |
+| 2. Exercise : Connectivity to Cassandra | [here](#) |
+| 3. Exercise : Cread, Update, Delete | [here](#) |
+| 4. Exercise : Read and Paging | [here](#) |
+| 5. Homeworks | [here](#) |
 
 
 ## 1. Create your Astra instance (reminders)
