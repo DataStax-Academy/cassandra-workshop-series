@@ -30,10 +30,6 @@ public class JourneyRepository implements DataModelConstants {
     /** Interaction with Cassandra. */
     private CqlSession cqlSession;
     
-    
-    
-    
-    
     /**
      * Inject Session in constructor.
      *
@@ -42,6 +38,7 @@ public class JourneyRepository implements DataModelConstants {
      */
     public JourneyRepository(CqlSession cqlSession) {
         this.cqlSession = cqlSession;
+        createSchema(cqlSession);
     }
     
     /**
@@ -56,9 +53,9 @@ public class JourneyRepository implements DataModelConstants {
      *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
      */
     public UUID create(String spacecraft, String journeySummary) {
-        String insertQuery = 
-                "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
-              + "VALUES(?,?,?,?)";
+        // FIXME: Please provide the proper CQL query
+        String insertQuery = SOLUTION_INSERT;
+        // <--
         UUID journeyId =  Uuids.timeBased();
         cqlSession.execute(SimpleStatement.builder(insertQuery)
                 .addPositionalValue(spacecraft)
@@ -81,10 +78,10 @@ public class JourneyRepository implements DataModelConstants {
      *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
      */
     public void takeoff(UUID journeyId, String spacecraft) {
-        cqlSession.execute(SimpleStatement.builder(
-                "UPDATE spacecraft_journey_catalog "
-                + "SET active=true, start=? "
-                + "WHERE spacecraft_name=? AND journey_id=?")
+        // FIXME: Please provide the proper CQL query
+        String queryTakeOff = SOLUTION_TAKEOFF;
+        // <--
+        cqlSession.execute(SimpleStatement.builder(queryTakeOff)
                 .addPositionalValue(Instant.now())
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
@@ -164,10 +161,10 @@ public class JourneyRepository implements DataModelConstants {
     }
     
     public void landing(UUID journeyId, String spacecraft) {
-        cqlSession.execute(SimpleStatement.builder(
-                "UPDATE spacecraft_journey_catalog "
-                + "SET active=false, end=? "
-                + "WHERE spacecraft_name=? AND journey_id=?")
+        // FIXME: Please provide the proper CQL query
+        String queryLanding = SOLUTION_LANDING;
+        // <--
+        cqlSession.execute(SimpleStatement.builder(queryLanding)
                 .addPositionalValue(Instant.now())
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
@@ -212,9 +209,10 @@ public class JourneyRepository implements DataModelConstants {
     }
     
     public Optional<Journey> find(UUID journeyId, String spacecraft) {
-        ResultSet rs = cqlSession.execute(SimpleStatement.builder(
-                "SELECT * FROM spacecraft_journey_catalog "
-               + "WHERE spacecraft_name=? AND journey_id=?")
+        // FIXME: Please provide the proper CQL query
+        String queryFind = SOLUTION_READ_JOURNEY;
+        // <--
+        ResultSet rs = cqlSession.execute(SimpleStatement.builder(queryFind)
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
                 .build());
@@ -233,5 +231,24 @@ public class JourneyRepository implements DataModelConstants {
         j.setId(row.getUuid(JOURNEY_ID));
         return j;
     }
+    
+    // SOLUTIONS
+    private static final String SOLUTION_INSERT = 
+            "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
+          + "VALUES(?,?,?,?)";
+    private static final String SOLUTION_TAKEOFF =
+            "UPDATE spacecraft_journey_catalog "
+                    + "SET active=true, start=? "
+                    + "WHERE spacecraft_name=? AND journey_id=?";
+    private static final String SOLUTION_LANDING = 
+            "UPDATE spacecraft_journey_catalog "
+                    + "SET active=false, end=? "
+                    + "WHERE spacecraft_name=? AND journey_id=?";
+    private static final String SOLUTION_READ_JOURNEY =
+            "SELECT * FROM spacecraft_journey_catalog "
+                    + "WHERE spacecraft_name=? AND journey_id=?";
+    
+    
+    
 
 }

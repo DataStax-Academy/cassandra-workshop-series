@@ -1,24 +1,23 @@
 package com.datastax.workshop;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class DBConnection {
+/*
+ * EXERCISE 2:
+ *  
+ * TODO Please change this constants with the values 
+ * you used when you created the ASTRA instance.
+ */
+public interface DBConnection {
     
-    private static String connectionPath = "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip";
+    // This is the Zip file you downloaded
+    String SECURE_CONNECT_BUNDLE = "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip";
+
+    // This is the username, recommended value was KVUser
+    String USERNAME = "todouser";
+
+    // This is the password, recommended value was KVPassword
+    String PASSWORD = "todopassword";
     
-    private static String username = "todouser";
+    // This is the keyspace name, recommended value was killrvideo
+    String KEYSPACE = "todoapp";
     
-    private static String password = "todopassword";
-
-    public static Path getConnectionPath() {
-        return Paths.get(connectionPath);
-    }
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public static String getPassword() {
-        return password;
-    }
 }
