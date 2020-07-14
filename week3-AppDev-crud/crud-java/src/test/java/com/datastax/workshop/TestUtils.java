@@ -3,7 +3,6 @@ package com.datastax.workshop;
 import java.net.InetSocketAddress;
 
 import com.datastax.oss.driver.api.core.CqlSession;
-import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.datastax.oss.driver.api.querybuilder.SchemaBuilder;
 
 public class TestUtils {

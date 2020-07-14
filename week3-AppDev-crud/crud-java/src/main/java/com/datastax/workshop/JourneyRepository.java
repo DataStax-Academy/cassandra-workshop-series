@@ -1,6 +1,7 @@
 package com.datastax.workshop;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -15,7 +16,6 @@ import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.datastax.oss.driver.api.core.data.UdtValue;
 import com.datastax.oss.driver.api.core.type.UserDefinedType;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
-import com.datastax.oss.driver.shaded.guava.common.base.Optional;
 
 /**
  * CRUD Operations on a journey.
@@ -217,7 +217,7 @@ public class JourneyRepository implements DataModelConstants {
                 .addPositionalValue(journeyId)
                 .build());
         // We query with full primary key
-        return Optional.fromNullable(mapJourney(rs.one()));
+        return Optional.ofNullable(mapJourney(rs.one()));
     }
     
     public static  Journey mapJourney(Row row) {
@@ -233,17 +233,21 @@ public class JourneyRepository implements DataModelConstants {
     }
     
     // SOLUTIONS
+    
     private static final String SOLUTION_INSERT = 
             "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
           + "VALUES(?,?,?,?)";
+    
     private static final String SOLUTION_TAKEOFF =
             "UPDATE spacecraft_journey_catalog "
                     + "SET active=true, start=? "
                     + "WHERE spacecraft_name=? AND journey_id=?";
+    
     private static final String SOLUTION_LANDING = 
             "UPDATE spacecraft_journey_catalog "
                     + "SET active=false, end=? "
                     + "WHERE spacecraft_name=? AND journey_id=?";
+    
     private static final String SOLUTION_READ_JOURNEY =
             "SELECT * FROM spacecraft_journey_catalog "
                     + "WHERE spacecraft_name=? AND journey_id=?";

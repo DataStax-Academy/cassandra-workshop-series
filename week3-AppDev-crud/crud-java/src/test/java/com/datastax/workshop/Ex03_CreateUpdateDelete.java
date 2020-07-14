@@ -1,10 +1,8 @@
 package com.datastax.workshop;
 
 import java.nio.file.Paths;
-import java.time.Instant;
 import java.util.UUID;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -41,9 +39,6 @@ public class Ex03_CreateUpdateDelete implements DataModelConstants {
     }
    
     @Test
-    /*
-     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
-     */
     public void insert_a_journey() {
         // Given
         String spaceCraft     = "DragonCrew,SpaceX";
@@ -54,39 +49,8 @@ public class Ex03_CreateUpdateDelete implements DataModelConstants {
         LOGGER.info("Journey created : {}", journeyId);
     }
     
-    @Test
-    public void takeoff_the_spacecraft() {
-        String journeyId   = "47b04070-c4fb-11ea-babd-17b91da87c10";
-        String spaceCraft  = "DragonCrew,SpaceX";
-        journeyRepo.takeoff(UUID.fromString(journeyId), spaceCraft);
-        LOGGER.info("Journey {} has now taken off", journeyId);
-    }
+    /*
+     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
+     */
     
-    @Test
-    public void save_readings() {
-        UUID journeyId     = UUID.fromString("47b04070-c4fb-11ea-babd-17b91da87c10");
-        String spaceCraft  = "DragonCrew,SpaceX";
-        Instant readingTime = Instant.now();
-        double speed        = 10;
-        double pressure     = 20;
-        double temperature  = 300;
-        double x=13,y=14,z=36;
-        journeyRepo.log(journeyId, spaceCraft, speed, pressure, temperature, x, y, z, readingTime);
-        LOGGER.info("Reading saved", journeyId);
-    }
-    
-    @Test
-    public void landing_journey() {
-        String journeyId   = "47b04070-c4fb-11ea-babd-17b91da87c10";
-        String spaceCraft  = "DragonCrew,SpaceX";
-        journeyRepo.landing(UUID.fromString(journeyId), spaceCraft);
-        LOGGER.info("Journey {} has now landed", journeyId);
-    }
-    
-    @AfterAll
-    public static void closeConnectionToCassandra() {
-        if (null != cqlSession) {
-            cqlSession.close();
-        }
-    }
 }

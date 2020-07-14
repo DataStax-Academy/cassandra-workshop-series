@@ -26,8 +26,8 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 
 | Exercises  | Description and Links
 |---|---|
-| 0. Create your Astra instance   | [here](#1-create-your-astra-instance-reminders) |
-| 1. Exercise : The spacecraft nodebook | [here](#) |
+| 0. Create your Astra instance   | [Prerequisites](#1-create-your-astra-instance-reminders) |
+| 1. Exercise : The spacecraft nodebook | [Create Schema](2-exercise--the-spacecraft-nodebook) |
 | 2. Exercise : Connectivity to Cassandra | [here](#) |
 | 3. Exercise : Cread, Update, Delete | [here](#) |
 | 4. Exercise : Read and Paging | [here](#) |
@@ -49,7 +49,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 ![Login Image](images/astra-create-login.png?raw=true)
 
 
-**✅ Step 1b. Fill the Create New Database Form
+**✅ Step 1b. Fill the Create New Database Form**
 
 As you don't have have any instances the login will route through the instance creation form. You will find below which values to enter for each field.
 
@@ -86,7 +86,7 @@ Let’s review the database you have configured. In the box on the left side of 
 
 ## 2. Exercise : The spacecraft nodebook
 
-**✅ Step 2a.Step 1d.Open DataStax Studio**
+**✅ Step 2a. Open DataStax Studio**
 
 You can click the **Launch Now** link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
 
@@ -100,17 +100,9 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 
 - **Click Save**. Once you have a positive test then click the **Save** button to launch DataStax Studio.
 
-We will be doing ALL of our exercises using Studio notebooks for this week.
-
-**👁️ Expected output**
-
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/astra-create-6.png?raw=true)
-
-**✅ Step 2b. Import the notebook** : DataStax studio should now be opened.
-
 ![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/launch-studio-home.png?raw=true)
 
-- Download locally the file `spacecraft` located in folder `notebooks` [here](https://github.com/DataStax-Academy/cassandra-workshop-series/raw/master/week3-AppDev-crud/notebooks/spacecraft.tar)
+- Download the file `spacecraft.tar` located in folder `notebooks` [download link](https://github.com/DataStax-Academy/cassandra-workshop-series/raw/master/week3-AppDev-crud/notebooks/spacecraft.tar)
 
 - Import the file in studio with a drag and drop in the Datastax studio window
 

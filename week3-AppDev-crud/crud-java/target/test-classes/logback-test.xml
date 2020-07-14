@@ -9,6 +9,7 @@
     </root>
     <logger name="Exercise2" level="INFO"/>
     <logger name="Exercise3" level="INFO"/>
+    <logger name="Exercise4" level="INFO"/>
     
     <logger name="com.datastax.oss"     level="ERROR"/>
     <logger name="org.junit.vintage"    level="ERROR" />
