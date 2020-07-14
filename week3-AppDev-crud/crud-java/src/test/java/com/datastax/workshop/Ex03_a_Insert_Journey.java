@@ -16,7 +16,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_CreateUpdateDelete implements DataModelConstants {
+public class Ex03_a_Insert_Journey implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
