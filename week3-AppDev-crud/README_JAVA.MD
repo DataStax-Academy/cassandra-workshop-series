@@ -1,36 +1,63 @@
 
-# ✨ WEEK 3: Application Development  CRUD and Backend Services ✨
+![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/DataStax-Academy/microservices-java-workshop-online) 
-[![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
+# Application Development - JAVA EXERCISES ✨
 
-*"In this repository, you'll find everything you need related to the week 3 of the **Cassandra Worskhop Series**.*
+![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
-| Description | 👨‍🏫 Live Classes |
-|---|---|
-| **From 7/15 to 7/22**<br/>**[Application Development 1 CRUD with Cassandra](./week1-getting-started-with-cassandra)**|<li>📅 July 15th 12EDT *(NA, LATAM)*<li> 📅 July 16th 12:30 IST *(APAC, EMEA)* |
+[🏠 GO BACK TO MAIN](./README.MD)
 
-![SplashScreen](https://camo.githubusercontent.com/9f696b340a6599f261cf6ceefa7de47299329a05/68747470733a2f2f696d672e65766275632e636f6d2f687474707325334125324625324663646e2e65766275632e636f6d253246696d61676573253246313034303332313634253246333132323736313930313634253246312532466f726967696e616c2e32303230303631392d3038333833323f773d31303830266175746f3d666f726d6174253243636f6d707265737326713d37352673686172703d313026726563743d3025324330253243323136302532433130383026733d3238306263343135646364393162616533376338653337323934343763366662)
+## 3. Connectivity to Cassandra 
 
-`Cassandra Workshop Series` are an interactive experiences. Advocates share some knowledge about  Apache Cassandra™ database and you can interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and  exercises.
 
-# Table of Content
-For simplicity all exercises instructions are listed in a single `README.MD` document. As it is quite long we provide you a table of content is provided and after each chapter you can go back to it.
+**✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.java`**
 
-| Sections  | Material Description
-|---|---|
-| **Slide deck** | [Slidedeck for the workshop](4-materials/presentation.pdf) |
-| **1. Bootstrapping** | [Setup your environment](#1-bootstrapping) |
-| **2. Run the Todo Application** | [Exercise 2](#2-run-the-todo-application) |
-| **3. Create your Astra instance** | [Exercise 3](#exercise-2----create-the-data-model) |
-| **4. Connectivity to Astra** | [Connectivity to Cassandra](#exercise-3----connectivity-to-cassandra) |
-| **5. CRUD Repository** | [Implement CRUD Repository](#exercise-4----implement-crud-repository) |
-| **5. CRUD Repository Object Mapper** | [Run and Test the API](#exercise-5---run-and-test-the-api) |
-| **6. CRUD Repository Spring Data** | [Spring DATA](#exercise-6---spring-data) |
-| **7. Going Reactive** | [Spring Webflux](#exercise-7---spring-webflux) |
+- Unit Tests are located in `src/test/java` [HERE](./todobackend-cassandra/src/test/java/com/datastax/samples/astra). Open the file `DBConnection` and fill the properties with your Astra informations.
 
-## 1. Bootstrapping
+*Do not copy-paste - this is a sample for me.*
+```java
+	// This is the Zip file you downloaded
+    String SECURE_CONNECT_BUNDLE = "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip";
+	// This is the username, recommended value was KVUser
+    String USERNAME = "KVUser";
+	// This is the password, recommended value was KVPassword
+    String PASSWORD = "KVPassword";
+    // This is the keyspace name, recommended value was killrvideo
+    String KEYSPACE = "killrvideo";
+```
+
+```
+⚠️ By default Autosaved is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
+```
+
+- You can now run the UNIT TEST with your IDE or Maven in a terminal (easier with gitpod 
+
+```bash
+mvn test -Dtest=com.datastax.workshop.Ex02_Connect_to_Cassandra
+```
+
+**👁️ Expected output**
+
+```bash
+
+
+```
+
+
+## 4. CREATE READ UPDATE
+
+### Create a journey
+
+### Launch the space craft
+
+### Record telemetry
+
+### Landing
+
+
+## 5. READ AND PARSE RESULTS
+
+
 
 There are 2 ways to do the exercises, **locally** on your computer and with a **cloud-based IDE named Gitpod.** We recommend you to use your laptop in order to save code modifications and come back later. In both cases you should start by cloning the repository and download everything (including slides).
 

@@ -24,7 +24,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | Homeworks | [here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
 
 
-## Table of Contents
+## Table of Content
 
 | Exercises  | Description and Links
 |---|---|
@@ -111,8 +111,7 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 
 *File is now opened*
 
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/launch-studio-open.png?raw=true)
-
+![notebook](images/notebook-open.png?raw=true)
 
 [🏠 Back to Table of Content](#table-of-content)
 
@@ -120,7 +119,7 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 
 **✅ Step 3a Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DataStax-Academy/cassandra-workshop-series)
 
 Target url looks like  `https://<your_uid>.<your_region>.gitpod.io/#/workspace/cassandra-workshop-series`. These URL's are dynamic and we cannot provide clickable links in advance. You will need to copy-paste `<your_uid>.<your_region>` as we will insert them in each URL during the exercises.
 
@@ -130,7 +129,7 @@ Target url looks like  `https://<your_uid>.<your_region>.gitpod.io/#/workspace/c
 
 **👁️ Expected output**
 
-![SplashScreen](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/gitpod-home.png?raw=true)
+![Splash](images/gitpod-splash.png?raw=true)
 
 **That's it.** Gitpod provides all tools we will need today including `Maven`,`Pip`,`Npm`. At initialization of the workspace we schedule a command to download dependencies. 
 
@@ -148,11 +147,11 @@ Save the file in a path you will remind, again we will need it for the next exer
 
 - You can now see the file in the resources tree
 
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/gitpod-updated.png?raw=true)
+![Splash](images/resources-tree.png?raw=true)
 
-The file path is located at `/workspace/cassandra-workshop-series/secure-connect-dev-workshop-db.zip` (because my db name is  `dev-workshop-db`).
+The file path is located at `/workspace/cassandra-workshop-series/week3-AppDev-crud/secure-connect-dev-workshop-db.zip` (because my db name is  `dev-workshop-db`).
 
-Exercises will be different for each language. Pick then language you feel the most confortuable with with and JUMP to dedicated README.
+Exercises will be different for each language. Pick then language you feel the most confortable with with and JUMP to dedicated README.
 
 | Sections | Material Description
 | - |---|
