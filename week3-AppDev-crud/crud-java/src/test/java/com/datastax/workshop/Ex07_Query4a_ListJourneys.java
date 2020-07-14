@@ -1,8 +1,10 @@
 package com.datastax.workshop;
 
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -16,11 +18,11 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_a_Insert_Journey implements DataModelConstants {
+public class Ex07_Query4a_ListJourneys implements DataModelConstants {
 
     /** Logger for the class. */
-    private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
-    
+    private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");
+   
     /** Connect once for all tests. */
     public static CqlSession cqlSession;
     
@@ -29,8 +31,6 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        LOGGER.info("========================================");
-        LOGGER.info("Start exercise 3a");
         //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
@@ -39,22 +39,29 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
                 .build();
         journeyRepo = new JourneyRepository(cqlSession);
     }
-   
-    @Test
-    public void insert_a_journey() {
-        // Given
-        String spaceCraft     = "Crew Dragon Endeavour,SpaceX";
-        String journeySummary = "Bring Astronauts to ISS";
-        // When inserting a new
-        UUID journeyId = journeyRepo.create(spaceCraft, journeySummary);
-        // Validate that journey has been create
-        LOGGER.info("Journey created : {}", journeyId);
-        LOGGER.info("Start exercise 3a SUCCESS");
-        LOGGER.info("========================================");
-    }
     
+    @Test
     /*
      * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
      */
+    public void read_a_journey() {
+        Optional<Journey> j = journeyRepo.find(UUID.fromString(Ex04_Query5b_TakeOff.JOURNEY_ID), Ex04_Query5b_TakeOff.SPACECRAFT);
+        if (j.isPresent()) {
+            LOGGER.info("Journey has been found");
+            LOGGER.info("- Uid:\t\t {}", j.get().getId());
+            LOGGER.info("- Spacecraft:\t {}", j.get().getSpaceCraft());
+            LOGGER.info("- Summary:\t {}", j.get().getSummary());
+            LOGGER.info("- Takeoff:\t {}", j.get().getStart());
+            LOGGER.info("- Landing:\t {}", j.get().getEnd());
+        } else {
+            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex04_Query5b_TakeOff.JOURNEY_ID);
+        }
+    }
     
+    @AfterAll
+    public static void closeConnectionToCassandra() {
+        if (null != cqlSession) {
+            cqlSession.close();
+        }
+    }
 }

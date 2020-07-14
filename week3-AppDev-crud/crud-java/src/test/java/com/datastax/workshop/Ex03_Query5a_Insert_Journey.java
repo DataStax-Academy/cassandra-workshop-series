@@ -3,7 +3,6 @@ package com.datastax.workshop;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -17,7 +16,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_b_TakeOff implements DataModelConstants {
+public class Ex03_Query5a_Insert_Journey implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
@@ -30,6 +29,8 @@ public class Ex03_b_TakeOff implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise 3a");
         //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
@@ -38,23 +39,22 @@ public class Ex03_b_TakeOff implements DataModelConstants {
                 .build();
         journeyRepo = new JourneyRepository(cqlSession);
     }
-
-    // ===> WE WILL USE THIS VALUES EVERYWHERE
-    public static String SPACECRAFT  = "Crew Dragon Endeavour,SpaceX";
-    public static String JOURNEY_ID  = "b7fdf670-c5b8-11ea-9d41-49528c2e2634";
-    // <=====
-    
+   
     @Test
-    public void takeoff_the_spacecraft() {
-        LOGGER.info("9..8..7..6..5..4..3..2..1 Ignition");
-        journeyRepo.takeoff(UUID.fromString(JOURNEY_ID), SPACECRAFT);
-        LOGGER.info("Journey {} has now taken off", JOURNEY_ID);
+    public void insert_a_journey() {
+        // Given
+        String spaceCraft     = "Crew Dragon Endeavour,SpaceX";
+        String journeySummary = "Bring Astronauts to ISS";
+        // When inserting a new
+        UUID journeyId = journeyRepo.create(spaceCraft, journeySummary);
+        // Validate that journey has been create
+        LOGGER.info("Journey created : {}", journeyId);
+        LOGGER.info("Start exercise 3a SUCCESS");
+        LOGGER.info("========================================");
     }
     
-    @AfterAll
-    public static void closeConnectionToCassandra() {
-        if (null != cqlSession) {
-            cqlSession.close();
-        }
-    }
+    /*
+     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
+     */
+    
 }

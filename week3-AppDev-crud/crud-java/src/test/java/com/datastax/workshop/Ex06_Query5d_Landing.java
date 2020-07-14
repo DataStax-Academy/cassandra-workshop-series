@@ -1,7 +1,6 @@
 package com.datastax.workshop;
 
 import java.nio.file.Paths;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterAll;
@@ -18,11 +17,11 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex04_a_Read_Journey implements DataModelConstants {
+public class Ex06_Query5d_Landing implements DataModelConstants {
 
     /** Logger for the class. */
-    private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");
-   
+    private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
+    
     /** Connect once for all tests. */
     public static CqlSession cqlSession;
     
@@ -31,7 +30,6 @@ public class Ex04_a_Read_Journey implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -41,21 +39,9 @@ public class Ex04_a_Read_Journey implements DataModelConstants {
     }
     
     @Test
-    /*
-     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
-     */
-    public void read_a_journey() {
-        Optional<Journey> j = journeyRepo.find(UUID.fromString(Ex03_b_TakeOff.JOURNEY_ID), Ex03_b_TakeOff.SPACECRAFT);
-        if (j.isPresent()) {
-            LOGGER.info("Journey has been found");
-            LOGGER.info("- Uid:\t\t {}", j.get().getId());
-            LOGGER.info("- Spacecraft:\t {}", j.get().getSpaceCraft());
-            LOGGER.info("- Summary:\t {}", j.get().getSummary());
-            LOGGER.info("- Takeoff:\t {}", j.get().getStart());
-            LOGGER.info("- Landing:\t {}", j.get().getEnd());
-        } else {
-            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex03_b_TakeOff.JOURNEY_ID);
-        }
+    public void landing_journey() {
+        journeyRepo.landing(UUID.fromString(Ex04_Query5b_TakeOff.JOURNEY_ID), Ex04_Query5b_TakeOff.SPACECRAFT);
+        LOGGER.info("Journey {} has now landed", JOURNEY_ID);
     }
     
     @AfterAll
