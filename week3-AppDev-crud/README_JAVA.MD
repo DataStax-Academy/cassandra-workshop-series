@@ -17,7 +17,7 @@
 *Do not copy-paste - this is a sample for me.*
 ```java
 // This is the Zip file you downloaded
-String SECURE_CONNECT_BUNDLE = "<>/secure-connect-killrvideoclusters.zip";
+String SECURE_CONNECT_BUNDLE = "/workspace/cassandra-workshop-series/week3-AppDev-crud/secure-connect-killrvideoclusters.zip";
 // This is the username, recommended value was KVUser
 String USERNAME = "KVUser";
 // This is the password, recommended value was KVPassword
