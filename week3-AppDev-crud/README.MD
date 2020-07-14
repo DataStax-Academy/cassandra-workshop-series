@@ -6,9 +6,9 @@
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
 
-`Cassandra Workshop Series` are an interactive experience. Datastax Developer Advocates share some knowledge about  Apache Cassandra™ NoSQL database amd how yo build Cloud Native applicationss. You interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and  exercises. 
+`Cassandra Workshop Series` are an interactive experience. Datastax Developer Advocates share some knowledge about Apache Cassandra™ NoSQL database and how you build Cloud Native applications. You interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and exercises. 
 
-In this repository, you'll find everything you need related to `week 3` of the **Cassandra Worskhop Series**. For simplicity all exercises instructions will be listed in a single `README` for each language: Java, Javascript, Python, CSharp. We recommended you to have a previous experience with the language when you pick it. 
+In this repository, you'll find everything you need related to `week 3` of the **Cassandra Worskhop Series**. For simplicity all exercise instructions will be listed in a single `README` for each language: Java, Javascript, Python, CSharp. We recommended you to have some previous experience with the language you choose. 
 
 Now if you are NOT familiar with any of those, we recommended to use Python, the is the simplest. Ready ? go !
 
@@ -21,14 +21,14 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
 | Recording LIVESTREAM NA, LATAM |  📅 [July 15th 12EDT](https://www.youtube.com/watch?v=JSDbX77NmFw) |
 | Recording LIVESTREAM APAC, EMEA | 📅 [July 16th 12:30 IST](https://www.youtube.com/watch?v=QJBep_4Iagw) |
-| Homeworks | [here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
+| Homework | [here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
 
 
-## Table of Content
+## Table of Contents
 
-| Exercises  | Description and Links
+| Exercises | Description and Links
 |---|---|
-| 0. Create your Astra instance   | [Prerequisites](#1-create-your-astra-instance-reminders) |
+| 0. Create your Astra instance | [Prerequisites](#1-create-your-astra-instance-reminders) |
 | 1. Exercise : The spacecraft nodebook | [Create Schema](#2-exercise--the-spacecraft-nodebook) |
 | 2. Exercise : Connectivity to Cassandra | [Connectivity](#3-connectivity-to-cassandra) |
 
@@ -124,7 +124,7 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 Target url looks like  `https://<your_uid>.<your_region>.gitpod.io/#/workspace/cassandra-workshop-series`. These URL's are dynamic and we cannot provide clickable links in advance. You will need to copy-paste `<your_uid>.<your_region>` as we will insert them in each URL during the exercises.
 
 ```
-⚠️ By default Autosaved is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
+⚠️ By default Autosave is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
 ```
 
 **👁️ Expected output**
@@ -133,11 +133,11 @@ Target url looks like  `https://<your_uid>.<your_region>.gitpod.io/#/workspace/c
 
 **That's it.** Gitpod provides all tools we will need today including `Maven`,`Pip`,`Npm`. At initialization of the workspace we schedule a command to download dependencies. 
 
-**✅ Step 3b. Download the secure connect bundle** : Go to home page. Process to a `refresh` (F5) of the page (the download link will be valid 5 min we want to be sure we don't reach the timeout). Locate link `Download secure connect bundle` and click. You should download a file named `secure-connect-<your_db_name>.zip`. Please remind the location of the file.
+**✅ Step 3b. Download the secure connect bundle** : Go to the home page. Execute a _refresh_ of the page using (F5) (the download link will be valid for 5 minutes and we want to ensure NOT to reach the timeout). Locate link `Download secure connect bundle` and click. You should download a file named `secure-connect-<your_db_name>.zip`. Please remember the location of the file.
 
 ![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/astra-create-7.png?raw=true)
 
-Save the file in a path you will remind, again we will need it for the next exercises.
+Save the file in a path you will remember, again we will need it for the next exercises.
 
 **✅ Step 3c. Upload the zip in `gitpod`** : If you are working with gitpod the `secure connect bundle` needs to be uploaded there.
 
@@ -149,9 +149,9 @@ Save the file in a path you will remind, again we will need it for the next exer
 
 ![Splash](images/resources-tree.png?raw=true)
 
-The file path is located at `/workspace/cassandra-workshop-series/week3-AppDev-crud/secure-connect-dev-workshop-db.zip` (because my db name is  `dev-workshop-db`).
+The file path is located at `/workspace/cassandra-workshop-series/week3-AppDev-crud/secure-connect-dev-workshop-db.zip` (because my db name is `dev-workshop-db`).
 
-Exercises will be different for each language. Pick then language you feel the most confortable with with and JUMP to dedicated README.
+Exercises will be different for each language. Pick the language you feel the most confortable with with and JUMP to the dedicated README.
 
 | Sections | Material Description
 | - |---|
