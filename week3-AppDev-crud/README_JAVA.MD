@@ -7,6 +7,12 @@
 
 [🏠 GO BACK TO MAIN](./README.MD)
 
+| Exercises |
+|---|
+| [Connectivity to Cassandra](#3-connectivity-to-cassandra) |
+| [Create Schema](#4-create-read-update) |
+| [Connectivity](#5-read-and-parse-results) |
+
 
 ## 3. Connectivity to Cassandra 
 

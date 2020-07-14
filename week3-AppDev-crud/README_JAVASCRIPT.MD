@@ -1,11 +1,17 @@
 
 ![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
-# Application Development with JAVA EXERCISES
+# Application Development with JAVASCRIPT EXERCISES
 
-![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
+![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-javascript.png)
 
 [🏠 GO BACK TO MAIN](./README.MD)
+
+| Exercises |
+|---|
+| [Connectivity to Cassandra](#3-connectivity-to-cassandra) |
+| [Create Schema](#4-create-read-update) |
+| [Connectivity](#5-read-and-parse-results) |
 
 
 ## 3. Connectivity to Cassandra 
