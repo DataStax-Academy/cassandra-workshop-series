@@ -3,6 +3,7 @@ package com.datastax.workshop;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -16,7 +17,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_a_Insert_Journey implements DataModelConstants {
+public class Ex03_d_Landing implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
@@ -29,9 +30,6 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        LOGGER.info("========================================");
-        LOGGER.info("Start exercise 3a");
-        //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -39,22 +37,17 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
                 .build();
         journeyRepo = new JourneyRepository(cqlSession);
     }
-   
+    
     @Test
-    public void insert_a_journey() {
-        // Given
-        String spaceCraft     = "Crew Dragon Endeavour,SpaceX";
-        String journeySummary = "Bring Astronauts to ISS";
-        // When inserting a new
-        UUID journeyId = journeyRepo.create(spaceCraft, journeySummary);
-        // Validate that journey has been create
-        LOGGER.info("Journey created : {}", journeyId);
-        LOGGER.info("Start exercise 3a SUCCESS");
-        LOGGER.info("========================================");
+    public void landing_journey() {
+        journeyRepo.landing(UUID.fromString(Ex03_b_TakeOff.JOURNEY_ID), Ex03_b_TakeOff.SPACECRAFT);
+        LOGGER.info("Journey {} has now landed", JOURNEY_ID);
     }
     
-    /*
-     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
-     */
-    
+    @AfterAll
+    public static void closeConnectionToCassandra() {
+        if (null != cqlSession) {
+            cqlSession.close();
+        }
+    }
 }

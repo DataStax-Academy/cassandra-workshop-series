@@ -1,8 +1,10 @@
 package com.datastax.workshop;
 
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.UUID;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -16,7 +18,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_a_Insert_Journey implements DataModelConstants {
+public class Ex03_c_Travel implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
@@ -29,9 +31,6 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        LOGGER.info("========================================");
-        LOGGER.info("Start exercise 3a");
-        //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -39,22 +38,28 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
                 .build();
         journeyRepo = new JourneyRepository(cqlSession);
     }
-   
+    
     @Test
-    public void insert_a_journey() {
-        // Given
-        String spaceCraft     = "Crew Dragon Endeavour,SpaceX";
-        String journeySummary = "Bring Astronauts to ISS";
-        // When inserting a new
-        UUID journeyId = journeyRepo.create(spaceCraft, journeySummary);
-        // Validate that journey has been create
-        LOGGER.info("Journey created : {}", journeyId);
-        LOGGER.info("Start exercise 3a SUCCESS");
-        LOGGER.info("========================================");
+    public void save_readings() throws InterruptedException {
+        for(int i=0;i<50;i++) {
+            double speed        = 300+i+Math.random()*10;
+            double pressure     = Math.random()*20;
+            double temperature  = Math.random()*300;
+            double x=13+i,y=14+i,z=36+i;
+            Instant readingTime = Instant.now();
+            journeyRepo.log(UUID.fromString(Ex03_b_TakeOff.JOURNEY_ID), Ex03_b_TakeOff.SPACECRAFT, 
+                    speed, pressure, temperature, x, y, z, readingTime);
+            Thread.sleep(200);
+            LOGGER.info("{}/50 - travelling..", i);
+        }
+        LOGGER.info("Reading saved", Ex03_b_TakeOff.JOURNEY_ID);
+        //select * from spacecraft_speed_over_time where spacecraft_name='DragonCrew,SpaceX' AND journey_id=b7fdf670-c5b8-11ea-9d41-49528c2e2634;
     }
     
-    /*
-     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
-     */
-    
+    @AfterAll
+    public static void closeConnectionToCassandra() {
+        if (null != cqlSession) {
+            cqlSession.close();
+        }
+    }
 }
