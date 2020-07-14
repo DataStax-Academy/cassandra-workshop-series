@@ -30,7 +30,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 |---|---|
 | 0. Create your Astra instance   | [Prerequisites](#1-create-your-astra-instance-reminders) |
 | 1. Exercise : The spacecraft nodebook | [Create Schema](#2-exercise--the-spacecraft-nodebook) |
-| 2. Exercise : Connectivity to Cassandra | [here](#3-connectivity-to-cassandra) |
+| 2. Exercise : Connectivity to Cassandra | [Connectivity](#3-connectivity-to-cassandra) |
 
 
 ## 1. Create your Astra instance (reminders)

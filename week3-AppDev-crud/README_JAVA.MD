@@ -1,33 +1,39 @@
 
 ![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
-# Application Development - JAVA EXERCISES ✨
+# Application Development with JAVA EXERCISES
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
 [🏠 GO BACK TO MAIN](./README.MD)
 
-## 3. Connectivity to Cassandra 
 
+## 3. Connectivity to Cassandra 
 
 **✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.java`**
 
-- Unit Tests are located in `src/test/java` [HERE](./todobackend-cassandra/src/test/java/com/datastax/samples/astra). Open the file `DBConnection` and fill the properties with your Astra informations.
+- Unit Tests are located in `src/test/java` [HERE](./src/test/java/com/datastax/workshop). Open the file `DBConnection` and fill the properties with your Astra informations.
 
 *Do not copy-paste - this is a sample for me.*
 ```java
-	// This is the Zip file you downloaded
-    String SECURE_CONNECT_BUNDLE = "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip";
-	// This is the username, recommended value was KVUser
-    String USERNAME = "KVUser";
-	// This is the password, recommended value was KVPassword
-    String PASSWORD = "KVPassword";
-    // This is the keyspace name, recommended value was killrvideo
-    String KEYSPACE = "killrvideo";
+// This is the Zip file you downloaded
+String SECURE_CONNECT_BUNDLE = "<>/secure-connect-killrvideoclusters.zip";
+// This is the username, recommended value was KVUser
+String USERNAME = "KVUser";
+// This is the password, recommended value was KVPassword
+String PASSWORD = "KVPassword";
+// This is the keyspace name, recommended value was killrvideo
+String KEYSPACE = "killrvideo";
 ```
 
 ```
 ⚠️ By default Autosaved is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
+```
+
+Compile
+```bash
+cd crud-java/
+mvn clean compile
 ```
 
 - You can now run the UNIT TEST with your IDE or Maven in a terminal (easier with gitpod 
@@ -43,10 +49,14 @@ mvn test -Dtest=com.datastax.workshop.Ex02_Connect_to_Cassandra
 
 ```
 
-
 ## 4. CREATE READ UPDATE
 
 ### Create a journey
+
+```
+mvn test -Dtest=com.datastax.workshop.Ex03_CreateUpdateDelete#insert_a_journey#save_readings
+```
+
 
 ### Launch the space craft
 
