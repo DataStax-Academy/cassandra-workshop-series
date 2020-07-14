@@ -18,6 +18,24 @@
 
 **✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.java`**
 
+```
+cedricklunven@clunhost:~/dev/WORKSPACES/cassandra-workshop-series/week3-AppDev-crud/crud-nodejs> node Ex02_Connect_to_Cassandra.js 
+========================================
+Start exercise
+Your are now connected to cluster 'caas-cluster'
+SUCCESS
+========================================
+```
+
+```
+cedricklunven@clunhost:~/dev/WORKSPACES/cassandra-workshop-series/week3-AppDev-crud/crud-nodejs> node Ex03_Query5a_Insert_Journey.js 
+========================================
+Start exercise
+Journey created : 76dceda0-c5ee-11ea-a96c-cbbdcb5d7db1
+SUCCESS
+========================================
+
+```
 - Unit Tests are located in `src/test/java` [HERE](./src/test/java/com/datastax/workshop). Open the file `DBConnection` and fill the properties with your Astra informations.
 
 *Do not copy-paste - this is a sample for me.*

@@ -3,8 +3,8 @@ const cassandra = require('cassandra-driver');
 function init_connection(){
     var connection = {}
     connection.client = new cassandra.Client({ 
-        cloud: { secureConnectBundle: '/home/ubuntu/workspace/creds.zip' },
-        credentials: { username: 'KVUser', password: 'KVPassword' } 
+        cloud: { secureConnectBundle: '/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip' },
+        credentials: { username: 'todouser', password: 'todopassword' } 
     });
     return connection
 }
