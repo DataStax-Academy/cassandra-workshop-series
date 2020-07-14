@@ -23,7 +23,7 @@ import com.datastax.oss.driver.api.core.cql.SimpleStatement;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex10_b_ReadPaging implements DataModelConstants {
+public class Ex10_Query4c_ReadMetrics_Paging implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");

@@ -23,7 +23,7 @@ import com.datastax.oss.driver.api.core.cql.SimpleStatement;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex09_b_ReadAllSpeed implements DataModelConstants {
+public class Ex09_Query4c_ReadMetrics implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");

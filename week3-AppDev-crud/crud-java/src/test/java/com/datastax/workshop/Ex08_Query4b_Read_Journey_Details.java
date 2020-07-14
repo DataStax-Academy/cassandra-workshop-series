@@ -18,7 +18,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex08_a_Read_Journey_Details implements DataModelConstants {
+public class Ex08_Query4b_Read_Journey_Details implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");
