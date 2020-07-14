@@ -29,6 +29,8 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise 3a");
         //TestUtils.createKeyspaceForLocalInstance();
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
@@ -47,6 +49,8 @@ public class Ex03_a_Insert_Journey implements DataModelConstants {
         UUID journeyId = journeyRepo.create(spaceCraft, journeySummary);
         // Validate that journey has been create
         LOGGER.info("Journey created : {}", journeyId);
+        LOGGER.info("Start exercise 3a SUCCESS");
+        LOGGER.info("========================================");
     }
     
     /*
