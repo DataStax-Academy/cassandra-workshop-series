@@ -86,11 +86,13 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 **✅ Step 4a. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex03_Query5a_Insert_Journey
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -115,17 +117,19 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 4b. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 4b. Run unit test `Ex04_Query5b_TakeOff`** to update the journey and marked started.
 
-Took the journeyId 
+In the previous exercises we displayed a journeyID (for me it is `53983d90-c5da-11ea-bcd8-c78bf1f1af98`). Open `Ex04_Query5b_TakeOff` locate constant `JOURNEY_ID` and change value with the proper journeyID. 
 
-open Ex04_Query5b_TakeOff locate constant `JOURNEY_ID` and change with propert value here for me it is `53983d90-c5da-11ea-bcd8-c78bf1f1af98`
+Run the takeoff query by running this test
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex04_Query5b_TakeOff
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -151,14 +155,14 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 4c. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 4c. Run unit test `Ex05_Query5c_Travel`** to simulate a travel in space
 
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex05_Query5c_Travel
 ```
 
-```
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -188,14 +192,15 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 4d. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 4d. Run unit test `Ex06_Query5d_Landing`** update the journey to make it inactive and provide end date. To run the test please execute:
 
-
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex06_Query5d_Landing
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 ------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -222,13 +227,16 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 ## 5. READ AND PARSE RESULTS
 
-**✅ Step 5a. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 5a. Run unit test `Ex07_Query4a_ListJourneys`** to list all journeys for a 
+spacecraft.
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex07_Query4a_ListJourneys
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -254,13 +262,15 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 5b. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 5b. Run unit test `Ex08_Query4b_Read_Journey_Details`** to get the details of one journey
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex08_Query4b_Read_Journey_Details
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -290,13 +300,15 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 5c. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 5c. Run unit test `Ex09_Query4c_ReadMetrics`** to get ALL readings (speed) from one of the journey
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex09_Query4c_ReadMetrics
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -328,13 +340,15 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-**✅ Step 5d. Run unit test `Ex03_Query5a_Insert_Journey`** to insert a journey in the catalog
+**✅ Step 5d. Run unit test `Ex10_Query4c_ReadMetrics_Paging`** to get readings (speed) from one of the journey but page by page.
 
-```
+```bash
 mvn test -Dtest=com.datastax.workshop.Ex10_Query4c_ReadMetrics_Paging
 ```
 
-```
+**👁️ Expected output**
+
+```bash
 ------------------------------------------------------
  T E S T S
 -------------------------------------------------------
@@ -380,6 +394,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
+You are all done congratulation
 
 
 
