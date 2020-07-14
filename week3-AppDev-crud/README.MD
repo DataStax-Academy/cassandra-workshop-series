@@ -21,17 +21,16 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
 | Recording LIVESTREAM NA, LATAM |  📅 [July 15th 12EDT](https://www.youtube.com/watch?v=JSDbX77NmFw) |
 | Recording LIVESTREAM APAC, EMEA | 📅 [July 16th 12:30 IST](https://www.youtube.com/watch?v=QJBep_4Iagw) |
+| Homeworks | [here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
+
 
 ## Table of Contents
 
 | Exercises  | Description and Links
 |---|---|
 | 0. Create your Astra instance   | [Prerequisites](#1-create-your-astra-instance-reminders) |
-| 1. Exercise : The spacecraft nodebook | [Create Schema](2-exercise--the-spacecraft-nodebook) |
-| 2. Exercise : Connectivity to Cassandra | [here](#) |
-| 3. Exercise : Cread, Update, Delete | [here](#) |
-| 4. Exercise : Read and Paging | [here](#) |
-| 5. Homeworks | [here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
+| 1. Exercise : The spacecraft nodebook | [Create Schema](#2-exercise--the-spacecraft-nodebook) |
+| 2. Exercise : Connectivity to Cassandra | [here](#3-connectivity-to-cassandra) |
 
 
 ## 1. Create your Astra instance (reminders)
@@ -113,8 +112,6 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 *File is now opened*
 
 ![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/launch-studio-open.png?raw=true)
-
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/welldone.jpg?raw=true)
 
 
 [🏠 Back to Table of Content](#table-of-content)
