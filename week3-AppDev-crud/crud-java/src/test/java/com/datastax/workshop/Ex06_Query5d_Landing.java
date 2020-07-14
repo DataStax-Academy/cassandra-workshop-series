@@ -30,6 +30,8 @@ public class Ex06_Query5d_Landing implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise");
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -41,7 +43,9 @@ public class Ex06_Query5d_Landing implements DataModelConstants {
     @Test
     public void landing_journey() {
         journeyRepo.landing(UUID.fromString(Ex04_Query5b_TakeOff.JOURNEY_ID), Ex04_Query5b_TakeOff.SPACECRAFT);
-        LOGGER.info("Journey {} has now landed", JOURNEY_ID);
+        LOGGER.info("Journey {} has now landed", Ex04_Query5b_TakeOff.JOURNEY_ID);
+        LOGGER.info("SUCCESS");
+        LOGGER.info("========================================");
     }
     
     @AfterAll

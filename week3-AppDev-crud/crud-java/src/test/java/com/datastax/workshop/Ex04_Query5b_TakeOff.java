@@ -30,7 +30,8 @@ public class Ex04_Query5b_TakeOff implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        //TestUtils.createKeyspaceForLocalInstance();
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise");
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -41,7 +42,7 @@ public class Ex04_Query5b_TakeOff implements DataModelConstants {
 
     // ===> WE WILL USE THIS VALUES EVERYWHERE
     public static String SPACECRAFT  = "Crew Dragon Endeavour,SpaceX";
-    public static String JOURNEY_ID  = "b7fdf670-c5b8-11ea-9d41-49528c2e2634";
+    public static String JOURNEY_ID  = "90163870-c5d6-11ea-b11f-c30e2b038000";
     // <=====
     
     @Test
@@ -49,6 +50,8 @@ public class Ex04_Query5b_TakeOff implements DataModelConstants {
         LOGGER.info("9..8..7..6..5..4..3..2..1 Ignition");
         journeyRepo.takeoff(UUID.fromString(JOURNEY_ID), SPACECRAFT);
         LOGGER.info("Journey {} has now taken off", JOURNEY_ID);
+        LOGGER.info("SUCCESS");
+        LOGGER.info("========================================");
     }
     
     @AfterAll

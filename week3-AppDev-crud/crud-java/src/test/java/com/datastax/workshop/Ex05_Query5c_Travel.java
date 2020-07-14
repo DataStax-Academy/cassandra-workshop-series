@@ -31,6 +31,8 @@ public class Ex05_Query5c_Travel implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise");
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -53,6 +55,8 @@ public class Ex05_Query5c_Travel implements DataModelConstants {
             LOGGER.info("{}/50 - travelling..", i);
         }
         LOGGER.info("Reading saved", Ex04_Query5b_TakeOff.JOURNEY_ID);
+        LOGGER.info("SUCCESS");
+        LOGGER.info("========================================");
         //select * from spacecraft_speed_over_time where spacecraft_name='DragonCrew,SpaceX' AND journey_id=b7fdf670-c5b8-11ea-9d41-49528c2e2634;
     }
     

@@ -31,7 +31,8 @@ public class Ex08_Query4b_Read_Journey_Details implements DataModelConstants {
     
     @BeforeAll
     public static void initConnection() {
-        //TestUtils.createKeyspaceForLocalInstance();
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise");
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
@@ -53,6 +54,8 @@ public class Ex08_Query4b_Read_Journey_Details implements DataModelConstants {
             LOGGER.info("- Summary:\t {}", j.get().getSummary());
             LOGGER.info("- Takeoff:\t {}", j.get().getStart());
             LOGGER.info("- Landing:\t {}", j.get().getEnd());
+            LOGGER.info("SUCCESS");
+            LOGGER.info("========================================");
         } else {
             LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex04_Query5b_TakeOff.JOURNEY_ID);
         }

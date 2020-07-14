@@ -28,7 +28,7 @@ public class Ex02_Connect_to_Cassandra implements DBConnection {
     @DisplayName("Test connectivity to Astra")
     public void should_connect_to_Astra() {
         LOGGER.info("========================================");
-        LOGGER.info("Start exercise 2");
+        LOGGER.info("Start exercise");
         // Given
         Assertions.assertFalse(DBConnection.SECURE_CONNECT_BUNDLE.equals(""), 
                 "Please fill DBConnection class constants");
@@ -54,8 +54,7 @@ public class Ex02_Connect_to_Cassandra implements DBConnection {
             // Then
             LOGGER.info("Connected with Keyspace {}", cqlSession.getKeyspace().get());
         }
-        LOGGER.info("Start exercise 2 SUCCESS");
+        LOGGER.info("SUCCESS");
         LOGGER.info("========================================");
-        
     }
 }

@@ -3,7 +3,6 @@ package com.datastax.workshop;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,57 +30,22 @@ public class Ex10_Query4c_ReadMetrics_Paging implements DataModelConstants {
     /** Connect once for all tests. */
     public static CqlSession cqlSession;
     
-    /** Use the Repository Pattern. */
-    private static JourneyRepository journeyRepo;
-    
     @BeforeAll
     public static void initConnection() {
-        //TestUtils.createKeyspaceForLocalInstance();
+        LOGGER.info("========================================");
+        LOGGER.info("Start exercise");
         cqlSession = CqlSession.builder()
                 .withCloudSecureConnectBundle(Paths.get(DBConnection.SECURE_CONNECT_BUNDLE))
                 .withAuthCredentials(DBConnection.USERNAME, DBConnection.PASSWORD)
                 .withKeyspace(DBConnection.KEYSPACE)
                 .build();
-        journeyRepo = new JourneyRepository(cqlSession);
-    }
-    
-    @Test
-    /*
-     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
-     */
-    public void read_a_journey() {
-        Optional<Journey> j = journeyRepo.find(UUID.fromString(Ex04_Query5b_TakeOff.JOURNEY_ID), Ex04_Query5b_TakeOff.SPACECRAFT);
-        if (j.isPresent()) {
-            LOGGER.info("Journey has been found");
-            LOGGER.info("- Uid:\t\t {}", j.get().getId());
-            LOGGER.info("- Spacecraft:\t {}", j.get().getSpaceCraft());
-            LOGGER.info("- Summary:\t {}", j.get().getSummary());
-            LOGGER.info("- Takeoff:\t {}", j.get().getStart());
-            LOGGER.info("- Landing:\t {}", j.get().getEnd());
-        } else {
-            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex04_Query5b_TakeOff.JOURNEY_ID);
-        }
-    }
-
-    @Test
-    public void read_a_dimension() {
-        SimpleStatement stmt = SimpleStatement.builder("select * from spacecraft_speed_over_time where spacecraft_name=? AND journey_id=?")
-                .addPositionalValue(spaceCraft)
-                .addPositionalValue(UUID.fromString(journeyId))
-                .build();
-        ResultSet rs = cqlSession.execute(stmt);
-        // we fetch everything
-        int offset= 0;
-        for (Row row : rs.all()) {
-            LOGGER.info("idx:{}, time={}, value={}", ++offset, row.getInstant("reading_time"), row.getDouble("speed"));
-        }
     }
     
     @Test
     public void read_a_dimension_paging() {
         SimpleStatement stmt = SimpleStatement.builder("select * from spacecraft_speed_over_time where spacecraft_name=? AND journey_id=?")
-                .addPositionalValue(spaceCraft)
-                .addPositionalValue(UUID.fromString(journeyId))
+                .addPositionalValue(Ex04_Query5b_TakeOff.SPACECRAFT)
+                .addPositionalValue(UUID.fromString(Ex04_Query5b_TakeOff.JOURNEY_ID))
                 .build();
 
         // Set page to 10
@@ -111,11 +75,9 @@ public class Ex10_Query4c_ReadMetrics_Paging implements DataModelConstants {
             Row row = rows.next();
             LOGGER.info("- time={}, value={}",row.getInstant("reading_time"), row.getDouble("speed"));
         }
-        
+        LOGGER.info("SUCCESS");
+        LOGGER.info("========================================");
     }
-    
-   
-    
     
     @AfterAll
     public static void closeConnectionToCassandra() {
