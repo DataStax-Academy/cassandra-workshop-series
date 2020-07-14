@@ -1,6 +1,7 @@
 package com.datastax.workshop;
 
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,11 +18,11 @@ import com.datastax.oss.driver.api.core.CqlSession;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex03_b_TakeOff implements DataModelConstants {
+public class Ex04_a_Read_Journey implements DataModelConstants {
 
     /** Logger for the class. */
-    private static Logger LOGGER = LoggerFactory.getLogger("Exercise3");
-    
+    private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");
+   
     /** Connect once for all tests. */
     public static CqlSession cqlSession;
     
@@ -38,17 +39,23 @@ public class Ex03_b_TakeOff implements DataModelConstants {
                 .build();
         journeyRepo = new JourneyRepository(cqlSession);
     }
-
-    // ===> WE WILL USE THIS VALUES EVERYWHERE
-    public static String SPACECRAFT  = "Crew Dragon Endeavour,SpaceX";
-    public static String JOURNEY_ID  = "b7fdf670-c5b8-11ea-9d41-49528c2e2634";
-    // <=====
     
     @Test
-    public void takeoff_the_spacecraft() {
-        LOGGER.info("9..8..7..6..5..4..3..2..1 Ignition");
-        journeyRepo.takeoff(UUID.fromString(JOURNEY_ID), SPACECRAFT);
-        LOGGER.info("Journey {} has now taken off", JOURNEY_ID);
+    /*
+     * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
+     */
+    public void read_a_journey() {
+        Optional<Journey> j = journeyRepo.find(UUID.fromString(Ex03_b_TakeOff.JOURNEY_ID), Ex03_b_TakeOff.SPACECRAFT);
+        if (j.isPresent()) {
+            LOGGER.info("Journey has been found");
+            LOGGER.info("- Uid:\t\t {}", j.get().getId());
+            LOGGER.info("- Spacecraft:\t {}", j.get().getSpaceCraft());
+            LOGGER.info("- Summary:\t {}", j.get().getSummary());
+            LOGGER.info("- Takeoff:\t {}", j.get().getStart());
+            LOGGER.info("- Landing:\t {}", j.get().getEnd());
+        } else {
+            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex03_b_TakeOff.JOURNEY_ID);
+        }
     }
     
     @AfterAll

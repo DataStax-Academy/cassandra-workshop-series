@@ -23,7 +23,7 @@ import com.datastax.oss.driver.api.core.cql.SimpleStatement;
  * Let's play !
  */ 
 @RunWith(JUnitPlatform.class)
-public class Ex04_ReadParsePage implements DataModelConstants {
+public class Ex04_b_ReadPaging implements DataModelConstants {
 
     /** Logger for the class. */
     private static Logger LOGGER = LoggerFactory.getLogger("Exercise4");
@@ -45,16 +45,12 @@ public class Ex04_ReadParsePage implements DataModelConstants {
         journeyRepo = new JourneyRepository(cqlSession);
     }
     
-    // Please provide proper values
-    private static String journeyId   = "b7fdf670-c5b8-11ea-9d41-49528c2e2634";
-    private static String spaceCraft  = "DragonCrew,SpaceX";
-    
     @Test
     /*
      * select * from spacecraft_journey_catalog WHERE journey_id=47b04070-c4fb-11ea-babd-17b91da87c10 AND spacecraft_name='DragonCrew,SpaceX';
      */
     public void read_a_journey() {
-        Optional<Journey> j = journeyRepo.find(UUID.fromString(journeyId), spaceCraft);
+        Optional<Journey> j = journeyRepo.find(UUID.fromString(Ex03_b_TakeOff.JOURNEY_ID), Ex03_b_TakeOff.SPACECRAFT);
         if (j.isPresent()) {
             LOGGER.info("Journey has been found");
             LOGGER.info("- Uid:\t\t {}", j.get().getId());
@@ -63,7 +59,7 @@ public class Ex04_ReadParsePage implements DataModelConstants {
             LOGGER.info("- Takeoff:\t {}", j.get().getStart());
             LOGGER.info("- Landing:\t {}", j.get().getEnd());
         } else {
-            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", journeyId);
+            LOGGER.info("Journey {} not found, check class 'Ex04_ReadParsePage' or DB", Ex03_b_TakeOff.JOURNEY_ID);
         }
     }
 
