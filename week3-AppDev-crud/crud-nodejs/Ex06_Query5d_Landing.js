@@ -1,7 +1,8 @@
 const connection = require('./db_connection')
+const TimeUuid   = require('cassandra-driver').types.TimeUuid;
 
 // Defining our journey
-const journey_id      = UUID.fromString('<enter_your_journey_id>')
+const journey_id = TimeUuid.fromString('84121060-c66e-11ea-a82e-f931183227ac')
 const spacecraft_name = 'Crew Dragon Endeavour,SpaceX'
 
 console.log("========================================")
