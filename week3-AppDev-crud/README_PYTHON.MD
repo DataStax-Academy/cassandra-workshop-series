@@ -216,7 +216,24 @@ python Ex10_Query4c_ReadMetrics_Paging.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+Page1 with  5  item(s)
+idx= 0 time= 2020-07-15 08:23:18.989000 value= 358.84601643389595
+idx= 1 time= 2020-07-15 08:23:18.988000 value= 330.61229400959064
+idx= 2 time= 2020-07-15 08:23:18.987000 value= 307.32379130938597
+idx= 3 time= 2020-07-15 08:23:18.986000 value= 309.65674426432656
+idx= 4 time= 2020-07-15 08:22:44.887000 value= 353.7309085562105
+Paging State= b'\x00\n\x00\x08\x00\x00\x01sQ\x91\x9f\x97\xf0\x7f\xff\xff\xfa\xf0\x7f\xff\xff\xfa\x00'
+Page2 with  5  item(s)
+idx= 0 time= 2020-07-15 08:22:44.886000 value= 342.4362157566772
+idx= 1 time= 2020-07-15 08:22:44.885000 value= 309.7928649131023
+idx= 2 time= 2020-07-15 08:22:44.883000 value= 305.54587412409853
+idx= 3 time= 2020-07-15 08:22:20.094000 value= 309.11758671277005
+idx= 4 time= 2020-07-15 08:22:20.093000 value= 303.3260737921256
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 You are all done congratulations !
