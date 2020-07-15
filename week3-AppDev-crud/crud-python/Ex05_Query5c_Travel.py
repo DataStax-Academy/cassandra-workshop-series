@@ -6,10 +6,10 @@ import datetime
 import time
 journey_id = uuid.UUID('df8d5c9c-c696-11ea-a8a1-a6cacf7cb1a0')
 spacecraft_name = 'Crew Dragon Endeavour,SpaceX'
-insertSpeed       = 'INSERT INTO killrvideo.spacecraft_speed_over_time (spacecraft_name,journey_id,speed,reading_time,speed_unit) VALUES (?,?,?,?,?)'
-insertTemperature = 'INSERT INTO killrvideo.spacecraft_temperature_over_time (spacecraft_name,journey_id,temperature,reading_time,temperature_unit) VALUES (?,?,?,?,?)'
-insertPressure    = 'INSERT INTO killrvideo.spacecraft_pressure_over_time (spacecraft_name,journey_id,pressure,reading_time,pressure_unit) VALUES (?,?,?,?,?)'
-insertLocation    = 'INSERT INTO killrvideo.spacecraft_location_over_time (spacecraft_name,journey_id,location,reading_time,location_unit) VALUES (?,?,?,?,?)'
+insertSpeed       = 'INSERT INTO spacecraft_speed_over_time (spacecraft_name,journey_id,speed,reading_time,speed_unit) VALUES (?,?,?,?,?)'
+insertTemperature = 'INSERT INTO spacecraft_temperature_over_time (spacecraft_name,journey_id,temperature,reading_time,temperature_unit) VALUES (?,?,?,?,?)'
+insertPressure    = 'INSERT INTO spacecraft_pressure_over_time (spacecraft_name,journey_id,pressure,reading_time,pressure_unit) VALUES (?,?,?,?,?)'
+insertLocation    = 'INSERT INTO spacecraft_location_over_time (spacecraft_name,journey_id,location,reading_time,location_unit) VALUES (?,?,?,?,?)'
 try:
     connection = Connection()
     prepared_insertSpeed = connection.session.prepare(insertSpeed)

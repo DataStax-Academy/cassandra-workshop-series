@@ -113,7 +113,10 @@ python Ex05_Query5c_Travel.py
 **👁️ Expected output**
 
 ```bash
-TODO
+/50 - Travelling..
+1/50 - Travelling..
+2/50 - Travelling..
+3/50 - Travelling
 ```
 
 **✅ Step 4d. Run unit test `Ex06_Query5d_Landing.py`** update the journey to make it inactive and provide end date. To run the test please execute:
@@ -125,7 +128,11 @@ python Ex06_Query5d_Landing.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+Journey df8d5c9c-c696-11ea-a8a1-a6cacf7cb1a0 has now landed
+Success
+========================================
 ```
 
 ## 5. READ AND PARSE RESULTS
