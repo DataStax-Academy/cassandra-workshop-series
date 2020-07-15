@@ -5,8 +5,8 @@ const TimeUuid = require('cassandra-driver').types.TimeUuid;
 const journey_id      = TimeUuid.fromString('84121060-c66e-11ea-a82e-f931183227ac')
 const spacecraft_name = 'Crew Dragon Endeavour,SpaceX'
 
-// Page 1
 async function exercice10() {
+ // Page 1
  const options1 = { prepare: true , fetchSize: 5 };
  const queryMetrics = 'select * from spacecraft_speed_over_time where spacecraft_name=? AND journey_id=?'
  const result1 = await connection.client.execute(queryMetrics, [spacecraft_name, journey_id], options1);
@@ -18,26 +18,18 @@ async function exercice10() {
  })
  let pageState = result1.pageState;
 
-//connection.client.execute(queryMetrics, [spacecraft_name, journey_id], options1)
-//.then(function(result){
-//	console.log("Page1: items", result.rows);
-//    result1.rows.forEach(row => {
-//    	console.log("idx:%s, time=%s, value=%s", offset, row.reading_time, row.speed)
-//    })
-//}
-}
+ // Page 2
+ const options2 = { pageState, prepare: true, fetchSize: 5 };
+ const result2 = await connection.client.execute(queryMetrics, [spacecraft_name, journey_id], options2);
+ console.log("Page2: %i items", result2.rows.length);
+ result2.rows.forEach(row => {
+    	console.log("idx:%s, time=%s, value=%s", offset, row.reading_time, row.speed)
+ })
 
-// Page 2
-//let pageState = result.pageState;
-//const options2 = { pageState, prepare: true, fetchSize: 5 };
-//const result2 = connection.client.execute(queryMetrics, [spacecraft_name, journey_id], options1);
-//console.log("Page2: %i items", result2.rows.length);
-//result2.rows.forEach(row => {
-//    	console.log("idx:%s, time=%s, value=%s", offset, row.reading_time, row.speed)
-//    }
-//)
+ connection.client.shutdown();
+}
 
 console.log("========================================")
 console.log("Start exercise")
-exercice10()
+exercice10();
 console.log("========================================")
