@@ -93,7 +93,13 @@ python Ex04_Query5b_TakeOff.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+9..8..7..6..5..4..3..2..1 Ignition
+Journey 230995ee-c697-11ea-b7a1-8c85907c08dd has now taken off
+Success
+========================================
+
 ```
 
 **✅ Step 4c. Run unit test `Ex05_Query5c_Travel.py`** to simulate a travel in space
@@ -161,7 +167,18 @@ python Ex08_Query4b_Read_Journey_Details.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+Journey has been found
+- Uid:		  230995ee-c697-11ea-b7a1-8c85907c08dd
+- Spacecraft:	 Crew Dragon Endeavour,SpaceX
+- Summary:	 Bring Astronauts to ISS
+- Active:	 True
+- Takeoff:	 None
+- Landing:	 None
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 **✅ Step 5c. Run unit test `Ex09_Query4c_ReadMetrics.py`** to get ALL readings (speed) from one of the journey
