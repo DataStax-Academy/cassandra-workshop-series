@@ -190,7 +190,20 @@ python Ex09_Query4c_ReadMetrics.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+idx= 0 time= 2020-07-15 08:23:18.989000 value= 358.84601643389595
+idx= 1 time= 2020-07-15 08:23:18.988000 value= 330.61229400959064
+idx= 2 time= 2020-07-15 08:23:18.987000 value= 307.32379130938597
+...
+idx= 18 time= 2020-07-15 08:15:52.226000 value= 312.62135385904617
+idx= 19 time= 2020-07-15 08:15:52.225000 value= 304.43301464875776
+idx= 20 time= 2020-07-15 08:10:45.736000 value= 349.81462163292764
+idx= 21 time= 2020-07-15 08:10:45.735000 value= 312.94324025033586
+idx= 22 time= 2020-07-15 08:10:45.734000 value= 305.9325979919639
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 **✅ Step 5d. Run unit test `Ex10_Query4c_ReadMetrics_Paging.py`** to get readings (speed) from one of the journey but page by page.
