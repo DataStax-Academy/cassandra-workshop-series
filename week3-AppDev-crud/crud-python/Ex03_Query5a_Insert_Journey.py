@@ -2,16 +2,25 @@
 from db_connection import Connection
 import uuid
 
-# this is a insert statement in python
+
+print('========================================')
+print('Start exercise')
+
+journey_id = uuid.uuid1()
+
 try:
     connection = Connection()
     output = connection.session.execute(
-        "INSERT INTO killrvideo.user_credentials (email, password, userid) VALUES (%s, %s, %s)", 
-        ('cv@datastax.com', '3@$tC0@$tC@ss@ndr@', uuid.UUID('{55555555-5555-5555-5555-555555555555}'))
+        "INSERT INTO todoapp.spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) VALUES (%s,%s,%s,%s)",
+        ['Crew Dragon Endeavour,SpaceX', journey_id , bool('false'),'Bring Astronauts to ISS']
     )
-except:
+except Exception as e: 
+    print(e)
     print('Failure')
 else:
+    print('Journey created ', journey_id)
     print('Success')
+    print('Closing connection (up to 10s)')
 finally:
     connection.close()
+print('========================================')

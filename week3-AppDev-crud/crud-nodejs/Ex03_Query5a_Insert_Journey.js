@@ -5,7 +5,7 @@ const TimeUuid   = require('cassandra-driver').types.TimeUuid;
 // this is an insert statement in nodejs
 const journey_id = TimeUuid.now();
 const insert     = 'INSERT INTO todoapp.spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) VALUES (?,?,?,?);';
-const params     = ['Crew Dragon Endeavour,SpaceX', journey_id ,true,'Bring Astronauts to ISS'];
+const params     = ['Crew Dragon Endeavour,SpaceX', journey_id ,false,'Bring Astronauts to ISS'];
 
 console.log("========================================")
 console.log("Start exercise")
