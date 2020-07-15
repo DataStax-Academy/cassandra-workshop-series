@@ -50,7 +50,6 @@ for (i = 0; i < 50; i++) {
 	 .catch(function (error){
         console.log(error.message)
 	});
-
 }
 
 connection.client.shutdown()

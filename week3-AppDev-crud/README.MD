@@ -156,9 +156,8 @@ Exercises will be different for each language. Pick the language you feel the mo
 | Sections | Material Description
 | - |---|
 | **![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)** | [Exercises 3 to 5 with JAVA](./README_JAVA.MD) |
-| **![PYTHON](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)** | [Exercises 3 to 5 with PYTHON](./README_PYTHON.MD) |
 | **![JAVASCRIPT](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-javascript.png)** | [Exercises 3 to 5 with JAVASCRIPT](./README_JAVASCRIPT.MD) |
-| **![CSHARP](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-csharp.png)** | [Exercises 3 to 5 with CSHARP](./README_CSHARP.MD) |
+| **![PYTHON](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)** | [Exercises 3 to 5 with PYTHON](./README_PYTHON.MD) |
 
 [🏠Back to HOME workshop](https://github.com/DataStax-Academy/cassandra-workshop-series)
 

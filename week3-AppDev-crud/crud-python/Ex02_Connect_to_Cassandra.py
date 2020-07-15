@@ -9,11 +9,9 @@ try:
 	output = connection.session.execute("SELECT * FROM system.local")
 	for row in output:
 	    print("Your are now connected to cluster '%s'", row.cluster_name)
-
 except:
     print('Failure')
 else:
     print('Success')
 finally:
-	print('========================================')
-    connection.close()
+	connection.close()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3      
-from dse.cluster import Cluster
-from dse.auth import PlainTextAuthProvider
+from cassandra.cluster import Cluster
+from cassandra.auth import PlainTextAuthProvider
 
 class Connection:
     def __init__(self):

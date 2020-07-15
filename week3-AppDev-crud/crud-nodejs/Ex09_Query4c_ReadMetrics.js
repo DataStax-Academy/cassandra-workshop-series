@@ -9,7 +9,7 @@ const journey_id = TimeUuid.fromString('84121060-c66e-11ea-a82e-f931183227ac')
 const spacecraft_name = 'Crew Dragon Endeavour,SpaceX'
 
 // Get query
-const queryMetrics    = 'select * from spacecraft_speed_over_time where spacecraft_name=? AND journey_id=?'
+const queryMetrics = 'select * from spacecraft_speed_over_time where spacecraft_name=? AND journey_id=?'
 
 offset = 0;
 connection.client.execute(queryMetrics, [spacecraft_name, journey_id])

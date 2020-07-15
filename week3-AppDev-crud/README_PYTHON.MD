@@ -18,6 +18,14 @@
 
 **✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.py`**
 
+- Place you in the folder crud-python in the terminal. And install the dependencies
+
+```
+cd week3-AppDev-crud/crud-python/
+
+pip3 install cassandra-driver
+```
+
 - Locate the file `db_connection.py` and fill the properties with your Astra informations
 
 *Do not copy-paste - this is a sample for me.*
