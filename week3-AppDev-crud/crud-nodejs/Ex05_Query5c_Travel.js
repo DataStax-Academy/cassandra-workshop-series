@@ -47,7 +47,6 @@ async function executeQueries() {
             console.log("{%i/50} - Travelling..",i)
 
             const result = await executeConcurrent(connection.client, myBatch, { prepare: true })
-            //connection.client.batch(myBatch, { prepare: true })
             .then(function (result){
             })
             .catch(function (error){
