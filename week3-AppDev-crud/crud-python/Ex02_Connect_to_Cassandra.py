@@ -3,7 +3,6 @@ from db_connection import Connection
 
 print('========================================')
 print('Start exercise')
-
 try:
 	connection = Connection()
 	output = connection.session.execute("SELECT * FROM system.local")
@@ -14,5 +13,6 @@ except:
 else:
     print('Success')
 finally:
-	print('End')
-	#connection.close()
+	print('Closing connection (up to 10s)')
+	connection.close()
+print('========================================')
