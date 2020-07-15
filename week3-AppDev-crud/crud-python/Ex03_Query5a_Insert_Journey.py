@@ -2,7 +2,6 @@
 from db_connection import Connection
 import uuid
 
-
 print('========================================')
 print('Start exercise')
 
@@ -11,7 +10,7 @@ journey_id = uuid.uuid1()
 try:
     connection = Connection()
     output = connection.session.execute(
-        "INSERT INTO todoapp.spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) VALUES (%s,%s,%s,%s)",
+        "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) VALUES (%s,%s,%s,%s)",
         ['Crew Dragon Endeavour,SpaceX', journey_id , bool('false'),'Bring Astronauts to ISS']
     )
 except Exception as e: 

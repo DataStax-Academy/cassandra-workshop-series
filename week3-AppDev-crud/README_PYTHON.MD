@@ -30,20 +30,23 @@ pip3 install cassandra-driver
 
 *Do not copy-paste - this is a sample for me.*
 
-```javascript
-// This is the Zip file you downloaded
-const SECURE_CONNECT_BUNDLE = '/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip'
-// This is the username, recommended value was KVUser
-const USERNAME = "KVUser";
-// This is the password, recommended value was KVPassword
-const PASSWORD = "KVPassword";
-// This is the keyspace name, recommended value was killrvideo
-const KEYSPACE = "killrvideo"; 
+```python
+# This is the Zip file you downloaded
+SECURE_CONNECT_BUNDLE = '/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip'
+# This is the username, recommended value was KVUser
+USERNAME = "todouser";
+# This is the password, recommended value was KVPassword
+PASSWORD = "todopassword";
+# This is the keyspace name, recommended value was killrvideo
+KEYSPACE = "todoapp"; 
 ```
 
 ```
 ⚠️ By default Autosaved is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
 ```
+
+Now you can run the exercice 2 to connect
+
 ```bash
 python Ex02_Connect_to_Cassandra.py 
 ```
@@ -51,7 +54,12 @@ python Ex02_Connect_to_Cassandra.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+Your are now connected to cluster '%s' caas-cluster
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 ## 4. CREATE READ UPDATE
@@ -64,12 +72,17 @@ python Ex03_Query5a_Insert_Journey.py
 ```
 
 ```bash
-TODO
+========================================
+Start exercise
+Journey created 230995ee-c697-11ea-b7a1-8c85907c08dd
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 **✅ Step 4b. Run unit test `Ex04_Query5b_TakeOff.py`** to update the journey and marked started.
 
-In the previous exercises we displayed a journeyID (for me it is `76dceda0-c5ee-11ea-a96c-cbbdcb5d7db1`). Open `Ex04_Query5b_TakeOff.js` locate constant `JOURNEY_ID` and change value with the proper journeyID. 
+In the previous exercises we displayed a journeyID (for me it is `230995ee-c697-11ea-b7a1-8c85907c08dd`). Open `Ex04_Query5b_TakeOff.py` locate constant `JOURNEY_ID` and change value with the proper journeyID. 
 
 Run the takeoff query by running this test
 
@@ -120,7 +133,23 @@ python Ex07_Query4a_ListJourneys.py
 **👁️ Expected output**
 
 ```bash
-TODO
+========================================
+Start exercise
+- Journey; 230995ee-c697-11ea-b7a1-8c85907c08dd  Summary: Bring Astronauts to ISS
+- Journey; beba02a4-c696-11ea-b646-8c85907c08dd  Summary: Bring Astronauts to ISS
+- Journey; bf2e708c-c694-11ea-9892-8c85907c08dd  Summary: Bring Astronauts to ISS
+- Journey; a322fbb0-c694-11ea-8001-8c85907c08dd  Summary: Bring Astronauts to ISS
+- Journey; 8d23bdae-c694-11ea-81b7-8c85907c08dd  Summary: Bring Astronauts to ISS
+- Journey; 620acae0-c671-11ea-97e7-56004218e25e  Summary: Bring Astronauts to ISS
+- Journey; 87345f00-c66e-11ea-a252-4ebb2901d808  Summary: Bring Astronauts to ISS
+- Journey; 84121060-c66e-11ea-a82e-f931183227ac  Summary: Bring Astronauts to ISS
+- Journey; 76dceda0-c5ee-11ea-a96c-cbbdcb5d7db1  Summary: Bring Astronauts to ISS
+- Journey; 691bcf60-c5ee-11ea-9bde-d1ddecb1d5c1  Summary: Bring Astronauts to ISS
+- Journey; 53983d90-c5da-11ea-bcd8-c78bf1f1af98  Summary: Bring Astronauts to ISS
+- Journey; 90163870-c5d6-11ea-b11f-c30e2b038000  Summary: Bring Astronauts to ISS
+Success
+Closing connection (up to 10s)
+========================================
 ```
 
 **✅ Step 5b. Run unit test `Ex08_Query4b_Read_Journey_Details.py`** to get the details of one journey
