@@ -18,7 +18,7 @@
 
 **✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.js`**
 
-- Place you in the folder with the nodejs file in the terminal. And install the dependencies
+- Navigate to the _crud-nodejs_ folder within the _week3-AppDev-crud_ folder using the terminal with the command below. Install the dependencies.
 
 ```
 cd week3-AppDev-crud/crud-nodejs/
