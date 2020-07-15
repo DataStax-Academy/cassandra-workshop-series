@@ -4,7 +4,7 @@ from dse.auth import PlainTextAuthProvider
 
 class Connection:
     def __init__(self):
-        self.secure_connect_bundle='/home/ubuntu/workspace/creds.zip'
+        self.secure_connect_bundle='/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip'
         self.path_to_creds=''
         self.cluster = Cluster(
             cloud={

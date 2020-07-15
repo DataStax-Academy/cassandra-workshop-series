@@ -53,11 +53,8 @@ public class JourneyRepository implements DataModelConstants {
      *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
      */
     public UUID create(String spacecraft, String journeySummary) {
-        // FIXME: Please provide the proper CQL query
-        String insertQuery = SOLUTION_INSERT;
-        // <--
         UUID journeyId =  Uuids.timeBased();
-        cqlSession.execute(SimpleStatement.builder(insertQuery)
+        cqlSession.execute(SimpleStatement.builder(SOLUTION_INSERT)
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
                 .addPositionalValue(Boolean.FALSE)
@@ -78,10 +75,7 @@ public class JourneyRepository implements DataModelConstants {
      *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
      */
     public void takeoff(UUID journeyId, String spacecraft) {
-        // FIXME: Please provide the proper CQL query
-        String queryTakeOff = SOLUTION_TAKEOFF;
-        // <--
-        cqlSession.execute(SimpleStatement.builder(queryTakeOff)
+        cqlSession.execute(SimpleStatement.builder(SOLUTION_TAKEOFF)
                 .addPositionalValue(Instant.now())
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
@@ -161,10 +155,7 @@ public class JourneyRepository implements DataModelConstants {
     }
     
     public void landing(UUID journeyId, String spacecraft) {
-        // FIXME: Please provide the proper CQL query
-        String queryLanding = SOLUTION_LANDING;
-        // <--
-        cqlSession.execute(SimpleStatement.builder(queryLanding)
+        cqlSession.execute(SimpleStatement.builder(SOLUTION_LANDING)
                 .addPositionalValue(Instant.now())
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
@@ -209,10 +200,7 @@ public class JourneyRepository implements DataModelConstants {
     }
     
     public Optional<Journey> find(UUID journeyId, String spacecraft) {
-        // FIXME: Please provide the proper CQL query
-        String queryFind = SOLUTION_READ_JOURNEY;
-        // <--
-        ResultSet rs = cqlSession.execute(SimpleStatement.builder(queryFind)
+        ResultSet rs = cqlSession.execute(SimpleStatement.builder(SOLUTION_READ_JOURNEY)
                 .addPositionalValue(spacecraft)
                 .addPositionalValue(journeyId)
                 .build());
@@ -232,7 +220,7 @@ public class JourneyRepository implements DataModelConstants {
         return j;
     }
     
-    // SOLUTIONS
+    // == SOLUTIONS ==
     
     private static final String SOLUTION_INSERT = 
             "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
@@ -251,8 +239,4 @@ public class JourneyRepository implements DataModelConstants {
     private static final String SOLUTION_READ_JOURNEY =
             "SELECT * FROM spacecraft_journey_catalog "
                     + "WHERE spacecraft_name=? AND journey_id=?";
-    
-    
-    
-
 }

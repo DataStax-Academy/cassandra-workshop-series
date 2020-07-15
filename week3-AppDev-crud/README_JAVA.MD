@@ -42,6 +42,8 @@ cd crud-java/
 mvn clean compile
 ```
 
+**👁️ Expected output**
+
 ```
 INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ crud-java ---
 [INFO] Changes detected - recompiling the module!
@@ -400,7 +402,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-You are all done congratulation
+You are all done congratulations !
 
 
 
