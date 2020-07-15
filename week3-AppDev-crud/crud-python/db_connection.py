@@ -10,7 +10,7 @@ class Connection:
             cloud={
                 'secure_connect_bundle': self.secure_connect_bundle
             },
-            auth_provider=PlainTextAuthProvider('KVUser', 'KVPassword')
+            auth_provider=PlainTextAuthProvider('todouser', 'todopassword')
         )
         self.session = self.cluster.connect()
     def close(self):
