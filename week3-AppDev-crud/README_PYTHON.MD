@@ -18,7 +18,8 @@
 
 **✅ Step 3a. Fix unit test `Ex02_Connect_to_Cassandra.py`**
 
-- Place you in the folder crud-python in the terminal. And install the dependencies
+
+- Navigate to the _crud-python_ folder within the _week3-AppDev-crud_ folder using the terminal with the command below. Install the dependencies.
 
 ```
 cd week3-AppDev-crud/crud-python/
