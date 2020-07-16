@@ -42,7 +42,7 @@ public class Ex04_Query5b_TakeOff implements DataModelConstants {
 
     // ===> WE WILL USE THIS VALUES EVERYWHERE
     public static String SPACECRAFT  = "Crew Dragon Endeavour,SpaceX";
-    public static String JOURNEY_ID  = "90163870-c5d6-11ea-b11f-c30e2b038000";
+    public static String JOURNEY_ID  = "8dfd0a30-c73b-11ea-b87b-1325d5aaa06b";
     // <=====
     
     @Test
