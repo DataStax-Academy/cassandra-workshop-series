@@ -1,0 +1,45 @@
+# Killrvideo GraphQL API
+schema {
+    # Read-only operations : fetch, search... (Every GraphQL service has a query type) 
+    query: Query
+    
+    # Write operations ; insert, update delete (Every GraphQL service may or may not have a mutation type)
+    mutation: Mutation
+}
+
+# Represent a video comment in GraphQL format
+type CommentGQL {
+    #Unique identifier for a user (tech id)
+    commentid: ID!
+    # Unique identifier for a user (required)
+    userid:   String!
+    # Unique identifier for a video (required)
+    videoid:  String!
+    # Text of the comment
+    comment:  String
+    # Insertion Date
+    dateOfComment: String
+}
+
+type ResultPageCommentGQL {
+	listOfResults: [CommentGQL]!
+	nextPage: String
+}
+
+# Searches and read-only operations on KillrVideo Keyspace
+type Query {
+  
+  # Search in table comment_by_video, eventually with Pagination.
+  getVideoComments(videoid: String!, commentid: String, pageSize: Int , pageState: String): ResultPageCommentGQL!
+  
+  # Search in table comment_by_user, eventually with Pagination.
+  getUserComments(userid: String!, commentid: String, pageSize: Int , pageState: String): ResultPageCommentGQL!
+}
+
+# Operation that will updated data in DB
+type Mutation {
+  
+  # Add a comment for dedicated video and known user.
+  commentOnVideo(commentid: String!, videoid: String!, userid: String!, text: String!): CommentGQL!
+  
+}

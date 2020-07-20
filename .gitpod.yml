@@ -1,0 +1,10 @@
+tasks:
+  - init: echo "Welcome to the Cassandra Workshop Series"
+  - command: pip install cassandra-driver
+  - command: npm install cassandra-driver
+  - command: cd week4-AppDev-api/getting-started-with-astra-ui && npm install
+  - command: cd week4-AppDev-api/getting-started-with-astra-java && mvn clean compile
+
+ports:
+  - port: 3000-8999
+    onOpen: ignore

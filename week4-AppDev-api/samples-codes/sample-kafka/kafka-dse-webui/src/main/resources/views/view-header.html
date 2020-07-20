@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+   <meta http-equiv="Cache-Control"          content="no-store" />
+   <meta http-equiv="Pragma"                 content="no-cache" />
+   <meta http-equiv="Content-Type"           content="text/html;charset=utf-8" />
+   <meta name="viewport"                     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="author" 			 			 content="Datastax Evangelist Team" />
+   
+ 	<!-- Styles -->
+ 	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+  	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  	<link rel="stylesheet" href="/webjars/highcharts/5.0.8/css/highcharts.css"/>
+    
+    
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap-responsive.min.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/font-awesome-3.2.1.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/js/vizjs/vis-network.min.css}" />
+    
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/js/codemirror-5.39.0/codemirror.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/js/codemirror-5.39.0/show-hint.css}" />
+    
+  
+    <!-- JS -->
+    <script type="text/javascript" th:src="@{/js/base.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery/jquery-1.9.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vizjs/vis.js}"></script>
+    
+    <script type="text/javascript" th:src="@{/js/codemirror-5.39.0/codemirror.js}"></script>
+    <script type="text/javascript" th:src="@{/js/codemirror-5.39.0/show-hint.js}"></script>
+    <script type="text/javascript" th:src="@{/js/codemirror-5.39.0/sql-hint.js}"></script>
+    <script type="text/javascript" th:src="@{/js/codemirror-5.39.0/sql.js}"></script>
+    
+    <script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/highcharts/5.0.8/highcharts.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+ <style>
+.CodeMirror {
+    border-top: 1px solid #0890D0;
+    height: auto;
+}
+ </style>
+        
+</head>
+<body>

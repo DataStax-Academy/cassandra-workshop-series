@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="header :: head"></head>
+<body>
+
+	<div class="navbar navbar-fixed-top" th:include="navbar :: navbar"></div>
+
+	<div id="wrapper" class="container">
+		<div class="row">
+			<div class="span9">
+				<div id="content" class="clearfix">
+					<div class="main-inner">
+						<div class="container">
+							<div class="row">
+								<div class="span12">
+									<div class="error-container">
+										<h1>500</h1>
+										<h2><span th:text="#{500.title}">title</span></h2>
+									   
+
+
+									</div>
+									<!-- /error-container -->
+
+								</div>
+								<!-- /span12 -->
+
+							</div>
+							<!-- /row -->
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

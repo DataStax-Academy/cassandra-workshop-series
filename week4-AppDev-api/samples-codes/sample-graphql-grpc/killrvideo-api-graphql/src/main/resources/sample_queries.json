@@ -1,0 +1,37 @@
+
+query {
+  getVideoComments(
+    videoid: "701d6204-29e0-4eba-9411-2212437ad98e"
+  	pageSize: 2) {
+    listOfResults {
+      dateOfComment
+      comment
+    }
+    nextPage
+  }
+}
+
+query {
+  getUserComments(
+    userid: "47ae8d7c-1e7a-4953-ac27-adb310e8b522"
+  	pageSize: 2) {
+    listOfResults {
+      dateOfComment
+      comment
+    }
+    nextPage
+  }
+}
+
+mutation {
+  commentOnVideo(
+  	commentid : "ba9eed80-959a-11e8-ba6d-49593414a589"
+  	videoid: "701d6204-29e0-4eba-9411-2212437ad98e"
+  	userid: "57f66e0f-afdb-43da-9237-30c888297516", 
+  	text: "Test From GraphQL") {
+    userid
+    videoid
+    commentid
+    dateOfComment
+  }
+}

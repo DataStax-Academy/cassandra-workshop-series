@@ -1,0 +1,102 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="header :: head"></head>
+
+<body>
+
+ <div class="navbar navbar-fixed-top" th:include="navbar :: navbar"></div>
+ <div class="subnavbar" th:include="navbar :: subnavbar-multiple"></div>
+  <div id="wrapper" class="container">
+    <div id="content" class="clearfix">
+	  <div class="main-inner" style="margin-top: 60px">
+	   <div class="container">
+        <div class="row">
+		 <div class="span12">
+		 
+		  <div class="widget widget-nopad">
+		   <div class="widget-header">
+			<i class="icon-list-alt"></i>
+			<h3>
+			 <span style="color:#0890D0">Business </span>
+			</h3>
+		   </div>
+           
+           <div class="widget-content"  style="padding:10px">
+           			 
+    <div id="chart" style="height: 400px; min-width: 310px"></div>
+</div>
+
+<script type="text/javascript">
+	
+    var chart = new Highcharts.chart('chart', {
+        title: {
+            text: 'Multiple Streams '
+        },
+        yAxis: {
+            title: {
+                text: 'Stock Price'
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [
+        	{ name: 'BAC', data: []},
+        	{ name: 'DVMT', data: []},
+        	{ name: 'DIS', data: []},
+        	{ name: 'IBM', data: []},
+        	{ name: 'WMT', data: []}
+        	]
+    });
+    var appendStockData = function (quote) {
+        chart.series
+            .filter(function (serie) {
+                return serie.name == quote.symbol
+            })
+            .forEach(function (serie) {
+                serie.addPoint([quote.valueDate, quote.value]);
+            });
+    };
+    var stockEventSource = new EventSource('/tickers/streams');
+    stockEventSource.onmessage = function (e) {
+        appendStockData(JSON.parse(e.data));
+    }
+</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

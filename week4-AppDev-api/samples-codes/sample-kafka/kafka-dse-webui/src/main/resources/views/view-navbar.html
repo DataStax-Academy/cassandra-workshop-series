@@ -1,0 +1,90 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="navbar">
+ <div class="navbar-inner">
+  <div class="container">
+
+   <a class="brand" href="/" style="">
+    <img src="" th:src="@{/img/logo-header.png}" height="45px" style="height:45px"/>
+    &nbsp; &nbsp; &nbsp;
+    <span th:text="#{navbar.title}" style="color:white;margin-top:30px"> TITLE</span>
+   </a> 
+  
+  </div>
+ </div>
+</div>
+
+<div th:fragment="subnavbar">
+ <div class="subnavbar-inner">
+  <div class="container">
+   <ul class="mainnav">
+    <li class="active2">
+     <a href="/" >
+      <i class="icon-list-alt"></i>
+       <span th:text="#{navbar.main.home}" >StockList</span>
+     </a>
+    </li>
+     <li>
+     <a href="" th:href="@{multichart}" >
+      <i class="icon-bar-chart"></i> 
+      <span>Multiple Values</span>
+     </a>
+    </li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="subnavbar-single">
+ <div class="subnavbar-inner">
+  <div class="container">
+   <ul class="mainnav">
+    <li >
+     <a href="/" >
+      <i class="icon-list-alt"></i>
+       <span th:text="#{navbar.main.home}" >StockList</span>
+     </a>
+    </li>
+     <li>
+     <a href="" th:href="@{/multichart}" >
+      <i class="icon-bar-chart"></i> 
+      <span>Multiple Values</span>
+     </a>
+    </li>
+    <li class="active2">
+     <a href="#" >
+      <i class="icon-dashboard"></i>
+       <span>Current</span>
+     </a>
+    </li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="subnavbar-multiple">
+ <div class="subnavbar-inner">
+  <div class="container">
+   <ul class="mainnav">
+    <li >
+     <a href="/" >
+      <i class="icon-list-alt"></i>
+       <span >StockList</span>
+     </a>
+    </li>
+     <li class="active2">
+     <a href="" th:href="@{multichart}" >
+      <i class="icon-bar-chart"></i> 
+      <span>Multiple Values</span>
+     </a>
+    </li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+__________                   .___                         
+\______   \_______  ____   __| _/_ __   ____  ___________ 
+ |     ___/\_  __ \/  _ \ / __ |  |  \_/ ___\/ __ \_  __ \
+ |    |     |  | \(  <_> ) /_/ |  |  /\  \__\  ___/|  | \/
+ |____|     |__|   \____/\____ |____/  \___  >___  >__|   
+                              \/           \/    \/       
+ Read Stocks from AlphaVantage and then, generate random values simulating evolutions
+ 
+Open your browser for monitoring : http://localhost:8088/admin#/wallboard
