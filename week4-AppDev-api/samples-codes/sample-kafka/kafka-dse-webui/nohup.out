@@ -1,0 +1,812 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.datastax:kafka-dse-webui >--------------------
+[INFO] Building + kafka-dse-webui 6.7-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:2.0.3.RELEASE:run (default-cli) > test-compile @ kafka-dse-webui >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ kafka-dse-webui ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 37 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ kafka-dse-webui ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ kafka-dse-webui ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ kafka-dse-webui ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /Users/cedricklunven/dev/WORKSPACES/kafka-dse/kafka-dse-webui/target/test-classes
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:2.0.3.RELEASE:run (default-cli) < test-compile @ kafka-dse-webui <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.0.3.RELEASE:run (default-cli) @ kafka-dse-webui ---
+[INFO] Attaching agents: []
+ __    __     _            _____ 
+/ / /\ \ \___| |__  /\ /\  \_   \
+\ \/  \/ / _ \ '_ \/ / \ \  / /\/
+ \  /\  /  __/ |_) \ \_/ /\/ /_  
+  \/  \/ \___|_.__/ \___/\____/  
+  
+ Read Tick in DSE in realtime as Reactive
+ 
+17:37:12.188 [35mINFO [0;39m [36mcom.datastax.demo.WebUiApplication           [0;39m : Starting WebUiApplication on clunhost with PID 94085 (/Users/cedricklunven/dev/WORKSPACES/kafka-dse/kafka-dse-webui/target/classes started by cedricklunven in /Users/cedricklunven/dev/WORKSPACES/kafka-dse/kafka-dse-webui)
+17:37:12.191 [35mDEBUG[0;39m [36mcom.datastax.demo.WebUiApplication           [0;39m : Running with Spring Boot v2.0.3.RELEASE, Spring v5.0.8.RELEASE
+17:37:12.192 [35mINFO [0;39m [36mcom.datastax.demo.WebUiApplication           [0;39m : No active profile set, falling back to default profiles: default
+17:37:15.084 [35mINFO [0;39m [36mcom.datastax.demo.conf.DseConfiguration      [0;39m : Initializing connection to DSE Cluster
+17:37:15.089 [35mINFO [0;39m [36mcom.datastax.demo.conf.DseConfiguration      [0;39m :  + Contact Points : [127.0.0.1]
+17:37:15.092 [35mINFO [0;39m [36mcom.datastax.demo.conf.DseConfiguration      [0;39m :  + Listening Port : 9042
+17:37:15.565 [35mINFO [0;39m [36mcom.datastax.demo.conf.DseConfiguration      [0;39m :  + Creating keyspace 'demo_kafka' (if needed)
+17:37:15.652 [35mINFO [0;39m [36mcom.datastax.demo.conf.DseConfiguration      [0;39m :  + Connection established to DSE Cluster \_0_/ in 568 millis.
+17:37:17.643 [35mINFO [0;39m [36mcom.datastax.demo.WebUiApplication           [0;39m : Started WebUiApplication in 5.832 seconds (JVM running for 6.405)
+17:40:09.932 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 1000 milliseconds
+17:40:09.932 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 1000 milliseconds
+17:40:10.938 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 2000 milliseconds
+17:40:10.938 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 2000 milliseconds
+17:40:12.214 [35mERROR[0;39m [36morg.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler[0;39m : Failed to handle request [GET http://192.168.1.82:8082/tickers/stream/symbol/AIG]
+org.springframework.data.cassandra.CassandraConnectionFailureException: Query; CQL [SELECT * FROM stocks_ticks WHERE symbol = ? LIMIT 100]; All host(s) tried for query failed (no host was tried); nested exception is com.datastax.driver.core.exceptions.NoHostAvailableException: All host(s) tried for query failed (no host was tried)
+	at org.springframework.data.cassandra.core.cql.CassandraExceptionTranslator.translate(CassandraExceptionTranslator.java:155)
+	at org.springframework.data.cassandra.core.cql.ReactiveCassandraAccessor.translate(ReactiveCassandraAccessor.java:149)
+	at org.springframework.data.cassandra.core.cql.ReactiveCqlTemplate.lambda$translateException$18(ReactiveCqlTemplate.java:754)
+	at reactor.core.publisher.Flux.lambda$onErrorMap$24(Flux.java:5424)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:88)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onError(FluxOnAssembly.java:455)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onError(FluxOnAssembly.java:455)
+	at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:193)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onError(FluxOnAssembly.java:455)
+	at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:166)
+	at org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.lambda$adaptFuture$2(DefaultBridgedReactiveSession.java:238)
+	at com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:817)
+	at com.google.common.util.concurrent.AbstractFuture.addListener(AbstractFuture.java:595)
+	at com.google.common.util.concurrent.AbstractFuture$TrustedFuture.addListener(AbstractFuture.java:96)
+	at org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.adaptFuture(DefaultBridgedReactiveSession.java:231)
+	at org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.lambda$execute$0(DefaultBridgedReactiveSession.java:171)
+	at reactor.core.publisher.MonoCreate.subscribe(MonoCreate.java:54)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMapMany.subscribe(MonoFlatMapMany.java:49)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.FluxDefer.subscribe(FluxDefer.java:55)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.FluxOnErrorResume.subscribe(FluxOnErrorResume.java:47)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.FluxFlatMap.subscribe(FluxFlatMap.java:97)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.FluxMapFuseable.subscribe(FluxMapFuseable.java:63)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at org.springframework.http.server.reactive.ChannelSendOperator.subscribe(ChannelSendOperator.java:74)
+	at reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	at reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:241)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	at reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onNext(MonoIgnoreThen.java:295)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:144)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:92)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.request(FluxOnAssembly.java:532)
+	at reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.request(FluxOnAssembly.java:532)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	at reactor.core.publisher.MonoCallableOnAssembly.subscribe(MonoCallableOnAssembly.java:82)
+	at reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoDefaultIfEmpty.subscribe(MonoDefaultIfEmpty.java:37)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:271)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:803)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.request(FluxOnAssembly.java:532)
+	at reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.request(FluxOnAssembly.java:532)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	at reactor.core.publisher.MonoCallableOnAssembly.subscribe(MonoCallableOnAssembly.java:82)
+	at reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:418)
+	at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:210)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:140)
+	at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:64)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.FluxConcatMap.subscribe(FluxConcatMap.java:121)
+	at reactor.core.publisher.FluxOnAssembly.subscribe(FluxOnAssembly.java:252)
+	at reactor.core.publisher.MonoNext.subscribe(MonoNext.java:40)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	at reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	at reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onNext(FluxOnAssembly.java:450)
+	at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.request(FluxOnAssembly.java:532)
+	at reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:318)
+	at reactor.core.publisher.FluxOnAssembly$OnAssemblySubscriber.onSubscribe(FluxOnAssembly.java:516)
+	at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	at reactor.core.publisher.MonoCallableOnAssembly.subscribe(MonoCallableOnAssembly.java:82)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
+	at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:70)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:71)
+	at reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	at reactor.core.publisher.MonoOnAssembly.subscribe(MonoOnAssembly.java:76)
+	at reactor.ipc.netty.channel.ChannelOperations.applyHandler(ChannelOperations.java:380)
+	at reactor.ipc.netty.http.server.HttpServerOperations.onHandlerStart(HttpServerOperations.java:398)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:465)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+	at java.lang.Thread.run(Thread.java:748)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoError] :
+	reactor.core.publisher.Mono.error(Mono.java:252)
+	reactor.core.publisher.Flux.lambda$onErrorMap$24(Flux.java:5424)
+	reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:88)
+	reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:193)
+	reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:166)
+	org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.lambda$adaptFuture$2(DefaultBridgedReactiveSession.java:238)
+	com.google.common.util.concurrent.AbstractFuture.executeListener(AbstractFuture.java:817)
+	com.google.common.util.concurrent.AbstractFuture.addListener(AbstractFuture.java:595)
+	com.google.common.util.concurrent.AbstractFuture$TrustedFuture.addListener(AbstractFuture.java:96)
+	org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.adaptFuture(DefaultBridgedReactiveSession.java:231)
+	org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.lambda$execute$0(DefaultBridgedReactiveSession.java:171)
+	reactor.core.publisher.MonoCreate.subscribe(MonoCreate.java:54)
+	reactor.core.publisher.MonoFlatMapMany.subscribe(MonoFlatMapMany.java:49)
+	reactor.core.publisher.FluxDefer.subscribe(FluxDefer.java:55)
+	reactor.core.publisher.FluxOnErrorResume.subscribe(FluxOnErrorResume.java:47)
+	reactor.core.publisher.FluxFlatMap.subscribe(FluxFlatMap.java:97)
+	reactor.core.publisher.FluxMapFuseable.subscribe(FluxMapFuseable.java:63)
+	org.springframework.http.server.reactive.ChannelSendOperator.subscribe(ChannelSendOperator.java:74)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:241)
+	reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onNext(MonoIgnoreThen.java:295)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:144)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:92)
+	reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	reactor.core.publisher.MonoDefaultIfEmpty.subscribe(MonoDefaultIfEmpty.java:37)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
+	reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:271)
+	reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:803)
+	reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:418)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:210)
+	reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:140)
+	reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:64)
+	reactor.core.publisher.FluxConcatMap.subscribe(FluxConcatMap.java:121)
+	reactor.core.publisher.MonoNext.subscribe(MonoNext.java:40)
+	reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:318)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
+	reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:70)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.ipc.netty.channel.ChannelOperations.applyHandler(ChannelOperations.java:380)
+	reactor.ipc.netty.http.server.HttpServerOperations.onHandlerStart(HttpServerOperations.java:398)
+	io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404)
+	io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:465)
+	io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+Error has been observed by the following operator(s):
+	|_	MonoCreate$DefaultMonoSink.error(DefaultBridgedReactiveSession.java:238)
+	|_	Flux.onErrorMap(ReactiveCqlTemplate.java:368)
+	|_	Flux.flatMap(TickerController.java:47)
+	|_	Flux.map(ServerSentEventHttpMessageWriter.java:117)
+	|_	Mono.flatMap(DispatcherHandler.java:177)
+	|_	Mono.onErrorResume(DispatcherHandler.java:177)
+	|_	Mono.flatMap(DispatcherHandler.java:161)
+	|_	Mono.defer(DefaultWebFilterChain.java:72)
+	|_	Mono.doAfterSuccessOrError(HttpTraceWebFilter.java:99)
+	|_	Mono.flatMap(HttpTraceWebFilter.java:82)
+	|_	Mono.defer(DefaultWebFilterChain.java:72)
+	|_	Mono.doOnSuccess(MetricsWebFilter.java:64)
+	|_	Mono.doOnError(MetricsWebFilter.java:64)
+	|_	Mono.compose(MetricsWebFilter.java:58)
+	|_	Mono.defer(DefaultWebFilterChain.java:72)
+
+Caused by: com.datastax.driver.core.exceptions.NoHostAvailableException: All host(s) tried for query failed (no host was tried)
+	at com.datastax.driver.core.RequestHandler.reportNoMoreHosts(RequestHandler.java:223)
+	at com.datastax.driver.core.RequestHandler.access$1200(RequestHandler.java:41)
+	at com.datastax.driver.core.RequestHandler$SpeculativeExecution.findNextHostAndQuery(RequestHandler.java:309)
+	at com.datastax.driver.core.RequestHandler.startNewExecution(RequestHandler.java:111)
+	at com.datastax.driver.core.RequestHandler.sendRequest(RequestHandler.java:91)
+	at com.datastax.driver.core.SessionManager.executeAsync(SessionManager.java:124)
+	at com.datastax.driver.dse.DefaultDseSession.executeAsync(DefaultDseSession.java:223)
+	at org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.lambda$execute$0(DefaultBridgedReactiveSession.java:166)
+	... 173 common frames omitted
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Assembly trace from producer [reactor.core.publisher.MonoCreate] :
+	reactor.core.publisher.Mono.create(Mono.java:172)
+	org.springframework.data.cassandra.core.cql.session.DefaultBridgedReactiveSession.execute(DefaultBridgedReactiveSession.java:159)
+	org.springframework.data.cassandra.core.cql.ReactiveCqlTemplate.lambda$query$3(ReactiveCqlTemplate.java:367)
+	org.springframework.data.cassandra.core.cql.ReactiveCqlTemplate.lambda$createFlux$15(ReactiveCqlTemplate.java:710)
+	reactor.core.publisher.FluxDefer.subscribe(FluxDefer.java:47)
+	reactor.core.publisher.FluxOnErrorResume.subscribe(FluxOnErrorResume.java:47)
+	reactor.core.publisher.FluxFlatMap.subscribe(FluxFlatMap.java:97)
+	reactor.core.publisher.FluxMapFuseable.subscribe(FluxMapFuseable.java:63)
+	org.springframework.http.server.reactive.ChannelSendOperator.subscribe(ChannelSendOperator.java:74)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:241)
+	reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onNext(MonoIgnoreThen.java:295)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:144)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.onNext(FluxPeekFuseable.java:198)
+	reactor.core.publisher.FluxDefaultIfEmpty$DefaultIfEmptySubscriber.onNext(FluxDefaultIfEmpty.java:92)
+	reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	reactor.core.publisher.MonoDefaultIfEmpty.subscribe(MonoDefaultIfEmpty.java:37)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
+	reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
+	reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:271)
+	reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:803)
+	reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:108)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.FluxMap$MapSubscriber.request(FluxMap.java:149)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:1454)
+	reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1328)
+	reactor.core.publisher.FluxMap$MapSubscriber.onSubscribe(FluxMap.java:86)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.MonoMap.subscribe(MonoMap.java:55)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:418)
+	reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:210)
+	reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:140)
+	reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:64)
+	reactor.core.publisher.FluxConcatMap.subscribe(FluxConcatMap.java:121)
+	reactor.core.publisher.MonoNext.subscribe(MonoNext.java:40)
+	reactor.core.publisher.MonoSwitchIfEmpty.subscribe(MonoSwitchIfEmpty.java:44)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
+	reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1083)
+	reactor.core.publisher.MonoZip$ZipCoordinator.signal(MonoZip.java:247)
+	reactor.core.publisher.MonoZip$ZipInner.onNext(MonoZip.java:329)
+	reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:1640)
+	reactor.core.publisher.MonoZip$ZipInner.onSubscribe(MonoZip.java:318)
+	reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
+	reactor.core.publisher.MonoFlatMap.subscribe(MonoFlatMap.java:60)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:74)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:53)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.MonoOnErrorResume.subscribe(MonoOnErrorResume.java:44)
+	reactor.core.publisher.Mono.subscribe(Mono.java:3080)
+	reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
+	reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
+	reactor.core.publisher.MonoPeekFuseable.subscribe(MonoPeekFuseable.java:70)
+	reactor.core.publisher.MonoPeekTerminal.subscribe(MonoPeekTerminal.java:61)
+	reactor.ipc.netty.channel.ChannelOperations.applyHandler(ChannelOperations.java:380)
+	reactor.ipc.netty.http.server.HttpServerOperations.onHandlerStart(HttpServerOperations.java:398)
+	io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404)
+	io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:465)
+	io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+Error has been observed by the following operator(s):
+	|_	Mono.create(DefaultBridgedReactiveSession.java:159)
+	|_	Mono.flatMapMany(ReactiveCqlTemplate.java:367)
+	|_	Flux.defer(ReactiveCqlTemplate.java:710)
+
+17:40:12.940 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 4000 milliseconds
+17:40:12.940 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 4000 milliseconds
+17:40:16.943 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 8000 milliseconds
+17:40:16.944 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 8000 milliseconds
+17:40:24.949 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 16000 milliseconds
+17:40:24.949 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 16000 milliseconds
+17:40:40.950 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 32000 milliseconds
+17:40:40.950 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 32000 milliseconds
+17:41:12.953 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 64000 milliseconds
+17:41:12.953 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 64000 milliseconds
+Exception in thread "File Watcher" java.lang.IllegalArgumentException: Folder must not be a file
+	at org.springframework.util.Assert.isTrue(Assert.java:116)
+	at org.springframework.boot.devtools.filewatch.FolderSnapshot.<init>(FolderSnapshot.java:55)
+	at org.springframework.boot.devtools.filewatch.FileSystemWatcher$Watcher.getCurrentSnapshots(FileSystemWatcher.java:285)
+	at org.springframework.boot.devtools.filewatch.FileSystemWatcher$Watcher.scan(FileSystemWatcher.java:258)
+	at org.springframework.boot.devtools.filewatch.FileSystemWatcher$Watcher.run(FileSystemWatcher.java:243)
+	at java.lang.Thread.run(Thread.java:748)
+17:42:16.960 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 128000 milliseconds
+17:42:16.960 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 128000 milliseconds
+17:44:24.961 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 256000 milliseconds
+17:44:24.961 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 256000 milliseconds
+17:48:40.967 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 512000 milliseconds
+17:48:40.967 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 512000 milliseconds
+17:57:12.974 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:57:12.974 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:07:12.980 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:07:12.980 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:17:12.988 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:17:12.988 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:46:43.123 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:46:43.123 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:39:05.477 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:39:05.477 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:49:05.470 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:49:05.470 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:59:05.480 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:59:05.480 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:09:05.484 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:09:05.483 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:19:05.493 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:19:05.494 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:09:59.250 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:09:59.250 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:21:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:21:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:31:42.854 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:31:42.854 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:41:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:41:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:51:42.852 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:51:42.852 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:01:42.853 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:01:42.853 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:11:42.855 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:11:42.855 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:21:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:21:42.851 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:31:42.849 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:31:42.849 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:41:42.847 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:41:42.847 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:51:42.850 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:51:42.850 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:01:42.849 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:01:42.849 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:11:42.848 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:11:42.848 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:21:42.865 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:21:42.865 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:31:42.871 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:31:42.871 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:41:42.879 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:41:42.879 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:51:42.893 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:51:42.893 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:01:42.897 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:01:42.897 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:11:42.906 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:11:42.906 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:21:42.914 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:21:42.914 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:31:42.920 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:31:42.920 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:41:42.930 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:41:42.930 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:51:42.929 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+02:51:42.929 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:07:42.052 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:07:42.052 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:17:42.064 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:17:42.064 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:27:42.070 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:27:42.070 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:37:42.080 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:37:42.080 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:52:04.577 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:52:04.583 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:02:04.595 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:02:04.595 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:12:04.604 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:12:04.605 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:22:04.597 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:22:04.597 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:32:04.604 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:32:04.604 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:42:04.607 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:42:04.612 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:52:04.603 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:52:04.611 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:02:04.605 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:02:04.613 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:12:04.616 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:12:04.623 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:39:58.361 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:39:58.374 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:49:58.367 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:49:58.380 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:59:58.371 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:59:58.382 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:09:58.371 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:09:58.382 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:19:58.379 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:19:58.391 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:29:58.385 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:29:58.401 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:39:58.386 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:39:58.408 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:49:58.386 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:49:58.403 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:59:58.389 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+21:59:58.404 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+22:09:58.396 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+22:09:58.414 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+22:19:58.396 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+22:19:58.415 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:17:03.837 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:17:03.854 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:27:03.840 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:27:03.853 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:37:03.887 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:37:03.906 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:47:03.904 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:47:03.921 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:57:03.922 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:57:03.936 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:07:03.908 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:07:03.917 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:17:03.912 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:17:03.915 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:27:03.925 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:27:03.925 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:37:03.936 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:37:03.936 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:47:03.929 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:47:03.929 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:57:03.941 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:57:03.941 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:07:03.951 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:07:03.951 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:17:03.960 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:17:03.960 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:27:03.965 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:27:03.965 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:37:03.970 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:37:03.970 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:47:03.975 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:47:03.975 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:57:03.980 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:57:03.980 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:07:03.986 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:07:03.986 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:17:03.999 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:17:03.999 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:33:39.998 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:33:39.998 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:43:40.002 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:43:40.002 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:53:40.009 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+12:53:40.009 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:38:31.024 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:38:31.024 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:48:31.036 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:48:31.036 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:58:31.044 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+13:58:31.044 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:08:31.062 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:08:31.062 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:18:31.075 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:18:31.075 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:28:31.088 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:28:31.088 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:50:14.259 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+14:50:14.259 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:00:14.272 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:00:14.272 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:10:14.286 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:10:14.286 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:20:14.299 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:20:14.299 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:30:14.309 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:30:14.309 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:40:14.223 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:40:14.223 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:50:14.235 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+15:50:14.235 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:00:14.247 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:00:14.247 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:10:14.241 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:10:14.241 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:20:14.248 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:20:14.248 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:30:14.250 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:30:14.250 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:40:14.252 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:40:14.252 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:50:14.251 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+16:50:14.251 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:00:14.255 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:00:14.255 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:10:14.259 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:10:14.259 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:20:14.263 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:20:14.263 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:30:14.269 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:30:14.269 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:40:14.276 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:40:14.276 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:50:14.281 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+17:50:14.281 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:00:14.287 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:00:14.287 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:10:14.297 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:10:14.303 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:20:14.302 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:20:14.302 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:30:14.313 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:30:14.313 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:40:14.325 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:40:14.325 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:58:02.037 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+18:58:02.041 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:08:02.043 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:08:02.043 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:18:02.048 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:18:02.048 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:28:02.051 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:28:02.051 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:38:02.062 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:38:02.062 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:48:02.070 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:48:02.070 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:58:02.082 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+19:58:02.082 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:08:02.202 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:08:02.202 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:18:02.241 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:18:02.241 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:28:02.729 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:28:02.729 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:38:02.766 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:38:02.766 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:48:02.811 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:48:02.806 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:58:03.366 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+20:58:03.366 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:36:49.477 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:36:49.482 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:46:49.510 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:46:49.510 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:56:49.564 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+23:56:49.558 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:06:49.589 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:06:49.589 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:16:49.724 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:16:49.724 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:26:49.764 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:26:49.764 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:36:49.864 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:36:49.864 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:46:49.893 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:46:49.893 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:56:50.073 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+00:56:50.073 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:06:50.096 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:06:50.096 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:16:50.109 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:16:50.109 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:26:50.130 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:26:50.130 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:36:50.147 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:36:50.147 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:46:50.176 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+01:46:50.176 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:18:05.883 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:18:05.889 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:48:08.105 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:48:08.105 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:58:08.125 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+09:58:08.125 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:08:52.427 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:08:52.427 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:18:52.432 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:18:52.432 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:28:52.352 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:28:52.352 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:38:52.354 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:38:52.354 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:48:52.354 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:48:52.354 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:58:52.378 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+10:58:52.378 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:08:52.392 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+11:08:52.392 [35mERROR[0;39m [36mcom.datastax.driver.core.ControlConnection   [0;39m : [Control connection] Cannot connect to any host, scheduling retry in 600000 milliseconds
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3 d 17:32 h
+[INFO] Finished at: 2019-02-19T11:09:57+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.0.3.RELEASE:run (default-cli) on project kafka-dse-webui: Could not exec java: Application finished with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

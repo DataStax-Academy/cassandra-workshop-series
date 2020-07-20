@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~ MVN Coordonates ~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>killrvideo-api-graphql</artifactId>
+	<name> + killrvideo-api-graphql</name>
+	<description>Exposition Rest API on top of killrvideo services</description>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~ Parent ~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<parent>
+		<groupId>com.datastax</groupId>
+		<artifactId>killrvideo-parent</artifactId>
+		<version>6</version>
+	</parent>
+
+	<properties>
+		<graphql-java.version>9.2</graphql-java.version>
+		<graphql-java-servlet.version>6.1.2</graphql-java-servlet.version>
+		<graphql-java-tools.version>5.2.3</graphql-java-tools.version>
+		<graphql-springboot-starter.version>5.0.1</graphql-springboot-starter.version>
+	</properties>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~ DEPENDENCIES ~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<dependencies>
+
+		<dependency>
+			<groupId>com.datastax</groupId>
+			<artifactId>killrvideo-dse</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- GraphQL -->
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java</artifactId>
+			<version>${graphql-java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java-servlet</artifactId>
+			<version>${graphql-java-servlet.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java-tools</artifactId>
+			<version>${graphql-java-tools.version}</version>
+		</dependency>
+		
+		<!-- SpringBoot -->
+        <dependency>
+      		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-web</artifactId>
+    	</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-spring-boot-starter</artifactId>
+			<version>${graphql-springboot-starter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphiql-spring-boot-starter</artifactId>
+			<version>${graphql-springboot-starter.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+		</dependency>
+			
+		<!-- DEV (autorestart on code update) -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+	</dependencies>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~ BUILD                    ~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<build>
+		<plugins> 
+			
+			<!-- Add GRPC Sources -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${build-helper-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/protobuf/java</source>
+								<source>target/generated-sources/protobuf/grpc-java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			 <!-- Spring Boot -->
+            <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

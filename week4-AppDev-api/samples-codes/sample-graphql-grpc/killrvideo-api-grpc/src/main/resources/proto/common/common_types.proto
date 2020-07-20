@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package killrvideo.common;
+option csharp_namespace = "KillrVideo.Protobuf";
+
+// Represents a v4 UUID/GUID
+message Uuid {
+  // Use string for simplicity sake since most programming languages provide a way
+  // to parse to/from a UUID string (e.g. 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX')
+  string value = 1;
+}
+
+// Represents a v1 UUID/GUID (i.e. time-based UUID)
+message TimeUuid {
+  // Just like Uuid, use string to represent TimeUuids (see Uuid comment)
+  string value = 1;
+}

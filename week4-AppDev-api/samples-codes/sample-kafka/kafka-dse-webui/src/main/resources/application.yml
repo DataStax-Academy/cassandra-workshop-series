@@ -1,0 +1,27 @@
+# ----------------------------------------------------------
+# Spring Boot extra Config
+# ----------------------------------------------------------
+spring:
+  application:
+    name: WebUI for reactive streams
+  boot:
+    admin:
+      client:
+        url:
+        - "http://localhost:8088/admin" 
+  messages:
+    basename: messages
+server:
+  port: 8082
+   
+# ----------------------------------------------------------
+# Connectivity to DataStax Enterprise
+# ----------------------------------------------------------
+dse:
+  contactPoints: 127.0.0.1
+  port: 9042
+  localdc: SearchGraphAnalytics
+  username:
+  password:
+  keyspace: demo_kafka
+  

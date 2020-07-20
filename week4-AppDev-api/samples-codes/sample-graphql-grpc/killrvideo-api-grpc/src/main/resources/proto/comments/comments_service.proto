@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package killrvideo.comments;
+option csharp_namespace = "KillrVideo.Comments";
+
+import "google/protobuf/timestamp.proto";
+import "common/common_types.proto";
+
+// Manages comments
+service CommentsService {
+  // Add a new comment to a video
+  rpc CommentOnVideo(CommentOnVideoRequest) returns (CommentOnVideoResponse);
+  
+  // Get comments made by a user
+  rpc GetUserComments(GetUserCommentsRequest) returns (GetUserCommentsResponse);
+  
+  // Get comments made on a video
+  rpc GetVideoComments(GetVideoCommentsRequest) returns (GetVideoCommentsResponse);
+}
+
+// Add a comment to a video
+message CommentOnVideoRequest {
+  killrvideo.common.Uuid video_id = 1;
+  killrvideo.common.Uuid user_id = 2;
+  killrvideo.common.TimeUuid comment_id = 3;
+  string comment = 4;
+}
+
+// Response to adding a comment to a video
+message CommentOnVideoResponse {
+}
+
+// Get a page of comments made by a specific user
+message GetUserCommentsRequest {
+  killrvideo.common.Uuid user_id = 1;
+  int32 page_size = 2;
+  killrvideo.common.TimeUuid starting_comment_id = 3;
+  string paging_state = 16;
+}
+
+// Response when getting a page of comments made by a user
+message GetUserCommentsResponse {
+  killrvideo.common.Uuid user_id = 1;
+  repeated UserComment comments = 2;
+  string paging_state = 3;
+}
+
+// A comment made by a user
+message UserComment {
+  killrvideo.common.TimeUuid comment_id = 1;
+  killrvideo.common.Uuid video_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp comment_timestamp = 4;
+}
+
+// Request for getting a page of comments on a video
+message GetVideoCommentsRequest {
+  killrvideo.common.Uuid video_id = 1;
+  int32 page_size = 2;
+  killrvideo.common.TimeUuid starting_comment_id = 3;
+  string paging_state = 16;
+}
+
+// Response when getting a page of comments for a video
+message GetVideoCommentsResponse {
+  killrvideo.common.Uuid video_id = 1;
+  repeated VideoComment comments = 2;
+  string paging_state = 3;
+}
+
+// A comment on a video
+message VideoComment {
+  killrvideo.common.TimeUuid comment_id = 1;
+  killrvideo.common.Uuid user_id = 2;
+  string comment = 3;
+  google.protobuf.Timestamp comment_timestamp = 4;
+}

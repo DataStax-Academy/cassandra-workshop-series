@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- ~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~ MVN Coordinates ~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~ -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.datastax</groupId>
+  <artifactId>kafka-dse-example</artifactId>
+  <name>Kafka DataStax Sink Sample</name>
+  <packaging>pom</packaging>
+  <version>6.7-SNAPSHOT</version>
+  <!-- ~~~~~~~~~~~~~~~~ -->
+  <!-- ~ DESCRIPTION ~ -->
+  <!-- ~~~~~~~~~~~~~~~~ -->
+  <organization>
+    <name>DataStax</name>
+    <url>https://datastax.com/</url>
+  </organization>
+  <inceptionYear>2018</inceptionYear>
+  <url>https://datastax.com</url>
+  <description>Working portable demo to produce large amount of messages, sent into Kafka Read those messages, put into DSE and display everything in Spring WebFlux UI</description>
+  <!-- ~~~~~~~~~~~ -->
+  <!-- ~ MODULES ~ -->
+  <!-- ~~~~~~~~~~~ -->
+  <modules>
+    <module>kafka-dse-core</module>
+    <module>kafka-dse-producer</module>
+    <module>kafka-dse-webui</module>
+  </modules>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~ PROPERTIES ~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <properties>
+    <!-- DataStax Java-Driver -->
+    <dse-java-driver.version>1.6.8</dse-java-driver.version>
+    <!-- ThirdParty library -->
+    <spring.version>5.0.8.RELEASE</spring.version>
+    <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
+    <logback.version>1.2.3</logback.version>
+    <jackson-dataformat.version>2.9.6</jackson-dataformat.version>
+    <camel.version>2.22.0</camel.version>
+    <kafka-connect.version>0.11.0.0</kafka-connect.version>
+    <kafka-avro.version>3.3.1</kafka-avro.version>
+    <!-- Unit tests -->
+    <junit-platform.version>1.2.0</junit-platform.version>
+    <junit-jupiter.version>5.2.0</junit-jupiter.version>
+    <!-- Maven -->
+    <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+    <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+  </properties>
+  <!-- ~~~~~~~~~~~~~~~~ -->
+  <!-- ~ DEPENDENCIES ~ -->
+  <!-- ~~~~~~~~~~~~~~~~ -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- Java driver for DSE -->
+      <dependency>
+        <groupId>com.datastax.dse</groupId>
+        <artifactId>dse-java-driver-core</artifactId>
+        <version>${dse-java-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.datastax.dse</groupId>
+        <artifactId>dse-java-driver-mapping</artifactId>
+        <version>${dse-java-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.datastax.dse</groupId>
+        <artifactId>dse-java-driver-extras</artifactId>
+        <version>${dse-java-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.datastax.dse</groupId>
+        <artifactId>dse-java-driver-graph</artifactId>
+        <version>${dse-java-driver.version}</version>
+      </dependency>
+      <!-- Spring* -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <!-- Spring-Boot BOM -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Logging -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <!-- Junit 5 -->
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>${junit-platform.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-runner</artifactId>
+        <version>${junit-platform.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-console-standalone</artifactId>
+        <version>${junit-platform.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit-jupiter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit-jupiter.version}</version>
+      </dependency>
+      <!-- CSV -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-csv</artifactId>
+        <version>${jackson-dataformat.version}</version>
+      </dependency>
+      <!-- Camel -->
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-spring-boot-starter</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-stream-starter</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-kafka</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+      <!-- Kafka -->
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-api</artifactId>
+        <version>${kafka-connect.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-json</artifactId>
+        <version>${kafka-connect.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-avro-serializer</artifactId>
+        <version>${kafka-avro.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~ BUILD ~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <source>${maven-compiler-plugin.source}</source>
+            <target>${maven-compiler-plugin.target}</target>
+            <showWarnings>true</showWarnings>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.junit.platform</groupId>
+              <artifactId>junit-platform-surefire-provider</artifactId>
+              <version>${junit-platform.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.junit.jupiter</groupId>
+              <artifactId>junit-jupiter-engine</artifactId>
+              <version>${junit-jupiter.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>com.coveo</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <version>2.2.0</version>
+        </plugin>
+        <plugin>
+          <groupId>au.com.acegi</groupId>
+          <artifactId>xml-format-maven-plugin</artifactId>
+          <version>3.0.7</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+            <phase>process-sources</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>au.com.acegi</groupId>
+        <artifactId>xml-format-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>xml-format</id>
+            <goals>
+              <goal>xml-format</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <indentSize>2</indentSize>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <url>http://packages.confluent.io/maven/</url>
+    </repository>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+  </repositories>
+</project>
