@@ -116,29 +116,25 @@ You can click the **Launch Now** link at the bottom of "Connection Details" box 
 
 ## 3. Exercise : Start the backend
 
-[🏠 Back to Table of Content](#table-of-content)
-
 ### 3.1 Start the JAVA BACKEND
 
-This provides an example REST backend built in Java using `Spring Boot` for use with the [Getting Started with Astra UI](https://github.com/DataStax-Examples/getting-started-with-astra-ui).
+![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
-This is an example of a Spring Boot Microservice for use with the Astra Getting Started UI which is found [here](https://github.com/DataStax-Examples/getting-started-with-astra-ui).
-
-This application serves as the connection between the UI website and an underlying Astra database. It has Swagger installed.
+This provides an example REST backend built in Java using `Spring Boot`. This application serves as the connection between the UI website and an underlying Astra database. It has Swagger installed.
 
 Creation of `CqlSession` objects within an application is an expensive process as they take awhile to initialize and become aware of the clusters topology.  Due to this it is a best practice to create a `CqlSession` object once per application and reuse it throughout the entire lifetime of that application.
 
 `SessionManager` implements the Singleton pattern to handle a single instance of the `CqlSession` object. Note that this is the only bean not initialized by Spring at startup. This is only when you have provided the secure credential bundle that we can initiate a connection.
 
-### 3.1.1 Run locally
+### 3.1.1 Run the java Banckend locally
 
-#### Prerequisites
+**✅ 3.1.1.a - Prerequisites**
 * Java 11+
 * An Astra compatible Java driver, instructions may be found [here](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudConnectJavaDriver.html) to install this locally.
 * An Astra database with the CQL schema located in [schema.cql](src/main/resources/schema.cql) already added.
 * The username, password, keyspace name, and secure connect bundle downloaded from your Astra Database.  For information on how to obtain these credentials please read the documentation found [here](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudObtainingCredentials.html).
 
-**✅ Start locally**
+**✅ 3.1.1.b - Start SpringBoot**
 
 This application is a Spring Boot web application. This sample can be run from the root directory using:
 ```
@@ -159,6 +155,56 @@ You will know that you are up and working when you get the following in your ter
 *Note: If you want to change the listening port of the application, locate the file `src/main/resources/application.yml` and change key `server.port`*
 
 ### 3.1.2 Run in gitpod
+
+**✅ Step 3a Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DataStax-Academy/cassandra-workshop-series)
+
+Target url looks like  `https://<your_uid>.<your_region>.gitpod.io/#/workspace/cassandra-workshop-series`. These URL's are dynamic and we cannot provide clickable links in advance. You will need to copy-paste `<your_uid>.<your_region>` as we will insert them in each URL during the exercises.
+
+```
+⚠️ By default Autosave is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
+```
+
+**👁️ Expected output**
+
+![Splash](images/gitpod-splash.png?raw=true)
+
+**That's it.** Gitpod provides all tools we will need today including `Maven`,`Pip`,`Npm`. At initialization of the workspace we schedule a command to download dependencies. 
+
+**✅ 3.1.2.b - Start SpringBoot**
+
+```
+cd week4-AppDev-api/getting-started-with-astra-java
+mvn spring-boot:run
+```
+
+You should be able to accee:
+```
+https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
+```
+
+### Start the front end
+
+```
+cd week4-AppDev-api/getting-started-with-astra-ui 
+npm install
+```
+
+```
+echo 'BASE_ADDRESS=https://8080-d4f398c6-62c2-4085-ac9a-96265608a3be.ws-eu01.gitpod.io/api' > .env
+cat .env
+```
+
+```
+npm run start
+```
+
+Your should be able to access
+```
+https://3000-<your_uid>.<>your_region.gitpod.io/
+```
+
 
 ### 3.2 Start the NODE BACKEND
 ### 3.2.1 Run locally
