@@ -230,8 +230,8 @@ git clone https://github.com/DataStax-Academy/cassandra-workshop-series
 
 Go to the directory that you just cloned this repo into
 ```
-cd getting-started-with-astra-python
-python getting-started-with-astra.py
+cd cassandra-workshop-series/week4-AppDev-api/getting-started-with-astra-python
+python getting_started_with_astra.py
 ```
 
 This will start the application running on `http://127.0.0.1:5000`
@@ -250,6 +250,15 @@ You should see the following output:
 - Access the API documentation from a browser
 
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+It's open, but there is nothing to see:
+
+```
+Not Found
+The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+```
+
+This is **OK** and is **expected**. What's important is that our API is ready to go for the front end UI in the next section.
 
 *Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg*
 
@@ -281,11 +290,9 @@ By default Autosave is not enabled in Gitpod. Don't forget to save your modifica
 
 ![Splash](images/gitpod-splash.png?raw=true)
 
-
 ```
 ⚠️ By default Autosave is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
 ```
-
 
 **✅ Installation procedure**
 
@@ -299,21 +306,26 @@ Move to folder ` week4-AppDev-api` to get the exercises of the week and `getting
 
 ```
 cd week4-AppDev-api/getting-started-with-astra-python
-python getting-started-with-astra.py
+python getting_started_with_astra.py
 ```
 
-You should be able to access to the UI with. Note that the `8080` port has been redirected to port `80` but changing the URL with a `8080` prefix and enforcing HTTPS. With the UI (swagger) you can start executing some requests against the REST API.
+![Splash](images/popup-open.png?raw=true)
+
+Click the "Open Browser" button and GitPod will generate a URL that you should be able to access to the UI with.
 
 ```
-https://5000-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
+https://5000-<your_uid>.<your_region>.gitpod.io
 ```
 
 It's open, but there is nothing to see:
 
 ```
-Not Found
-The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+Nothing to see here... 🦗
+Port 5000 didn't respond
+Please make sure this port is exposed and your app is running.
 ```
+
+This is **OK** and is **expected**. What's important is that our API is ready to go for the front end UI in the next section.
 
 You will see an `Open Ports` tab in the gitpod terminal window, where you can check on the status of the ports and access previews and browsers. 
 
