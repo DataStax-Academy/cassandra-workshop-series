@@ -478,10 +478,25 @@ Application started. Press Ctrl+C to shut down.
 
 A `.env` file is required before you can build the application. This file needs to be added to the root of the project and called .env. This file contains all the environment variables required for the application. Currently there is only one required entry:
 
+This value is where you put the relative address of the api.
+
+- Java
+
+```
+BASE_ADDRESS=http://localhost:8080/api
+```
+
+- Python
+
 ```
 BASE_ADDRESS=http://localhost:5000/api
 ```
-This value is where you put the relative address of the api.
+
+- CSharp
+
+```
+BASE_ADDRESS=http://localhost:5001/api
+```
 
 In order to start this application you need to run:
 
@@ -501,6 +516,7 @@ You will know that this is correctly running when you see this message in your t
 ℹ ｢wds｣: Content not from webpack is served from /Users/dave.bechberger/Documents/projects/bechbd/getting-started-with-astra-ui
 ℹ ｢wds｣: 404s will fallback to /index.html
 ```
+[http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 If you would like to build this for deployment then this can be accomplished using:
 
@@ -529,7 +545,7 @@ echo 'BASE_ADDRESS=https://<your_port>-<your_id>.<your_region>.gitpod.io/api' > 
 cat .env
 ```
 
-- <your_port>: Would be `8080` is you pick the Jaba Backend, `5000` if you pick the python backend and `5001` if you pick the CSharp backend.
+- <your_port>: Will be `8080` is you pick the Java Backend, `5000` if you pick the python backend and `5001` if you pick the CSharp backend.
 
 ```
 npm run start
