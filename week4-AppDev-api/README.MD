@@ -32,7 +32,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | Exercise : Start backend and API | [Start JAVA Backend](#21-start-the-java-backend) |
 | Exercise : Start backend and API | [Start PYTHON Backend](#22-start-the-python-backend) |
 | Exercise : Start backend and API | [Start CSHARP Backend](#23-start-the-csharp-backend) |
-| Exercise : Start UI and demo | [Start User Interface](3-exercise--start-the-ui) |
+| Exercise : Start UI and demo | [Start User Interface](#3-exercise--start-the-ui) |
 
 ## 1. Prerequisites 
 
