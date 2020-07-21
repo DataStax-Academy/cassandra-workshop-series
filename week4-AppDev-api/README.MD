@@ -27,21 +27,22 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 
 | Exercises | Description and Links
 |---|---|
-| 0. Prerequisites - Create your Astra instance | [Create your Astra instance](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#1-create-your-astra-instance-reminders) |
-| 1. Prerequisites : Create the Data model | [Create the Data model](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#2-exercise--the-spacecraft-nodebook) |
-| 2. Exercise : Start backend and API | [Start Backend](#3-start-the-backend) |
-| 2. Exercise : Start UI and demo | [Start User Interface](#3-start-the-backend) |
+| Prerequisites - Create your Astra instance | [Create your Astra instance](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#1-create-your-astra-instance-reminders) |
+| Prerequisites : Create the Data model | [Create the Data model](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#2-exercise--the-spacecraft-nodebook) |
+| Exercise : Start backend and API | [Start JAVA Backend](#21-start-the-java-backend) |
+| Exercise : Start backend and API | [Start PYTHON Backend](#22-start-the-python-backend) |
+| Exercise : Start backend and API | [Start CSHARP Backend](#23-start-the-csharp-backend) |
+| Exercise : Start UI and demo | [Start User Interface](#3-start-the-backend) |
 
 ## 1. Prerequisites 
 
-### Create your Astra instance (reminders)
+- **Create your Astra instance (reminders)**
 
 [done during week 3](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#1-create-your-astra-instance-reminders)
 
-### Create the Data Model (reminders)
+- **Create the Data Model (reminders)**
 
 [done during week 3](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#2-exercise--the-spacecraft-nodebook)
-
 
 ## 2. Exercise : Start the backend
 
