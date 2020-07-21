@@ -85,6 +85,31 @@ cd week4-AppDev-api/getting-started-with-astra-java
 mvn spring-boot:run
 ```
 
+**👁️ Expected output**
+
+```
+   ___        _                
+  / _ \      | |               
+ / /_\ \ ___ | |_  _ __   __ _ 
+ |  _  |/ __|| __|| '__| / _` |
+ | | | |\__ \| |_ | |   | (_| |
+ \_| |_/|___/ \__||_|    \__,_|                         
+ 
+ Getting Started with Astra
+
+
+08:53:58.334 INFO  com.datastax.astra.GettingStartedWithAstra    : Starting GettingStartedWithAstra on ws-5cea4c69-c849-40fe-9b27-0b6673a93e90 with PID 3322 (/workspace/cassandra-workshop-series/week4-AppDev-api/getting-started-with-astra-java/target/classes started by gitpod in /workspace/cassandra-workshop-series/week4-AppDev-api/getting-started-with-astra-java)
+08:53:58.337 INFO  com.datastax.astra.GettingStartedWithAstra    : No active profile set, falling back to default profiles: default
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.codehaus.groovy.vmplugin.v7.Java7$1 (file:/workspace/m2-repository/org/codehaus/groovy/groovy/2.5.7/groovy-2.5.7-indy.jar) to constructor java.lang.invoke.MethodHandles$Lookup(java.lang.Class,int)
+WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.vmplugin.v7.Java7$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+08:54:02.282 INFO  com.datastax.astra.GettingStartedWithAstra    : Started GettingStartedWithAstra in 4.58 seconds (JVM running for 14.049)
+```
+
+![Splash](images/popup-open.png?raw=true)
+
 You should be able to access to the UI with. Note that the `8080` port has been redirected to port `80` but changing the URL with a `8080` prefix and enforcing HTTPS. With the UI (swagger) you can start executing some requests against the REST API
 
 ```
