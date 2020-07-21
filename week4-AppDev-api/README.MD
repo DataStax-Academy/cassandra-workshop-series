@@ -47,6 +47,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 ## 2. Exercise : Start the backend
 
 ### 2.1 Start the JAVA BACKEND
+🔥 (If you intend to use the python or C# backend please jump to that section using [Start PYTHON Backend](#22-start-the-python-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**.) 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
@@ -57,6 +58,9 @@ Creation of `CqlSession` objects within an application is an expensive process a
 `SessionManager` implements the Singleton pattern to handle a single instance of the `CqlSession` object. Note that this is the only bean not initialized by Spring at startup. This is only when you have provided the secure credential bundle that we can initiate a connection.
 
 #### 2.1.1 Run the Java Backend in gitpod
+```diff 
+@@ ONLINE in GITPOD @@ 
+```
 
 **✅  Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
 
@@ -118,7 +122,14 @@ https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
 
 ![rest-api](images/rest-api.png?raw=true)
 
+```diff 
+@@ ONLINE in GITPOD END @@ 
+```
+
 #### 2.1.2 Run the java Backend locally
+```diff
+! LOCAL on YOUR MACHINE
+```
 
 **✅ Prerequisites**
 
@@ -147,7 +158,12 @@ You will know that you are up and working when you get the following in your ter
 
 *Note: If you want to change the listening port of the application, locate the file `src/main/resources/application.yml` and change key `server.port`*
 
+```diff
+! LOCAL on YOUR MACHINE END
+```
+
 ### 2.2 Start the PYTHON BACKEND
+🔥 (If you intend to use the Java or C# backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**.) 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)
 
@@ -173,8 +189,9 @@ This project is built in Python and uses Flask to expose a REST API backend for 
 This application is the middle man that receives requests from the UI web page and serves data from the underlying DataStax Astra database.
 
 ### 2.2.1 Run the Python Backend locally
-
-*Note: You cannot run this application on GitPod. This application needs to be run locally.*
+```diff
+! LOCAL on YOUR MACHINE
+```
 
 **✅ Prerequisites**
 
@@ -239,8 +256,14 @@ You should see the following output:
 ```
 app.run(port=5001)
 ```
+```diff
+! LOCAL on YOUR MACHINE END
+```
 
 #### 2.2.2 Run in gitpod
+```diff
+@@ ONLINE in GITPOD @@
+```
 
 **✅  Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
 
@@ -301,7 +324,12 @@ You will see an `Open Ports` tab in the gitpod terminal window, where you can ch
 app.run(port=5001)
 ```
 
+```diff 
+@@ ONLINE in GITPOD END @@ 
+```
+
 ### 2.3 Start the CSHARP BACKEND
+🔥 (If you intend to use the Java or python backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start PYTHON Backend](#22-start-the-python-backend). **You only need ONE backend at a time**.) 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-csharp.png)
 
@@ -375,6 +403,9 @@ public CredentialsController(IDataStaxService service)
 `
 
 #### 2.3.1 Run locally
+```diff
+! LOCAL on YOUR MACHINE
+```
 
 With each call to the `CredentialsController` the `AstraService` singleton we created at startup will be passed to the constructor.  This mechanism of dependency injection allows us a simple mechanism to use a single `Session` object throughout the entirety of the application lifecycle.
 
@@ -403,6 +434,9 @@ Content root path: /Users/dave.bechberger/Documents/projects/bechbd/getting-star
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
+```diff
+! LOCAL on YOUR MACHINE END
+```
 
 #### 2.3.2 Run in gitpod
 
@@ -411,7 +445,7 @@ Application started. Press Ctrl+C to shut down.
 
 ## 3. Exercise : Start the UI
 
-This provides the front end for the Astra Getting Started application. This is meant to be used with one of the following backends (java, python, csharp)
+🔥 This provides the front end for the Astra Getting Started application. This is meant to be used with one of the following backends (java, python, csharp)🔥 
 
 **Objectives**
 - Connect a web application to one of four backends to demonstrate an end to end full stack application
@@ -420,6 +454,9 @@ This provides the front end for the Astra Getting Started application. This is m
 ![UI](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/week4-AppDev-api/images/ui.png)
 
 ### 3.1 Run locally
+```diff
+! LOCAL on YOUR MACHINE
+```
 
 **Prerequisites**
 
@@ -458,8 +495,14 @@ If you would like to build this for deployment then this can be accomplished usi
 ```
 npm run build
 ```
+```diff
+! LOCAL on YOUR MACHINE END
+```
 
 ## 3.2 Run in gitpod
+```diff
+@@ ONLINE in GITPOD @@
+```
 
 Locate the folder and install the dependencies:
 ```
@@ -483,6 +526,10 @@ npm run start
 Your should be able to access
 ```
 https://3000-<your_uid>.<>your_region.gitpod.io/
+```
+
+```diff 
+@@ ONLINE in GITPOD END@@ 
 ```
 
 [🏠 Back to Table of Content](#table-of-content)
