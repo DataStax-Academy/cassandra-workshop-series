@@ -32,7 +32,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | Exercise : Start backend and API | [Start JAVA Backend](#21-start-the-java-backend) |
 | Exercise : Start backend and API | [Start PYTHON Backend](#22-start-the-python-backend) |
 | Exercise : Start backend and API | [Start CSHARP Backend](#23-start-the-csharp-backend) |
-| Exercise : Start UI and demo | [Start User Interface](#3-start-the-backend) |
+| Exercise : Start UI and demo | [Start User Interface](3-exercise--start-the-ui) |
 
 ## 1. Prerequisites 
 
@@ -115,6 +115,8 @@ You should be able to access to the UI with. Note that the `8080` port has been 
 ```
 https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
 ```
+
+![rest-api](images/rest-api.png?raw=true)
 
 #### 2.1.2 Run the java Backend locally
 
