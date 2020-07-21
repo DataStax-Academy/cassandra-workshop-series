@@ -32,91 +32,20 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 | 2. Exercise : Start backend and API | [Start Backend](#3-start-the-backend) |
 | 2. Exercise : Start UI and demo | [Start User Interface](#3-start-the-backend) |
 
-## 1. Create your Astra instance (reminders)
+## 1. Prerequisites 
 
-`ASTRA` service is available at url [https://astra.datastax.com](https://astra.datastax.com/)
+### Create your Astra instance (reminders)
 
-**✅ Step 1a. Register (if needed) and Sign In to Astra** : You can use your `Github`, `Google` accounts or register with an `email`
+[done during week 3](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#1-create-your-astra-instance-reminders)
 
-- [Registration Page](https://astra.datastax.com/register)
+### Create the Data Model (reminders)
 
-![Registration Image](images/astra-create-register.png?raw=true)
-
-- [Authentication Page](https://astra.datastax.com/)
-
-![Login Image](images/astra-create-login.png?raw=true)
+[done during week 3](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week3-AppDev-crud#2-exercise--the-spacecraft-nodebook)
 
 
-**✅ Step 1b. Fill the Create New Database Form**
+## 2. Exercise : Start the backend
 
-As you don't have have any instances the login will route through the instance creation form. You will find below which values to enter for each field.
-
-![Database Form](images/astra-create-2.png?raw=true)
-
-- **Set the Compute Size**: For the work we are doing please use `Free tier`. You instance will be there forever, free of charge
-
-- **Select the region**: This is the region where your database will reside physically (choose one close to you or your users). For people in EMEA please use `europe-west-1` idea here is to reduce latency.
-
-- **Fill in the database name** - `killrvideocluster.` While Astra allows you to fill in these fields with values of your own choosing, please follow our reccomendations to make the rest of the exercises easier to follow. If you don't, you are on your own! :)
-
-- **Fill in the keyspace name** - `killrvideo`. It's really important that you use the name killrvideo (with no 'e' in "killr") here in order for all the exercises to work well. We realize you want to be creative, but please just roll with this one today.
-
-- **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
-
-- **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
-
-- **Launch the database**. Review all the fields to make sure they are as shown, and click the Launch Database button.
-
-
-![Launch Database](images/astra-create-3.png?raw=true)
-
-**✅ Step 1c. View your Database and connect**
-
-View your database. It may take 2-3 minutes for your database to spin up. You will receive an email at that point. But, go ahead and continue with the rest of the exercise now.
-
-![View Database](images/astra-create-4.png?raw=true)
-
-Once Database is ready you should see the following home page:
-
-![Home Page](images/astra-create-5.png?raw=true)
-
-Let’s review the database you have configured. In the box on the left side of the window, you can see the database and keyspace name metadata. The box on the right describes the size and location of your database along with your estimated cost. Once Astra initializes the database completely, the left box will have connection details.
-
-## 2. Exercise : The spacecraft nodebook (reminders)
-
-**✅ Step 2a. Open DataStax Studio**
-
-You can click the **Launch Now** link at the bottom of "Connection Details" box on the left to start the tool. Please enter the credentials you used for Astra instance creation.
-
-![Launch Database](images/astra-create-6.png?raw=true)
-
-- **Fill in the Database User name** - `KVUser`. Note the user name is case-sensitive. Please use the case we suggest here.
-
-- **Fill in the password** - `KVPassword`. Fill in both the password and the confirmation fields. Note that the password is also case-sensitive. Please use the case we suggest here.
-
-- **Click Test**. Wait for a "connected successfully" message before saving.
-
-- **Click Save**. Once you have a positive test then click the **Save** button to launch DataStax Studio.
-
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/launch-studio-home.png?raw=true)
-
-- Download the file `spacecraft.tar` located in folder `notebooks` [download link](https://github.com/DataStax-Academy/cassandra-workshop-series/raw/master/week3-AppDev-crud/notebooks/spacecraft.tar)
-
-- Import the file in studio with a drag and drop in the Datastax studio window
-
-*Importing*
-
-![TodoBackendClient](https://github.com/DataStax-Academy/microservices-java-workshop-online/blob/master/z-materials/images/launch-studio-import.png?raw=true)
-
-*File is now opened*
-
-![notebook](images/notebook-open.png?raw=true)
-
-[🏠 Back to Table of Content](#table-of-content)
-
-## 3. Exercise : Start the backend
-
-### 3.1 Start the JAVA BACKEND
+### 2.1 Start the JAVA BACKEND
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
@@ -126,7 +55,7 @@ Creation of `CqlSession` objects within an application is an expensive process a
 
 `SessionManager` implements the Singleton pattern to handle a single instance of the `CqlSession` object. Note that this is the only bean not initialized by Spring at startup. This is only when you have provided the secure credential bundle that we can initiate a connection.
 
-#### 3.1.1 Run the Java Backend in gitpod
+#### 2.1.1 Run the Java Backend in gitpod
 
 **✅  Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
 
@@ -162,7 +91,7 @@ https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
 ```
 
 
-#### 3.1.2 Run the java Backend locally
+#### 2.1.2 Run the java Backend locally
 
 **✅ Prerequisites**
 
@@ -191,9 +120,7 @@ You will know that you are up and working when you get the following in your ter
 
 *Note: If you want to change the listening port of the application, locate the file `src/main/resources/application.yml` and change key `server.port`*
 
-### 3.3 Start the PYTHON BACKEND
-
-#### 3.3.1 Run locally
+### 2.2 Start the PYTHON BACKEND
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)
 
@@ -218,9 +145,9 @@ This project is built in Python and uses Flask to expose a REST API backend for 
 
 This application is the middle man that receives requests from the UI web page and serves data from the underlying DataStax Astra database.
 
-### 3.2.1 Run the Python Backend locally
+### 2.2.1 Run the Python Backend locally
 
-*Note: You cannot run this application on GitPod. This application needs to be run locally.
+*Note: You cannot run this application on GitPod. This application needs to be run locally.*
 
 **✅ Prerequisites**
 
@@ -279,12 +206,13 @@ You should see the following output:
 **c) Access the API documentation from a browser**
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-*Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg 
+*Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg*
+
 ```
 app.run(port=5001)
 ```
 
-#### 3.3.2 Run in gitpod
+#### 2.2.2 Run in gitpod
 
 **✅  Open gitpod** : [Gitpod](https://www.gitpod.io/) is an IDE 100% online based on Eclipse Theia. To initialize your environment simply click on the button below *(CTRL + Click to open in new tab)*
 
@@ -306,32 +234,6 @@ By default Autosave is not enabled in Gitpod. Don't forget to save your modifica
 ```
 ⚠️ By default Autosave is not enabled in Gitpod. Don't forget to save your modifications with CTRL+S
 ```
-
-
-#### d) Start the front end in gitpod
-​
-```
-cd week4-AppDev-api/getting-started-with-astra-ui 
-npm install
-```
-​
-You will need to create a file named `.env` with an environment variable that points to your backend api
-​
-```
-echo 'BASE_ADDRESS=https://https://5000-<your_uid>.<your_region>.gitpod.io/api' > .env
-cat .env
-```
-​
-```
-npm run start
-```
-​
-You should be able to access:
-​
-```
-https://3000-<your_uid>.<>your_region.gitpod.io/
-```
-
 
 
 **✅ Installation procedure**
@@ -365,7 +267,8 @@ The requested URL was not found on the server. If you entered the URL manually p
 You will see an `Open Ports` tab in the gitpod terminal window, where you can check on the status of the ports and access previews and browsers. 
 
 
-*Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg 
+*Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg*
+
 ```
 app.run(port=5001)
 ```
@@ -376,11 +279,14 @@ app.run(port=5001)
 
 #### 3.4.1 Run locally
 
+**TODO**
+
 #### 3.4.2 Run in gitpod
 
 *N/A as of now, we did not setup gitpod to work with dotnet.*
 
-## 2. Exercise : Start the UI
+
+## 3. Exercise : Start the UI
 
 This provides the front end for the Astra Getting Started application. This is meant to be used with one of the following backends (java, python, csharp)
 
@@ -390,13 +296,13 @@ This provides the front end for the Astra Getting Started application. This is m
 
 ![UI](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/week4-AppDev-api/images/ui.png)
 
-#### Run locally
+### 3.1 Run locally
 
-Prerequisites
+**Prerequisites**
 
 - node v8.1.0
 
-Running
+**Running**
 
 A `.env` file is required before you can build the application. This file needs to be added to the root of the project and called .env. This file contains all the environment variables required for the application. Currently there is only one required entry:
 
@@ -430,7 +336,7 @@ If you would like to build this for deployment then this can be accomplished usi
 npm run build
 ```
 
-#### Run in gitpod
+## 3.2 Run in gitpod
 
 Locate the folder and install the dependencies:
 ```
