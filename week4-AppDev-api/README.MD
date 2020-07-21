@@ -47,7 +47,7 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 ## 2. Exercise : Start the backend
 
 ### 2.1 Start the JAVA BACKEND
-🔥 (If you intend to use the python or C# backend please jump to that section using [Start PYTHON Backend](#22-start-the-python-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**.) 🔥
+🔥 If you intend to use the python or C# backend please jump to that section using [Start PYTHON Backend](#22-start-the-python-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**. 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)
 
@@ -114,7 +114,7 @@ WARNING: All illegal access operations will be denied in a future release
 
 ![Splash](images/popup-open.png?raw=true)
 
-You should be able to access to the UI with. Note that the `8080` port has been redirected to port `80` but changing the URL with a `8080` prefix and enforcing HTTPS. With the UI (swagger) you can start executing some requests against the REST API
+Click the "Open Browser" button and GitPod will generate a URL that you should be able to access to the UI with. Note that the `8080` port has been redirected to port `80` but changing the URL with a `8080` prefix and enforcing HTTPS. With the UI (swagger) you can start executing some requests against the REST API. Just paste "/swagger-ui.html" to the end of YOUR generated URL.
 
 ```
 https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
@@ -142,7 +142,7 @@ https://8080-<your_uid>.<your_region>.gitpod.io/swagger-ui.html
 
 This application is a Spring Boot web application. This sample can be run from the root directory using:
 ```
-cd getting-started-with-astra-java
+cd week4-AppDev-api/getting-started-with-astra-java
 mvn spring-boot:run
 ```
 This will startup the application running on `http://localhost:8080`
@@ -163,7 +163,7 @@ You will know that you are up and working when you get the following in your ter
 ```
 
 ### 2.2 Start the PYTHON BACKEND
-🔥 (If you intend to use the Java or C# backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**.) 🔥
+🔥 If you intend to use the Java or C# backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start CSHARP Backend](#23-start-the-csharp-backend). **You only need ONE backend at a time**. 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)
 
@@ -329,7 +329,7 @@ app.run(port=5001)
 ```
 
 ### 2.3 Start the CSHARP BACKEND
-🔥 (If you intend to use the Java or python backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start PYTHON Backend](#22-start-the-python-backend). **You only need ONE backend at a time**.) 🔥
+🔥 If you intend to use the Java or python backend please jump to that section using [Start JAVA Backend](#21-start-the-java-backend) OR [Start PYTHON Backend](#22-start-the-python-backend). **You only need ONE backend at a time**. 🔥
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-csharp.png)
 
