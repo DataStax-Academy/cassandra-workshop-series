@@ -186,7 +186,7 @@ This appliation uses the Flask framework. This sample can be run from the root d
 
 **✅ Installation procedure**
 
-**a) Setup environment**
+- Setup environment
 
 We advise that you set up a virtual python environment with Python 3 first (e.g with pyenv or venv).
 To setup a virtual environment with [venv](https://docs.python.org/3/library/venv.html)
@@ -198,12 +198,12 @@ source bin/activate
 ```
 The activation will prepend your command prompt with `(astra-venv)`, indicating that you are operating in your virtual environment.  All dependencies will be installed into this environment only.
 
-**b) install dependencies**
+- Install dependencies
 ```
 pip install Flask flask-cors cassandra-driver
 ```
 
-#### c) Clone this repository
+- Clone this repository
 ```
 git clone https://github.com/DataStax-Academy/cassandra-workshop-series
 ```
@@ -229,7 +229,8 @@ You should see the following output:
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
-**c) Access the API documentation from a browser**
+- Access the API documentation from a browser
+
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 *Note: If you want to change the listening port of the application, change it in the app.run() call in `getting-started-with-astra.py`, eg*
@@ -299,15 +300,15 @@ You will see an `Open Ports` tab in the gitpod terminal window, where you can ch
 app.run(port=5001)
 ```
 
-### 3.4 Start the CSHARP BACKEND
+### 2.3 Start the CSHARP BACKEND
 
 ![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-csharp.png)
 
-#### 3.4.1 Run locally
+#### 2.3.1 Run locally
 
 **TODO**
 
-#### 3.4.2 Run in gitpod
+#### 2.3.2 Run in gitpod
 
 *N/A as of now, we did not setup gitpod to work with dotnet.*
 
