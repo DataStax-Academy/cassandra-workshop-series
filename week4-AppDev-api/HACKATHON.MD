@@ -28,17 +28,18 @@ Not only you will be part of the community but all participants will get a free 
 
 # 3. How are you evaluated ?
 
-### We will assess :
+We will assess :
 - **The data model :** choices and hypothesis
 - **The source code :** quality and best practices
 - **The ease of use (documentation, docker?)** - should be launchable in 5 mins per docs
 
-## 4. Who will review my work ?
+# 4. Who will review my work ?
+
 To review your submissions the commitee will be composed from:
-- The Developer Advocates team at DataStax
-- Patrick Mc Fadin, VP at DataStax
-- Jonahthan Ellis, CTO of DataStax, previous PMC of Cassandra project
-- Jeffrey Carpenter, author of Cassandra the Definitive guide.
+- **The Developer Advocates team** at DataStax
+- **Patrick Mc Fadin,** VP at DataStax
+- **Johnathan Ellis,** CTO of DataStax, previous PMC of Cassandra project
+- **Jeffrey Carpenter,** author of Cassandra the Definitive guide.
 
 # 5. How to participate ? 
 
