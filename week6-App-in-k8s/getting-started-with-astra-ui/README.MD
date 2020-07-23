@@ -1,92 +1,65 @@
-# Getting Started with Apache Cassandra™ and Python using DataStax Astra
+# Getting Started with DataStax Astra - UI
 
-This sample Python backend provides a REST API service that is used with the [Getting Started with Astra UI](https://github.com/DataStax-Examples/getting-started-with-astra-ui) to show a
-simple example of how to connect to and query DataStax Astra databases.
+This provides the front end for the Astra Getting Started application.  This is meant to be used with one of the following backends:
 
-Contributor(s):
-* [Chris Splinter](https://github.com/csplinter)
-* [Madhavan Sridharan](https://github.com/msmygit)
+* [Java](https://github.com/DataStax-Examples/getting-started-with-astra-java)
+* [Python](https://github.com/DataStax-Examples/getting-started-with-astra-python)
+* [C#](https://github.com/DataStax-Examples/getting-started-with-astra-csharp)
+* [NodeJS]() - TBD
 
 ## Objectives
-- How to connect to DataStax Astra using the secure connect bundle
-- How to share a DataStax Driver Session throughout a Python application
-- How to expose a basic REST API using the DataStax Driver
 
-## Project Layout
-- [getting_started_with_astra.py](getting_started_with_astra.py) - entrypoint for the backend, registers controller blueprints with Flask app
-- [schema.cql](schema.cql) - database schema used by the application
-- [service](service/) - acts as the middle-man to take requests from the controllers and calls the corresponding dao methods.
-Note how this and [session_manager.py](dao/session_manager.py) are used to share a single DataStax Driver Session across API requests, this is a best practice.
-- [model](model/) - defines the Python objects that correspond to the database tables
-- [dao](dao/) - methods for accessing the database, contains the DataStax Driver API calls
-- [controller](controller/) - defines the API endpoints using Flask decorators
+* Connect a web application to one of four backends to demonstrate an end to end full stack application
+* Demonstrate how to properly page results for an Astra Service
 
-## How this works
-This project is built in Python and uses Flask to expose a REST API backend for use with the [Getting Started with Astra UI](https://github.com/DataStax-Examples/getting-started-with-astra-ui).
+## Setup and Running
 
-This application is the middle man that receives requests from the UI web page and serves data from the underlying DataStax Astra database.
+### Prerequisites
 
-## Setup & Running
-
-### Setup
-If you are familiar with Python, then you've likely gotten your hands on Python virtual environments.
-We'll be leveraging pyenv while setting up this backend, which will serve our
-Spacecraft frontend that will have you flying through the stars.
-
-If you aren't familiar with Python, hop over to our [official documentation](https://helpdocs.datastax.com/aws/dscloud/astra/dscloudPythonDriver.html#Installingpyenv,Python,andvirtualenv)
-for setting that up on your machine, and come back here after you have it installed ( specifically after Step 5 of the Procedure ).
-
-Now that we have that out of the way, we'll use pyenv to install Python 3.6.9
-```
-pyenv install 3.6.9
-```
-
-Next create a new virtualenv using that Python version we just installed.
-
-```
-pyenv virtualenv 3.6.9 astra-venv
-```
-
-Almost off to the races, go ahead and activate that virtualenv
-
-```
-pyenv activate astra-venv
-```
-
-Woot, now 3 quick dependencies ( Flask, Flask CORS,  and the DataStax Cassandra Driver )
-
-```
-pip install Flask flask-cors cassandra-driver
-```
-
-Last one, clone this repo
-```
-git clone https://github.com/DataStax-Examples
-/getting-started-with-astra-python.git
-```
+* node v8.1.0
 
 ### Running
 
-If everything above went smoothly, fingers crossed, then we are ready to rock.
-Go to the directory that you just cloned this repo into
+A `.env` file is required before you can build the application.  This file needs to be added to the root of the project and called `.env`.  This file
+contains all the environment variables required for the application.  Currently there is only one required entry:
+
+```BASE_ADDRESS=http://localhost:5000/api```
+
+This value is where you put the relative address of the api.
+
+In order to start this application you need to run:
+
+`npm install` 
+
+and then
+
+
+`npm run start`
+
+You will know that this is correctly running when you see this message in your terminal:
+
 ```
-cd getting-started-with-astra-python
+ℹ ｢wds｣: Project is running at http://localhost:3000/
+ℹ ｢wds｣: webpack output is served from /
+ℹ ｢wds｣: Content not from webpack is served from /Users/dave.bechberger/Documents/projects/bechbd/getting-started-with-astra-ui
+ℹ ｢wds｣: 404s will fallback to /index.html
 ```
 
-Fire up the engines
-```
-FLASK_ENV=development FLASK_APP=getting_started_with_astra.py flask run
-```
+If you would like to build this for deployment then this can be accomplished using:
 
-You should be met with the following output, note that it's running on `localhost` and port `5000`
-```
- * Serving Flask app "getting_started_with_astra.py" (lazy loading)
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 204-527-831
-```
+`npm run build`
 
-Once the backend is running, you can start the [Getting Started with Astra UI](https://github.com/DataStax-Examples/getting-started-with-astra-ui) in order to use a web page that leverages this backend.
+## How this Sample Works
+
+This is am example UI which connects to an Astra database.
+
+Upon entering the application you will be prompted to add your credentials for the Astra database you want to connect to.
+
+Once you have entered your credentials you will be given the option of either creating a new journey or replaying an existing one.
+
+If you create a new journey, you will enter a name for it.  Once you click launch the system will generate 1000 random sensor readings for each of the 4 sensors displayed (pressure, temperature, speed, location).  These sensor readings will be written to the database.  After the writes have begun the application will begin to read the sensors back in a paged manner and once data has been returned to the UI the system will begin the playback.
+
+If you choose to replay an existing journey once you click on the journey to replay the application will begin to read the sensors back in a paged manner and once data has been returned to the UI the system will begin the playback.
+
+## Attribution
+Created and Maintained by [bechbd](https://github.com/bechbd)
