@@ -111,7 +111,12 @@ public class CredentialsController {
          return ResponseEntity.ok("Connection Successful");
      }
      
+     @ApiOperation(value = "Validate connection parameters", response = String.class)
      @PostMapping(value = "/test", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+     @ApiResponses({
+         @ApiResponse(code = 200, message = "Parameters are valid"),
+         @ApiResponse(code = 400, message = "Parameters are not valid")
+     })
      public ResponseEntity<String> testCredentials(
              @RequestParam("username") String username,
              @RequestParam("password") String password,

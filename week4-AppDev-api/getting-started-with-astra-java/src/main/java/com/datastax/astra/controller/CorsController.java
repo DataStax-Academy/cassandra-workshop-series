@@ -2,7 +2,7 @@ package com.datastax.astra.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,9 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  * @author Cedrick LUNVEN (@clunven)
  */
-@Component
+@Configuration
 public class CorsController implements WebMvcConfigurer {
-
+    
     /** Logger for the class. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CorsController.class);
     
