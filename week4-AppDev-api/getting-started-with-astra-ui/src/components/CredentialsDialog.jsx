@@ -95,9 +95,11 @@ export default function CredentialsDialog(props) {
                         <DialogContentText>
                             Choose your Secure Connect Bundle:*
                             <DropzoneArea
-                                acceptedFiles={["application/zip"]}
+                                // WorkAround for Windows 10 see
+                                // https://community.datastax.com/questions/6831/secure-bundle-connect.html
+                                /* acceptedFiles={["application/zip"]}*/
                                 filesLimit={1}
-                                dropzoneText="Drag and Drop your Secure Connect Bundle here or click to choose"
+                                dropzoneText="Drag and Drop your SecureConnectBundle zip file. WINDOWS 10 users  => do not click this box but drag and drop)"
                                 onChange={updateFiles}
                                 showFileNames={true}
                                 showPreviews={true}
