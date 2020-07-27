@@ -30,7 +30,11 @@ In this repository, you'll find everything you need related to `week 5` of the *
 | K8s Dashboard | [Instructions](./README_DASHBOARD.MD)  | Bonus |
 
 
-**IMPORTANT IMPORTANT IMPORTANT** It may happen on some computers, especially Win10 Home Edition or old laptops, what you will be not able to install Docker at all or, if installed, Cassandra Cluster will require to much resources to run. That's perfectly fine, we have covered you: fill this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! WATCH OUT, in this case you have to start from the step 7, "Create the Namespace": all the other requirements are installed already. Have fun! **IMPORTANT IMPORTANT IMPORTANT** 
+**IMPORTANT IMPORTANT IMPORTANT** 
+
+It may happen on some computers, especially with Win10 Home Edition or older laptops that you will be not able to install Docker at all or if installed the Cassandra Cluster will require too many resources to run. That's perfectly fine, we have it covered you: fill out this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! **WATCH OUT, in this case you have to start from the step 7, "Create the Namespace"**: as all the other requirements are installed already. Have fun! 
+
+**IMPORTANT IMPORTANT IMPORTANT** 
 
 ## Create a Kubernetes Cluster
 
