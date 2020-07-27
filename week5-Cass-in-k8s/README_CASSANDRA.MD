@@ -16,19 +16,19 @@ If at any point you need to naviagte to one of the other sections use the links 
 |---|---|---|
 | Installation and prerequisites | [Section](./README.MD) | Required |
 | **Working with the Cassandra Operator** | [Section](./README_CASSANDRA.MD)  | Required |
-| Metrics in Prometheus & Grafana | [Section](./README_METRICS.MD)  | Required |
+| Metrics in Prometheus & Grafana | [Section](./README_METRICS_DSE.MD)  | Required |
 | K8s Dashboard | [Section](./README_DASHBOARD.MD)  | Bonus |
 
 ## Exercises
 
 | Title  | Description
 |---|---|
-| **1. Install Cass Operator** | [Instructions](#1-install-cass-operator)  |
-| **2. Create a single node cluster** | [Instructions](#2-create-a-single-node-cluster)  |
-| **3. Browse your cluster** | [Instructions](#3-browse-your-cluster)  |
-| **4. Scale up our cluster** | [Instructions](#4-scale-up-our-cluster)  |
-| **5. Executing CQL** | [Instructions](#5-executing-cql)  |
-| **6. Change the Cassandra configuration** | [Instructions](#6-change-the-cassandra-configuration)  |
+| 1. Install Cass Operator | [Instructions](#1-install-cass-operator)  |
+| 2. Create a single node cluster | [Instructions](#2-create-a-single-node-cluster)  |
+| 3. Browse your cluster | [Instructions](#3-browse-your-cluster)  |
+| 4. Scale up our cluster | [Instructions](#4-scale-up-our-cluster)  |
+| 5. Executing CQL | [Instructions](#5-executing-cql)  |
+| 6. Change the Cassandra configuration | [Instructions](#6-change-the-cassandra-configuration)  |
 
 ## 1. Install Cass Operator
 
