@@ -63,12 +63,12 @@ public class CredentialsController {
             @ApiResponse(code = 400, message = "Invalid or missing parameters"),
             @ApiResponse(code = 500, message = "Internal error - cannot save file")
     })
-    @ApiImplicitParams({
-        @ApiImplicitParam(
-            name = "file",
-            value = "A binary zip file provided by astra to initiate a 2-ways SSL connection",
-            required = true, dataType = "file", paramType = "form")
-    })
+    //@ApiImplicitParams({
+    //    @ApiImplicitParam(
+    //        name = "file",
+    //        value = "A binary zip file provided by astra to initiate a 2-ways SSL connection",
+    //        required = true, dataType = "file", paramType = "form")
+    //})
     public ResponseEntity<String> saveCredentials(
         @RequestParam("username") 
         @ApiParam(name="username", value="login for user authentication", required=true)
