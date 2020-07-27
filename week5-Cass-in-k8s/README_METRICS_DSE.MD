@@ -23,14 +23,14 @@ If at any point you need to naviagte to one of the other sections use the links 
 
 | Title  | Description
 |---|---|
-| **1. Clean up cluster defined in previous sections** | [Instructions](#1-clean-up-cluster-defined-in-previous-sections)  |
-| **2. Install Operator Lifecycle Manager (OLM)** | [Instructions](#2-install-operator-lifecycle-manager-(olm))  |
-| **3. Install Prometheus Operator** | [Instructions](#3-install-prometheus-operator)  |
-| **4. Install Grafana Operator** | [Instructions](#4-install-grafana-operator)  |
-| **5. Start DSE Cluster** | [Instructions](#5-start-dse-cluster)  |
-| **6. Browse DSE Cluster** | [Instructions](#6-browse-dse-cluster)  |
-| **7. Blow your mind** | [Instructions](#7-blow-your-mind)  |
-| **8. Stop and clean up** | [Instructions](#8-stop-and-clean-up)  |
+| 1. Clean up cluster defined in previous sections | [Instructions](#1-clean-up-cluster-defined-in-previous-sections)  |
+| 2. Install Operator Lifecycle Manager (OLM) | [Instructions](#2-install-operator-lifecycle-manager-(olm))  |
+| 3. Install Prometheus Operator | [Instructions](#3-install-prometheus-operator)  |
+| 4. Install Grafana Operator | [Instructions](#4-install-grafana-operator)  |
+| 5. Start DSE Cluster | [Instructions](#5-start-dse-cluster)  |
+| 6. Browse DSE Cluster | [Instructions](#6-browse-dse-cluster)  |
+| 7. Blow your mind | [Instructions](#7-blow-your-mind)  |
+| 8. Stop and clean up | [Instructions](#8-stop-and-clean-up)  |
 
 ## 1. Clean up cluster defined in previous sections
 

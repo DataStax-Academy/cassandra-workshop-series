@@ -29,25 +29,25 @@ In this repository, you'll find everything you need related to `week 5` of the *
 | Metrics in Prometheus & Grafana | [Section](./README_METRICS_DSE.MD)  | Required |
 | K8s Dashboard | [Section](./README_DASHBOARD.MD)  | Bonus |
 
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
+It may happen on some computers, especially with Win10 Home Edition or older laptops that you will be not able to install Docker at all or if installed the Cassandra Cluster will require too many resources to run. That's perfectly fine, we have it covered you: fill out this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! **!!WATCH OUT!!** In this case you have to start from [step 7, "Create the Namespace"](#7-create-namespace-and-storageclass) as all the other requirements are installed already. Have fun! 
+
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
 ## Exercises
 
 | Title  | Description
 |---|---|
-| **1. Install Docker** | [Instructions](#1-install-docker)  |
-| **2. Install Docker Compose** | [Instructions](#2-install-docker-compose)  |
-| **3. Install Kubernetes command-line tool (Kubectl)** | [Instructions](#3-install-kubernetes-command-line-tool-(kubectl))  |
-| **4. Install `watch`** | [Instructions](#4-install-watch)  |
-| **5. Install Kind** | [Instructions](#5-install-kind)  |
-| **6. Create a KIND cluster** | [Instructions](#6-create-a-kind-cluster)  |
-| **7. Create namespace and storageClass** | [Instructions](#7-create-namespace-and-storageclass)  |
-| **8. Working with the Cassandra Operator** | [Instructions](#8-working-with-the-cassandra-operator)  |
+| 1. Install Docker | [Instructions](#1-install-docker)  |
+| 2. Install Docker Compose | [Instructions](#2-install-docker-compose)  |
+| 3. Install Kubernetes command-line tool (Kubectl) | [Instructions](#3-install-kubernetes-command-line-tool-(kubectl))  |
+| 4. Install `watch` | [Instructions](#4-install-watch)  |
+| 5. Install Kind | [Instructions](#5-install-kind)  |
+| 6. Create a KIND cluster | [Instructions](#6-create-a-kind-cluster)  |
+| 7. Create namespace and storageClass | [Instructions](#7-create-namespace-and-storageclass)  |
+| 8. Working with the Cassandra Operator | [Instructions](#8-working-with-the-cassandra-operator)  |
 
-
-**IMPORTANT IMPORTANT IMPORTANT** 
-
-It may happen on some computers, especially with Win10 Home Edition or older laptops that you will be not able to install Docker at all or if installed the Cassandra Cluster will require too many resources to run. That's perfectly fine, we have it covered you: fill out this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! **!!WATCH OUT!!** In this case you have to start from [step 7, "Create the Namespace"](#7-create-namespace-and-storageclass) as all the other requirements are installed already. Have fun! 
-
-**IMPORTANT IMPORTANT IMPORTANT** 
 
 ## Create a Kubernetes Cluster
 
