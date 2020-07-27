@@ -1,0 +1,1559 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  labels:
+    app: grafana
+  name: system-metrics
+spec:
+  json: "{\n  \"annotations\": {\n    \"list\": [\n      {\n        \"builtIn\": 1,\n\
+    \        \"datasource\": \"-- Grafana --\",\n        \"enable\": true,\n     \
+    \   \"hide\": true,\n        \"iconColor\": \"rgba(0, 211, 255, 1)\",\n      \
+    \  \"name\": \"Annotations & Alerts\",\n        \"type\": \"dashboard\"\n    \
+    \  }\n    ]\n  },\n  \"description\": \"\",\n  \"editable\": true,\n  \"gnetId\"\
+    : 1860,\n  \"graphTooltip\": 0,\n  \"id\": 4,\n  \"iteration\": 1562770447155,\n\
+    \  \"links\": [],\n  \"panels\": [\n    {\n      \"content\": \"<a href=\\\"https://www.datastax.com\\\
+    \" target=\\\"new\\\"><img src=\\\"https://www.datastax.com/sites/default/files/content/graphics/logo/DS-logo-2019-White.png\\\
+    \"/></a>\",\n      \"gridPos\": {\n        \"h\": 3,\n        \"w\": 5,\n    \
+    \    \"x\": 9,\n        \"y\": 0\n      },\n      \"id\": 280,\n      \"links\"\
+    : [],\n      \"mode\": \"html\",\n      \"title\": \"\",\n      \"transparent\"\
+    : true,\n      \"type\": \"text\"\n    },\n    {\n      \"collapsed\": false,\n\
+    \      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n\
+    \        \"y\": 3\n      },\n      \"id\": 261,\n      \"panels\": [],\n     \
+    \ \"repeat\": null,\n      \"title\": \"Basic CPU / Mem / Disk Gauge\",\n    \
+    \  \"type\": \"row\"\n    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\"\
+    : false,\n      \"colorValue\": true,\n      \"colors\": [\n        \"rgba(50,\
+    \ 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(245,\
+    \ 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : null,\n      \"description\": \"Busy state of all CPU cores together\",\n  \
+    \    \"format\": \"percent\",\n      \"gauge\": {\n        \"maxValue\": 100,\n\
+    \        \"minValue\": 0,\n        \"show\": true,\n        \"thresholdLabels\"\
+    : false,\n        \"thresholdMarkers\": true\n      },\n      \"gridPos\": {\n\
+    \        \"h\": 4,\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 4\n \
+    \     },\n      \"id\": 20,\n      \"interval\": null,\n      \"links\": [],\n\
+    \      \"mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"\
+    name\": \"value to text\",\n          \"value\": 1\n        },\n        {\n  \
+    \        \"name\": \"range to text\",\n          \"value\": 2\n        }\n   \
+    \   ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 2,\n      \"nullPointMode\"\
+    : \"null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"(1 - ((sum(irate(collectd_cpu_total{instance='$host', type='idle'}[$rate]))\
+    \ by (instance) /  \\n                  sum(irate(collectd_cpu_total{instance='$host'}[$rate]))\
+    \ by (instance)))) * 100\",\n          \"format\": \"time_series\",\n        \
+    \  \"hide\": false,\n          \"interval\": \"\",\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"85,95\",\n   \
+    \   \"title\": \"CPU Busy\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\"\
+    : \"80%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n    \
+    \      \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n\
+    \      \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": true,\n      \"colors\"\
+    : [\n        \"rgba(50, 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(245, 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": null,\n      \"description\": \"Amount of memory used (ignoring\
+    \ page cache)\",\n      \"format\": \"percent\",\n      \"gauge\": {\n       \
+    \ \"maxValue\": 100,\n        \"minValue\": 0,\n        \"show\": true,\n    \
+    \    \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n      },\n\
+    \      \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n        \"x\": 4,\n\
+    \        \"y\": 4\n      },\n      \"id\": 271,\n      \"interval\": null,\n \
+    \     \"links\": [],\n      \"mappingType\": 1,\n      \"mappingTypes\": [\n \
+    \       {\n          \"name\": \"value to text\",\n          \"value\": 1\n  \
+    \      },\n        {\n          \"name\": \"range to text\",\n          \"value\"\
+    : 2\n        }\n      ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 2,\n\
+    \      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"postfix\"\
+    : \"\",\n      \"postfixFontSize\": \"50%\",\n      \"prefix\": \"\",\n      \"\
+    prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n          \"from\"\
+    : \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"null\"\n      \
+    \  }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"rgba(31, 118,\
+    \ 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\": \"rgb(31, 120,\
+    \ 193)\",\n        \"show\": true\n      },\n      \"tableColumn\": \"\",\n  \
+    \    \"targets\": [\n        {\n          \"expr\": \"100 * ((sum(collectd_memory{instance=\\\
+    \"$host\\\", memory=\\\"free\\\"}) + sum(collectd_memory{instance=\\\"$host\\\"\
+    , memory=\\\"cached\\\"}) + sum(collectd_memory{instance=\\\"$host\\\", memory=\\\
+    \"buffered\\\"})) / sum(collectd_memory{instance=\\\"$host\\\"}))\",\n       \
+    \   \"format\": \"time_series\",\n          \"hide\": false,\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"85,95\",\n   \
+    \   \"title\": \"Memory Used\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\"\
+    : \"80%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n    \
+    \      \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n\
+    \      \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": true,\n      \"colors\"\
+    : [\n        \"rgba(50, 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(245, 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": null,\n      \"description\": \"Used Swap\",\n      \"\
+    format\": \"percent\",\n      \"gauge\": {\n        \"maxValue\": 100,\n     \
+    \   \"minValue\": 0,\n        \"show\": true,\n        \"thresholdLabels\": false,\n\
+    \        \"thresholdMarkers\": true\n      },\n      \"gridPos\": {\n        \"\
+    h\": 4,\n        \"w\": 4,\n        \"x\": 8,\n        \"y\": 4\n      },\n  \
+    \    \"id\": 21,\n      \"interval\": null,\n      \"links\": [],\n      \"mappingType\"\
+    : 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"value to text\"\
+    ,\n          \"value\": 1\n        },\n        {\n          \"name\": \"range\
+    \ to text\",\n          \"value\": 2\n        }\n      ],\n      \"maxDataPoints\"\
+    : 100,\n      \"minSpan\": 4,\n      \"nullPointMode\": \"null\",\n      \"nullText\"\
+    : null,\n      \"postfix\": \"\",\n      \"postfixFontSize\": \"50%\",\n     \
+    \ \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n      \"rangeMaps\":\
+    \ [\n        {\n          \"from\": \"null\",\n          \"text\": \"N/A\",\n\
+    \          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\": {\n   \
+    \     \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"(sum(collectd_swap{instance='$host',swap='used'}) / sum(collectd_swap{instance='$host'}))\
+    \ * 100\",\n          \"format\": \"time_series\",\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"10,25\",\n   \
+    \   \"title\": \"Used SWAP\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\"\
+    : \"80%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n    \
+    \      \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n\
+    \      \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": true,\n      \"colors\"\
+    : [\n        \"rgba(50, 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(245, 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": null,\n      \"description\": \"Used Root FS\",\n     \
+    \ \"format\": \"percent\",\n      \"gauge\": {\n        \"maxValue\": 100,\n \
+    \       \"minValue\": 0,\n        \"show\": true,\n        \"thresholdLabels\"\
+    : false,\n        \"thresholdMarkers\": true\n      },\n      \"gridPos\": {\n\
+    \        \"h\": 4,\n        \"w\": 4,\n        \"x\": 12,\n        \"y\": 4\n\
+    \      },\n      \"id\": 154,\n      \"interval\": null,\n      \"links\": [],\n\
+    \      \"mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"\
+    name\": \"value to text\",\n          \"value\": 1\n        },\n        {\n  \
+    \        \"name\": \"range to text\",\n          \"value\": 2\n        }\n   \
+    \   ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\"\
+    : \"null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"(sum(collectd_df_df_complex{instance='$host',df=\\\"root\\\",type=\\\
+    \"used\\\"}) / sum(collectd_df_df_complex{instance='$host',df=\\\"root\\\"}))\
+    \ * 100\",\n          \"format\": \"time_series\",\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"80,90\",\n   \
+    \   \"title\": \"Used Root FS\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\"\
+    : \"80%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n    \
+    \      \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n\
+    \      \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": true,\n      \"colors\"\
+    : [\n        \"rgba(50, 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(245, 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": null,\n      \"description\": \"Busy state of all CPU cores\
+    \ together (1 min average)\",\n      \"format\": \"percent\",\n      \"gauge\"\
+    : {\n        \"maxValue\": 100,\n        \"minValue\": 0,\n        \"show\": true,\n\
+    \        \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n   \
+    \   },\n      \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n        \"\
+    x\": 16,\n        \"y\": 4\n      },\n      \"id\": 19,\n      \"interval\": null,\n\
+    \      \"links\": [],\n      \"mappingType\": 1,\n      \"mappingTypes\": [\n\
+    \        {\n          \"name\": \"value to text\",\n          \"value\": 1\n \
+    \       },\n        {\n          \"name\": \"range to text\",\n          \"value\"\
+    : 2\n        }\n      ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 2,\n\
+    \      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"postfix\"\
+    : \"\",\n      \"postfixFontSize\": \"50%\",\n      \"prefix\": \"\",\n      \"\
+    prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n          \"from\"\
+    : \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"null\"\n      \
+    \  }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"rgba(31, 118,\
+    \ 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\": \"rgb(31, 120,\
+    \ 193)\",\n        \"show\": true\n      },\n      \"tableColumn\": \"\",\n  \
+    \    \"targets\": [\n        {\n          \"expr\": \"avg(collectd_load_shortterm{instance='$host'})\
+    \ / count(count(collectd_cpu_total{instance='$host'}) by (cpu)) * 100\",\n   \
+    \       \"format\": \"time_series\",\n          \"hide\": false,\n          \"\
+    intervalFactor\": 1,\n          \"legendFormat\": \"\",\n          \"refId\":\
+    \ \"A\",\n          \"step\": 900\n        }\n      ],\n      \"thresholds\":\
+    \ \"85, 95\",\n      \"title\": \"CPU System Load (1m avg)\",\n      \"type\"\
+    : \"singlestat\",\n      \"valueFontSize\": \"80%\",\n      \"valueMaps\": [\n\
+    \        {\n          \"op\": \"=\",\n          \"text\": \"N/A\",\n         \
+    \ \"value\": \"null\"\n        }\n      ],\n      \"valueName\": \"current\"\n\
+    \    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\": false,\n\
+    \      \"colorValue\": true,\n      \"colors\": [\n        \"rgba(50, 172, 45,\
+    \ 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(245, 54, 54,\
+    \ 0.9)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : null,\n      \"description\": \"Busy state of all CPU cores together (5 min\
+    \ average)\",\n      \"format\": \"percent\",\n      \"gauge\": {\n        \"\
+    maxValue\": 100,\n        \"minValue\": 0,\n        \"show\": true,\n        \"\
+    thresholdLabels\": false,\n        \"thresholdMarkers\": true\n      },\n    \
+    \  \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n        \"x\": 20,\n\
+    \        \"y\": 4\n      },\n      \"id\": 155,\n      \"interval\": null,\n \
+    \     \"links\": [],\n      \"mappingType\": 1,\n      \"mappingTypes\": [\n \
+    \       {\n          \"name\": \"value to text\",\n          \"value\": 1\n  \
+    \      },\n        {\n          \"name\": \"range to text\",\n          \"value\"\
+    : 2\n        }\n      ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 2,\n\
+    \      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"postfix\"\
+    : \"\",\n      \"postfixFontSize\": \"50%\",\n      \"prefix\": \"\",\n      \"\
+    prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n          \"from\"\
+    : \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"null\"\n      \
+    \  }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"rgba(31, 118,\
+    \ 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\": \"rgb(31, 120,\
+    \ 193)\",\n        \"show\": true\n      },\n      \"tableColumn\": \"\",\n  \
+    \    \"targets\": [\n        {\n          \"expr\": \"avg(collectd_load_midterm{instance='$host'})\
+    \ / count(count(collectd_cpu_total{instance='$host'}) by (cpu)) * 100\",\n   \
+    \       \"format\": \"time_series\",\n          \"hide\": false,\n          \"\
+    intervalFactor\": 1,\n          \"legendFormat\": \"\",\n          \"refId\":\
+    \ \"A\",\n          \"step\": 900\n        }\n      ],\n      \"thresholds\":\
+    \ \"85, 95\",\n      \"title\": \"CPU System Load (5m avg)\",\n      \"type\"\
+    : \"singlestat\",\n      \"valueFontSize\": \"80%\",\n      \"valueMaps\": [\n\
+    \        {\n          \"op\": \"=\",\n          \"text\": \"N/A\",\n         \
+    \ \"value\": \"null\"\n        }\n      ],\n      \"valueName\": \"current\"\n\
+    \    },\n    {\n      \"collapsed\": false,\n      \"gridPos\": {\n        \"\
+    h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 8\n      },\n \
+    \     \"id\": 262,\n      \"panels\": [],\n      \"repeat\": null,\n      \"title\"\
+    : \"Basic CPU / Mem / Disk Info\",\n      \"type\": \"row\"\n    },\n    {\n \
+    \     \"cacheTimeout\": null,\n      \"colorBackground\": false,\n      \"colorValue\"\
+    : false,\n      \"colors\": [\n        \"rgba(245, 54, 54, 0.9)\",\n        \"\
+    rgba(237, 129, 40, 0.89)\",\n        \"rgba(50, 172, 45, 0.97)\"\n      ],\n \
+    \     \"datasource\": \"prometheus\",\n      \"description\": \"Total number of\
+    \ CPU cores\",\n      \"format\": \"short\",\n      \"gauge\": {\n        \"maxValue\"\
+    : 100,\n        \"minValue\": 0,\n        \"show\": false,\n        \"thresholdLabels\"\
+    : false,\n        \"thresholdMarkers\": true\n      },\n      \"gridPos\": {\n\
+    \        \"h\": 3,\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 9\n \
+    \     },\n      \"id\": 14,\n      \"interval\": null,\n      \"links\": [],\n\
+    \      \"mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"\
+    name\": \"value to text\",\n          \"value\": 1\n        },\n        {\n  \
+    \        \"name\": \"range to text\",\n          \"value\": 2\n        }\n   \
+    \   ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\"\
+    : \"null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": false\n    \
+    \  },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n       \
+    \   \"expr\": \"count(count(collectd_cpu_total{instance='$host'}) by (cpu))\"\
+    ,\n          \"format\": \"time_series\",\n          \"intervalFactor\": 1,\n\
+    \          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n          \"\
+    step\": 900\n        }\n      ],\n      \"thresholds\": \"\",\n      \"title\"\
+    : \"CPU Cores\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\": \"\
+    50%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n        \
+    \  \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n  \
+    \    \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": false,\n      \"colors\"\
+    : [\n        \"rgba(245, 54, 54, 0.9)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(50, 172, 45, 0.97)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": 2,\n      \"description\": \"Total RAM\",\n      \"format\"\
+    : \"bytes\",\n      \"gauge\": {\n        \"maxValue\": 100,\n        \"minValue\"\
+    : 0,\n        \"show\": false,\n        \"thresholdLabels\": false,\n        \"\
+    thresholdMarkers\": true\n      },\n      \"gridPos\": {\n        \"h\": 3,\n\
+    \        \"w\": 4,\n        \"x\": 4,\n        \"y\": 9\n      },\n      \"id\"\
+    : 75,\n      \"interval\": null,\n      \"links\": [],\n      \"mappingType\"\
+    : 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"value to text\"\
+    ,\n          \"value\": 1\n        },\n        {\n          \"name\": \"range\
+    \ to text\",\n          \"value\": 2\n        }\n      ],\n      \"maxDataPoints\"\
+    : 100,\n      \"minSpan\": 4,\n      \"nullPointMode\": \"null\",\n      \"nullText\"\
+    : null,\n      \"postfix\": \"\",\n      \"postfixFontSize\": \"70%\",\n     \
+    \ \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n      \"rangeMaps\":\
+    \ [\n        {\n          \"from\": \"null\",\n          \"text\": \"N/A\",\n\
+    \          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\": {\n   \
+    \     \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": false\n    \
+    \  },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n       \
+    \   \"expr\": \"sum(collectd_memory{instance='$host'})\",\n          \"format\"\
+    : \"time_series\",\n          \"intervalFactor\": 1,\n          \"legendFormat\"\
+    : \"\",\n          \"refId\": \"A\",\n          \"step\": 900\n        }\n   \
+    \   ],\n      \"thresholds\": \"\",\n      \"title\": \"Total RAM\",\n      \"\
+    type\": \"singlestat\",\n      \"valueFontSize\": \"50%\",\n      \"valueMaps\"\
+    : [\n        {\n          \"op\": \"=\",\n          \"text\": \"N/A\",\n     \
+    \     \"value\": \"null\"\n        }\n      ],\n      \"valueName\": \"current\"\
+    \n    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\": false,\n\
+    \      \"colorValue\": false,\n      \"colors\": [\n        \"rgba(245, 54, 54,\
+    \ 0.9)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(50, 172, 45,\
+    \ 0.97)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : 2,\n      \"description\": \"Total SWAP\",\n      \"format\": \"bytes\",\n \
+    \     \"gauge\": {\n        \"maxValue\": 100,\n        \"minValue\": 0,\n   \
+    \     \"show\": false,\n        \"thresholdLabels\": false,\n        \"thresholdMarkers\"\
+    : true\n      },\n      \"gridPos\": {\n        \"h\": 3,\n        \"w\": 4,\n\
+    \        \"x\": 8,\n        \"y\": 9\n      },\n      \"id\": 18,\n      \"interval\"\
+    : null,\n      \"links\": [],\n      \"mappingType\": 1,\n      \"mappingTypes\"\
+    : [\n        {\n          \"name\": \"value to text\",\n          \"value\": 1\n\
+    \        },\n        {\n          \"name\": \"range to text\",\n          \"value\"\
+    : 2\n        }\n      ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n\
+    \      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"postfix\"\
+    : \"\",\n      \"postfixFontSize\": \"70%\",\n      \"prefix\": \"\",\n      \"\
+    prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n          \"from\"\
+    : \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"null\"\n      \
+    \  }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"rgba(31, 118,\
+    \ 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\": \"rgb(31, 120,\
+    \ 193)\",\n        \"show\": false\n      },\n      \"tableColumn\": \"\",\n \
+    \     \"targets\": [\n        {\n          \"expr\": \"sum(collectd_swap{instance='$host'})\"\
+    ,\n          \"format\": \"time_series\",\n          \"intervalFactor\": 1,\n\
+    \          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n          \"\
+    step\": 900\n        }\n      ],\n      \"thresholds\": \"\",\n      \"title\"\
+    : \"Total SWAP\",\n      \"type\": \"singlestat\",\n      \"valueFontSize\": \"\
+    50%\",\n      \"valueMaps\": [\n        {\n          \"op\": \"=\",\n        \
+    \  \"text\": \"N/A\",\n          \"value\": \"null\"\n        }\n      ],\n  \
+    \    \"valueName\": \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n\
+    \      \"colorBackground\": false,\n      \"colorValue\": false,\n      \"colors\"\
+    : [\n        \"rgba(50, 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\"\
+    ,\n        \"rgba(245, 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\"\
+    ,\n      \"decimals\": null,\n      \"description\": \"Total RootFS\",\n     \
+    \ \"format\": \"bytes\",\n      \"gauge\": {\n        \"maxValue\": 100,\n   \
+    \     \"minValue\": 0,\n        \"show\": false,\n        \"thresholdLabels\"\
+    : false,\n        \"thresholdMarkers\": true\n      },\n      \"gridPos\": {\n\
+    \        \"h\": 3,\n        \"w\": 4,\n        \"x\": 12,\n        \"y\": 9\n\
+    \      },\n      \"id\": 23,\n      \"interval\": null,\n      \"links\": [],\n\
+    \      \"mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"\
+    name\": \"value to text\",\n          \"value\": 1\n        },\n        {\n  \
+    \        \"name\": \"range to text\",\n          \"value\": 2\n        }\n   \
+    \   ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\"\
+    : \"null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": false\n    \
+    \  },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n       \
+    \   \"expr\": \"sum(collectd_df_df_complex{df=\\\"root\\\",instance='$host'})\"\
+    ,\n          \"format\": \"time_series\",\n          \"hide\": false,\n      \
+    \    \"intervalFactor\": 1,\n          \"legendFormat\": \"\",\n          \"refId\"\
+    : \"A\",\n          \"step\": 900\n        }\n      ],\n      \"thresholds\":\
+    \ \"70,90\",\n      \"title\": \"Total RootFS\",\n      \"type\": \"singlestat\"\
+    ,\n      \"valueFontSize\": \"50%\",\n      \"valueMaps\": [\n        {\n    \
+    \      \"op\": \"=\",\n          \"text\": \"N/A\",\n          \"value\": \"null\"\
+    \n        }\n      ],\n      \"valueName\": \"current\"\n    },\n    {\n     \
+    \ \"cacheTimeout\": null,\n      \"colorBackground\": false,\n      \"colorValue\"\
+    : false,\n      \"colors\": [\n        \"rgba(245, 54, 54, 0.9)\",\n        \"\
+    rgba(237, 129, 40, 0.89)\",\n        \"rgba(50, 172, 45, 0.97)\"\n      ],\n \
+    \     \"datasource\": \"prometheus\",\n      \"decimals\": 2,\n      \"description\"\
+    : \"System Load (1m avg)\",\n      \"format\": \"short\",\n      \"gauge\": {\n\
+    \        \"maxValue\": 100,\n        \"minValue\": 0,\n        \"show\": false,\n\
+    \        \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n   \
+    \   },\n      \"gridPos\": {\n        \"h\": 3,\n        \"w\": 4,\n        \"\
+    x\": 16,\n        \"y\": 9\n      },\n      \"id\": 17,\n      \"interval\": null,\n\
+    \      \"links\": [],\n      \"mappingType\": 1,\n      \"mappingTypes\": [\n\
+    \        {\n          \"name\": \"value to text\",\n          \"value\": 1\n \
+    \       },\n        {\n          \"name\": \"range to text\",\n          \"value\"\
+    : 2\n        }\n      ],\n      \"maxDataPoints\": 100,\n      \"minSpan\": 2,\n\
+    \      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"postfix\"\
+    : \"\",\n      \"postfixFontSize\": \"50%\",\n      \"prefix\": \"\",\n      \"\
+    prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n          \"from\"\
+    : \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"null\"\n      \
+    \  }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"rgba(31, 118,\
+    \ 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\": \"rgb(31, 120,\
+    \ 193)\",\n        \"show\": false\n      },\n      \"tableColumn\": \"\",\n \
+    \     \"targets\": [\n        {\n          \"expr\": \"collectd_load_shortterm{instance='$host'}\"\
+    ,\n          \"format\": \"time_series\",\n          \"hide\": false,\n      \
+    \    \"intervalFactor\": 1,\n          \"legendFormat\": \"\",\n          \"refId\"\
+    : \"A\",\n          \"step\": 900\n        }\n      ],\n      \"thresholds\":\
+    \ \"\",\n      \"title\": \"System Load (1m avg)\",\n      \"type\": \"singlestat\"\
+    ,\n      \"valueFontSize\": \"50%\",\n      \"valueMaps\": [\n        {\n    \
+    \      \"op\": \"=\",\n          \"text\": \"N/A\",\n          \"value\": \"null\"\
+    \n        }\n      ],\n      \"valueName\": \"current\"\n    },\n    {\n     \
+    \ \"cacheTimeout\": null,\n      \"colorBackground\": false,\n      \"colorValue\"\
+    : false,\n      \"colors\": [\n        \"rgba(245, 54, 54, 0.9)\",\n        \"\
+    rgba(237, 129, 40, 0.89)\",\n        \"rgba(50, 172, 45, 0.97)\"\n      ],\n \
+    \     \"datasource\": \"prometheus\",\n      \"decimals\": 1,\n      \"description\"\
+    : \"System uptime\",\n      \"format\": \"s\",\n      \"gauge\": {\n        \"\
+    maxValue\": 100,\n        \"minValue\": 0,\n        \"show\": false,\n       \
+    \ \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n      },\n\
+    \      \"gridPos\": {\n        \"h\": 3,\n        \"w\": 4,\n        \"x\": 20,\n\
+    \        \"y\": 9\n      },\n      \"hideTimeOverride\": true,\n      \"id\":\
+    \ 15,\n      \"interval\": null,\n      \"links\": [],\n      \"mappingType\"\
+    : 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"value to text\"\
+    ,\n          \"value\": 1\n        },\n        {\n          \"name\": \"range\
+    \ to text\",\n          \"value\": 2\n        }\n      ],\n      \"maxDataPoints\"\
+    : 100,\n      \"nullPointMode\": \"null\",\n      \"nullText\": null,\n      \"\
+    postfix\": \"s\",\n      \"postfixFontSize\": \"50%\",\n      \"prefix\": \"\"\
+    ,\n      \"prefixFontSize\": \"50%\",\n      \"rangeMaps\": [\n        {\n   \
+    \       \"from\": \"null\",\n          \"text\": \"N/A\",\n          \"to\": \"\
+    null\"\n        }\n      ],\n      \"sparkline\": {\n        \"fillColor\": \"\
+    rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n        \"lineColor\":\
+    \ \"rgb(31, 120, 193)\",\n        \"show\": false\n      },\n      \"tableColumn\"\
+    : \"\",\n      \"targets\": [\n        {\n          \"expr\": \"collectd_uptime{instance='$host'}\"\
+    ,\n          \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n\
+    \          \"legendFormat\": \"\",\n          \"refId\": \"A\",\n          \"\
+    step\": 1800\n        }\n      ],\n      \"thresholds\": \"\",\n      \"title\"\
+    : \"Uptime\",\n      \"transparent\": false,\n      \"type\": \"singlestat\",\n\
+    \      \"valueFontSize\": \"50%\",\n      \"valueMaps\": [\n        {\n      \
+    \    \"op\": \"=\",\n          \"text\": \"N/A\",\n          \"value\": \"null\"\
+    \n        }\n      ],\n      \"valueName\": \"current\"\n    },\n    {\n     \
+    \ \"collapsed\": false,\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\"\
+    : 24,\n        \"x\": 0,\n        \"y\": 12\n      },\n      \"id\": 263,\n  \
+    \    \"panels\": [],\n      \"repeat\": null,\n      \"title\": \"Basic CPU /\
+    \ Mem Graph\",\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\"\
+    : {\n        \"Busy\": \"#EAB839\",\n        \"Busy Iowait\": \"#890F02\",\n \
+    \       \"Busy other\": \"#1F78C1\",\n        \"Idle\": \"#052B51\",\n       \
+    \ \"Idle - Waiting for something to happen\": \"#052B51\",\n        \"guest\"\
+    : \"#9AC48A\",\n        \"idle\": \"#052B51\",\n        \"iowait\": \"#EAB839\"\
+    ,\n        \"irq\": \"#BF1B00\",\n        \"nice\": \"#C15C17\",\n        \"softirq\"\
+    : \"#E24D42\",\n        \"steal\": \"#FCE2DE\",\n        \"system\": \"#508642\"\
+    ,\n        \"user\": \"#5195CE\"\n      },\n      \"bars\": false,\n      \"dashLength\"\
+    : 10,\n      \"dashes\": false,\n      \"datasource\": \"prometheus\",\n     \
+    \ \"decimals\": 2,\n      \"description\": \"Basic CPU info\",\n      \"fill\"\
+    : 4,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\": 12,\n        \"\
+    x\": 0,\n        \"y\": 13\n      },\n      \"id\": 77,\n      \"legend\": {\n\
+    \        \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\"\
+    : false,\n        \"max\": false,\n        \"min\": false,\n        \"rightSide\"\
+    : false,\n        \"show\": true,\n        \"sideWidth\": 250,\n        \"sort\"\
+    : null,\n        \"sortDesc\": null,\n        \"total\": false,\n        \"values\"\
+    : false\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\"\
+    : [],\n      \"minSpan\": 4,\n      \"nullPointMode\": \"null\",\n      \"percentage\"\
+    : true,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\"\
+    : \"flot\",\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"\
+    Busy Iowait\",\n          \"color\": \"#890F02\"\n        },\n        {\n    \
+    \      \"alias\": \"Idle\",\n          \"color\": \"#7EB26D\"\n        },\n  \
+    \      {\n          \"alias\": \"Busy System\",\n          \"color\": \"#EAB839\"\
+    \n        },\n        {\n          \"alias\": \"Busy User\",\n          \"color\"\
+    : \"#0A437C\"\n        },\n        {\n          \"alias\": \"Busy Other\",\n \
+    \         \"color\": \"#6D1F62\"\n        }\n      ],\n      \"spaceLength\":\
+    \ 10,\n      \"stack\": true,\n      \"steppedLine\": false,\n      \"targets\"\
+    : [\n        {\n          \"expr\": \"sum(irate(collectd_cpu_total{instance='$host',type='system'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"hide\": false,\n          \"interval\"\
+    : \"\",\n          \"intervalFactor\": 2,\n          \"legendFormat\": \"Busy\
+    \ System\",\n          \"refId\": \"B\",\n          \"step\": 240\n        },\n\
+    \        {\n          \"expr\": \"sum(irate(collectd_cpu_total{instance='$host',type='user'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"hide\": false,\n          \"intervalFactor\"\
+    : 2,\n          \"legendFormat\": \"Busy User\",\n          \"refId\": \"D\",\n\
+    \          \"step\": 240\n        },\n        {\n          \"expr\": \"sum(irate(collectd_cpu_total{instance='$host',type='wait'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n         \
+    \ \"legendFormat\": \"Busy Iowait\",\n          \"refId\": \"E\",\n          \"\
+    step\": 240\n        },\n        {\n          \"expr\": \"sum(irate(collectd_cpu_total{instance='$host',type='softirq'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n         \
+    \ \"legendFormat\": \"Busy IRQs\",\n          \"refId\": \"F\",\n          \"\
+    step\": 240\n        },\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance='$host',type!='idle',type!='system',type!='user',type!='wait',type!='softirq'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n         \
+    \ \"legendFormat\": \"Busy Other\",\n          \"refId\": \"A\",\n          \"\
+    step\": 240\n        },\n        {\n          \"expr\": \"sum(irate(collectd_cpu_total{instance='$host',type='idle'}[$rate]))\
+    \ / sum(irate(collectd_cpu_total{instance='$host'}[$rate])) * 100\",\n       \
+    \   \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n         \
+    \ \"legendFormat\": \"Idle\",\n          \"refId\": \"C\",\n          \"step\"\
+    : 240\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n\
+    \      \"timeShift\": null,\n      \"title\": \"CPU Basic\",\n      \"tooltip\"\
+    : {\n        \"shared\": true,\n        \"sort\": 0,\n        \"value_type\":\
+    \ \"individual\"\n      },\n      \"transparent\": false,\n      \"type\": \"\
+    graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"\
+    time\",\n        \"name\": null,\n        \"show\": true,\n        \"values\"\
+    : []\n      },\n      \"yaxes\": [\n        {\n          \"format\": \"short\"\
+    ,\n          \"label\": \"\",\n          \"logBase\": 1,\n          \"max\": \"\
+    100\",\n          \"min\": \"0\",\n          \"show\": true\n        },\n    \
+    \    {\n          \"format\": \"short\",\n          \"label\": null,\n       \
+    \   \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n    \
+    \      \"show\": false\n        }\n      ],\n      \"yaxis\": {\n        \"align\"\
+    : false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\"\
+    : {\n        \"Apps\": \"#629E51\",\n        \"Buffers\": \"#614D93\",\n     \
+    \   \"Cache\": \"#6D1F62\",\n        \"Cached\": \"#511749\",\n        \"Committed\"\
+    : \"#508642\",\n        \"Free\": \"#0A437C\",\n        \"Harware Corrupted -\
+    \ Amount of RAM that the kernel identified as corrupted / not working\": \"#CFFAFF\"\
+    ,\n        \"Inactive\": \"#584477\",\n        \"PageTables\": \"#0A50A1\",\n\
+    \        \"Page_Tables\": \"#0A50A1\",\n        \"RAM_Free\": \"#E0F9D7\",\n \
+    \       \"SWAP Used\": \"#BF1B00\",\n        \"Slab\": \"#806EB7\",\n        \"\
+    Slab_Cache\": \"#E0752D\",\n        \"Swap\": \"#BF1B00\",\n        \"Swap Used\"\
+    : \"#BF1B00\",\n        \"Swap_Cache\": \"#C15C17\",\n        \"Swap_Free\": \"\
+    #2F575E\",\n        \"Unused\": \"#EAB839\"\n      },\n      \"bars\": false,\n\
+    \      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"\
+    prometheus\",\n      \"decimals\": 2,\n      \"description\": \"Basic memory usage\"\
+    ,\n      \"fill\": 4,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\"\
+    : 12,\n        \"x\": 12,\n        \"y\": 13\n      },\n      \"id\": 78,\n  \
+    \    \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"max\": false,\n        \"min\": false,\n\
+    \        \"rightSide\": false,\n        \"show\": true,\n        \"sideWidth\"\
+    : 350,\n        \"total\": false,\n        \"values\": false\n      },\n     \
+    \ \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"minSpan\"\
+    : 4,\n      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n     \
+    \ \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\"\
+    ,\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"RAM Total\"\
+    ,\n          \"color\": \"#E0F9D7\",\n          \"fill\": 0,\n          \"stack\"\
+    : false\n        },\n        {\n          \"alias\": \"RAM Cache + Buffer\",\n\
+    \          \"color\": \"#052B51\"\n        },\n        {\n          \"alias\"\
+    : \"RAM Free\",\n          \"color\": \"#7EB26D\"\n        },\n        {\n   \
+    \       \"alias\": \"Avaliable\",\n          \"color\": \"#DEDAF7\",\n       \
+    \   \"fill\": 0,\n          \"stack\": false\n        }\n      ],\n      \"spaceLength\"\
+    : 10,\n      \"stack\": true,\n      \"steppedLine\": false,\n      \"targets\"\
+    : [\n        {\n          \"expr\": \"sum(collectd_memory{instance=~\\\"$host\\\
+    \"})\",\n          \"format\": \"time_series\",\n          \"hide\": false,\n\
+    \          \"intervalFactor\": 2,\n          \"legendFormat\": \"RAM Total\",\n\
+    \          \"refId\": \"A\",\n          \"step\": 240\n        },\n        {\n\
+    \          \"expr\": \"sum(collectd_memory{instance=~\\\"$host\\\"}) - sum(collectd_memory{instance=~\\\
+    \"$host\\\", memory=\\\"free\\\"}) - sum(collectd_memory{instance=\\\"$host\\\"\
+    , memory=\\\"cached\\\"}) - sum(collectd_memory{instance=\\\"$host\\\", memory=\\\
+    \"buffered\\\"})\",\n          \"format\": \"time_series\",\n          \"hide\"\
+    : false,\n          \"intervalFactor\": 2,\n          \"legendFormat\": \"RAM\
+    \ Used\",\n          \"refId\": \"D\",\n          \"step\": 240\n        },\n\
+    \        {\n          \"expr\": \"sum(collectd_memory{instance=\\\"$host\\\",\
+    \ memory=\\\"cached\\\"}) + sum(collectd_memory{instance=\\\"$host\\\", memory=\\\
+    \"buffered\\\"})\",\n          \"format\": \"time_series\",\n          \"intervalFactor\"\
+    : 2,\n          \"legendFormat\": \"RAM Cache + Buffer\",\n          \"refId\"\
+    : \"B\",\n          \"step\": 240\n        },\n        {\n          \"expr\":\
+    \ \"sum(collectd_memory{instance=\\\"$host\\\", memory=\\\"free\\\"})\",\n   \
+    \       \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n     \
+    \     \"legendFormat\": \"RAM Free\",\n          \"refId\": \"F\",\n         \
+    \ \"step\": 240\n        },\n        {\n          \"expr\": \"sum(collectd_swap{instance=\\\
+    \"$host\\\"}) - sum(collectd_swap{instance=\\\"$host\\\", swap=\\\"free\\\"})\"\
+    ,\n          \"format\": \"time_series\",\n          \"intervalFactor\": 2,\n\
+    \          \"legendFormat\": \"SWAP Used\",\n          \"refId\": \"G\",\n   \
+    \       \"step\": 240\n        }\n      ],\n      \"thresholds\": [],\n      \"\
+    timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"Memory Basic\"\
+    ,\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\": 0,\n   \
+    \     \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\",\n \
+    \     \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\",\n\
+    \        \"name\": null,\n        \"show\": true,\n        \"values\": []\n  \
+    \    },\n      \"yaxes\": [\n        {\n          \"format\": \"bytes\",\n   \
+    \       \"label\": \"\",\n          \"logBase\": 1,\n          \"max\": null,\n\
+    \          \"min\": \"0\",\n          \"show\": true\n        },\n        {\n\
+    \          \"format\": \"short\",\n          \"label\": null,\n          \"logBase\"\
+    : 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\":\
+    \ false\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n\
+    \        \"alignLevel\": null\n      }\n    },\n    {\n      \"collapsed\": false,\n\
+    \      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n\
+    \        \"y\": 20\n      },\n      \"id\": 264,\n      \"panels\": [],\n    \
+    \  \"repeat\": null,\n      \"title\": \"Basic Net / Disk Info\",\n      \"type\"\
+    : \"row\"\n    },\n    {\n      \"aliasColors\": {\n        \"Recv_bytes_eth2\"\
+    : \"#7EB26D\",\n        \"Recv_bytes_lo\": \"#0A50A1\",\n        \"Recv_drop_eth2\"\
+    : \"#6ED0E0\",\n        \"Recv_drop_lo\": \"#E0F9D7\",\n        \"Recv_errs_eth2\"\
+    : \"#BF1B00\",\n        \"Recv_errs_lo\": \"#CCA300\",\n        \"Trans_bytes_eth2\"\
+    : \"#7EB26D\",\n        \"Trans_bytes_lo\": \"#0A50A1\",\n        \"Trans_drop_eth2\"\
+    : \"#6ED0E0\",\n        \"Trans_drop_lo\": \"#E0F9D7\",\n        \"Trans_errs_eth2\"\
+    : \"#BF1B00\",\n        \"Trans_errs_lo\": \"#CCA300\",\n        \"recv_bytes_lo\"\
+    : \"#0A50A1\",\n        \"recv_drop_eth0\": \"#99440A\",\n        \"recv_drop_lo\"\
+    : \"#967302\",\n        \"recv_errs_eth0\": \"#BF1B00\",\n        \"recv_errs_lo\"\
+    : \"#890F02\",\n        \"trans_bytes_eth0\": \"#7EB26D\",\n        \"trans_bytes_lo\"\
+    : \"#0A50A1\",\n        \"trans_drop_eth0\": \"#99440A\",\n        \"trans_drop_lo\"\
+    : \"#967302\",\n        \"trans_errs_eth0\": \"#BF1B00\",\n        \"trans_errs_lo\"\
+    : \"#890F02\"\n      },\n      \"bars\": false,\n      \"dashLength\": 10,\n \
+    \     \"dashes\": false,\n      \"datasource\": \"prometheus\",\n      \"description\"\
+    : \"Basic network info per interface\",\n      \"fill\": 4,\n      \"gridPos\"\
+    : {\n        \"h\": 7,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\":\
+    \ 21\n      },\n      \"id\": 74,\n      \"legend\": {\n        \"alignAsTable\"\
+    : true,\n        \"avg\": true,\n        \"current\": true,\n        \"hideEmpty\"\
+    : false,\n        \"hideZero\": true,\n        \"max\": true,\n        \"min\"\
+    : true,\n        \"rightSide\": false,\n        \"show\": true,\n        \"sort\"\
+    : \"current\",\n        \"sortDesc\": true,\n        \"total\": false,\n     \
+    \   \"values\": true\n      },\n      \"lines\": true,\n      \"linewidth\": 1,\n\
+    \      \"links\": [],\n      \"nullPointMode\": \"null\",\n      \"percentage\"\
+    : false,\n      \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\"\
+    : \"flot\",\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"\
+    /.*read.*/\",\n          \"transform\": \"negative-Y\"\n        },\n        {\n\
+    \          \"alias\": \"/.*lo.*/\",\n          \"color\": \"#7EB26D\"\n      \
+    \  },\n        {\n          \"alias\": \"/.*eth0.*/\"\n        },\n        {\n\
+    \          \"alias\": \"/.*eth1.*/\",\n          \"color\": \"#6ED0E0\"\n    \
+    \    },\n        {\n          \"alias\": \"/.*eth2.*/\",\n          \"color\"\
+    : \"#EF843C\"\n        },\n        {\n          \"alias\": \"/.*eth3.*/\",\n \
+    \         \"color\": \"#E24D42\"\n        },\n        {\n          \"alias\":\
+    \ \"/.*eth4.*/\",\n          \"color\": \"#1F78C1\"\n        },\n        {\n \
+    \         \"alias\": \"/.*eth5.*/\",\n          \"color\": \"#BA43A9\"\n     \
+    \   }\n      ],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"\
+    steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\": \"\
+    irate(collectd_interface_if_octets_rx_total{instance='$host'}[$rate]) * 8\",\n\
+    \          \"format\": \"time_series\",\n          \"interval\": \"\",\n     \
+    \     \"intervalFactor\": 1,\n          \"legendFormat\": \"{{interface}} read\
+    \ \",\n          \"refId\": \"A\",\n          \"step\": 240\n        },\n    \
+    \    {\n          \"expr\": \"irate(collectd_interface_if_octets_tx_total{instance='$host'}[$rate])\
+    \ * 8\",\n          \"format\": \"time_series\",\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"{{interface}} write\",\n          \"refId\"\
+    : \"B\",\n          \"step\": 240\n        }\n      ],\n      \"thresholds\":\
+    \ [],\n      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\"\
+    : \"Network Traffic Basic\",\n      \"tooltip\": {\n        \"shared\": true,\n\
+    \        \"sort\": 0,\n        \"value_type\": \"individual\"\n      },\n    \
+    \  \"transparent\": false,\n      \"type\": \"graph\",\n      \"xaxis\": {\n \
+    \       \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n\
+    \        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n\
+    \        {\n          \"decimals\": null,\n          \"format\": \"bps\",\n  \
+    \        \"label\": \"Read (-) /  Write (+)\",\n          \"logBase\": 1,\n  \
+    \        \"max\": null,\n          \"min\": null,\n          \"show\": true\n\
+    \        },\n        {\n          \"format\": \"pps\",\n          \"label\": \"\
+    \",\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n\
+    \          \"show\": false\n        }\n      ],\n      \"yaxis\": {\n        \"\
+    align\": false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"\
+    aliasColors\": {\n        \"Recv_bytes_eth2\": \"#7EB26D\",\n        \"Recv_bytes_lo\"\
+    : \"#0A50A1\",\n        \"Recv_drop_eth2\": \"#6ED0E0\",\n        \"Recv_drop_lo\"\
+    : \"#E0F9D7\",\n        \"Recv_errs_eth2\": \"#BF1B00\",\n        \"Recv_errs_lo\"\
+    : \"#CCA300\",\n        \"Trans_bytes_eth2\": \"#7EB26D\",\n        \"Trans_bytes_lo\"\
+    : \"#0A50A1\",\n        \"Trans_drop_eth2\": \"#6ED0E0\",\n        \"Trans_drop_lo\"\
+    : \"#E0F9D7\",\n        \"Trans_errs_eth2\": \"#BF1B00\",\n        \"Trans_errs_lo\"\
+    : \"#CCA300\",\n        \"recv_bytes_lo\": \"#0A50A1\",\n        \"recv_drop_eth0\"\
+    : \"#99440A\",\n        \"recv_drop_lo\": \"#967302\",\n        \"recv_errs_eth0\"\
+    : \"#BF1B00\",\n        \"recv_errs_lo\": \"#890F02\",\n        \"trans_bytes_eth0\"\
+    : \"#7EB26D\",\n        \"trans_bytes_lo\": \"#0A50A1\",\n        \"trans_drop_eth0\"\
+    : \"#99440A\",\n        \"trans_drop_lo\": \"#967302\",\n        \"trans_errs_eth0\"\
+    : \"#BF1B00\",\n        \"trans_errs_lo\": \"#890F02\"\n      },\n      \"bars\"\
+    : false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\"\
+    : \"prometheus\",\n      \"description\": \"Basic network info per interface\"\
+    ,\n      \"fill\": 4,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\"\
+    : 12,\n        \"x\": 12,\n        \"y\": 21\n      },\n      \"id\": 287,\n \
+    \     \"legend\": {\n        \"alignAsTable\": true,\n        \"avg\": true,\n\
+    \        \"current\": true,\n        \"hideEmpty\": false,\n        \"hideZero\"\
+    : true,\n        \"max\": true,\n        \"min\": true,\n        \"rightSide\"\
+    : false,\n        \"show\": true,\n        \"sort\": \"current\",\n        \"\
+    sortDesc\": true,\n        \"total\": false,\n        \"values\": true\n     \
+    \ },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n\
+    \      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n      \"pointradius\"\
+    : 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\"\
+    : [\n        {\n          \"alias\": \"/.*read.*/\",\n          \"transform\"\
+    : \"negative-Y\"\n        },\n        {\n          \"alias\": \"/.*lo.*/\",\n\
+    \          \"color\": \"#7EB26D\"\n        },\n        {\n          \"alias\"\
+    : \"/.*eth0.*/\"\n        },\n        {\n          \"alias\": \"/.*eth1.*/\",\n\
+    \          \"color\": \"#6ED0E0\"\n        },\n        {\n          \"alias\"\
+    : \"/.*eth2.*/\",\n          \"color\": \"#EF843C\"\n        },\n        {\n \
+    \         \"alias\": \"/.*eth3.*/\",\n          \"color\": \"#E24D42\"\n     \
+    \   },\n        {\n          \"alias\": \"/.*eth4.*/\",\n          \"color\":\
+    \ \"#1F78C1\"\n        },\n        {\n          \"alias\": \"/.*eth5.*/\",\n \
+    \         \"color\": \"#BA43A9\"\n        }\n      ],\n      \"spaceLength\":\
+    \ 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\"\
+    : [\n        {\n          \"expr\": \"irate(collectd_interface_if_packets_rx_total{instance='$host'}[$rate])\"\
+    ,\n          \"format\": \"time_series\",\n          \"interval\": \"\",\n   \
+    \       \"intervalFactor\": 1,\n          \"legendFormat\": \"{{interface}} read\
+    \ \",\n          \"refId\": \"A\",\n          \"step\": 240\n        },\n    \
+    \    {\n          \"expr\": \"irate(collectd_interface_if_packets_tx_total{instance='$host'}[$rate])\"\
+    ,\n          \"format\": \"time_series\",\n          \"intervalFactor\": 1,\n\
+    \          \"legendFormat\": \"{{interface}} write\",\n          \"refId\": \"\
+    B\",\n          \"step\": 240\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"Network\
+    \ Packets\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\"\
+    : 0,\n        \"value_type\": \"individual\"\n      },\n      \"transparent\"\
+    : false,\n      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\"\
+    : null,\n        \"mode\": \"time\",\n        \"name\": null,\n        \"show\"\
+    : true,\n        \"values\": []\n      },\n      \"yaxes\": [\n        {\n   \
+    \       \"decimals\": null,\n          \"format\": \"short\",\n          \"label\"\
+    : \"Read (-) /  Write (+)\",\n          \"logBase\": 1,\n          \"max\": null,\n\
+    \          \"min\": null,\n          \"show\": true\n        },\n        {\n \
+    \         \"format\": \"pps\",\n          \"label\": \"\",\n          \"logBase\"\
+    : 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\":\
+    \ false\n        }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n\
+    \        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\":\
+    \ {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n\
+    \      \"datasource\": \"prometheus\",\n      \"decimals\": null,\n      \"description\"\
+    : \"Read/Write bytes/sec\",\n      \"fill\": 4,\n      \"gridPos\": {\n      \
+    \  \"h\": 7,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 28\n     \
+    \ },\n      \"height\": \"\",\n      \"id\": 286,\n      \"legend\": {\n     \
+    \   \"alignAsTable\": false,\n        \"avg\": false,\n        \"current\": false,\n\
+    \        \"hideEmpty\": true,\n        \"hideZero\": true,\n        \"max\": false,\n\
+    \        \"min\": false,\n        \"rightSide\": false,\n        \"show\": true,\n\
+    \        \"sort\": \"current\",\n        \"sortDesc\": false,\n        \"total\"\
+    : false,\n        \"values\": false\n      },\n      \"lines\": true,\n      \"\
+    linewidth\": 1,\n      \"links\": [],\n      \"minSpan\": 4,\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [\n\
+    \        {\n          \"alias\": \"/.*Read.*/\",\n          \"transform\": \"\
+    negative-Y\"\n        }\n      ],\n      \"spaceLength\": 10,\n      \"stack\"\
+    : false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n   \
+    \       \"expr\": \"irate(collectd_disk_disk_octets_read_total{instance=\\\"$host\\\
+    \",disk=~\\\".*\\\\\\\\d+\\\"}[$rate])\",\n          \"format\": \"time_series\"\
+    ,\n          \"instant\": false,\n          \"intervalFactor\": 1,\n         \
+    \ \"legendFormat\": \"{{disk}} - Reads\",\n          \"refId\": \"A\",\n     \
+    \     \"step\": 240\n        },\n        {\n          \"expr\": \"irate(collectd_disk_disk_octets_write_total{instance=\\\
+    \"$host\\\",disk=~\\\".*\\\\\\\\d+\\\"}[$rate])\",\n          \"format\": \"time_series\"\
+    ,\n          \"instant\": false,\n          \"intervalFactor\": 1,\n         \
+    \ \"legendFormat\": \"{{disk}} - Writes\",\n          \"refId\": \"B\"\n     \
+    \   }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"\
+    timeShift\": null,\n      \"title\": \"Disk Rate / sec\",\n      \"tooltip\":\
+    \ {\n        \"shared\": true,\n        \"sort\": 0,\n        \"value_type\":\
+    \ \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n \
+    \       \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n\
+    \        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n\
+    \        {\n          \"decimals\": null,\n          \"format\": \"Bps\",\n  \
+    \        \"label\": \"IO read (-) / write (+)\",\n          \"logBase\": 1,\n\
+    \          \"max\": null,\n          \"min\": null,\n          \"show\": true\n\
+    \        },\n        {\n          \"format\": \"short\",\n          \"label\"\
+    : null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\"\
+    : null,\n          \"show\": false\n        }\n      ],\n      \"yaxis\": {\n\
+    \        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n  \
+    \  {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\"\
+    : 10,\n      \"dashes\": false,\n      \"datasource\": \"prometheus\",\n     \
+    \ \"decimals\": null,\n      \"description\": \"iops\",\n      \"fill\": 4,\n\
+    \      \"gridPos\": {\n        \"h\": 7,\n        \"w\": 12,\n        \"x\": 12,\n\
+    \        \"y\": 28\n      },\n      \"height\": \"\",\n      \"id\": 152,\n  \
+    \    \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"hideZero\": true,\n        \"max\": false,\n\
+    \        \"min\": false,\n        \"rightSide\": false,\n        \"show\": true,\n\
+    \        \"sort\": \"current\",\n        \"sortDesc\": false,\n        \"total\"\
+    : false,\n        \"values\": false\n      },\n      \"lines\": true,\n      \"\
+    linewidth\": 1,\n      \"links\": [],\n      \"minSpan\": 4,\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [\n\
+    \        {\n          \"alias\": \"/.*Read.*/\",\n          \"transform\": \"\
+    negative-Y\"\n        }\n      ],\n      \"spaceLength\": 10,\n      \"stack\"\
+    : false,\n      \"steppedLine\": false,\n      \"targets\": [\n        {\n   \
+    \       \"expr\": \"irate(collectd_disk_disk_ops_read_total{instance=\\\"$host\\\
+    \",disk=~\\\".*\\\\\\\\d+\\\"}[$rate])\",\n          \"format\": \"time_series\"\
+    ,\n          \"instant\": false,\n          \"intervalFactor\": 1,\n         \
+    \ \"legendFormat\": \"{{disk}} - Reads completed\",\n          \"refId\": \"A\"\
+    ,\n          \"step\": 240\n        },\n        {\n          \"expr\": \"irate(collectd_disk_disk_ops_write_total{instance=\\\
+    \"$host\\\",disk=~\\\".*\\\\\\\\d+\\\"}[$rate])\",\n          \"format\": \"time_series\"\
+    ,\n          \"instant\": false,\n          \"intervalFactor\": 1,\n         \
+    \ \"legendFormat\": \"{{disk}} - Writes completed\",\n          \"refId\": \"\
+    B\"\n        }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n\
+    \      \"timeShift\": null,\n      \"title\": \"Disk IOPS\",\n      \"tooltip\"\
+    : {\n        \"shared\": true,\n        \"sort\": 0,\n        \"value_type\":\
+    \ \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n \
+    \       \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n\
+    \        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n\
+    \        {\n          \"decimals\": null,\n          \"format\": \"iops\",\n \
+    \         \"label\": \"IO read (-) / write (+)\",\n          \"logBase\": 1,\n\
+    \          \"max\": null,\n          \"min\": null,\n          \"show\": true\n\
+    \        },\n        {\n          \"format\": \"short\",\n          \"label\"\
+    : null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\"\
+    : null,\n          \"show\": false\n        }\n      ],\n      \"yaxis\": {\n\
+    \        \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n  \
+    \  {\n      \"aliasColors\": {},\n      \"bars\": false,\n      \"dashLength\"\
+    : 10,\n      \"dashes\": false,\n      \"datasource\": \"prometheus\",\n     \
+    \ \"fill\": 1,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\": 12,\n\
+    \        \"x\": 0,\n        \"y\": 35\n      },\n      \"id\": 302,\n      \"\
+    legend\": {\n        \"avg\": false,\n        \"current\": false,\n        \"\
+    max\": false,\n        \"min\": false,\n        \"show\": true,\n        \"total\"\
+    : false,\n        \"values\": false\n      },\n      \"lines\": true,\n      \"\
+    linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\": \"null\",\n  \
+    \    \"percentage\": false,\n      \"pointradius\": 5,\n      \"points\": false,\n\
+    \      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n      \"spaceLength\"\
+    : 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n      \"targets\"\
+    : [\n        {\n          \"expr\": \"sum(collectd_df_df_complex{instance=\\\"\
+    $host\\\", type=\\\"used\\\"}) by (df)\",\n          \"format\": \"time_series\"\
+    ,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{df}}\",\n\
+    \          \"refId\": \"A\"\n        },\n        {\n          \"expr\": \"\",\n\
+    \          \"format\": \"time_series\",\n          \"intervalFactor\": 1,\n  \
+    \        \"refId\": \"B\"\n        }\n      ],\n      \"thresholds\": [],\n  \
+    \    \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"Disk\
+    \ Used\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\":\
+    \ 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"decimals\": null,\n    \
+    \      \"format\": \"decbytes\",\n          \"label\": null,\n          \"logBase\"\
+    : 1,\n          \"max\": null,\n          \"min\": null,\n          \"show\":\
+    \ true\n        },\n        {\n          \"decimals\": null,\n          \"format\"\
+    : \"short\",\n          \"label\": null,\n          \"logBase\": 1,\n        \
+    \  \"max\": null,\n          \"min\": null,\n          \"show\": true\n      \
+    \  }\n      ],\n      \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\"\
+    : null\n      }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n\
+    \      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"\
+    prometheus\",\n      \"fill\": 1,\n      \"gridPos\": {\n        \"h\": 7,\n \
+    \       \"w\": 12,\n        \"x\": 12,\n        \"y\": 35\n      },\n      \"\
+    id\": 304,\n      \"legend\": {\n        \"avg\": false,\n        \"current\"\
+    : false,\n        \"max\": false,\n        \"min\": false,\n        \"show\":\
+    \ true,\n        \"total\": false,\n        \"values\": false\n      },\n    \
+    \  \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n\
+    \      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n\
+    \      \"targets\": [\n        {\n          \"expr\": \"irate(collectd_disk_disk_io_time_weighted_io_time_total{instance=\\\
+    \"$host\\\",disk=~\\\".*[0-9]+\\\"}[$rate]) / 1000\",\n          \"format\": \"\
+    time_series\",\n          \"interval\": \"\",\n          \"intervalFactor\": 1,\n\
+    \          \"legendFormat\": \"{{disk}}\",\n          \"refId\": \"A\"\n     \
+    \   }\n      ],\n      \"thresholds\": [],\n      \"timeFrom\": null,\n      \"\
+    timeShift\": null,\n      \"title\": \"Disk Queue Size\",\n      \"tooltip\":\
+    \ {\n        \"shared\": true,\n        \"sort\": 0,\n        \"value_type\":\
+    \ \"individual\"\n      },\n      \"type\": \"graph\",\n      \"xaxis\": {\n \
+    \       \"buckets\": null,\n        \"mode\": \"time\",\n        \"name\": null,\n\
+    \        \"show\": true,\n        \"values\": []\n      },\n      \"yaxes\": [\n\
+    \        {\n          \"format\": \"short\",\n          \"label\": null,\n   \
+    \       \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n\
+    \          \"show\": true\n        },\n        {\n          \"format\": \"short\"\
+    ,\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n\
+    \          \"min\": null,\n          \"show\": true\n        }\n      ],\n   \
+    \   \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n  \
+    \    }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n  \
+    \    \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"prometheus\"\
+    ,\n      \"fill\": 1,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\"\
+    : 12,\n        \"x\": 0,\n        \"y\": 42\n      },\n      \"id\": 306,\n  \
+    \    \"legend\": {\n        \"avg\": false,\n        \"current\": false,\n   \
+    \     \"max\": false,\n        \"min\": false,\n        \"show\": true,\n    \
+    \    \"total\": false,\n        \"values\": false\n      },\n      \"lines\":\
+    \ true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n\
+    \      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n\
+    \      \"targets\": [\n        {\n          \"expr\": \"-irate(collectd_disk_disk_time_read_total{instance='$host',disk=~\\\
+    \".*[0-9]+\\\"}[$rate])\",\n          \"format\": \"time_series\",\n         \
+    \ \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\"\
+    : \"{{disk}} - Reads\",\n          \"refId\": \"A\"\n        },\n        {\n \
+    \         \"expr\": \"irate(collectd_disk_disk_time_write_total{instance='$host',disk=~\\\
+    \".*[0-9]+\\\"}[$rate])\",\n          \"format\": \"time_series\",\n         \
+    \ \"intervalFactor\": 1,\n          \"legendFormat\": \"{{disk}} - Writes\",\n\
+    \          \"refId\": \"B\"\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"Disk\
+    \ Latency\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\"\
+    : 0,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"decimals\": null,\n    \
+    \      \"format\": \"ms\",\n          \"label\": \"read (-) / write (+)\",\n \
+    \         \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n\
+    \          \"show\": true\n        },\n        {\n          \"format\": \"short\"\
+    ,\n          \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n\
+    \          \"min\": null,\n          \"show\": true\n        }\n      ],\n   \
+    \   \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n  \
+    \    }\n    },\n    {\n      \"collapsed\": false,\n      \"gridPos\": {\n   \
+    \     \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n        \"y\": 48\n  \
+    \    },\n      \"id\": 295,\n      \"panels\": [],\n      \"title\": \"CPU Details\"\
+    ,\n      \"type\": \"row\"\n    },\n    {\n      \"aliasColors\": {},\n      \"\
+    bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n      \"\
+    datasource\": \"prometheus\",\n      \"fill\": 1,\n      \"gridPos\": {\n    \
+    \    \"h\": 7,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 49\n   \
+    \   },\n      \"id\": 297,\n      \"legend\": {\n        \"avg\": false,\n   \
+    \     \"current\": false,\n        \"max\": false,\n        \"min\": false,\n\
+    \        \"show\": true,\n        \"total\": false,\n        \"values\": false\n\
+    \      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n\
+    \      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n      \"pointradius\"\
+    : 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\"\
+    : [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\"\
+    : false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\", type=\\\"user\\\"}[$rate])) by (cpu) / sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\" }[$rate])) by (cpu) * 100\",\n          \"format\": \"time_series\"\
+    ,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{cpu}}\",\n\
+    \          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"CPU\
+    \ User\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\":\
+    \ 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"format\": \"percent\",\n\
+    \          \"label\": null,\n          \"logBase\": 1,\n          \"max\": \"\
+    100\",\n          \"min\": null,\n          \"show\": true\n        },\n     \
+    \   {\n          \"decimals\": null,\n          \"format\": \"short\",\n     \
+    \     \"label\": null,\n          \"logBase\": 1,\n          \"max\": null,\n\
+    \          \"min\": null,\n          \"show\": true\n        }\n      ],\n   \
+    \   \"yaxis\": {\n        \"align\": false,\n        \"alignLevel\": null\n  \
+    \    }\n    },\n    {\n      \"aliasColors\": {},\n      \"bars\": false,\n  \
+    \    \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"prometheus\"\
+    ,\n      \"fill\": 1,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\"\
+    : 12,\n        \"x\": 12,\n        \"y\": 49\n      },\n      \"id\": 298,\n \
+    \     \"legend\": {\n        \"avg\": false,\n        \"current\": false,\n  \
+    \      \"max\": false,\n        \"min\": false,\n        \"show\": true,\n   \
+    \     \"total\": false,\n        \"values\": false\n      },\n      \"lines\"\
+    : true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n\
+    \      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n\
+    \      \"targets\": [\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\", type=\\\"system\\\"}[$rate])) by (cpu) / sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\"}[$rate])) by (cpu) * 100\",\n          \"format\": \"time_series\"\
+    ,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{cpu}}\",\n\
+    \          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"CPU\
+    \ System\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\"\
+    : 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"format\": \"percent\",\n\
+    \          \"label\": null,\n          \"logBase\": 1,\n          \"max\": \"\
+    100\",\n          \"min\": null,\n          \"show\": true\n        },\n     \
+    \   {\n          \"format\": \"short\",\n          \"label\": null,\n        \
+    \  \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n     \
+    \     \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\"\
+    : false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\"\
+    : {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n\
+    \      \"datasource\": \"prometheus\",\n      \"fill\": 1,\n      \"gridPos\"\
+    : {\n        \"h\": 7,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\":\
+    \ 56\n      },\n      \"id\": 299,\n      \"legend\": {\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"max\": false,\n        \"min\": false,\n\
+    \        \"show\": true,\n        \"total\": false,\n        \"values\": false\n\
+    \      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n\
+    \      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n      \"pointradius\"\
+    : 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\"\
+    : [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\"\
+    : false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\", type=\\\"wait\\\"}[$rate])) by (cpu) / sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\"}[$rate])) by (cpu) * 100\",\n          \"format\": \"time_series\"\
+    ,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{cpu}}\",\n\
+    \          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"CPU\
+    \ IOWait\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\"\
+    : 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"format\": \"percent\",\n\
+    \          \"label\": null,\n          \"logBase\": 1,\n          \"max\": \"\
+    100\",\n          \"min\": null,\n          \"show\": true\n        },\n     \
+    \   {\n          \"format\": \"short\",\n          \"label\": null,\n        \
+    \  \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n     \
+    \     \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\"\
+    : false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\"\
+    : {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n\
+    \      \"datasource\": \"prometheus\",\n      \"fill\": 1,\n      \"gridPos\"\
+    : {\n        \"h\": 7,\n        \"w\": 12,\n        \"x\": 12,\n        \"y\"\
+    : 56\n      },\n      \"id\": 300,\n      \"legend\": {\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"max\": false,\n        \"min\": false,\n\
+    \        \"show\": true,\n        \"total\": false,\n        \"values\": false\n\
+    \      },\n      \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n\
+    \      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n      \"pointradius\"\
+    : 5,\n      \"points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\"\
+    : [],\n      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\"\
+    : false,\n      \"targets\": [\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\", type=\\\"softirq\\\"}[$rate])) by (cpu) / sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\" }[$rate])) by (cpu) * 100\",\n          \"format\": \"time_series\"\
+    ,\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{cpu}}\",\n\
+    \          \"refId\": \"A\"\n        }\n      ],\n      \"thresholds\": [],\n\
+    \      \"timeFrom\": null,\n      \"timeShift\": null,\n      \"title\": \"CPU\
+    \ SoftIRQ\",\n      \"tooltip\": {\n        \"shared\": true,\n        \"sort\"\
+    : 2,\n        \"value_type\": \"individual\"\n      },\n      \"type\": \"graph\"\
+    ,\n      \"xaxis\": {\n        \"buckets\": null,\n        \"mode\": \"time\"\
+    ,\n        \"name\": null,\n        \"show\": true,\n        \"values\": []\n\
+    \      },\n      \"yaxes\": [\n        {\n          \"format\": \"percent\",\n\
+    \          \"label\": null,\n          \"logBase\": 1,\n          \"max\": \"\
+    100\",\n          \"min\": null,\n          \"show\": true\n        },\n     \
+    \   {\n          \"format\": \"short\",\n          \"label\": null,\n        \
+    \  \"logBase\": 1,\n          \"max\": null,\n          \"min\": null,\n     \
+    \     \"show\": true\n        }\n      ],\n      \"yaxis\": {\n        \"align\"\
+    : false,\n        \"alignLevel\": null\n      }\n    },\n    {\n      \"aliasColors\"\
+    : {},\n      \"bars\": false,\n      \"dashLength\": 10,\n      \"dashes\": false,\n\
+    \      \"datasource\": \"prometheus\",\n      \"fill\": 1,\n      \"gridPos\"\
+    : {\n        \"h\": 7,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\":\
+    \ 63\n      },\n      \"id\": 301,\n      \"legend\": {\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"hideEmpty\": false,\n        \"hideZero\"\
+    : true,\n        \"max\": false,\n        \"min\": false,\n        \"show\": true,\n\
+    \        \"total\": false,\n        \"values\": false\n      },\n      \"lines\"\
+    : true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"nullPointMode\"\
+    : \"null\",\n      \"percentage\": false,\n      \"pointradius\": 5,\n      \"\
+    points\": false,\n      \"renderer\": \"flot\",\n      \"seriesOverrides\": [],\n\
+    \      \"spaceLength\": 10,\n      \"stack\": false,\n      \"steppedLine\": false,\n\
+    \      \"targets\": [\n        {\n          \"expr\": \"sum(rate(collectd_cpu_total{instance=\\\
+    \"$host\\\", type=~\\\"(interrupt|nice|steal)\\\"}[$rate])) by (cpu, type)  /\
+    \ ignoring(type) group_left sum(rate(collectd_cpu_total{instance=\\\"$host\\\"\
+    \ }[$rate])) by (cpu) * 100\",\n          \"format\": \"time_series\",\n     \
+    \     \"interval\": \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\"\
+    : \"{{cpu}} - {{type}}\",\n          \"refId\": \"A\"\n        }\n      ],\n \
+    \     \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeShift\": null,\n\
+    \      \"title\": \"CPU Other\",\n      \"tooltip\": {\n        \"shared\": true,\n\
+    \        \"sort\": 2,\n        \"value_type\": \"individual\"\n      },\n    \
+    \  \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n    \
+    \    \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n \
+    \       \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"\
+    format\": \"percent\",\n          \"label\": null,\n          \"logBase\": 1,\n\
+    \          \"max\": \"100\",\n          \"min\": null,\n          \"show\": true\n\
+    \        },\n        {\n          \"format\": \"short\",\n          \"label\"\
+    : null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\"\
+    : null,\n          \"show\": true\n        }\n      ],\n      \"yaxis\": {\n \
+    \       \"align\": false,\n        \"alignLevel\": null\n      }\n    },\n   \
+    \ {\n      \"cards\": {\n        \"cardPadding\": null,\n        \"cardRound\"\
+    : null\n      },\n      \"color\": {\n        \"cardColor\": \"#b4ff00\",\n  \
+    \      \"colorScale\": \"sqrt\",\n        \"colorScheme\": \"interpolateSpectral\"\
+    ,\n        \"exponent\": 0.5,\n        \"mode\": \"spectrum\"\n      },\n    \
+    \  \"dataFormat\": \"timeseries\",\n      \"datasource\": \"prometheus\",\n  \
+    \    \"gridPos\": {\n        \"h\": 5,\n        \"w\": 12,\n        \"x\": 12,\n\
+    \        \"y\": 63\n      },\n      \"heatmap\": {},\n      \"highlightCards\"\
+    : true,\n      \"id\": 277,\n      \"legend\": {\n        \"show\": false\n  \
+    \    },\n      \"links\": [],\n      \"targets\": [\n        {\n          \"expr\"\
+    : \"sum(rate(dse_table_write_latency_bucket{table=~'.*', keyspace=~'.*', instance='$host'}[$rate]))\
+    \ by (le)\",\n          \"format\": \"time_series\",\n          \"interval\":\
+    \ \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"{{le}}\"\
+    ,\n          \"refId\": \"A\"\n        }\n      ],\n      \"title\": \"Local Write\
+    \ Latency\",\n      \"tooltip\": {\n        \"show\": true,\n        \"showHistogram\"\
+    : false\n      },\n      \"tooltipDecimals\": null,\n      \"type\": \"heatmap\"\
+    ,\n      \"xAxis\": {\n        \"show\": true\n      },\n      \"xBucketNumber\"\
+    : null,\n      \"xBucketSize\": null,\n      \"yAxis\": {\n        \"decimals\"\
+    : null,\n        \"format\": \"\xB5s\",\n        \"logBase\": 1,\n        \"max\"\
+    : null,\n        \"min\": null,\n        \"show\": true,\n        \"splitFactor\"\
+    : null\n      },\n      \"yBucketBound\": \"auto\",\n      \"yBucketNumber\":\
+    \ null,\n      \"yBucketSize\": null\n    },\n    {\n      \"collapsed\": true,\n\
+    \      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n        \"x\": 0,\n\
+    \        \"y\": 70\n      },\n      \"id\": 293,\n      \"panels\": [\n      \
+    \  {\n          \"aliasColors\": {\n            \"Busy\": \"#EAB839\",\n     \
+    \       \"Busy Iowait\": \"#890F02\",\n            \"Busy other\": \"#1F78C1\"\
+    ,\n            \"Idle\": \"#052B51\",\n            \"Idle - Waiting for something\
+    \ to happen\": \"#052B51\",\n            \"guest\": \"#9AC48A\",\n           \
+    \ \"idle\": \"#052B51\",\n            \"iowait\": \"#EAB839\",\n            \"\
+    irq\": \"#BF1B00\",\n            \"nice\": \"#C15C17\",\n            \"softirq\"\
+    : \"#E24D42\",\n            \"steal\": \"#FCE2DE\",\n            \"system\": \"\
+    #508642\",\n            \"user\": \"#5195CE\"\n          },\n          \"bars\"\
+    : false,\n          \"dashLength\": 10,\n          \"dashes\": false,\n      \
+    \    \"datasource\": \"prometheus\",\n          \"decimals\": 2,\n          \"\
+    description\": \"\",\n          \"fill\": 4,\n          \"gridPos\": {\n     \
+    \       \"h\": 7,\n            \"w\": 12,\n            \"x\": 0,\n           \
+    \ \"y\": 65\n          },\n          \"id\": 281,\n          \"legend\": {\n \
+    \           \"alignAsTable\": false,\n            \"avg\": false,\n          \
+    \  \"current\": false,\n            \"max\": false,\n            \"min\": false,\n\
+    \            \"rightSide\": false,\n            \"show\": true,\n            \"\
+    sideWidth\": 250,\n            \"sort\": null,\n            \"sortDesc\": null,\n\
+    \            \"total\": false,\n            \"values\": false\n          },\n\
+    \          \"lines\": true,\n          \"linewidth\": 1,\n          \"links\"\
+    : [],\n          \"minSpan\": 4,\n          \"nullPointMode\": \"null\",\n   \
+    \       \"percentage\": false,\n          \"pointradius\": 5,\n          \"points\"\
+    : false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\": [],\n\
+    \          \"spaceLength\": 10,\n          \"stack\": true,\n          \"steppedLine\"\
+    : false,\n          \"targets\": [\n            {\n              \"expr\": \"\
+    (irate(collectd_contextswitch_total{instance='$host'}[$rate]))\",\n          \
+    \    \"format\": \"time_series\",\n              \"intervalFactor\": 1,\n    \
+    \          \"legendFormat\": \"ContextSwitches\",\n              \"refId\": \"\
+    C\",\n              \"step\": 240\n            }\n          ],\n          \"thresholds\"\
+    : [],\n          \"timeFrom\": null,\n          \"timeShift\": null,\n       \
+    \   \"title\": \"Context Switches / sec\",\n          \"tooltip\": {\n       \
+    \     \"shared\": true,\n            \"sort\": 0,\n            \"value_type\"\
+    : \"individual\"\n          },\n          \"transparent\": false,\n          \"\
+    type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n \
+    \           \"mode\": \"time\",\n            \"name\": null,\n            \"show\"\
+    : true,\n            \"values\": []\n          },\n          \"yaxes\": [\n  \
+    \          {\n              \"decimals\": null,\n              \"format\": \"\
+    short\",\n              \"label\": \"\",\n              \"logBase\": 1,\n    \
+    \          \"max\": null,\n              \"min\": null,\n              \"show\"\
+    : true\n            },\n            {\n              \"format\": \"short\",\n\
+    \              \"label\": null,\n              \"logBase\": 1,\n             \
+    \ \"max\": null,\n              \"min\": null,\n              \"show\": false\n\
+    \            }\n          ],\n          \"yaxis\": {\n            \"align\": false,\n\
+    \            \"alignLevel\": null\n          }\n        },\n        {\n      \
+    \    \"aliasColors\": {\n            \"Busy\": \"#EAB839\",\n            \"Busy\
+    \ Iowait\": \"#890F02\",\n            \"Busy other\": \"#1F78C1\",\n         \
+    \   \"Idle\": \"#052B51\",\n            \"Idle - Waiting for something to happen\"\
+    : \"#052B51\",\n            \"guest\": \"#9AC48A\",\n            \"idle\": \"\
+    #052B51\",\n            \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\"\
+    ,\n            \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n\
+    \            \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n \
+    \           \"user\": \"#5195CE\"\n          },\n          \"bars\": false,\n\
+    \          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\"\
+    : \"prometheus\",\n          \"decimals\": 2,\n          \"description\": \"\"\
+    ,\n          \"fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n \
+    \           \"w\": 12,\n            \"x\": 12,\n            \"y\": 65\n      \
+    \    },\n          \"id\": 288,\n          \"legend\": {\n            \"alignAsTable\"\
+    : false,\n            \"avg\": false,\n            \"current\": false,\n     \
+    \       \"hideZero\": true,\n            \"max\": false,\n            \"min\"\
+    : false,\n            \"rightSide\": false,\n            \"show\": true,\n   \
+    \         \"sideWidth\": 250,\n            \"sort\": null,\n            \"sortDesc\"\
+    : null,\n            \"total\": false,\n            \"values\": false\n      \
+    \    },\n          \"lines\": true,\n          \"linewidth\": 1,\n          \"\
+    links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\": \"null\"\
+    ,\n          \"percentage\": false,\n          \"pointradius\": 5,\n         \
+    \ \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\"\
+    : [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n         \
+    \ \"steppedLine\": false,\n          \"targets\": [\n            {\n         \
+    \     \"expr\": \"rate(collectd_irq_total{instance=\\\"$host\\\", irq != 'LOC'}[$rate])\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"{{irq}}\",\n              \"refId\": \"\
+    C\",\n              \"step\": 240\n            }\n          ],\n          \"thresholds\"\
+    : [],\n          \"timeFrom\": null,\n          \"timeShift\": null,\n       \
+    \   \"title\": \"Interrupts / sec\",\n          \"tooltip\": {\n            \"\
+    shared\": false,\n            \"sort\": 1,\n            \"value_type\": \"individual\"\
+    \n          },\n          \"transparent\": false,\n          \"type\": \"graph\"\
+    ,\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\"\
+    : \"time\",\n            \"name\": null,\n            \"show\": true,\n      \
+    \      \"values\": []\n          },\n          \"yaxes\": [\n            {\n \
+    \             \"decimals\": null,\n              \"format\": \"short\",\n    \
+    \          \"label\": \"\",\n              \"logBase\": 1,\n              \"max\"\
+    : null,\n              \"min\": null,\n              \"show\": true\n        \
+    \    },\n            {\n              \"format\": \"short\",\n              \"\
+    label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n\
+    \              \"min\": null,\n              \"show\": false\n            }\n\
+    \          ],\n          \"yaxis\": {\n            \"align\": false,\n       \
+    \     \"alignLevel\": null\n          }\n        },\n        {\n          \"aliasColors\"\
+    : {\n            \"Busy\": \"#EAB839\",\n            \"Busy Iowait\": \"#890F02\"\
+    ,\n            \"Busy other\": \"#1F78C1\",\n            \"Idle\": \"#052B51\"\
+    ,\n            \"Idle - Waiting for something to happen\": \"#052B51\",\n    \
+    \        \"guest\": \"#9AC48A\",\n            \"idle\": \"#052B51\",\n       \
+    \     \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\",\n          \
+    \  \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n           \
+    \ \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n            \"\
+    user\": \"#5195CE\"\n          },\n          \"bars\": false,\n          \"dashLength\"\
+    : 10,\n          \"dashes\": false,\n          \"datasource\": \"prometheus\"\
+    ,\n          \"decimals\": 2,\n          \"description\": \"\",\n          \"\
+    fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n            \"w\"\
+    : 12,\n            \"x\": 0,\n            \"y\": 72\n          },\n          \"\
+    id\": 284,\n          \"legend\": {\n            \"alignAsTable\": false,\n  \
+    \          \"avg\": false,\n            \"current\": false,\n            \"hideEmpty\"\
+    : true,\n            \"hideZero\": true,\n            \"max\": false,\n      \
+    \      \"min\": false,\n            \"rightSide\": false,\n            \"show\"\
+    : true,\n            \"sideWidth\": 250,\n            \"sort\": null,\n      \
+    \      \"sortDesc\": null,\n            \"total\": false,\n            \"values\"\
+    : false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n\
+    \          \"links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\"\
+    : \"null\",\n          \"percentage\": false,\n          \"pointradius\": 5,\n\
+    \          \"points\": false,\n          \"renderer\": \"flot\",\n          \"\
+    seriesOverrides\": [],\n          \"spaceLength\": 10,\n          \"stack\": true,\n\
+    \          \"steppedLine\": false,\n          \"targets\": [\n            {\n\
+    \              \"expr\": \"(irate(collectd_numa_vmpage_action_total{instance='$host'}[$rate]))\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"{{numa}} - {{type}}\",\n             \
+    \ \"refId\": \"C\",\n              \"step\": 240\n            }\n          ],\n\
+    \          \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeShift\"\
+    : null,\n          \"title\": \"Numa Stats / sec\",\n          \"tooltip\": {\n\
+    \            \"shared\": true,\n            \"sort\": 0,\n            \"value_type\"\
+    : \"individual\"\n          },\n          \"transparent\": false,\n          \"\
+    type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n \
+    \           \"mode\": \"time\",\n            \"name\": null,\n            \"show\"\
+    : true,\n            \"values\": []\n          },\n          \"yaxes\": [\n  \
+    \          {\n              \"decimals\": null,\n              \"format\": \"\
+    short\",\n              \"label\": \"\",\n              \"logBase\": 1,\n    \
+    \          \"max\": null,\n              \"min\": null,\n              \"show\"\
+    : true\n            },\n            {\n              \"format\": \"short\",\n\
+    \              \"label\": null,\n              \"logBase\": 1,\n             \
+    \ \"max\": null,\n              \"min\": null,\n              \"show\": false\n\
+    \            }\n          ],\n          \"yaxis\": {\n            \"align\": false,\n\
+    \            \"alignLevel\": null\n          }\n        },\n        {\n      \
+    \    \"aliasColors\": {\n            \"Busy\": \"#EAB839\",\n            \"Busy\
+    \ Iowait\": \"#890F02\",\n            \"Busy other\": \"#1F78C1\",\n         \
+    \   \"Idle\": \"#052B51\",\n            \"Idle - Waiting for something to happen\"\
+    : \"#052B51\",\n            \"guest\": \"#9AC48A\",\n            \"idle\": \"\
+    #052B51\",\n            \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\"\
+    ,\n            \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n\
+    \            \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n \
+    \           \"user\": \"#5195CE\"\n          },\n          \"bars\": false,\n\
+    \          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\"\
+    : \"prometheus\",\n          \"decimals\": 2,\n          \"description\": \"For\
+    \ DSE ports\",\n          \"fill\": 4,\n          \"gridPos\": {\n           \
+    \ \"h\": 7,\n            \"w\": 12,\n            \"x\": 12,\n            \"y\"\
+    : 72\n          },\n          \"id\": 290,\n          \"legend\": {\n        \
+    \    \"alignAsTable\": false,\n            \"avg\": false,\n            \"current\"\
+    : false,\n            \"hideZero\": true,\n            \"max\": false,\n     \
+    \       \"min\": false,\n            \"rightSide\": false,\n            \"show\"\
+    : true,\n            \"sideWidth\": 250,\n            \"sort\": null,\n      \
+    \      \"sortDesc\": null,\n            \"total\": false,\n            \"values\"\
+    : false\n          },\n          \"lines\": true,\n          \"linewidth\": 1,\n\
+    \          \"links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\"\
+    : \"null\",\n          \"percentage\": false,\n          \"pointradius\": 5,\n\
+    \          \"points\": false,\n          \"renderer\": \"flot\",\n          \"\
+    seriesOverrides\": [],\n          \"spaceLength\": 10,\n          \"stack\": true,\n\
+    \          \"steppedLine\": false,\n          \"targets\": [\n            {\n\
+    \              \"expr\": \"collectd_tcpconns_tcp_connections{instance=\\\"$host\\\
+    \", tcpconns=~\\\"(70|90).*\\\"}\",\n              \"format\": \"time_series\"\
+    ,\n              \"interval\": \"\",\n              \"intervalFactor\": 1,\n \
+    \             \"legendFormat\": \"{{tcpconns}} - {{type}}\",\n              \"\
+    refId\": \"C\",\n              \"step\": 240\n            }\n          ],\n  \
+    \        \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeShift\"\
+    : null,\n          \"title\": \"TCP Connection States\",\n          \"tooltip\"\
+    : {\n            \"shared\": true,\n            \"sort\": 0,\n            \"value_type\"\
+    : \"individual\"\n          },\n          \"transparent\": false,\n          \"\
+    type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n \
+    \           \"mode\": \"time\",\n            \"name\": null,\n            \"show\"\
+    : true,\n            \"values\": []\n          },\n          \"yaxes\": [\n  \
+    \          {\n              \"decimals\": null,\n              \"format\": \"\
+    short\",\n              \"label\": \"\",\n              \"logBase\": 1,\n    \
+    \          \"max\": null,\n              \"min\": null,\n              \"show\"\
+    : true\n            },\n            {\n              \"format\": \"short\",\n\
+    \              \"label\": null,\n              \"logBase\": 1,\n             \
+    \ \"max\": null,\n              \"min\": null,\n              \"show\": false\n\
+    \            }\n          ],\n          \"yaxis\": {\n            \"align\": false,\n\
+    \            \"alignLevel\": null\n          }\n        },\n        {\n      \
+    \    \"aliasColors\": {\n            \"Busy\": \"#EAB839\",\n            \"Busy\
+    \ Iowait\": \"#890F02\",\n            \"Busy other\": \"#1F78C1\",\n         \
+    \   \"Idle\": \"#052B51\",\n            \"Idle - Waiting for something to happen\"\
+    : \"#052B51\",\n            \"guest\": \"#9AC48A\",\n            \"idle\": \"\
+    #052B51\",\n            \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\"\
+    ,\n            \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n\
+    \            \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n \
+    \           \"user\": \"#5195CE\"\n          },\n          \"bars\": false,\n\
+    \          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\"\
+    : \"prometheus\",\n          \"decimals\": 2,\n          \"description\": \"\"\
+    ,\n          \"fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n \
+    \           \"w\": 12,\n            \"x\": 0,\n            \"y\": 79\n       \
+    \   },\n          \"id\": 283,\n          \"legend\": {\n            \"alignAsTable\"\
+    : false,\n            \"avg\": false,\n            \"current\": false,\n     \
+    \       \"hideZero\": true,\n            \"max\": false,\n            \"min\"\
+    : false,\n            \"rightSide\": false,\n            \"show\": true,\n   \
+    \         \"sideWidth\": 250,\n            \"sort\": null,\n            \"sortDesc\"\
+    : null,\n            \"total\": false,\n            \"values\": false\n      \
+    \    },\n          \"lines\": true,\n          \"linewidth\": 1,\n          \"\
+    links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\": \"null\"\
+    ,\n          \"percentage\": false,\n          \"pointradius\": 5,\n         \
+    \ \"points\": false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\"\
+    : [],\n          \"spaceLength\": 10,\n          \"stack\": true,\n          \"\
+    steppedLine\": false,\n          \"targets\": [\n            {\n             \
+    \ \"expr\": \"rate(collectd_protocols_protocol_counter_total{instance=\\\"$host\\\
+    \"}[$rate])\",\n              \"format\": \"time_series\",\n              \"interval\"\
+    : \"\",\n              \"intervalFactor\": 1,\n              \"legendFormat\"\
+    : \"{{protocols}} - {{type}}\",\n              \"refId\": \"C\",\n           \
+    \   \"step\": 240\n            }\n          ],\n          \"thresholds\": [],\n\
+    \          \"timeFrom\": null,\n          \"timeShift\": null,\n          \"title\"\
+    : \"Network Protocol Events\",\n          \"tooltip\": {\n            \"shared\"\
+    : true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n\
+    \          },\n          \"transparent\": false,\n          \"type\": \"graph\"\
+    ,\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\"\
+    : \"time\",\n            \"name\": null,\n            \"show\": true,\n      \
+    \      \"values\": []\n          },\n          \"yaxes\": [\n            {\n \
+    \             \"decimals\": null,\n              \"format\": \"short\",\n    \
+    \          \"label\": \"\",\n              \"logBase\": 1,\n              \"max\"\
+    : null,\n              \"min\": null,\n              \"show\": true\n        \
+    \    },\n            {\n              \"format\": \"short\",\n              \"\
+    label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n\
+    \              \"min\": null,\n              \"show\": false\n            }\n\
+    \          ],\n          \"yaxis\": {\n            \"align\": false,\n       \
+    \     \"alignLevel\": null\n          }\n        },\n        {\n          \"aliasColors\"\
+    : {\n            \"Busy\": \"#EAB839\",\n            \"Busy Iowait\": \"#890F02\"\
+    ,\n            \"Busy other\": \"#1F78C1\",\n            \"Idle\": \"#052B51\"\
+    ,\n            \"Idle - Waiting for something to happen\": \"#052B51\",\n    \
+    \        \"guest\": \"#9AC48A\",\n            \"idle\": \"#052B51\",\n       \
+    \     \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\",\n          \
+    \  \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n           \
+    \ \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n            \"\
+    user\": \"#5195CE\"\n          },\n          \"bars\": false,\n          \"dashLength\"\
+    : 10,\n          \"dashes\": false,\n          \"datasource\": \"prometheus\"\
+    ,\n          \"decimals\": 2,\n          \"description\": \"\",\n          \"\
+    fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n            \"w\"\
+    : 12,\n            \"x\": 12,\n            \"y\": 79\n          },\n         \
+    \ \"id\": 291,\n          \"legend\": {\n            \"alignAsTable\": false,\n\
+    \            \"avg\": false,\n            \"current\": false,\n            \"\
+    hideEmpty\": false,\n            \"hideZero\": false,\n            \"max\": false,\n\
+    \            \"min\": false,\n            \"rightSide\": false,\n            \"\
+    show\": true,\n            \"sideWidth\": 250,\n            \"sort\": null,\n\
+    \            \"sortDesc\": null,\n            \"total\": false,\n            \"\
+    values\": false\n          },\n          \"lines\": false,\n          \"linewidth\"\
+    : 1,\n          \"links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\"\
+    : \"null\",\n          \"percentage\": false,\n          \"pointradius\": 5,\n\
+    \          \"points\": true,\n          \"renderer\": \"flot\",\n          \"\
+    seriesOverrides\": [],\n          \"spaceLength\": 10,\n          \"stack\": false,\n\
+    \          \"steppedLine\": false,\n          \"targets\": [\n            {\n\
+    \              \"expr\": \"collectd_cpufreq{instance='$host'}\",\n           \
+    \   \"format\": \"time_series\",\n              \"intervalFactor\": 1,\n     \
+    \         \"legendFormat\": \"{{cpufreq}}\",\n              \"refId\": \"C\",\n\
+    \              \"step\": 240\n            }\n          ],\n          \"thresholds\"\
+    : [],\n          \"timeFrom\": null,\n          \"timeShift\": null,\n       \
+    \   \"title\": \"Processor Speed\",\n          \"tooltip\": {\n            \"\
+    shared\": false,\n            \"sort\": 2,\n            \"value_type\": \"individual\"\
+    \n          },\n          \"transparent\": false,\n          \"type\": \"graph\"\
+    ,\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\"\
+    : \"time\",\n            \"name\": null,\n            \"show\": true,\n      \
+    \      \"values\": []\n          },\n          \"yaxes\": [\n            {\n \
+    \             \"decimals\": null,\n              \"format\": \"hertz\",\n    \
+    \          \"label\": \"\",\n              \"logBase\": 1,\n              \"max\"\
+    : null,\n              \"min\": null,\n              \"show\": true\n        \
+    \    },\n            {\n              \"format\": \"short\",\n              \"\
+    label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n\
+    \              \"min\": null,\n              \"show\": false\n            }\n\
+    \          ],\n          \"yaxis\": {\n            \"align\": false,\n       \
+    \     \"alignLevel\": null\n          }\n        },\n        {\n          \"aliasColors\"\
+    : {\n            \"Busy\": \"#EAB839\",\n            \"Busy Iowait\": \"#890F02\"\
+    ,\n            \"Busy other\": \"#1F78C1\",\n            \"Idle\": \"#052B51\"\
+    ,\n            \"Idle - Waiting for something to happen\": \"#052B51\",\n    \
+    \        \"guest\": \"#9AC48A\",\n            \"idle\": \"#052B51\",\n       \
+    \     \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\",\n          \
+    \  \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n           \
+    \ \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n            \"\
+    user\": \"#5195CE\"\n          },\n          \"bars\": false,\n          \"dashLength\"\
+    : 10,\n          \"dashes\": false,\n          \"datasource\": \"prometheus\"\
+    ,\n          \"decimals\": 2,\n          \"description\": \"\",\n          \"\
+    fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n            \"w\"\
+    : 12,\n            \"x\": 0,\n            \"y\": 86\n          },\n          \"\
+    id\": 282,\n          \"legend\": {\n            \"alignAsTable\": false,\n  \
+    \          \"avg\": false,\n            \"current\": false,\n            \"hideZero\"\
+    : true,\n            \"max\": false,\n            \"min\": false,\n          \
+    \  \"rightSide\": false,\n            \"show\": true,\n            \"sideWidth\"\
+    : 250,\n            \"sort\": null,\n            \"sortDesc\": null,\n       \
+    \     \"total\": false,\n            \"values\": false\n          },\n       \
+    \   \"lines\": true,\n          \"linewidth\": 1,\n          \"links\": [],\n\
+    \          \"minSpan\": 4,\n          \"nullPointMode\": \"null\",\n         \
+    \ \"percentage\": false,\n          \"pointradius\": 5,\n          \"points\"\
+    : false,\n          \"renderer\": \"flot\",\n          \"seriesOverrides\": [],\n\
+    \          \"spaceLength\": 10,\n          \"stack\": true,\n          \"steppedLine\"\
+    : false,\n          \"targets\": [\n            {\n              \"expr\": \"\
+    rate(collectd_vmem_vmpage_faults_majflt_total{instance=\\\"$host\\\"}[$rate])\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Major\",\n              \"refId\": \"\
+    C\",\n              \"step\": 240\n            },\n            {\n           \
+    \   \"expr\": \"rate(collectd_vmem_vmpage_faults_minflt_total{instance=\\\"$host\\\
+    \"}[$rate])\",\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Minor\",\n              \"refId\": \"\
+    A\"\n            },\n            {\n              \"expr\": \"rate(collectd_vmem_vmpage_action_total{instance=\\\
+    \"$host\\\"}[$rate])\",\n              \"format\": \"time_series\",\n        \
+    \      \"intervalFactor\": 1,\n              \"legendFormat\": \"Action - {{vmem}}\"\
+    ,\n              \"refId\": \"B\"\n            },\n            {\n           \
+    \   \"expr\": \"rate(collectd_vmem_vmpage_io_in_total{instance=\\\"$host\\\"}[$rate])\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Page IO Read  \",\n              \"refId\"\
+    : \"D\"\n            },\n            {\n              \"expr\": \"rate(collectd_vmem_vmpage_io_out_total{instance=\\\
+    \"$host\\\"}[$rate])\",\n              \"format\": \"time_series\",\n        \
+    \      \"intervalFactor\": 1,\n              \"legendFormat\": \"Page IO Write\"\
+    ,\n              \"refId\": \"E\"\n            }\n          ],\n          \"thresholds\"\
+    : [],\n          \"timeFrom\": null,\n          \"timeShift\": null,\n       \
+    \   \"title\": \"Page Cache\",\n          \"tooltip\": {\n            \"shared\"\
+    : true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n\
+    \          },\n          \"transparent\": false,\n          \"type\": \"graph\"\
+    ,\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\"\
+    : \"time\",\n            \"name\": null,\n            \"show\": true,\n      \
+    \      \"values\": []\n          },\n          \"yaxes\": [\n            {\n \
+    \             \"decimals\": null,\n              \"format\": \"short\",\n    \
+    \          \"label\": \"\",\n              \"logBase\": 1,\n              \"max\"\
+    : null,\n              \"min\": null,\n              \"show\": true\n        \
+    \    },\n            {\n              \"format\": \"short\",\n              \"\
+    label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n\
+    \              \"min\": null,\n              \"show\": false\n            }\n\
+    \          ],\n          \"yaxis\": {\n            \"align\": false,\n       \
+    \     \"alignLevel\": null\n          }\n        },\n        {\n          \"aliasColors\"\
+    : {\n            \"Busy\": \"#EAB839\",\n            \"Busy Iowait\": \"#890F02\"\
+    ,\n            \"Busy other\": \"#1F78C1\",\n            \"Idle\": \"#052B51\"\
+    ,\n            \"Idle - Waiting for something to happen\": \"#052B51\",\n    \
+    \        \"guest\": \"#9AC48A\",\n            \"idle\": \"#052B51\",\n       \
+    \     \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\",\n          \
+    \  \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n           \
+    \ \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n            \"\
+    user\": \"#5195CE\"\n          },\n          \"bars\": false,\n          \"dashLength\"\
+    : 10,\n          \"dashes\": false,\n          \"datasource\": \"prometheus\"\
+    ,\n          \"decimals\": 2,\n          \"description\": \"\",\n          \"\
+    fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n            \"w\"\
+    : 12,\n            \"x\": 12,\n            \"y\": 86\n          },\n         \
+    \ \"id\": 285,\n          \"legend\": {\n            \"alignAsTable\": false,\n\
+    \            \"avg\": false,\n            \"current\": false,\n            \"\
+    hideEmpty\": true,\n            \"hideZero\": true,\n            \"max\": false,\n\
+    \            \"min\": false,\n            \"rightSide\": false,\n            \"\
+    show\": true,\n            \"sideWidth\": 250,\n            \"sort\": null,\n\
+    \            \"sortDesc\": null,\n            \"total\": false,\n            \"\
+    values\": false\n          },\n          \"lines\": true,\n          \"linewidth\"\
+    : 1,\n          \"links\": [],\n          \"minSpan\": 4,\n          \"nullPointMode\"\
+    : \"null\",\n          \"percentage\": true,\n          \"pointradius\": 5,\n\
+    \          \"points\": false,\n          \"renderer\": \"flot\",\n          \"\
+    seriesOverrides\": [],\n          \"spaceLength\": 10,\n          \"stack\": true,\n\
+    \          \"steppedLine\": false,\n          \"targets\": [\n            {\n\
+    \              \"expr\": \"((collectd_vmem_vmpage_number{instance='$host'}))\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"{{vmem}}\",\n              \"refId\":\
+    \ \"C\",\n              \"step\": 240\n            }\n          ],\n         \
+    \ \"thresholds\": [],\n          \"timeFrom\": null,\n          \"timeShift\"\
+    : null,\n          \"title\": \"Page Cache - Layout\",\n          \"tooltip\"\
+    : {\n            \"shared\": true,\n            \"sort\": 0,\n            \"value_type\"\
+    : \"individual\"\n          },\n          \"transparent\": false,\n          \"\
+    type\": \"graph\",\n          \"xaxis\": {\n            \"buckets\": null,\n \
+    \           \"mode\": \"time\",\n            \"name\": null,\n            \"show\"\
+    : true,\n            \"values\": []\n          },\n          \"yaxes\": [\n  \
+    \          {\n              \"decimals\": null,\n              \"format\": \"\
+    short\",\n              \"label\": \"\",\n              \"logBase\": 1,\n    \
+    \          \"max\": \"100\",\n              \"min\": \"0\",\n              \"\
+    show\": true\n            },\n            {\n              \"format\": \"short\"\
+    ,\n              \"label\": null,\n              \"logBase\": 1,\n           \
+    \   \"max\": null,\n              \"min\": null,\n              \"show\": false\n\
+    \            }\n          ],\n          \"yaxis\": {\n            \"align\": false,\n\
+    \            \"alignLevel\": null\n          }\n        },\n        {\n      \
+    \    \"aliasColors\": {\n            \"Busy\": \"#EAB839\",\n            \"Busy\
+    \ Iowait\": \"#890F02\",\n            \"Busy other\": \"#1F78C1\",\n         \
+    \   \"Idle\": \"#052B51\",\n            \"Idle - Waiting for something to happen\"\
+    : \"#052B51\",\n            \"guest\": \"#9AC48A\",\n            \"idle\": \"\
+    #052B51\",\n            \"iowait\": \"#EAB839\",\n            \"irq\": \"#BF1B00\"\
+    ,\n            \"nice\": \"#C15C17\",\n            \"softirq\": \"#E24D42\",\n\
+    \            \"steal\": \"#FCE2DE\",\n            \"system\": \"#508642\",\n \
+    \           \"user\": \"#5195CE\"\n          },\n          \"bars\": false,\n\
+    \          \"dashLength\": 10,\n          \"dashes\": false,\n          \"datasource\"\
+    : \"prometheus\",\n          \"decimals\": 2,\n          \"description\": \"\"\
+    ,\n          \"fill\": 4,\n          \"gridPos\": {\n            \"h\": 7,\n \
+    \           \"w\": 12,\n            \"x\": 0,\n            \"y\": 93\n       \
+    \   },\n          \"id\": 289,\n          \"legend\": {\n            \"alignAsTable\"\
+    : false,\n            \"avg\": false,\n            \"current\": false,\n     \
+    \       \"hideEmpty\": true,\n            \"hideZero\": true,\n            \"\
+    max\": false,\n            \"min\": false,\n            \"rightSide\": false,\n\
+    \            \"show\": true,\n            \"sideWidth\": 250,\n            \"\
+    sort\": null,\n            \"sortDesc\": null,\n            \"total\": false,\n\
+    \            \"values\": false\n          },\n          \"lines\": true,\n   \
+    \       \"linewidth\": 1,\n          \"links\": [],\n          \"minSpan\": 4,\n\
+    \          \"nullPointMode\": \"null\",\n          \"percentage\": false,\n  \
+    \        \"pointradius\": 5,\n          \"points\": false,\n          \"renderer\"\
+    : \"flot\",\n          \"seriesOverrides\": [],\n          \"spaceLength\": 10,\n\
+    \          \"stack\": false,\n          \"steppedLine\": false,\n          \"\
+    targets\": [\n            {\n              \"expr\": \"collectd_processes_ps_count_threads{instance='$host'}\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Thread Count\",\n              \"refId\"\
+    : \"C\",\n              \"step\": 240\n            },\n            {\n       \
+    \       \"expr\": \"collectd_processes_ps_count_processes{instance='$host'}\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Process Count\",\n              \"refId\"\
+    : \"A\"\n            },\n            {\n              \"expr\": \"collectd_processes_ps_state{instance='$host'}\"\
+    ,\n              \"format\": \"time_series\",\n              \"intervalFactor\"\
+    : 1,\n              \"legendFormat\": \"Process State - {{processes}}\",\n   \
+    \           \"refId\": \"B\"\n            }\n          ],\n          \"thresholds\"\
+    : [],\n          \"timeFrom\": null,\n          \"timeShift\": null,\n       \
+    \   \"title\": \"Process Stats\",\n          \"tooltip\": {\n            \"shared\"\
+    : true,\n            \"sort\": 0,\n            \"value_type\": \"individual\"\n\
+    \          },\n          \"transparent\": false,\n          \"type\": \"graph\"\
+    ,\n          \"xaxis\": {\n            \"buckets\": null,\n            \"mode\"\
+    : \"time\",\n            \"name\": null,\n            \"show\": true,\n      \
+    \      \"values\": []\n          },\n          \"yaxes\": [\n            {\n \
+    \             \"decimals\": null,\n              \"format\": \"short\",\n    \
+    \          \"label\": \"\",\n              \"logBase\": 1,\n              \"max\"\
+    : null,\n              \"min\": null,\n              \"show\": true\n        \
+    \    },\n            {\n              \"format\": \"short\",\n              \"\
+    label\": null,\n              \"logBase\": 1,\n              \"max\": null,\n\
+    \              \"min\": null,\n              \"show\": false\n            }\n\
+    \          ],\n          \"yaxis\": {\n            \"align\": false,\n       \
+    \     \"alignLevel\": null\n          }\n        }\n      ],\n      \"title\"\
+    : \"Advanced Metrics\",\n      \"type\": \"row\"\n    },\n    {\n      \"collapsed\"\
+    : false,\n      \"gridPos\": {\n        \"h\": 1,\n        \"w\": 24,\n      \
+    \  \"x\": 0,\n        \"y\": 71\n      },\n      \"id\": 266,\n      \"panels\"\
+    : [],\n      \"repeat\": null,\n      \"title\": \"DSE DB\",\n      \"type\":\
+    \ \"row\"\n    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\"\
+    : false,\n      \"colorValue\": true,\n      \"colors\": [\n        \"rgba(50,\
+    \ 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(245,\
+    \ 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : 0,\n      \"description\": \"\",\n      \"format\": \"none\",\n      \"gauge\"\
+    : {\n        \"maxValue\": 1000000,\n        \"minValue\": 0,\n        \"show\"\
+    : true,\n        \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n\
+    \      },\n      \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n      \
+    \  \"x\": 0,\n        \"y\": 72\n      },\n      \"hideTimeOverride\": false,\n\
+    \      \"id\": 16,\n      \"interval\": null,\n      \"links\": [],\n      \"\
+    mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"\
+    value to text\",\n          \"value\": 1\n        },\n        {\n          \"\
+    name\": \"range to text\",\n          \"value\": 2\n        }\n      ],\n    \
+    \  \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\": \"\
+    null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"sum(dse_table_live_ss_table_count{instance='$host'})\",\n     \
+    \     \"format\": \"time_series\",\n          \"hide\": false,\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"B\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"100000,500000\"\
+    ,\n      \"title\": \"Live SSTables\",\n      \"type\": \"singlestat\",\n    \
+    \  \"valueFontSize\": \"80%\",\n      \"valueMaps\": [],\n      \"valueName\"\
+    : \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\"\
+    : false,\n      \"colorValue\": true,\n      \"colors\": [\n        \"rgba(50,\
+    \ 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(245,\
+    \ 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : 0,\n      \"description\": \"\",\n      \"format\": \"none\",\n      \"gauge\"\
+    : {\n        \"maxValue\": 1000,\n        \"minValue\": 0,\n        \"show\":\
+    \ true,\n        \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n\
+    \      },\n      \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n      \
+    \  \"x\": 4,\n        \"y\": 72\n      },\n      \"hideTimeOverride\": false,\n\
+    \      \"id\": 272,\n      \"interval\": null,\n      \"links\": [],\n      \"\
+    mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"\
+    value to text\",\n          \"value\": 1\n        },\n        {\n          \"\
+    name\": \"range to text\",\n          \"value\": 2\n        }\n      ],\n    \
+    \  \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\": \"\
+    null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"sum(dse_compaction_pending_tasks{instance='$host'})\",\n      \
+    \    \"format\": \"time_series\",\n          \"hide\": false,\n          \"intervalFactor\"\
+    : 1,\n          \"legendFormat\": \"\",\n          \"refId\": \"B\",\n       \
+    \   \"step\": 900\n        }\n      ],\n      \"thresholds\": \"10,50\",\n   \
+    \   \"title\": \"Pending compactions\",\n      \"type\": \"singlestat\",\n   \
+    \   \"valueFontSize\": \"80%\",\n      \"valueMaps\": [],\n      \"valueName\"\
+    : \"current\"\n    },\n    {\n      \"cacheTimeout\": null,\n      \"colorBackground\"\
+    : false,\n      \"colorValue\": true,\n      \"colors\": [\n        \"rgba(50,\
+    \ 172, 45, 0.97)\",\n        \"rgba(237, 129, 40, 0.89)\",\n        \"rgba(245,\
+    \ 54, 54, 0.9)\"\n      ],\n      \"datasource\": \"prometheus\",\n      \"decimals\"\
+    : 0,\n      \"description\": \"\",\n      \"format\": \"none\",\n      \"gauge\"\
+    : {\n        \"maxValue\": 1000,\n        \"minValue\": 0,\n        \"show\":\
+    \ true,\n        \"thresholdLabels\": false,\n        \"thresholdMarkers\": true\n\
+    \      },\n      \"gridPos\": {\n        \"h\": 4,\n        \"w\": 4,\n      \
+    \  \"x\": 8,\n        \"y\": 72\n      },\n      \"hideTimeOverride\": false,\n\
+    \      \"id\": 273,\n      \"interval\": null,\n      \"links\": [],\n      \"\
+    mappingType\": 1,\n      \"mappingTypes\": [\n        {\n          \"name\": \"\
+    value to text\",\n          \"value\": 1\n        },\n        {\n          \"\
+    name\": \"range to text\",\n          \"value\": 2\n        }\n      ],\n    \
+    \  \"maxDataPoints\": 100,\n      \"minSpan\": 4,\n      \"nullPointMode\": \"\
+    null\",\n      \"nullText\": null,\n      \"postfix\": \"\",\n      \"postfixFontSize\"\
+    : \"50%\",\n      \"prefix\": \"\",\n      \"prefixFontSize\": \"50%\",\n    \
+    \  \"rangeMaps\": [\n        {\n          \"from\": \"null\",\n          \"text\"\
+    : \"N/A\",\n          \"to\": \"null\"\n        }\n      ],\n      \"sparkline\"\
+    : {\n        \"fillColor\": \"rgba(31, 118, 189, 0.18)\",\n        \"full\": false,\n\
+    \        \"lineColor\": \"rgb(31, 120, 193)\",\n        \"show\": true\n     \
+    \ },\n      \"tableColumn\": \"\",\n      \"targets\": [\n        {\n        \
+    \  \"expr\": \"sum(dse_client_connected_native_clients{instance='$host'})\",\n\
+    \          \"format\": \"time_series\",\n          \"hide\": false,\n        \
+    \  \"intervalFactor\": 1,\n          \"legendFormat\": \"\",\n          \"refId\"\
+    : \"B\",\n          \"step\": 900\n        }\n      ],\n      \"thresholds\":\
+    \ \"10,50\",\n      \"title\": \"Clients Connected\",\n      \"type\": \"singlestat\"\
+    ,\n      \"valueFontSize\": \"80%\",\n      \"valueMaps\": [],\n      \"valueName\"\
+    : \"current\"\n    },\n    {\n      \"cards\": {\n        \"cardPadding\": null,\n\
+    \        \"cardRound\": null\n      },\n      \"color\": {\n        \"cardColor\"\
+    : \"#b4ff00\",\n        \"colorScale\": \"sqrt\",\n        \"colorScheme\": \"\
+    interpolateSpectral\",\n        \"exponent\": 0.5,\n        \"mode\": \"spectrum\"\
+    \n      },\n      \"dataFormat\": \"timeseries\",\n      \"datasource\": \"prometheus\"\
+    ,\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n        \"x\"\
+    : 12,\n        \"y\": 72\n      },\n      \"heatmap\": {},\n      \"highlightCards\"\
+    : true,\n      \"id\": 278,\n      \"legend\": {\n        \"show\": false\n  \
+    \    },\n      \"links\": [],\n      \"targets\": [\n        {\n          \"expr\"\
+    : \"sum(increase(dse_table_read_latency_bucket{table=~'.*', keyspace=~'.*', instance='$host'}[$rate]))\
+    \ by (le)\",\n          \"format\": \"time_series\",\n          \"interval\":\
+    \ \"\",\n          \"intervalFactor\": 1,\n          \"legendFormat\": \"\",\n\
+    \          \"refId\": \"A\"\n        }\n      ],\n      \"title\": \"Local Read\
+    \ Latency\",\n      \"tooltip\": {\n        \"show\": true,\n        \"showHistogram\"\
+    : false\n      },\n      \"tooltipDecimals\": null,\n      \"type\": \"heatmap\"\
+    ,\n      \"xAxis\": {\n        \"show\": true\n      },\n      \"xBucketNumber\"\
+    : null,\n      \"xBucketSize\": null,\n      \"yAxis\": {\n        \"decimals\"\
+    : null,\n        \"format\": \"\xB5s\",\n        \"logBase\": 1,\n        \"max\"\
+    : null,\n        \"min\": null,\n        \"show\": true,\n        \"splitFactor\"\
+    : null\n      },\n      \"yBucketBound\": \"auto\",\n      \"yBucketNumber\":\
+    \ null,\n      \"yBucketSize\": null\n    },\n    {\n      \"aliasColors\": {\n\
+    \        \"Apps\": \"#629E51\",\n        \"Buffers\": \"#614D93\",\n        \"\
+    Cache\": \"#6D1F62\",\n        \"Cached\": \"#511749\",\n        \"Committed\"\
+    : \"#508642\",\n        \"Free\": \"#0A437C\",\n        \"Harware Corrupted -\
+    \ Amount of RAM that the kernel identified as corrupted / not working\": \"#CFFAFF\"\
+    ,\n        \"Inactive\": \"#584477\",\n        \"PageTables\": \"#0A50A1\",\n\
+    \        \"Page_Tables\": \"#0A50A1\",\n        \"RAM_Free\": \"#E0F9D7\",\n \
+    \       \"SWAP Used\": \"#BF1B00\",\n        \"Slab\": \"#806EB7\",\n        \"\
+    Slab_Cache\": \"#E0752D\",\n        \"Swap\": \"#BF1B00\",\n        \"Swap Used\"\
+    : \"#BF1B00\",\n        \"Swap_Cache\": \"#C15C17\",\n        \"Swap_Free\": \"\
+    #2F575E\",\n        \"Unused\": \"#EAB839\"\n      },\n      \"bars\": false,\n\
+    \      \"dashLength\": 10,\n      \"dashes\": false,\n      \"datasource\": \"\
+    prometheus\",\n      \"decimals\": 2,\n      \"description\": \"Basic memory usage\"\
+    ,\n      \"fill\": 4,\n      \"gridPos\": {\n        \"h\": 7,\n        \"w\"\
+    : 12,\n        \"x\": 0,\n        \"y\": 76\n      },\n      \"id\": 269,\n  \
+    \    \"legend\": {\n        \"alignAsTable\": false,\n        \"avg\": false,\n\
+    \        \"current\": false,\n        \"max\": false,\n        \"min\": false,\n\
+    \        \"rightSide\": false,\n        \"show\": true,\n        \"sideWidth\"\
+    : 350,\n        \"total\": false,\n        \"values\": false\n      },\n     \
+    \ \"lines\": true,\n      \"linewidth\": 1,\n      \"links\": [],\n      \"minSpan\"\
+    : 4,\n      \"nullPointMode\": \"null\",\n      \"percentage\": false,\n     \
+    \ \"pointradius\": 5,\n      \"points\": false,\n      \"renderer\": \"flot\"\
+    ,\n      \"seriesOverrides\": [\n        {\n          \"alias\": \"JVM Heap Total\"\
+    ,\n          \"color\": \"#bf1b00\",\n          \"fill\": 0,\n          \"stack\"\
+    : false\n        },\n        {\n          \"alias\": \"RAM Cache + Buffer\",\n\
+    \          \"color\": \"#052B51\"\n        },\n        {\n          \"alias\"\
+    : \"RAM Free\",\n          \"color\": \"#7EB26D\"\n        },\n        {\n   \
+    \       \"alias\": \"JVM Non-Heap Used\",\n          \"color\": \"#f4d598\",\n\
+    \          \"fill\": 0,\n          \"linewidth\": 3,\n          \"stack\": false\n\
+    \        }\n      ],\n      \"spaceLength\": 10,\n      \"stack\": true,\n   \
+    \   \"steppedLine\": false,\n      \"targets\": [\n        {\n          \"expr\"\
+    : \"sum(dse_jvm_memory_max{instance=\\\"$host\\\", memory_type='total'})\",\n\
+    \          \"format\": \"time_series\",\n          \"hide\": false,\n        \
+    \  \"intervalFactor\": 2,\n          \"legendFormat\": \"JVM Heap Total\",\n \
+    \         \"refId\": \"A\",\n          \"step\": 240\n        },\n        {\n\
+    \          \"expr\": \"sum(dse_jvm_memory_used{instance=\\\"$host\\\", memory_type=\\\
+    \"non_heap\\\"})\",\n          \"format\": \"time_series\",\n          \"intervalFactor\"\
+    : 2,\n          \"legendFormat\": \"JVM Non-Heap Used\",\n          \"refId\"\
+    : \"B\",\n          \"step\": 240\n        },\n        {\n          \"expr\":\
+    \ \"sum(dse_jvm_memory_used{instance=\\\"$host\\\", memory_type=\\\"heap\\\"})\"\
+    ,\n          \"format\": \"time_series\",\n          \"hide\": false,\n      \
+    \    \"intervalFactor\": 2,\n          \"legendFormat\": \"JVM Heap Used\",\n\
+    \          \"refId\": \"D\",\n          \"step\": 240\n        }\n      ],\n \
+    \     \"thresholds\": [],\n      \"timeFrom\": null,\n      \"timeShift\": null,\n\
+    \      \"title\": \"DSE JVM Basic\",\n      \"tooltip\": {\n        \"shared\"\
+    : true,\n        \"sort\": 0,\n        \"value_type\": \"individual\"\n      },\n\
+    \      \"type\": \"graph\",\n      \"xaxis\": {\n        \"buckets\": null,\n\
+    \        \"mode\": \"time\",\n        \"name\": null,\n        \"show\": true,\n\
+    \        \"values\": []\n      },\n      \"yaxes\": [\n        {\n          \"\
+    format\": \"bytes\",\n          \"label\": \"\",\n          \"logBase\": 1,\n\
+    \          \"max\": null,\n          \"min\": \"0\",\n          \"show\": true\n\
+    \        },\n        {\n          \"format\": \"short\",\n          \"label\"\
+    : null,\n          \"logBase\": 1,\n          \"max\": null,\n          \"min\"\
+    : null,\n          \"show\": false\n        }\n      ],\n      \"yaxis\": {\n\
+    \        \"align\": false,\n        \"alignLevel\": null\n      }\n    }\n  ],\n\
+    \  \"refresh\": \"30s\",\n  \"schemaVersion\": 16,\n  \"style\": \"dark\",\n \
+    \ \"tags\": [\n    \"dse\"\n  ],\n  \"templating\": {\n    \"list\": [\n     \
+    \ {\n        \"auto\": false,\n        \"auto_count\": 30,\n        \"auto_min\"\
+    : \"10s\",\n        \"current\": {\n          \"text\": \"1m\",\n          \"\
+    value\": \"1m\"\n        },\n        \"hide\": 0,\n        \"label\": \"Rate\"\
+    ,\n        \"name\": \"rate\",\n        \"options\": [\n          {\n        \
+    \    \"selected\": false,\n            \"text\": \"30s\",\n            \"value\"\
+    : \"30s\"\n          },\n          {\n            \"selected\": true,\n      \
+    \      \"text\": \"1m\",\n            \"value\": \"1m\"\n          },\n      \
+    \    {\n            \"selected\": false,\n            \"text\": \"10m\",\n   \
+    \         \"value\": \"10m\"\n          },\n          {\n            \"selected\"\
+    : false,\n            \"text\": \"30m\",\n            \"value\": \"30m\"\n   \
+    \       },\n          {\n            \"selected\": false,\n            \"text\"\
+    : \"1h\",\n            \"value\": \"1h\"\n          },\n          {\n        \
+    \    \"selected\": false,\n            \"text\": \"6h\",\n            \"value\"\
+    : \"6h\"\n          },\n          {\n            \"selected\": false,\n      \
+    \      \"text\": \"12h\",\n            \"value\": \"12h\"\n          },\n    \
+    \      {\n            \"selected\": false,\n            \"text\": \"1d\",\n  \
+    \          \"value\": \"1d\"\n          },\n          {\n            \"selected\"\
+    : false,\n            \"text\": \"7d\",\n            \"value\": \"7d\"\n     \
+    \     },\n          {\n            \"selected\": false,\n            \"text\"\
+    : \"14d\",\n            \"value\": \"14d\"\n          },\n          {\n      \
+    \      \"selected\": false,\n            \"text\": \"30d\",\n            \"value\"\
+    : \"30d\"\n          }\n        ],\n        \"query\": \"30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d\"\
+    ,\n        \"refresh\": 2,\n        \"skipUrlSync\": false,\n        \"type\"\
+    : \"interval\"\n      },\n      {\n        \"allValue\": null,\n        \"current\"\
+    : {\n          \"tags\": [],\n          \"text\": \"10.101.32.94\",\n        \
+    \  \"value\": \"10.101.32.94\"\n        },\n        \"datasource\": \"prometheus\"\
+    ,\n        \"hide\": 0,\n        \"includeAll\": false,\n        \"label\": \"\
+    Host:\",\n        \"multi\": false,\n        \"name\": \"host\",\n        \"options\"\
+    : [],\n        \"query\": \"label_values(collectd_collectd_queue_length{}, instance)\"\
+    ,\n        \"refresh\": 1,\n        \"regex\": \"\",\n        \"skipUrlSync\"\
+    : false,\n        \"sort\": 1,\n        \"tagValuesQuery\": \"\",\n        \"\
+    tags\": [],\n        \"tagsQuery\": \"\",\n        \"type\": \"query\",\n    \
+    \    \"useTags\": false\n      }\n    ]\n  },\n  \"time\": {\n    \"from\": \"\
+    now-30m\",\n    \"to\": \"now\"\n  },\n  \"timepicker\": {\n    \"refresh_intervals\"\
+    : [\n      \"5s\",\n      \"10s\",\n      \"30s\",\n      \"1m\",\n      \"5m\"\
+    ,\n      \"15m\",\n      \"30m\",\n      \"1h\",\n      \"2h\",\n      \"1d\"\n\
+    \    ],\n    \"time_options\": [\n      \"5m\",\n      \"15m\",\n      \"1h\"\
+    ,\n      \"6h\",\n      \"12h\",\n      \"24h\",\n      \"2d\",\n      \"7d\"\
+    ,\n      \"30d\"\n    ]\n  },\n  \"timezone\": \"browser\",\n  \"title\": \"DSE\
+    \ System & Node Metrics\",\n  \"uid\": \"eNNm2Lciz\",\n  \"version\": 1\n}\n"
+  name: system-metrics.json
+  url: https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/system-metrics.json

@@ -1,0 +1,19 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: operator-group
+  namespace: cass-operator
+spec:
+  targetNamespaces:
+  - cass-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: prometheus
+  namespace: cass-operator
+spec:
+  channel: beta
+  name: prometheus
+  source: operatorhubio-catalog
+  sourceNamespace: olm

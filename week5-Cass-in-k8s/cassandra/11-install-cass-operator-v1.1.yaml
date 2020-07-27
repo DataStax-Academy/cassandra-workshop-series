@@ -1,0 +1,563 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cass-operator
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cass-operator
+  namespace: cass-operator
+---
+apiVersion: v1
+data:
+  tls.crt: ""
+  tls.key: ""
+kind: Secret
+metadata:
+  name: cass-operator-webhook-config
+  namespace: cass-operator
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: cassandradatacenters.cassandra.datastax.com
+spec:
+  group: cassandra.datastax.com
+  names:
+    kind: CassandraDatacenter
+    listKind: CassandraDatacenterList
+    plural: cassandradatacenters
+    shortNames:
+    - cassdc
+    - cassdcs
+    singular: cassandradatacenter
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: CassandraDatacenter is the Schema for the cassandradatacenters
+        API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: CassandraDatacenterSpec defines the desired state of a CassandraDatacenter
+          properties:
+            allowMultipleNodesPerWorker:
+              description: Turning this option on allows multiple server pods to be
+                created on a k8s worker node. By default the operator creates just
+                one server pod per k8s worker node using k8s podAntiAffinity and requiredDuringSchedulingIgnoredDuringExecution.
+              type: boolean
+            canaryUpgrade:
+              description: Indicates that configuration and container image changes
+                should only be pushed to the first rack of the datacenter
+              type: boolean
+            clusterName:
+              description: The name by which CQL clients and instances will know the
+                cluster. If the same cluster name is shared by multiple Datacenters
+                in the same Kubernetes namespace, they will join together in a multi-datacenter
+                cluster.
+              minLength: 2
+              type: string
+            configBuilderImage:
+              description: Container image for the config builder init container.
+              type: string
+            managementApiAuth:
+              description: Config for the Management API certificates
+              properties:
+                insecure:
+                  type: object
+                manual:
+                  properties:
+                    clientSecretName:
+                      type: string
+                    serverSecretName:
+                      type: string
+                    skipSecretValidation:
+                      type: boolean
+                  required:
+                  - clientSecretName
+                  - serverSecretName
+                  type: object
+              type: object
+            nodeSelector:
+              additionalProperties:
+                type: string
+              description: 'A map of label keys and values to restrict Cassandra node
+                scheduling to k8s workers with matchiing labels. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector'
+              type: object
+            racks:
+              description: A list of the named racks in the datacenter, representing
+                independent failure domains. The number of racks should match the
+                replication factor in the keyspaces you plan to create, and the number
+                of racks cannot easily be changed once a datacenter is deployed.
+              items:
+                description: Rack ...
+                properties:
+                  name:
+                    description: The rack name
+                    minLength: 2
+                    type: string
+                  zone:
+                    description: Zone name to pin the rack, using node affinity
+                    type: string
+                required:
+                - name
+                type: object
+              type: array
+            replaceNodes:
+              description: A list of pod names that need to be replaced.
+              items:
+                type: string
+              type: array
+            resources:
+              description: Kubernetes resource requests and limits, per pod
+              properties:
+                limits:
+                  additionalProperties:
+                    type: string
+                  description: 'Limits describes the maximum amount of compute resources
+                    allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                  type: object
+                requests:
+                  additionalProperties:
+                    type: string
+                  description: 'Requests describes the minimum amount of compute resources
+                    required. If Requests is omitted for a container, it defaults
+                    to Limits if that is explicitly specified, otherwise to an implementation-defined
+                    value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                  type: object
+              type: object
+            rollingRestartRequested:
+              description: Whether to do a rolling restart at the next opportunity.
+                The operator will set this back to false once the restart is in progress.
+              type: boolean
+            serverImage:
+              description: 'Cassandra server image name. More info: https://kubernetes.io/docs/concepts/containers/images'
+              type: string
+            serverType:
+              description: 'Server type: "cassandra" or "dse"'
+              enum:
+              - cassandra
+              - dse
+              type: string
+            serverVersion:
+              description: Version string for config builder, used to generate Cassandra
+                server configuration
+              enum:
+              - 6.8.0
+              - 3.11.6
+              - 4.0.0
+              type: string
+            serviceAccount:
+              description: The k8s service account to use for the server pods
+              type: string
+            size:
+              description: Desired number of Cassandra server nodes
+              format: int32
+              minimum: 1
+              type: integer
+            stopped:
+              description: A stopped CassandraDatacenter will have no running server
+                pods, like using "stop" with traditional System V init scripts. Other
+                Kubernetes resources will be left intact, and volumes will re-attach
+                when the CassandraDatacenter workload is resumed.
+              type: boolean
+            storageConfig:
+              description: Describes the persistent storage request of each server
+                node
+              properties:
+                cassandraDataVolumeClaimSpec:
+                  description: PersistentVolumeClaimSpec describes the common attributes
+                    of storage devices and allows a Source for provider-specific attributes
+                  properties:
+                    accessModes:
+                      description: 'AccessModes contains the desired access modes
+                        the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1'
+                      items:
+                        type: string
+                      type: array
+                    dataSource:
+                      description: This field requires the VolumeSnapshotDataSource
+                        alpha feature gate to be enabled and currently VolumeSnapshot
+                        is the only supported data source. If the provisioner can
+                        support VolumeSnapshot data source, it will create a new volume
+                        and data will be restored to the volume at the same time.
+                        If the provisioner does not support VolumeSnapshot data source,
+                        volume will not be created and the failure will be reported
+                        as an event. In the future, we plan to support more data source
+                        types and the behavior of the provisioner may change.
+                      properties:
+                        apiGroup:
+                          description: APIGroup is the group for the resource being
+                            referenced. If APIGroup is not specified, the specified
+                            Kind must be in the core API group. For any other third-party
+                            types, APIGroup is required.
+                          type: string
+                        kind:
+                          description: Kind is the type of resource being referenced
+                          type: string
+                        name:
+                          description: Name is the name of resource being referenced
+                          type: string
+                      required:
+                      - kind
+                      - name
+                      type: object
+                    resources:
+                      description: 'Resources represents the minimum resources the
+                        volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources'
+                      properties:
+                        limits:
+                          additionalProperties:
+                            type: string
+                          description: 'Limits describes the maximum amount of compute
+                            resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                        requests:
+                          additionalProperties:
+                            type: string
+                          description: 'Requests describes the minimum amount of compute
+                            resources required. If Requests is omitted for a container,
+                            it defaults to Limits if that is explicitly specified,
+                            otherwise to an implementation-defined value. More info:
+                            https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
+                          type: object
+                      type: object
+                    selector:
+                      description: A label query over volumes to consider for binding.
+                      properties:
+                        matchExpressions:
+                          description: matchExpressions is a list of label selector
+                            requirements. The requirements are ANDed.
+                          items:
+                            description: A label selector requirement is a selector
+                              that contains values, a key, and an operator that relates
+                              the key and values.
+                            properties:
+                              key:
+                                description: key is the label key that the selector
+                                  applies to.
+                                type: string
+                              operator:
+                                description: operator represents a key's relationship
+                                  to a set of values. Valid operators are In, NotIn,
+                                  Exists and DoesNotExist.
+                                type: string
+                              values:
+                                description: values is an array of string values.
+                                  If the operator is In or NotIn, the values array
+                                  must be non-empty. If the operator is Exists or
+                                  DoesNotExist, the values array must be empty. This
+                                  array is replaced during a strategic merge patch.
+                                items:
+                                  type: string
+                                type: array
+                            required:
+                            - key
+                            - operator
+                            type: object
+                          type: array
+                        matchLabels:
+                          additionalProperties:
+                            type: string
+                          description: matchLabels is a map of {key,value} pairs.
+                            A single {key,value} in the matchLabels map is equivalent
+                            to an element of matchExpressions, whose key field is
+                            "key", the operator is "In", and the values array contains
+                            only "value". The requirements are ANDed.
+                          type: object
+                      type: object
+                    storageClassName:
+                      description: 'Name of the StorageClass required by the claim.
+                        More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1'
+                      type: string
+                    volumeMode:
+                      description: volumeMode defines what type of volume is required
+                        by the claim. Value of Filesystem is implied when not included
+                        in claim spec. This is a beta feature.
+                      type: string
+                    volumeName:
+                      description: VolumeName is the binding reference to the PersistentVolume
+                        backing this claim.
+                      type: string
+                  type: object
+              type: object
+            superuserSecretName:
+              description: This secret defines the username and password for the Cassandra
+                server superuser. If it is omitted, we will generate a secret instead.
+              type: string
+          required:
+          - clusterName
+          - serverType
+          - serverVersion
+          - size
+          - storageConfig
+          type: object
+        status:
+          description: CassandraDatacenterStatus defines the observed state of CassandraDatacenter
+          properties:
+            cassandraOperatorProgress:
+              description: Last known progress state of the Cassandra Operator
+              type: string
+            lastRollingRestart:
+              format: date-time
+              type: string
+            lastServerNodeStarted:
+              description: The timestamp when the operator last started a Server node
+                with the management API
+              format: date-time
+              type: string
+            nodeReplacements:
+              items:
+                type: string
+              type: array
+            nodeStatuses:
+              additionalProperties:
+                properties:
+                  hostID:
+                    type: string
+                  nodeIP:
+                    type: string
+                type: object
+              type: object
+            superUserUpserted:
+              description: The timestamp at which CQL superuser credentials were last
+                upserted to the management API
+              format: date-time
+              type: string
+          type: object
+      type: object
+      x-kubernetes-preserve-unknown-fields: true
+  version: v1beta1
+  versions:
+  - name: v1beta1
+    served: true
+    storage: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: cass-operator-cluster-role
+rules:
+- apiGroups:
+  - admissionregistration.k8s.io
+  resourceNames:
+  - cassandradatacenter-webhook-registration
+  resources:
+  - validatingwebhookconfigurations
+  verbs:
+  - create
+  - get
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cass-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cass-operator-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: cass-operator
+  namespace: cass-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: cass-operator
+  namespace: cass-operator
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  - events
+  - configmaps
+  - secrets
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - daemonsets
+  - replicasets
+  - statefulsets
+  verbs:
+  - '*'
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - apps
+  resourceNames:
+  - cass-operator
+  resources:
+  - deployments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - datastax.com
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - policy
+  resources:
+  - poddisruptionbudgets
+  verbs:
+  - '*'
+- apiGroups:
+  - cassandra.datastax.com
+  resources:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cass-operator
+  namespace: cass-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: cass-operator
+subjects:
+- kind: ServiceAccount
+  name: cass-operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: cass-operator-webhook
+  name: cassandradatacenter-webhook-service
+  namespace: cass-operator
+spec:
+  ports:
+  - port: 443
+    targetPort: 443
+  selector:
+    name: cass-operator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cass-operator
+  namespace: cass-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cass-operator
+  template:
+    metadata:
+      labels:
+        name: cass-operator
+    spec:
+      containers:
+      - env:
+        - name: WATCH_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: OPERATOR_NAME
+          value: cass-operator
+        - name: SKIP_VALIDATING_WEBHOOK
+          value: "FALSE"
+        image: datastax/cass-operator:1.1.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - pgrep
+            - .*operator
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+        name: cass-operator
+        readinessProbe:
+          exec:
+            command:
+            - stat
+            - /tmp/operator-sdk-ready
+          failureThreshold: 1
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cass-operator-certs-volume
+          readOnly: false
+      serviceAccountName: cass-operator
+      volumes:
+      - name: cass-operator-certs-volume
+        secret:
+          secretName: cass-operator-webhook-config
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: cassandradatacenter-webhook-registration
+webhooks:
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    service:
+      name: cassandradatacenter-webhook-service
+      namespace: cass-operator
+      path: /validate-cassandra-datastax-com-v1beta1-cassandradatacenter
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: cassandradatacenter-webhook.cassandra.datastax.com
+  rules:
+  - apiGroups:
+    - cassandra.datastax.com
+    apiVersions:
+    - v1beta1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - cassandradatacenters
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
