@@ -13,7 +13,7 @@ In this repository, you'll find everything you need related to `week 5` of the *
 
 | Materials  | Description and Links
 |---|---|
-| Slidedeck | [SLIDEDECK](./materials/presentation.pdf) |
+| Slidedeck | [SLIDEDECK](./materials/presentation-week5.pdf) |
 | Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
 | Recording LIVESTREAM NA, LATAM |  📅 [July 29th 12EDT](https://youtu.be/GYb4Do3BXOM) |
@@ -24,15 +24,36 @@ In this repository, you'll find everything you need related to `week 5` of the *
 
 | Title  | Description | Type |
 |---|---|---|
-| **Installation and prerequisites** | [Instructions](#1-create-a-kubernetes-cluster) | Required |
-| Working with the Cassandra Operator | [Instructions](./README_CASSANDRA.MD)  | Required |
-| Metrics in Prometheus & Grafana | [Instructions](./README_METRICS.MD)  | Required |
-| K8s Dashboard | [Instructions](./README_DASHBOARD.MD)  | Bonus |
+| **Installation and prerequisites** | [Section](#1-create-a-kubernetes-cluster) | Required |
+| Working with the Cassandra Operator | [Section](./README_CASSANDRA.MD)  | Required |
+| Metrics in Prometheus & Grafana | [Section](./README_METRICS_DSE.MD)  | Required |
+| K8s Dashboard | [Section](./README_DASHBOARD.MD)  | Bonus |
+
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
+It may happen on some computers, especially with Win10 Home Edition or older laptops that you will be not able to install Docker at all or if installed the Cassandra Cluster will require too many resources to run. That's perfectly fine, we have it covered you: fill out this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! **!!WATCH OUT!!** In this case you have to start from [step 7, "Create the Namespace"](#7-create-namespace-and-storageclass) as all the other requirements are installed already. Have fun! 
+
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
+## Exercises
+
+| Title  | Description
+|---|---|
+| 1. Install Docker | [Instructions](#1-install-docker)  |
+| 2. Install Docker Compose | [Instructions](#2-install-docker-compose)  |
+| 3. Install Kubernetes command-line tool (Kubectl) | [Instructions](#3-install-kubernetes-command-line-tool-(kubectl))  |
+| 4. Install `watch` | [Instructions](#4-install-watch)  |
+| 5. Install Kind | [Instructions](#5-install-kind)  |
+| 6. Create a KIND cluster | [Instructions](#6-create-a-kind-cluster)  |
+| 7. Create namespace and storageClass | [Instructions](#7-create-namespace-and-storageclass)  |
+| 8. Working with the Cassandra Operator | [Instructions](#8-working-with-the-cassandra-operator)  |
 
 
 ## Create a Kubernetes Cluster
 
 This guide will show you how to install a **Kubernetes** cluster on a single machine in order to later, deploy an Apache Cassandra™ database. It be composed of one *master* and multiple *workers*. 
+
+[🏠 Back to Table of Contents](#exercises)
 
 ### 1. Install Docker
 
@@ -92,6 +113,7 @@ docker images
 docker run hello-world
 docker -v
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ### 2. Install Docker Compose
 
@@ -110,6 +132,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-
 # Allow execution
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ### 3. Install Kubernetes command-line tool (Kubectl)
 
@@ -139,6 +162,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 #Test to ensure the version you installed is up-to-date:
 kubectl version --client
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ### 4. Install `watch`
 
@@ -164,12 +188,13 @@ brew install watch
 ```bash
 echo "Linux Rocks"
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ### 5. Install Kind
 
 kind (`kind`) is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI. Please refer to [Reference Documentation](https://kind.sigs.k8s.io/docs/user/quick-start/) for more detailed instructions.
 
-![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please dowmload the [executable](https://kind.sigs.k8s.io/dl/v0.7.0/kind-windows-amd64) and place it on the PATH. You can also use **[Chocolatey](https://chocolatey.org/packages/kind)** very clever package manager for windows.
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please dowmload the [executable](https://kind.sigs.k8s.io/dl/v0.8.1/kind-windows-amd64) and place it on the PATH. You can also use **[Chocolatey](https://chocolatey.org/packages/kind)** very clever package manager for windows.
 ```bash
 choco install kind
 ```
@@ -181,7 +206,7 @@ brew install kind
 
 ![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) To install on linux (centOS) you can use the following commands
 ```bash
-curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.7.0/kind-$(uname)-amd64
+curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.8.1/kind-$(uname)-amd64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 ```
@@ -198,6 +223,7 @@ kind get clusters
 ```bash
 No kind clusters found.
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ### 6. Create a KIND cluster
 
@@ -259,6 +285,7 @@ kind-cassandra-worker3         Ready    <none>   88s    v1.17.0
 kind-cassandra-worker4         Ready    <none>   88s    v1.17.0
 kind-cassandra-worker5         Ready    <none>   88s    v1.17.0
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ## 7. Create namespace and storageClass
 
@@ -337,6 +364,7 @@ NAME                       PROVISIONER             RECLAIMPOLICY   VOLUMEBINDING
 server-storage (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  25m
 standard (default)         rancher.io/local-path   Delete          WaitForFirstConsumer   false                  88m
 ```
+[🏠 Back to Table of Contents](#exercises)
 
 ## 8. Working with the Cassandra Operator
 

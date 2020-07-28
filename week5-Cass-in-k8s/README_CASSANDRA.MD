@@ -16,19 +16,19 @@ If at any point you need to naviagte to one of the other sections use the links 
 |---|---|---|
 | Installation and prerequisites | [Section](./README.MD) | Required |
 | **Working with the Cassandra Operator** | [Section](./README_CASSANDRA.MD)  | Required |
-| Metrics in Prometheus & Grafana | [Section](./README_METRICS.MD)  | Required |
+| Metrics in Prometheus & Grafana | [Section](./README_METRICS_DSE.MD)  | Required |
 | K8s Dashboard | [Section](./README_DASHBOARD.MD)  | Bonus |
 
 ## Exercises
 
 | Title  | Description
 |---|---|
-| **1. Install Cass Operator** | [Instructions](#1-install-cass-operator)  |
-| **2. Create a single node cluster** | [Instructions](#2-create-a-single-node-cluster)  |
-| **3. Browse your cluster** | [Instructions](#3-browse-your-cluster)  |
-| **4. Scale up our cluster** | [Instructions](#4-scale-up-our-cluster)  |
-| **5. Executing CQL** | [Instructions](#5-executing-cql)  |
-| **6. Change the Cassandra configuration** | [Instructions](#6-change-the-cassandra-configuration)  |
+| 1. Install Cass Operator | [Instructions](#1-install-cass-operator)  |
+| 2. Create a single node cluster | [Instructions](#2-create-a-single-node-cluster)  |
+| 3. Browse your cluster | [Instructions](#3-browse-your-cluster)  |
+| 4. Scale up our cluster | [Instructions](#4-scale-up-our-cluster)  |
+| 5. Executing CQL | [Instructions](#5-executing-cql)  |
+| 6. Change the Cassandra configuration | [Instructions](#6-change-the-cassandra-configuration)  |
 
 ## 1. Install Cass Operator
 
@@ -45,7 +45,7 @@ Generally, `cluster-admin` privileges are required to register a CustomResourceD
 **✅ Step 1a. Apply the manifest**
 Apply the manifest above, and wait for the deployment to become ready. You can watch the progress by getting the list of pods for the namespace, as demonstrated below:
 ```bash
-kubectl -n cass-operator apply -f ./cassandra/11-install-cass-operator-v1.1.yaml
+kubectl -n cass-operator apply -f ./cassandra/11-install-cass-operator-v1.3.yaml
 ```
 📗 **Expected output**
 ```bash
