@@ -45,7 +45,7 @@ Generally, `cluster-admin` privileges are required to register a CustomResourceD
 **✅ Step 1a. Apply the manifest**
 Apply the manifest above, and wait for the deployment to become ready. You can watch the progress by getting the list of pods for the namespace, as demonstrated below:
 ```bash
-kubectl -n cass-operator apply -f ./cassandra/11-install-cass-operator-v1.1.yaml
+kubectl -n cass-operator apply -f ./cassandra/11-install-cass-operator-v1.3.yaml
 ```
 📗 **Expected output**
 ```bash
