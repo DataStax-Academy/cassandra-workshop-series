@@ -335,7 +335,7 @@ We are are interested in a few fields to intialize the `yaml` to create a storag
 
 One thing thing to note here is `volumeBindingMode: WaitForFirstConsumer`. The default value is `Immediate` and should not be used. It can prevent Cassandra pods from being scheduled on a worker node. If a pod fails to run and its status reports a message like, had volume node affinity conflict, then check the `volumeBindingMode` of the `StorageClass` being used
 
-This file should be adapted tor reflect your *Kubernetes* environment. We have several samples in the repository for [kind](02-storageclass-kind.yaml), [Minikube](03-storageclass-minikube.yaml) and [GKE](04-storageclass-gke.yaml).
+This file should be adapted tor reflect your *Kubernetes* environment. We have several samples in the repository for [kind](./setup-your-cluster/02-storageclass-kind.yaml), [Minikube](./setup-your-cluster/03-storageclass-minikube.yaml) and [GKE](./setup-your-cluster/04-storageclass-gke.yaml).
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
