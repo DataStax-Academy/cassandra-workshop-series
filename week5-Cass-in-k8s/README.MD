@@ -13,12 +13,12 @@ In this repository, you'll find everything you need related to `week 5` of the *
 
 | Materials  | Description and Links
 |---|---|
-| Slidedeck | [SLIDEDECK](./materials/presentation-week5.pdf) |
+| Slidedeck | [SLIDEDECK](./materials/presentation.pdf) |
 | Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
 | Recording LIVESTREAM NA, LATAM |  📅 [July 29th 12EDT](https://youtu.be/GYb4Do3BXOM) |
 | Recording LIVESTREAM APAC, EMEA | 📅 [July 30th 12:30 IST](https://youtu.be/q2zszeTIDxE) |
-| Homework | [here](#) |
+| Homework | [here](https://community.datastax.com/questions/7047/materials-and-homework-for-week-5.html) |
 
 ## Sections
 
