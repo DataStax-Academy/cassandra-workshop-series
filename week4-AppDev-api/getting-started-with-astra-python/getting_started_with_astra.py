@@ -17,5 +17,9 @@ app.register_blueprint(spacecraft_instruments_controller)
 # see Flask CORS docs for details https://flask-cors.readthedocs.io/en/latest/
 CORS(app)
 
+@app.route("/")
+def hello():
+    return "Hello World, I am the Python API for Getting Started with Astra! We have no Swagger interface for this API (yet), but I am up and running!"
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
