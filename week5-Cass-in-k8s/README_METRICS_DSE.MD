@@ -34,7 +34,7 @@ If at any point you need to naviagte to one of the other sections use the links 
 
 ## 1. Clean up cluster defined in previous sections
 
-In this section we want to illustrate the `Dse Metrics Exporter`. As such we would need to run a cluster of DataStax Enterprise nodes and not Cassandra OSS node (yet). We will clean up the `dc1` we created in previous section. In the CRD there is a property named `stopped` to set to true and apply the new yaml, that's it.
+In this section we want to illustrate the Metrics Exporting for Apache Cassandra and DataStax Enterprise. As such we would need to run a cluster of DataStax Enterprise nodes and not Apache Cassandra OSS nodes **yet**, because Open Source `Metrics Collector for Apache Cassandra` (MCAC) is under active development (July 2020) and to be available later this year, so we use `DSE Metrics Exporter` to show how it works. We have to clean up the `dc1` we created in previous section and install DSE cluster instead. In the CRD there is a property named `stopped` to set to true and apply the new yaml, that's it.
 
 📘 **1a. Check what's new in the yaml file**
 ```bash
