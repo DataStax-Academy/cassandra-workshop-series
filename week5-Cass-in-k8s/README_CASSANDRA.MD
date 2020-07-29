@@ -933,6 +933,14 @@ Events:
 }
 ```
 
+## 7. Metrics, Management, Visualisation
+
+At this point your Cassandra Cluster must be ready. Click on the **Instructions** link below to go the _Metrics, Management, Visualisation_ section.
+
+| Sections | Material Description
+| - |---|
+| **Metrics, Management, Visualisation** | [Instructions](./README_METRICS_DSE.MD) |
+
 [🏠 Back to Table of Contents](#exercises)
 
 [🏠Back to HOME workshop](https://github.com/DataStax-Academy/cassandra-workshop-series)
