@@ -320,8 +320,14 @@ export default function HomeContainer() {
     ).then((res) => {
       sendSnackbarMessage("Test Successful", "success");
     }
-    ).catch((err) => {
-      sendSnackbarMessage("A problem occurred with your credentials.  Please verify them and try again.", "error");
+    ).catch((error) => {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+      console.log(JSON.stringify(error));
+      sendSnackbarMessage(JSON.stringify(error), "error");
     });
   };
 
@@ -336,8 +342,9 @@ export default function HomeContainer() {
       fetchJourneys();
       toggleAddCredsDialog();
     }
-    ).catch((err) => {
-      sendSnackbarMessage(err.response.data, "error");
+    ).catch((error) => {
+      console.log(JSON.stringify(error));
+      sendSnackbarMessage(JSON.stringify(error), "error");
     });
   };
 
@@ -464,7 +471,7 @@ export default function HomeContainer() {
           horizontal: 'left',
         }}
         open={openSnackbar}
-        autoHideDuration={6000}
+        /*autoHideDuration={6000}*/
         onClose={toggleSnackbar}
       >
         <SnackbarContentWrapper

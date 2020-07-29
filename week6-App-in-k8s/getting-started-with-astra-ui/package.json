@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server -d --host 0.0.0.0",
+    "start": "cross-env NODE_ENV=development webpack-dev-server -d",
     "build": "cross-env NODE_ENV=production webpack -p",
     "test": "jest"
   },
@@ -72,7 +72,6 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.29",
     "axios": "^0.19.0",
-    "babel-preset-react": "^6.24.1",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
     "compass-mixins": "^0.12.10",
