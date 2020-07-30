@@ -1,4 +1,5 @@
 import os
+import logging
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import dict_factory
@@ -62,6 +63,8 @@ class SessionManager(object):
             return success
 
     def connect(self):
+        testval = os.getenv('USE_ASTRA')
+        app.logger.info("test2 test2 test2")
         if self.initialized is False:
             raise Exception('Please initialize the connection parameters first with SessionManager.save_credentials')
 

@@ -356,6 +356,18 @@ export default function HomeContainer() {
     setAnchorEl(null);
   };
 
+  const UseAstraMenu = () => {
+    if (process.env.USE_ASTRA == 'true'){
+        return(
+          <MenuItem onClick={toggleAddCredsDialog}>Modify Astra Database Connection</MenuItem>
+        )
+      } else {
+        return(
+          <div></div>
+        )
+    }
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -413,7 +425,7 @@ export default function HomeContainer() {
               open={Boolean(anchorEl)}
               onClose={handleCredMenuClose}
             >
-              <MenuItem onClick={toggleAddCredsDialog}>Modify Astra Database Connection</MenuItem>
+              <UseAstraMenu/>
             </Menu>
           </div>
         </Toolbar>

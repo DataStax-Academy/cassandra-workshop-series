@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import { DropzoneArea } from 'material-ui-dropzone'
 import DeleteIcon from '@material-ui/icons/Delete';
+import { render } from 'react-d3-speedometer/dist/core/render';
 
 export default function CredentialsDialog(props) {
     const [userName, setUserName] = useState(null);
@@ -53,85 +54,98 @@ export default function CredentialsDialog(props) {
         props.handleSave({ username: userName, password: password, keyspace: keyspace, secureConnectBundle: files[0] });
     }
 
+    const UseAstraPopup = () => {
+        console.log(process.env.KEYSPACE)
+        if (process.env.USE_ASTRA === 'true'){
+            return(
+                <Dialog open={props.open} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Connect to your Astra Database</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Please enter the following information to connect to your Astra instance
+                        </DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="userName"
+                            label="Database User Name"
+                            type="text"
+                            fullWidth
+                            required
+                            onChange={updateUserName}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="password"
+                            label="Database Password"
+                            type="password"
+                            fullWidth
+                            required
+                            onChange={updatePassword}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="keyspace"
+                            label="Keyspace"
+                            type="keyspace"
+                            fullWidth
+                            required
+                            onChange={updateKeyspace}
+                        />
+                        {(!files || !files.length) &&
+                            <DialogContentText>
+                                Choose your Secure Connect Bundle:*
+                                <DropzoneArea
+                                    // WorkAround for Windows 10 see
+                                    // https://community.datastax.com/questions/6831/secure-bundle-connect.html
+                                    /* acceptedFiles={["application/zip"]}*/
+                                    filesLimit={1}
+                                    dropzoneText="Drag and Drop your SecureConnectBundle zip file. WINDOWS 10 users  => do not click this box but drag and drop)"
+                                    onChange={updateFiles}
+                                    showFileNames={true}
+                                    showPreviews={true}
+                                    showPreviewsInDropzone={false}
+                                    showAlerts={false}
+                                />
+                            </DialogContentText>
+                        }
+                        {files && files.length &&
+                            <List dense>
+                                <ListItem>
+                                    <ListItemText
+                                        primary={files[0].name}
+                                    />
+                                    <ListItemSecondaryAction>
+                                        <IconButton edge="end" aria-label="delete" onClick={removeFile}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            </List>
+                        }
+                    </DialogContent>
+                    <DialogActions>
+                        <Button disabled={!saveEnabled} onClick={testConnection} color="primary">
+                            Test Connection
+                        </Button>
+                        <Button disabled={!saveEnabled} variant="contained" onClick={saveConnection} color="primary">
+                            Save
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            )
+        } else {
+            return(
+                <div></div>
+            )
+        }
+      };
+
     const saveEnabled = password && userName && keyspace && files && files.length;
 
     return (
         <div>
-            <Dialog open={props.open} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Connect to your Astra Database</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Please enter the following information to connect to your Astra instance
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="userName"
-                        label="Database User Name"
-                        type="text"
-                        fullWidth
-                        required
-                        onChange={updateUserName}
-                    />
-                    <TextField
-                        margin="dense"
-                        id="password"
-                        label="Database Password"
-                        type="password"
-                        fullWidth
-                        required
-                        onChange={updatePassword}
-                    />
-                    <TextField
-                        margin="dense"
-                        id="keyspace"
-                        label="Keyspace"
-                        type="keyspace"
-                        fullWidth
-                        required
-                        onChange={updateKeyspace}
-                    />
-                    {(!files || !files.length) &&
-                        <DialogContentText>
-                            Choose your Secure Connect Bundle:*
-                            <DropzoneArea
-                                // WorkAround for Windows 10 see
-                                // https://community.datastax.com/questions/6831/secure-bundle-connect.html
-                                /* acceptedFiles={["application/zip"]}*/
-                                filesLimit={1}
-                                dropzoneText="Drag and Drop your SecureConnectBundle zip file. WINDOWS 10 users  => do not click this box but drag and drop)"
-                                onChange={updateFiles}
-                                showFileNames={true}
-                                showPreviews={true}
-                                showPreviewsInDropzone={false}
-                                showAlerts={false}
-                            />
-                        </DialogContentText>
-                    }
-                    {files && files.length &&
-                        <List dense>
-                            <ListItem>
-                                <ListItemText
-                                    primary={files[0].name}
-                                />
-                                <ListItemSecondaryAction>
-                                    <IconButton edge="end" aria-label="delete" onClick={removeFile}>
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        </List>
-                    }
-                </DialogContent>
-                <DialogActions>
-                    <Button disabled={!saveEnabled} onClick={testConnection} color="primary">
-                        Test Connection
-                    </Button>
-                    <Button disabled={!saveEnabled} variant="contained" onClick={saveConnection} color="primary">
-                        Save
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <UseAstraPopup/>
         </div>
     )
 };

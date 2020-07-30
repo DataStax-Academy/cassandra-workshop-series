@@ -5,4 +5,6 @@ metadata:
 spec:
   containers:
   - name: astra-backend
-    image: astra-backend:my-image
+    image: astra-backend:my-image        
+    ports:
+        - containerPort: 8080

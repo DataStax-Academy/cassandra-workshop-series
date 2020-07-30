@@ -1,9 +1,12 @@
+import logging
 from flask import Flask
 from flask_cors import CORS
 from controller.credentials_controller import credentials_controller
 from controller.spacecraft_journey_controller import spacecraft_journey_controller
 from controller.spacecraft_instruments_controller import spacecraft_instruments_controller
 
+
+logging.basicConfig(filename='myapp.log', level=logging.INFO)
 app = Flask(__name__)
 
 # Register blueprints from controllers
