@@ -130,8 +130,16 @@ kubectl -n cass-operator create -f ./prometheus_grafana/prometheus/operator.yaml
 ```
 
 📘 **3b. Install the instance of prometheus**
+
+⚠️ Wait a bit for the operator to inialize (about 1min) and only then execute the command to create the instance.
+
 ```
 kubectl -n cass-operator apply -f ./prometheus_grafana/prometheus/instance.yaml
+```
+
+Got this error ? you did not wait enough, retry a bit few seconds laters.
+```
+error: unable to recognize "./prometheus_grafana/prometheus/instance.yaml": no matches for kind "Prometheus" in version "monitoring.coreos.com/v1"
 ```
 
 📘 **3c. Install Service Monitor**
