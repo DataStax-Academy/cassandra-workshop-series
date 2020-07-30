@@ -18,10 +18,28 @@ package com.datastax.astra;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.datastax.astra.dao.SessionManager;
+
 @SpringBootApplication
 public class GettingStartedWithAstra {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GettingStartedWithAstra.class, args);
+	    /* ASTRA
+	    //System.setProperty(SessionManager.USE_ASTRA, String.valueOf(true));
+	    //System.setProperty(SessionManager.USERNAME, "todouser");
+	    //System.setProperty(SessionManager.PASSWORD, "todopassword");
+	    //System.setProperty(SessionManager.KEYSPACE, "todoapp");
+	    //System.setProperty(SessionManager.SECURE_CONNECT_BUNDLE_PATH, 
+	    //        "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip");
+	    */
+	    
+	    /* LOCAL
+	    System.setProperty(SessionManager.USE_ASTRA, String.valueOf(false));
+        System.setProperty(SessionManager.KEYSPACE, "killrvideo");
+        System.setProperty(SessionManager.CONNECTION_POINTS, "localhost:9042");
+        System.setProperty(SessionManager.LOCAL_DATACENTER, "datacenter1");
+        */
+	    
+        SpringApplication.run(GettingStartedWithAstra.class, args);
 	}
 }

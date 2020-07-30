@@ -257,7 +257,7 @@ public class AstraService {
     
     protected synchronized SpacecraftJourneyDao getSpaceCraftJourneyDao() {
         if (spacecraftJourneyDao == null) {
-            CqlSession cqlSession   = SessionManager.getInstance().connectToAstra();
+            CqlSession cqlSession   = SessionManager.getInstance().getCqlSession();
             SpacecraftMapper mapper = new SpacecraftMapperBuilder(cqlSession).build();
             this.spacecraftJourneyDao = mapper.spacecraftJourneyDao(cqlSession.getKeyspace().get());
         }
@@ -266,7 +266,7 @@ public class AstraService {
     
     protected synchronized SpacecraftInstrumentsDao getSpaceCraftInstrumentsDao() {
         if (spacecraftInstrumentsDao == null) {
-            CqlSession cqlSession   = SessionManager.getInstance().connectToAstra();
+            CqlSession cqlSession   = SessionManager.getInstance().getCqlSession();
             SpacecraftMapper mapper = new SpacecraftMapperBuilder(cqlSession).build();
             this.spacecraftInstrumentsDao = mapper.spacecraftInstrumentsDao(cqlSession.getKeyspace().get());
         }
