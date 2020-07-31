@@ -79,7 +79,7 @@ public class SessionManager {
     
     private static void connectToLocalCassandra() {
         // Username
-        _instance.userName = System.getProperty(USERNAME);
+        _instance.userName = System.getenv().get(USERNAME);
         if (null != _instance.userName && !"".equals(_instance.userName)) {
             LOGGER.info("+ UserName: environment variable '{}' has been read as {}", USERNAME, _instance.userName);
         } else {
@@ -87,7 +87,7 @@ public class SessionManager {
             LOGGER.info("+ Username: environment variable '{}' not found defaulting to '{}'", USERNAME, _instance.userName);
         }
         // Password
-        _instance.password = System.getProperty(PASSWORD);
+        _instance.password = System.getenv().get(PASSWORD);
         if (null != _instance.password && !"".equals(_instance.password)) {
             LOGGER.info("+ Password: environment variable '{}' has been read.", _instance.password);
         } else {
@@ -95,7 +95,7 @@ public class SessionManager {
             LOGGER.info("+ Password: environment variable '{}' not found defaulting to '{}'", PASSWORD, _instance.password);
         }
         // Keyspace
-        _instance.keySpace = System.getProperty(KEYSPACE);
+        _instance.keySpace = System.getenv().get(KEYSPACE);
         if (null != _instance.keySpace && !"".equals(_instance.keySpace)) {
             LOGGER.info("+ Keyspace: environment variable '{}' has been read as {}", KEYSPACE, _instance.keySpace);
         } else {
@@ -103,7 +103,7 @@ public class SessionManager {
             LOGGER.info("+ Keyspace: environment variable '{}' not found defaulting to '{}'", KEYSPACE, _instance.keySpace);
         }
         // Checking required parameters for local deployments
-        String sLocalDataCenter = System.getProperty(LOCAL_DATACENTER);
+        String sLocalDataCenter = System.getenv().get(LOCAL_DATACENTER);
         if (null != sLocalDataCenter && !"".equals(sLocalDataCenter)) {
             LOGGER.info("+ [local] localdataCenter: "
                     + "environment variable '{}' has been read {}", LOCAL_DATACENTER, sLocalDataCenter);
@@ -113,7 +113,7 @@ public class SessionManager {
                     + "environment variable '{}' not found defaulting to {}", LOCAL_DATACENTER, sLocalDataCenter);
         }
         // Contact Points
-        String sContactPoints = System.getProperty(CONNECTION_POINTS);
+        String sContactPoints = System.getenv().get(CONNECTION_POINTS);
         if (null != sContactPoints && !"".equals(sContactPoints)) {
             LOGGER.info("+ [local] contactPoints: "
                     + "environment variable '{}' has been read as '{}'", CONNECTION_POINTS, sContactPoints);

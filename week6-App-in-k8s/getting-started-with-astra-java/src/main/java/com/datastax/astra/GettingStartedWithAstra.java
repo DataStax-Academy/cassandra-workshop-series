@@ -29,20 +29,15 @@ public class GettingStartedWithAstra {
     private static final Logger LOGGER = LoggerFactory.getLogger(GettingStartedWithAstra.class);
     
 	public static void main(String[] args) {
-	    // To use local instead of Astra =>
-	    System.setProperty(SessionManager.USE_ASTRA, String.valueOf(true));
-        System.setProperty(SessionManager.KEYSPACE, "killrvideo");
-        System.setProperty(SessionManager.CONNECTION_POINTS, "localhost:9042");
-        System.setProperty(SessionManager.LOCAL_DATACENTER, "datacenter1");
-        // <==
-        
-        // Logging in the beggining
+	    // Logging in the beggining
         SpringApplication.run(GettingStartedWithAstra.class, args);
         SessionManager.useAstra = shoudWeUseAstra();
+        
+        System.out.println( System.getenv());
 	}
 	
 	 private static boolean shoudWeUseAstra() {
-	        String sUseAstra = System.getProperty(SessionManager.USE_ASTRA);
+	        String sUseAstra = System.getenv().get(SessionManager.USE_ASTRA);
 	        boolean useAstra = true;
 	        if (null != sUseAstra && 
 	                 ("false".equalsIgnoreCase(sUseAstra) 
@@ -54,5 +49,5 @@ public class GettingStartedWithAstra {
 	            LOGGER.info("Environment variable '{}' not found defaulting to 'true'", SessionManager.USE_ASTRA);
 	        }
 	        return useAstra;
-	    }
+	 }
 }

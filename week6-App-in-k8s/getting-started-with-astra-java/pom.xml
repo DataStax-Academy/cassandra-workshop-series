@@ -106,7 +106,7 @@
                <artifactId>dockerfile-maven-plugin</artifactId>
                <version>${version.maven.plugin.docker}</version>
               <configuration>
-				<repository>clunven/getting-started-with-astra-java</repository>
+				<repository>java-backend</repository>
 				<buildArgs>
 					<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 				</buildArgs>
