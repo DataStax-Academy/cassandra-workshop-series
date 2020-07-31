@@ -8,3 +8,6 @@ spec:
     image: astra-backend:my-image        
     ports:
         - containerPort: 8080
+    envFrom:
+    - configMapRef:
+        name: env-config
