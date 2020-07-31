@@ -131,7 +131,7 @@ kubectl -n cass-operator create -f ./prometheus_grafana/prometheus/operator.yaml
 
 📘 **3b. Install the instance of prometheus**
 
-⚠️ Wait a bit for the operator to inialize (about 1min) and only then execute the command to create the instance.
+⚠️ Wait a bit for the operator to inialize (could be 1 - 10mins) and only then execute the command to create the instance.
 
 ```
 kubectl -n cass-operator apply -f ./prometheus_grafana/prometheus/instance.yaml
@@ -162,6 +162,9 @@ kubectl -n cass-operator create -f ./prometheus_grafana/grafana/operator.yaml
 ```
 
 📘 **4b.Install DataSource to read from prometheus**
+
+⚠️ Wait a bit for the operator to inialize (could be 1 - 10mins) and only then execute the command to create the datasource.
+
 ```bash
 kubectl -n cass-operator create -f ./prometheus_grafana/grafana/datasource.yaml
 ```
