@@ -287,13 +287,123 @@ WARNING: All illegal access operations will be denied in a future release
 
 Ok we are set what about some environment variables ?
 ```
-docker run java-backend -e USE_ASTRA='false' \
+docker run -e USE_ASTRA='false' \
     -e KEYSPACE='killrvideo' \
     -e LOCAL_DATACENTER='datacenter1' \
-    -e CONNECTION_POINTS='locahost:9042'
+    -e CONNECTION_POINTS='localhost:9042'\
+    -p 8080:8080 \
+    java-backend 
 ```
 
-ERROR
+You got
+```
+   ___        _                
+  / _ \      | |               
+ / /_\ \ ___ | |_  _ __   __ _ 
+ |  _  |/ __|| __|| '__| / _` |
+ | | | |\__ \| |_ | |   | (_| |
+ \_| |_/|___/ \__||_|    \__,_|                         
+ 
+ Getting Started with Astra
+
+
+13:14:01.683 INFO  com.datastax.astra.GettingStartedWithAstra    : Starting GettingStartedWithAstra v1.0.0-SNAPSHOT on fd7c2a98d274 with PID 1 (/app.jar started by root in /)
+13:14:01.686 INFO  com.datastax.astra.GettingStartedWithAstra    : No active profile set, falling back to default profiles: default
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.codehaus.groovy.vmplugin.v7.Java7$1 (jar:file:/app.jar!/BOOT-INF/lib/groovy-2.5.7-indy.jar!/) to constructor java.lang.invoke.MethodHandles$Lookup(java.lang.Class,int)
+WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.vmplugin.v7.Java7$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+13:14:04.423 INFO  com.datastax.astra.controller.CorsController  : Allowing CORS
+13:14:05.414 INFO  com.datastax.astra.GettingStartedWithAstra    : Started GettingStartedWithAstra in 4.436 seconds (JVM running for 5.168)
+13:14:05.416 INFO  com.datastax.astra.GettingStartedWithAstra    : Environment variable 'USE_ASTRA' has been read as 'false'
+{PATH=/usr/local/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, HOSTNAME=fd7c2a98d274, USE_ASTRA=false, JAVA_HOME=/usr/local/openjdk-11, KEYSPACE=killrvideo, JAVA_VERSION=11.0.8, LOCAL_DATACENTER=datacenter1, LANG=C.UTF-8, HOME=/root, CONNECTION_POINTS=locahost:9042}
+```
+
+Now try to access the image
+```
+curl -X GET "http://localhost:8080/api/credentials" -H "accept: */*"
+```
+
+What Error ? Of course there is not Cassandra on localhost.
+```json
+{"timestamp":"2020-07-31T13:17:59.758+0000","status":404,"error":"Not Found","message":"Could not reach any contact point, make sure you've provided valid addresses (showing first 1 nodes, use getAllErrors() for more): Node(endPoint=locahost:9042, hostId=null, hashCode=530277af): [java.net.UnknownHostException: locahost]","path":"/api/credentials"}
+```
+
+Time to go docker-compose !
+```
+docker-compose down
+```
+
+Output
+```
+Stopping resources_cassandra_1 ... done
+Removing resources_cassandra_1 ... done
+Removing network resources_default
+```
+
+Let's open `docker-compose-java` here you see we have both the backend and cassandra
+
+```yaml
+```
+
+Let's start :
+```
+docker-compose -f docker-compose-java.yaml up -d
+```
+
+wait a bit, we need to recreate the keyspace
+```
+docker exec -it `docker ps | grep cassandra:3.11.7 | cut -b 1-12` cqlsh -e "CREATE KEYSPACE IF NOT EXISTS killrvideo WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};"
+
+docker exec -it `docker ps | grep cassandra:3.11.7 | cut -b 1-12` cqlsh -e "DESCRIBE KEYSPACE killrvideo"
+```
+
+let's open the logs of java
+```
+docker logs `docker ps | grep backend | cut -b 1-12`
+```
+
+output
+```
+   ___        _                
+  / _ \      | |               
+ / /_\ \ ___ | |_  _ __   __ _ 
+ |  _  |/ __|| __|| '__| / _` |
+ | | | |\__ \| |_ | |   | (_| |
+ \_| |_/|___/ \__||_|    \__,_|                         
+ 
+ Getting Started with Astra
+
+
+13:26:34.296 INFO  com.datastax.astra.GettingStartedWithAstra    : Starting GettingStartedWithAstra v1.0.0-SNAPSHOT on 381a47cad496 with PID 1 (/app.jar started by root in /)
+13:26:34.303 INFO  com.datastax.astra.GettingStartedWithAstra    : No active profile set, falling back to default profiles: default
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.codehaus.groovy.vmplugin.v7.Java7$1 (jar:file:/app.jar!/BOOT-INF/lib/groovy-2.5.7-indy.jar!/) to constructor java.lang.invoke.MethodHandles$Lookup(java.lang.Class,int)
+WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.vmplugin.v7.Java7$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+13:26:39.167 INFO  com.datastax.astra.controller.CorsController  : Allowing CORS
+13:26:41.274 INFO  com.datastax.astra.GettingStartedWithAstra    : Started GettingStartedWithAstra in 8.023 seconds (JVM running for 8.851)
+13:26:41.280 INFO  com.datastax.astra.GettingStartedWithAstra    : Environment variable 'USE_ASTRA' has been read as 'false'
+{PATH=/usr/local/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, HOSTNAME=381a47cad496, USE_ASTRA=false, JAVA_HOME=/usr/local/openjdk-11, KEYSPACE=killrvideo, JAVA_VERSION=11.0.8, LOCAL_DATACENTER=datacenter1, LANG=C.UTF-8, HOME=/root, CONNECTION_POINTS=cassandra:9042}
+```
+
+Now let's try
+```
+curl -X GET "http://localhost:8080/api/credentials" -H "accept: */*"
+```
+
+
+BOOM
+```
+connection successful
+```
+
+
+
+
+
 
 
 

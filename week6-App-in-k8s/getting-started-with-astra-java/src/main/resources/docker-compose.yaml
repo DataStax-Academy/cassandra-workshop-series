@@ -13,7 +13,11 @@ services:
     # If you want to data
     # volumes:
     #   - ~/cassandra/:/var/lib/cassandra/data
- 
+    
 # If you want to have cqlsh
-#  docker exec -it `docker ps | grep cassandra:3.11.4 | cut -b 1-12` cqlsh
+#  docker exec -it `docker ps | grep cassandra:3.11.7 | cut -b 1-12` cqlsh
+
+# CREATE
+#CREATE KEYSPACE killrvideo WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+ 
   
