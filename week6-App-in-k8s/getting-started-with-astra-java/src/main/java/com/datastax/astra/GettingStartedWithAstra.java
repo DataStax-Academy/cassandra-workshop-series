@@ -15,6 +15,8 @@
  */
 package com.datastax.astra;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -23,23 +25,34 @@ import com.datastax.astra.dao.SessionManager;
 @SpringBootApplication
 public class GettingStartedWithAstra {
 
+    /** Logger for the class. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GettingStartedWithAstra.class);
+    
 	public static void main(String[] args) {
-	    /* ASTRA
-	    //System.setProperty(SessionManager.USE_ASTRA, String.valueOf(true));
-	    //System.setProperty(SessionManager.USERNAME, "todouser");
-	    //System.setProperty(SessionManager.PASSWORD, "todopassword");
-	    //System.setProperty(SessionManager.KEYSPACE, "todoapp");
-	    //System.setProperty(SessionManager.SECURE_CONNECT_BUNDLE_PATH, 
-	    //        "/Users/cedricklunven/Downloads/secure-connect-devworkshopdb.zip");
-	    */
-	    
-	    /* LOCAL
-	    System.setProperty(SessionManager.USE_ASTRA, String.valueOf(false));
+	    // To use local instead of Astra =>
+	    System.setProperty(SessionManager.USE_ASTRA, String.valueOf(true));
         System.setProperty(SessionManager.KEYSPACE, "killrvideo");
         System.setProperty(SessionManager.CONNECTION_POINTS, "localhost:9042");
         System.setProperty(SessionManager.LOCAL_DATACENTER, "datacenter1");
-        */
-	    
+        // <==
+        
+        // Logging in the beggining
         SpringApplication.run(GettingStartedWithAstra.class, args);
+        SessionManager.useAstra = shoudWeUseAstra();
 	}
+	
+	 private static boolean shoudWeUseAstra() {
+	        String sUseAstra = System.getProperty(SessionManager.USE_ASTRA);
+	        boolean useAstra = true;
+	        if (null != sUseAstra && 
+	                 ("false".equalsIgnoreCase(sUseAstra) 
+	                || "true".equalsIgnoreCase(sUseAstra))) {
+	            useAstra = Boolean.valueOf(sUseAstra);
+	            LOGGER.info("Environment variable '{}' has been read as '{}'", SessionManager.USE_ASTRA, useAstra);
+	        } else {
+	            useAstra= true;
+	            LOGGER.info("Environment variable '{}' not found defaulting to 'true'", SessionManager.USE_ASTRA);
+	        }
+	        return useAstra;
+	    }
 }
