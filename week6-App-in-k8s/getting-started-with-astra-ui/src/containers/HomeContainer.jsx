@@ -351,6 +351,12 @@ export default function HomeContainer() {
     });
   };
 
+  const localSave = event => {
+    sendSnackbarMessage("Database Credentials Saved", "success");
+    fetchJourneys();
+    toggleAddCredsDialog();
+  };
+
   const handleCredsMenu = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -466,7 +472,7 @@ export default function HomeContainer() {
         />
       </main>
       <AddJourneyDialog open={openAddJourneyDialog} handleClose={toggleAddJourneyDialog} launchJourney={launchNewJourney} />
-      <CredentialsDialog open={openAddCreds} handleClose={toggleAddCredsDialog} handleTest={testNewCreds} handleSave={addNewCreds} />
+      <CredentialsDialog open={openAddCreds} handleClose={toggleAddCredsDialog} handleTest={testNewCreds} handleSave={addNewCreds} handleLocalSave={localSave}/>
       <LaunchDialog open={openLaunchDialog} handleClose={toggleLaunchDialog} />
       <Snackbar
         anchorOrigin={{

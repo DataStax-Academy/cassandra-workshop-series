@@ -13,14 +13,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import { DropzoneArea } from 'material-ui-dropzone'
 import DeleteIcon from '@material-ui/icons/Delete';
-import { render } from 'react-d3-speedometer/dist/core/render';
 
 export default function CredentialsDialog(props) {
     const [userName, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
     const [keyspace, setKeyspace] = useState(null);
     const [files, setFiles] = useState(null);
-    // const useAstra = process.env.USE_ASTRA;
     const useAstra = window._env_.USE_ASTRA
 
 
@@ -53,13 +51,18 @@ export default function CredentialsDialog(props) {
     }
 
     function saveConnection() {
-        props.handleSave({ username: userName, password: password, keyspace: keyspace, secureConnectBundle: files[0] });
+        if (useAstra === "true") {
+            props.handleSave({ username: userName, password: password, keyspace: keyspace, secureConnectBundle: files[0] });
+        } else {
+            props.handleLocalSave();
+        }
     }
 
-    const UseAstraPopup = () => {
-        // console.log(process.env.KEYSPACE)
-        if (useAstra === 'true'){
-            return(
+    const saveEnabled = password && userName && keyspace && files && files.length;
+
+    if (useAstra === 'true') {
+        return (
+            <div>
                 <Dialog open={props.open} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Connect to your Astra Database</DialogTitle>
                     <DialogContent>
@@ -135,19 +138,20 @@ export default function CredentialsDialog(props) {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            )
-        } else {
-            return(
-                <div></div>
-            )
-        }
-      };
-
-    const saveEnabled = password && userName && keyspace && files && files.length;
-
-    return (
-        <div>
-            <UseAstraPopup/>
+            </div>
+        )
+    } else {
+        return(
+            <div>
+            <Dialog open={props.open} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Connect to your a local database</DialogTitle>
+                <DialogActions>
+                    <Button variant="contained" onClick={saveConnection} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
-    )
+        )
+    }
 };
