@@ -20,6 +20,8 @@ export default function CredentialsDialog(props) {
     const [password, setPassword] = useState(null);
     const [keyspace, setKeyspace] = useState(null);
     const [files, setFiles] = useState(null);
+    // const useAstra = process.env.USE_ASTRA;
+    const useAstra = window._env_.USE_ASTRA
 
 
     useEffect(() => {
@@ -55,8 +57,8 @@ export default function CredentialsDialog(props) {
     }
 
     const UseAstraPopup = () => {
-        console.log(process.env.KEYSPACE)
-        if (process.env.USE_ASTRA === 'true'){
+        // console.log(process.env.KEYSPACE)
+        if (useAstra === 'true'){
             return(
                 <Dialog open={props.open} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Connect to your Astra Database</DialogTitle>
