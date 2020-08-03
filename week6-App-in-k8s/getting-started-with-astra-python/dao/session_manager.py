@@ -85,12 +85,14 @@ class SessionManager(object):
                 }
 
                 cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
-                self._session = cluster.connect(keyspace=self.keyspace)
+                # self._session = cluster.connect(keyspace=self.keyspace)
             else:
-                cluster = Cluster([os.getenv('CONNECTION_POINTS')])
-                self._session = cluster.connect(keyspace='killrvideo')
+                cluster = Cluster([os.getenv('CONNECTION_POINTS')],auth_provider=PlainTextAuthProvider(os.getenv('USERNAME'), os.getenv('PASSWORD')))
+                self.keyspace = os.getenv('KEYSPACE')
                 self.initialized = True
-                self.keyspace = 'killrvideo'
+            
+            self._session = cluster.connect(keyspace=self.keyspace)
+                
 
             # have the driver return results as dict
             self._session.row_factory = dict_factory
