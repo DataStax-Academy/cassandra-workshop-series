@@ -1,6 +1,8 @@
 week6
 
-In this week we will explore taking our app from running on bare metal to running our very own kuberneties deployment.
+In this week we will explore taking our app from running on bare metal to running our very own kuberneties deployment. 
+
+Note:The examples below are running the python backend.
 
 The first thing you need to do is get the week 6 kuberneties cluster up and running. To do that you will need to start in the root directory of the project.  Then run the following
 ```
@@ -84,6 +86,14 @@ data:
   PASSWORD: 'CHANGEME'
 ```
 Feel free to look at the 06-backend.yaml and the 07-ui.yaml to see the spacific configuration option used there.  
+
+Last item will be to install our schema in the new cassandra cluster we have setup.  To do this we will need to use the password we decoded from the previous section. To get into cqlsh do the following commands. 
+```
+kubectl exec -it -n cass-operator cluster1-dc1-default-sts-0 /bin/bash
+cqlsh -u cluster1-superuser -p CHANGEME
+```
+
+Then simply copy pase the schema from the root of week6 into the cqlsh prompt and we are good to go. 
 
 Now that we are all set up it is time to turn everything on.  We will create a new namespace for our app.
 ```
