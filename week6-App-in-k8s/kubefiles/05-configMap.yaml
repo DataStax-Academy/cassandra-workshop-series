@@ -5,7 +5,7 @@ metadata:
 data:
   BASE_ADDRESS: 'http://localhost:5000/api'
   USE_ASTRA: 'true'
-  CONNECTION_POINTS: '127.0.0.1'
-  KEYSPACE: 'test'
-  USERNAME: 'test'
-  PASSWORD: 'test222'
+  CONNECTION_POINTS: 'CHANGEME'
+  KEYSPACE: 'killrvideo'
+  USERNAME: 'cluster1-superuser'
+  PASSWORD: 'CHANGEME'
