@@ -131,7 +131,7 @@ kubectl -n cass-operator create -f ./prometheus_grafana/prometheus/operator.yaml
 
 📘 **3b. Install the instance of prometheus**
 
-⚠️ Wait a bit for the operator to inialize (about 1min) and only then execute the command to create the instance.
+⚠️ Wait a bit for the operator to inialize (could be 1 - 10mins) and only then execute the command to create the instance.
 
 ```
 kubectl -n cass-operator apply -f ./prometheus_grafana/prometheus/instance.yaml
@@ -162,6 +162,9 @@ kubectl -n cass-operator create -f ./prometheus_grafana/grafana/operator.yaml
 ```
 
 📘 **4b.Install DataSource to read from prometheus**
+
+⚠️ Wait a bit for the operator to inialize (could be 1 - 10mins) and only then execute the command to create the datasource.
+
 ```bash
 kubectl -n cass-operator create -f ./prometheus_grafana/grafana/datasource.yaml
 ```
@@ -328,37 +331,41 @@ watch kubectl -n cass-operator get pods -l cassandra.datastax.com/cluster=cluste
 
 📘 **7c. Prometheus target**
 
-Prometheus UI should be available at `http://localhost:9090` but it mays vary on the cloud instance depending on port forwarding and coping with security on EC2 machines.
+Prometheus UI should be available at `http://localhost:9090` but it mays vary on the cloud instance depending on port forwarding and coping with security on EC2 machines. For those of you using cloud instances use `http://<your_instance_address>:9090` it should look something like `http://wksz92358.cws-week5-k8s.datastaxtraining.com:9090`. 
 
 You can navigate to `Status` dropdown in the topbar and select `target` to see the following:
 
 - The cluster is detected but nodes are not sending metrics yet:
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/prometheus-target-empty.png?raw=true)
+![OK](./materials/images/prometheus-target-empty.png?raw=true)
 
 - Let the party begin
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/prometheus-target-up.png?raw=true)
+![OK](./materials/images/prometheus-target-up.png?raw=true)
 
-- You can now graph some metrics withing prometheus 
+- You can now graph some metrics using prometheus 
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/prometheus-graph-up.png?raw=true)
+![OK](./materials/images/prometheus-graph-up.png?raw=true)
 
 📘 **7d. Grafana UI**
 
-Grafana should be available at `http://localhost:3000` but it mays vary on the cloud instance depending on port forwarding and coping with security on EC2 machines. Login and password are provided in the `yaml` files, they are `admin` and `secret`.
+Grafana should be available at `http://localhost:3000` but it mays vary on the cloud instance depending on port forwarding and coping with security on EC2 machines. For those of you using cloud instances use `http://<your_instance_address>:3000` it should look something like `http://wksz92358.cws-week5-k8s.datastaxtraining.com:3000`. Login and password are provided in the `yaml` files, they are `admin` and `secret`.
+
+- Once logged in open the **DSE Cluster** dashboard by clicking on the **_Home_** dropdown in the top left hand corner and choosing the **_DSE Cluster_** option
+
+![OK](./materials/images/grafana-home.png?raw=true)
 
 - Metrics starting to pull to Grafana
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/grafana-starting.png?raw=true)
+![OK](./materials/images/grafana-starting.png?raw=true)
 
 - After a bit of time
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/grafana-jvm.png?raw=true)
+![OK](./materials/images/grafana-jvm.png?raw=true)
 
 - You can browse dashboards there are a lot, here is the JVM. Only the dashboards using the datasource we created before will have data. The one starting with `dse`.
 
-![OK](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/grafana-up.png?raw=true)
+![OK](./materials/images/grafana-up.png?raw=true)
 
 [🏠 Back to Table of Contents](#exercises)
 

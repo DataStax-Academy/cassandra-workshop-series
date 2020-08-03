@@ -31,12 +31,16 @@ class SessionManager(object):
         SessionManager.__instance = self
 
     # only needed for astra
-    def save_credentials(self, username, password, keyspace, secure_connection_bundle_path):
-        self.username = username
-        self.password = password
-        self.keyspace = keyspace
-        self.secure_connect_bundle_path = secure_connection_bundle_path
-        self.initialized = True
+    if os.getenv('USE_ASTRA') == 'true':
+        def save_credentials(self, username, password, keyspace, secure_connection_bundle_path):
+            self.username = username
+            self.password = password
+            self.keyspace = keyspace
+            self.secure_connect_bundle_path = secure_connection_bundle_path
+            self.initialized = True
+    else:
+        def save_credentials(self):
+            self.initialized = True
 
     #only needed for astra
     def test_credentials(self, username, password, keyspace, secure_connection_bundle_path):
@@ -63,6 +67,14 @@ class SessionManager(object):
             return success
 
     def connect(self):
+<<<<<<< HEAD
+=======
+        # testval = os.getenv('USE_ASTRA')
+        # app.logger.info("test2 test2 test2")
+
+
+
+>>>>>>> 3ce7c423dd19e11ba6e2daa1b2f1a5df1f38d4a2
         if self.initialized is False:
             raise Exception('Please initialize the connection parameters first with SessionManager.save_credentials')
 
@@ -70,19 +82,27 @@ class SessionManager(object):
             # This is how you use the Astra secure connect bundle to connect to an Astra database
             # note that the database username and password required.
             # note that no contact points or any other driver customization is required.
-            if os.getenv('USE_ASTRA') == true:
+            if os.getenv('USE_ASTRA') == 'true':
                 astra_config = {
                     'secure_connect_bundle': self.secure_connect_bundle_path
                 }
 
                 cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
                 self._session = cluster.connect(keyspace=self.keyspace)
+<<<<<<< HEAD
             elif os.getenv('USE_ASTRA') == false:
                 cluster = Cluster([os.getenv('CONNECTION_POINTS')],auth_provider=PlainTextAuthProvider(os.getenv('USERNAME'), os.getenv('PASSWORD')))
                 self._session = cluster.connect(keyspace=os.getenv('KEYSPACE'))
             else:
                 logger.info("Missing env value for USE_ASTRA")
 
+=======
+            else:
+                cluster = Cluster([os.getenv('CONNECTION_POINTS')])
+                self._session = cluster.connect(keyspace='killrvideo')
+                self.initialized = True
+                self.keyspace = 'killrvideo'
+>>>>>>> 3ce7c423dd19e11ba6e2daa1b2f1a5df1f38d4a2
 
             # have the driver return results as dict
             self._session.row_factory = dict_factory

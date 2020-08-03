@@ -28,7 +28,10 @@ import Menu from '@material-ui/core/Menu';
 const drawerWidth = 240;
 const pageSize = 100;
 const writeBatchSize = 100;
-const baseAddress = process.env.BASE_ADDRESS;
+// const baseAddress = process.env.BASE_ADDRESS;
+const baseAddress = window._env_.BASE_ADDRESS
+
+console.log("base address is set to: ", baseAddress)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -348,24 +351,18 @@ export default function HomeContainer() {
     });
   };
 
+  const localSave = event => {
+    sendSnackbarMessage("Database Credentials Saved", "success");
+    fetchJourneys();
+    toggleAddCredsDialog();
+  };
+
   const handleCredsMenu = event => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleCredMenuClose = () => {
     setAnchorEl(null);
-  };
-
-  const UseAstraMenu = () => {
-    if (process.env.USE_ASTRA == 'true'){
-        return(
-          <MenuItem onClick={toggleAddCredsDialog}>Modify Astra Database Connection</MenuItem>
-        )
-      } else {
-        return(
-          <div></div>
-        )
-    }
   };
 
   return (
@@ -425,7 +422,7 @@ export default function HomeContainer() {
               open={Boolean(anchorEl)}
               onClose={handleCredMenuClose}
             >
-              <UseAstraMenu/>
+              <MenuItem onClick={toggleAddCredsDialog}>Modify Astra Database Connection</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -475,7 +472,7 @@ export default function HomeContainer() {
         />
       </main>
       <AddJourneyDialog open={openAddJourneyDialog} handleClose={toggleAddJourneyDialog} launchJourney={launchNewJourney} />
-      <CredentialsDialog open={openAddCreds} handleClose={toggleAddCredsDialog} handleTest={testNewCreds} handleSave={addNewCreds} />
+      <CredentialsDialog open={openAddCreds} handleClose={toggleAddCredsDialog} handleTest={testNewCreds} handleSave={addNewCreds} handleLocalSave={localSave}/>
       <LaunchDialog open={openLaunchDialog} handleClose={toggleLaunchDialog} />
       <Snackbar
         anchorOrigin={{
