@@ -63,8 +63,6 @@ class SessionManager(object):
             return success
 
     def connect(self):
-        testval = os.getenv('USE_ASTRA')
-        app.logger.info("test2 test2 test2")
         if self.initialized is False:
             raise Exception('Please initialize the connection parameters first with SessionManager.save_credentials')
 
@@ -79,9 +77,12 @@ class SessionManager(object):
 
                 cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
                 self._session = cluster.connect(keyspace=self.keyspace)
-            else:
+            elif os.getenv('USE_ASTRA') == false:
                 cluster = Cluster([os.getenv('CONNECTION_POINTS')],auth_provider=PlainTextAuthProvider(os.getenv('USERNAME'), os.getenv('PASSWORD')))
                 self._session = cluster.connect(keyspace=os.getenv('KEYSPACE'))
+            else:
+                logger.info("Missing env value for USE_ASTRA")
+
 
             # have the driver return results as dict
             self._session.row_factory = dict_factory
