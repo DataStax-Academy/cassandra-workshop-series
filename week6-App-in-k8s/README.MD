@@ -38,43 +38,64 @@ Navigate to working folder
 ```
 cd week6-App-in-k8s/kubefiles
 ```
-create the kind cluster
+
+Create and configure the kind cluster
 ```
-kind create cluster --name 
+kind create cluster --name kind-cassandra --config 01-kind-config.yaml
 ```
-Configure kind
-```
-kind-cassandra --config 01-kind-config.yaml
-```
-Setup context
+
+Set the kubectl context to this new cluster
 ```
 kubectl cluster-info --context kind-kind-cassandra
 ```
 #### Start Cassandra
 
-Create keyspace cass-operator
+Create the namespace cass-operator
 ```
 kubectl create ns cass-operator
 ```
-Create stroage class
+
+Create the storge class
 ```
 kubectl -n cass-operator apply -f 02-storageclass-kind.yaml
 ```
-Setup Cassandra operator
+
+Setup the Cassandra operator
 ```
 kubectl -n cass-operator apply -f 03-install-cass-operator-v1.3.yaml
 ```
-setup a single node
+
+Setup a single-node Cassandra cluster
 ```
 kubectl -n cass-operator apply -f 04-cassandra-cluster-1nodes.yaml
 ```
 
 This should setup the kuberneties kind cluster with a single cassandra node in the cass-operator namespace.
 
+To verify that all is up an running:
+
+```
+watch kubectl -n cass-operator get pods
+```
+
+Expected output when done:
+
+```
+$ kubectl -n cass-operator get pods
+NAME                             READY   STATUS    RESTARTS   AGE
+cass-operator-56fcb9ff47-cw9k6   1/1     Running   0          11m
+cluster1-dc1-default-sts-0       2/2     Running   0          11m
+```
+
+
+
+
 #### Containerize Your App
 In order to get our app into K8 we will need to contanerize it.  We will be using docker to create two containers.  One for the UI and one for the backend.  
 
-For the python backend the file will look like the following
+In order to build the docker images, a file named `Dockerfile` needs to be present in the working directory where we build the images. This is a reserved name, and it starts with an uppercase D.
+
+For the python backend the `Dockerfile` will look like the following
 ```
 FROM python:alpine3.7
 COPY . /app
@@ -84,7 +105,7 @@ EXPOSE 5000
 CMD ["python", "getting_started_with_astra.py"]
 ```
 
-For the frontend the file will look like the following
+For the frontend the `Dockerfile` will look like the following
 ```
 FROM node:12
 COPY . /app
@@ -94,19 +115,26 @@ EXPOSE 3000
 CMD [ "npm", "run", "start" ]
 ```
 
+Note that both these Dockerfiles do essentially the same: They start with a minimum requirement, copy the working directory, install the dependencies, expose a port and define the start command for the container. 
+
+
 #### Build and Load Your Container Images into Kind
 
-Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minuits.
+Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minuits. In order to be able to use them in our kind cluster, we need to tag these images (tagging is not optional). We are using the tag `my-image` here in this example:
+
 ```
 cd ../
 docker build ./getting-started-with-astra-ui -t astra-ui:my-image
 docker build ./getting-started-with-astra-python -t astra-backend:my-image
 ```
-Now we will load the built images into kind
+
+Now we will load the built images into kind. This can take some time...
+
 ```
 kind load docker-image astra-ui:my-image --name kind-cassandra
 kind load docker-image astra-backend:my-image --name kind-cassandra
 ```
+
 #### Setting up your Enviroment
 Since we have all the images built now let's setup the enviromental variables for the containers.  To do this we will need to retrieve the cassandra credentials from the secret store so that we can tell our app to use them when connecting. Run the following command to retrieve the info from the secret
 
@@ -119,13 +147,14 @@ data:
  password: QzNkRmh0c1I2OHNJSllic19jSV9UejVURkM0WFZpblMtT19mMmpOOUxjMXg2bUhxSW9razJR
  username: Y2x1c3RlcjEtc3VwZXJ1c2Vy
 ```
-Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command.
+Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command. (Mac users: use the `-D` option for the decode.)
+
 ```
 echo REPLACEME | base64 -d && echo ""
 ```
 The output you see is your password for the database.  Copy that password into the kubefiles/05-configMap.yaml into the corresponding field.
 
-Next you will need to get your connection point for the database.  This can be done by running the following command and retreaving the address value from the IP column
+Next you will need to get your connection point for the database.  This can be done by running the following command and retreiving the address value from the IP column
 ```
 kubectl get pods -o wide -n cass-operator
 ```
@@ -146,16 +175,18 @@ data:
 Feel free to look at the 06-backend.yaml and the 07-ui.yaml to see the specific configuration option used there.  
 
 Last item will be to install our schema in the new cassandra cluster we have setup.  To do this we will need to use the password we decoded from the previous section. Replace the CHANGEME in the following commands with the password. Use the following commands to access cqlsh. 
+
 ```
 kubectl exec -it -n cass-operator cluster1-dc1-default-sts-0 /bin/bash
 cqlsh -u cluster1-superuser -p CHANGEME
 ```
 
 Then simply copy pase the schema from the root of week6 into the cqlsh prompt and we are good to go. 
+
 ```
 CREATE KEYSPACE killrvideo WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'dc1' : 1 };
 
-CREATE TABLE IF NOT EXISTS spacecraft_journey_catalog (
+CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_journey_catalog (
     spacecraft_name text,
     journey_id timeuuid,
     start timestamp,
@@ -165,7 +196,7 @@ CREATE TABLE IF NOT EXISTS spacecraft_journey_catalog (
     PRIMARY KEY ((spacecraft_name), journey_id)
 ) WITH CLUSTERING ORDER BY (journey_id desc);
 
-CREATE TABLE IF NOT EXISTS spacecraft_speed_over_time (
+CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_speed_over_time (
     spacecraft_name text,
     journey_id timeuuid,
     speed double,
@@ -174,7 +205,7 @@ CREATE TABLE IF NOT EXISTS spacecraft_speed_over_time (
     PRIMARY KEY ((spacecraft_name, journey_id), reading_time)
 ) WITH CLUSTERING ORDER BY (reading_time DESC);
 
-CREATE TABLE IF NOT EXISTS spacecraft_temperature_over_time (
+CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_temperature_over_time (
     spacecraft_name text,
     journey_id timeuuid,
     temperature double,
@@ -183,7 +214,7 @@ CREATE TABLE IF NOT EXISTS spacecraft_temperature_over_time (
     PRIMARY KEY ((spacecraft_name, journey_id), reading_time)
 ) WITH CLUSTERING ORDER BY (reading_time DESC);
 
-CREATE TABLE IF NOT EXISTS spacecraft_pressure_over_time (
+CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_pressure_over_time (
     spacecraft_name text,
     journey_id timeuuid,
     pressure double,
@@ -192,12 +223,12 @@ CREATE TABLE IF NOT EXISTS spacecraft_pressure_over_time (
     PRIMARY KEY ((spacecraft_name, journey_id), reading_time)
 ) WITH CLUSTERING ORDER BY (reading_time DESC);
 
-CREATE TYPE IF NOT EXISTS location_udt (
+CREATE TYPE IF NOT EXISTS killrvideo.location_udt (
     x_coordinate double,
     y_coordinate double,
     z_coordinate double);
 
-CREATE TABLE IF NOT EXISTS spacecraft_location_over_time (
+CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_location_over_time (
     spacecraft_name text,
     journey_id timeuuid,
     location frozen<location_udt>,
@@ -224,12 +255,14 @@ kubectl -n my-app apply -f 05-configMap.yaml
 kubectl -n my-app apply -f 06-backend.yaml
 kubectl -n my-app apply -f 07-ui.yaml
 ```
-Lastly we need to forward the ports so that we can hit the services from our browser.
+Lastly we need to forward the ports to the host so that we can hit the services from our browser.
 ```
 kubectl -n my-app port-forward pods/astra-backend 5000:5000 &
 kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
 ```
 
 Navigate to [localhost:3000](localhost:3000) for the UI and [localhost:5000](localhost:5000) for the backend.
+
+Note: you will still need a plugin that unblocks CORS requests for you. 
 
 CONGRAGULATIONS!!! you now have a full application running in kubernetes.
