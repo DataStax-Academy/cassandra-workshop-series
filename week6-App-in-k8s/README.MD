@@ -190,6 +190,8 @@ Feel free to look at the 06-backend.yaml and the 07-ui.yaml to see the specific 
 
 ``` bash
 kubectl exec -it -n cass-operator cluster1-dc1-default-sts-0 /bin/bash
+```
+``` bash
 cqlsh -u cluster1-superuser -p CHANGEME
 ```
 
