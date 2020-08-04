@@ -55,7 +55,7 @@ Create the namespace cass-operator
 kubectl create ns cass-operator
 ```
 
-Create the storge class
+Create the storage class
 ```
 kubectl -n cass-operator apply -f 02-storageclass-kind.yaml
 ```
@@ -91,7 +91,7 @@ cluster1-dc1-default-sts-0       2/2     Running   0          11m
 
 
 #### Containerize Your App
-In order to get our app into K8 we will need to contanerize it.  We will be using docker to create two containers.  One for the UI and one for the backend.  
+In order to get our app into k8s we will need to contanerize it.  We will be using docker to create two containers.  One for the UI and one for the backend.  
 
 In order to build the docker images, a file named `Dockerfile` needs to be present in the working directory where we build the images. This is a reserved name, and it starts with an uppercase D.
 
@@ -120,7 +120,7 @@ Note that both these Dockerfiles do essentially the same: They start with a mini
 
 #### Build and Load Your Container Images into Kind
 
-Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minuits. In order to be able to use them in our kind cluster, we need to tag these images (tagging is not optional). We are using the tag `my-image` here in this example:
+Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minutes. In order to be able to use them in our kind cluster, we need to tag these images (tagging is not optional). We are using the tag `my-image` here in this example:
 
 ```
 cd ../
@@ -152,9 +152,9 @@ Copy the string from the password field.  You might notice this is a base64 enco
 ```
 echo REPLACEME | base64 -d && echo ""
 ```
-The output you see is your password for the database.  Copy that password into the kubefiles/05-configMap.yaml into the corresponding field.
+The output you see is your password for the database.  Copy that password into the `kubefiles/05-configMap.yaml` into the corresponding field.
 
-Next you will need to get your connection point for the database.  This can be done by running the following command and retreiving the address value from the IP column
+Next you will need to get your connection point for the database.  This can be done by running the following command and retrieving the address value from the IP column
 ```
 kubectl get pods -o wide -n cass-operator
 ```
@@ -261,7 +261,7 @@ kubectl -n my-app port-forward pods/astra-backend 5000:5000 &
 kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
 ```
 
-Navigate to [localhost:3000](localhost:3000) for the UI and [localhost:5000](localhost:5000) for the backend.
+Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:5000](http://localhost:5000) for the backend.
 
 Note: you will still need a plugin that unblocks CORS requests for you. 
 
