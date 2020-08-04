@@ -12,7 +12,7 @@ With workshops **week 4** we launched an Hackathon for you to build real life ap
 This is a contest that will last for 4 weeks where we expect you to code.
 
 - Starting **July 22nd, 2020**
-- Deadline **August 26th 00:00 PDT**
+- Deadline **August 20th 00:00 PDT**
 
 Pick the language your are confident with. 
 
