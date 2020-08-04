@@ -60,7 +60,7 @@ Create the storage class
 kubectl -n cass-operator apply -f 02-storageclass-kind.yaml
 ```
 
-Setup the Cassandra operator
+Setup the Cassandra operator this might take some time
 ```
 kubectl -n cass-operator apply -f 03-install-cass-operator-v1.3.yaml
 ```
@@ -265,4 +265,15 @@ Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http:
 
 Note: you will still need a plugin that unblocks CORS requests for you. 
 
-CONGRAGULATIONS!!! you now have a full application running in kubernetes.
+CONGRATULATIONS!!! you now have a full application running in kubernetes.
+
+### Cleaning Up
+
+To clean up the app simply run the following commands
+```
+kubectl delete ns cass-operator
+kubectl delete ns my-app
+kind delete cluster --name=kind-cassandra
+```
+
+Go forth and be awesome.
