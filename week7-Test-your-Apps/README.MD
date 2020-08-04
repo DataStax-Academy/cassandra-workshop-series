@@ -1,1 +1,419 @@
-# Week 2
+![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
+
+# ✨ Week 7 : Testing your Applications ✨
+
+[![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
+
+`Cassandra Workshop Series` are an interactive experience. Datastax Developer Advocates share some knowledge about Apache Cassandra™ NoSQL database and how you build Cloud Native applications. You interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and exercises. 
+
+In this repository, you'll find everything you need related to `week 7` of the **Cassandra Worskhop Series**. For simplicity all exercise instructions will be listed in a single `README`. 
+
+## Workshop Materials
+
+| Materials  | Description and Links
+|---|---|
+| Slidedeck | [SLIDEDECK](./materials/presentation.pdf) |
+| Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
+| Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
+| Recording LIVESTREAM NA, LATAM |  📅 [August 29th 12EDT](https://youtu.be/GYb4Do3BXOM) |
+| Recording LIVESTREAM APAC, EMEA | 📅 [July 30th 12:30 IST](https://youtu.be/q2zszeTIDxE) |
+| Homework | [here](https://community.datastax.com/questions/7047/materials-and-homework-for-week-5.html) |
+
+## Sections
+
+| Title  | Description | Type |
+|---|---|---|
+| **Installation and prerequisites** | [Section](#1-create-a-kubernetes-cluster) | Required |
+| Working with the Cassandra Operator | [Section](./README_CASSANDRA.MD)  | Required |
+| Metrics in Prometheus & Grafana | [Section](./README_METRICS_DSE.MD)  | Required |
+| K8s Dashboard | [Section](./README_DASHBOARD.MD)  | Bonus |
+
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
+It may happen on some computers, especially with Win10 Home Edition or older laptops that you will be not able to install Docker at all or if installed the Cassandra Cluster will require too many resources to run. That's perfectly fine, we have it covered you: fill out this form [https://forms.gle/4uNohEJ2Rb8k8dA58](https://forms.gle/4uNohEJ2Rb8k8dA58) to get your cloud instance for the exercises and we will send you a link within a business day! **!!WATCH OUT!!** In this case you have to start from [step 7, "Create the Namespace"](#7-create-namespace-and-storageclass) as all the other requirements are installed already. Have fun! 
+
+**!! IMPORTANT IMPORTANT IMPORTANT !!** 
+
+## Exercises
+
+| Title  | Description
+|---|---|
+| 1. Install Docker | [Instructions](#1-install-docker)  |
+| 2. Install Docker Compose | [Instructions](#2-install-docker-compose)  |
+| 3. Install Kubernetes command-line tool (Kubectl) | [Instructions](#3-install-kubernetes-command-line-tool-(kubectl))  |
+| 4. Install `watch` | [Instructions](#4-install-watch)  |
+| 5. Install Kind | [Instructions](#5-install-kind)  |
+| 6. Create a KIND cluster | [Instructions](#6-create-a-kind-cluster)  |
+| 7. Create namespace and storageClass | [Instructions](#7-create-namespace-and-storageclass)  |
+| 8. Working with the Cassandra Operator | [Instructions](#8-working-with-the-cassandra-operator)  |
+
+
+## Create a Kubernetes Cluster
+
+This guide will show you how to install a **Kubernetes** cluster on a single machine in order to later, deploy an Apache Cassandra™ database. It be composed of one *master* and multiple *workers*. 
+
+[🏠 Back to Table of Contents](#exercises)
+
+### 1. Install Docker
+
+Docker is an open-source project that automates the deployment of software applications inside containers by providing an additional layer of abstraction and automation of OS-level virtualization on Linux.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please use the following installer [Docker Desktop for Windows Installer](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : To install on **MAC OS**  use [Docker Desktop for MAC Installer](https://download.docker.com/mac/stable/Docker.dmg) or [homebrew](https://docs.brew.sh/Installation) with following commands:
+```bash
+# Fetch latest version of homebrew and formula.
+brew update              
+# Tap the Caskroom/Cask repository from Github using HTTPS.
+brew tap caskroom/cask                
+# Searches all known Casks for a partial or exact match.
+brew search docker                    
+# Displays information about the given Cask
+brew cask info docker
+# Install the given cask.
+brew cask install docker              
+# Remove any older versions from the cellar.
+brew cleanup
+# Validate installation
+docker -v
+```
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) : To install on linux (centOS) you can use the following commands
+```bash
+# Remove if already install
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+# Utils
+sudo yum install -y yum-utils
+
+# Add docker-ce repo
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+# Install
+sudo dnf -y  install docker-ce --nobest
+# Enable service
+sudo systemctl enable --now docker
+# Get Status
+systemctl status  docker
+
+# Logout....Lougin
+exit
+# Create user
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Validation
+docker images
+docker run hello-world
+docker -v
+```
+[🏠 Back to Table of Contents](#exercises)
+
+### 2. Install Docker Compose
+
+Docker Compose is a tool for defining and running multi-container Docker applications. It uses YAML files to configure the application's services and performs the creation and start-up process of all the containers with a single command. The `docker-compose` CLI utility allows users to run commands on multiple containers at once, for example, building images, scaling containers, running containers that were stopped, and more. Please refer to [Reference Documentation](https://docs.docker.com/compose/install/) if you have for more detailed instructions.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : Already **included** in the previous package *Docker for Windows*
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : Already **included** in the previous package *Docker for Mac*
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) : To install on linux (centOS) you can use the following commands
+
+```bash
+# Download deliverable and move to target location
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Allow execution
+sudo chmod +x /usr/local/bin/docker-compose
+```
+[🏠 Back to Table of Contents](#exercises)
+
+### 3. Install Kubernetes command-line tool (Kubectl)
+
+The Kubernetes command-line tool, `kubectl`, allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs. Please refer to [Reference Documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/) for more detailed instructions.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please use the following installer [Kubectl for Windows](https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe)
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : To install on **MAC OS** please use the following [homebrew](https://docs.brew.sh/Installation) commands:
+```bash
+brew install kubectl
+```
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) To install on linux (centOS) you can use the following commands. 
+
+*If the binary not working for your linux distribution you have more download urls in the [KUBETCTL DOCUMENTATION](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)*.
+
+```bash
+# Download binary and move to /bin
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+
+# Make the file executable
+chmod +x ./kubectl
+
+# Move the binary in to your PATH.
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+#Test to ensure the version you installed is up-to-date:
+kubectl version --client
+```
+[🏠 Back to Table of Contents](#exercises)
+
+### 4. Install `watch`
+
+During the workshop some bootstrap can last for a few minutes and the utilty `watch` can come to he rescue to avoid typing the same command multiple times to see the evolutions.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : The utility does not exist on **windows** but this is quite easy to create your own `watch.bat` file containing :
+```bash
+@ECHO OFF
+:loop
+  cls
+  %*
+  timeout /t 5 > NUL
+goto loop
+```
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : To install on **MAC OS** please use the following [homebrew](https://docs.brew.sh/Installation) commands:
+```bash
+brew install watch
+```
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) the utility is already installed in **centOS**
+
+```bash
+echo "Linux Rocks"
+```
+[🏠 Back to Table of Contents](#exercises)
+
+### 5. Install Helm
+
+Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application. Charts are easy to create, version, share, and publish — so start using Helm and stop the copy-and-paste.
+
+Helm is a graduated project in the CNCF and is maintained by the Helm community.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please use the Chocolatey package manager for windows
+
+- Install [Chocolatey](https://chocolatey.org/) following instructions [here](https://chocolatey.org/install) or using this [steps](https://chocolatey.org/courses/installation/installing?method=installing-chocolatey)
+
+- Install Helm with the following command
+```
+choco install kubernetes-helm
+```
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : To install on **MAC OS** please use the following [homebrew](https://docs.brew.sh/Installation) commands:
+```bash
+brew install helm
+```
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) To install on linux (ubuntu) you can use the following commands. 
+
+```bash
+curl https://helm.baltorepo.com/organization/signing.asc | sudo apt-key add -
+sudo apt-get install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+```
+
+or in CentOS as stated in [helm documentation](https://helm.sh/docs/intro/install/)
+```
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+```
+
+
+[🏠 Back to Table of Contents](#exercises)
+
+### 6. Install Kind
+
+kind (`kind`) is a tool for running local Kubernetes clusters using Docker container “nodes”. kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI. Please refer to [Reference Documentation](https://kind.sigs.k8s.io/docs/user/quick-start/) for more detailed instructions.
+
+![Windows](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/windows32.png?raw=true) : To install on **windows** please dowmload the [executable](https://kind.sigs.k8s.io/dl/v0.8.1/kind-windows-amd64) and place it on the PATH. You can also use **[Chocolatey](https://chocolatey.org/packages/kind)** very clever package manager for windows.
+```bash
+choco install kind
+```
+
+![osx](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/mac32.png?raw=true) : To install on **MAC OS** please use the following [homebrew](https://docs.brew.sh/Installation) commands:
+```bash
+brew install kind
+```
+
+![linux](https://github.com/DataStax-Academy/kubernetes-workshop-online/blob/master/4-materials/images/linux32.png?raw=true) To install on linux (centOS) you can use the following commands
+```bash
+curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.8.1/kind-$(uname)-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+
+Check that the installation is successful. Starting for now all command will be the same on each platform, as a such we will keep providing a single command. We will mark with a blue book the command (📘) and a green book (📗) to show expected result.
+
+📘 **Command to execute**
+```bash
+# Check existing Kind clusters
+kind get clusters
+```
+
+📗 **Expected output**
+```bash
+No kind clusters found.
+```
+[🏠 Back to Table of Contents](#exercises)
+
+### 7. Create the KIND cluster
+
+During this workshop we will work with a cluster with multiple Cassandra nodes. As of now the Cassandra Operator needs a worker per node. We will create a Kubernetes cluster based on the [following configuration](01-kind-config.yaml) **1 master, 5 workers** to be able to spawn some multi nodes clusters. This is also the reason why `kind` has been preferred as `minikube` another solution to run Kubernetes locally but handling only a managin a single worker.
+
+**✅ Step 6a. Execute the following command to create a kubernetes cluster**
+```bash
+kind create cluster --name kind-cassandra --config ./setup-your-cluster/01-kind-config.yaml
+```
+
+📗 **Expected output**
+```
+Creating cluster "kind-cassandra" ...
+ ✓ Ensuring node image (kindest/node:v1.17.0) 🖼
+ ✓ Preparing nodes 📦 📦 📦 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+ ✓ Joining worker nodes 🚜 
+Set kubectl context to "kind-kind-cassandra"
+You can now use your cluster with:
+kubectl cluster-info --context kind-kind-cassandra
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+```
+
+**✅ Step 6b. Execute the following command to visualize the list of your clusters**
+```bash
+# Show the new created cluster
+kind get clusters
+```
+📗 **Expected output**
+```
+kind-cassandra
+```
+
+**✅ Step 6c. Execute the following command to link `kubectl` with our new cluster**
+```bash
+kubectl cluster-info --context kind-kind-cassandra
+```
+📗 **Expected output**
+```
+Kubernetes master is running at https://127.0.0.1:45451
+KubeDNS is running at https://127.0.0.1:45451/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+**✅ Step 6d. Execute the following command to list nodes in k8s cluster**
+```bash
+kubectl get nodes
+```
+📗 **Expected output**
+```
+NAME                           STATUS   ROLES    AGE    VERSION
+kind-cassandra-control-plane   Ready    master   2m4s   v1.17.0
+kind-cassandra-worker          Ready    <none>   86s    v1.17.0
+kind-cassandra-worker2         Ready    <none>   88s    v1.17.0
+kind-cassandra-worker3         Ready    <none>   88s    v1.17.0
+kind-cassandra-worker4         Ready    <none>   88s    v1.17.0
+kind-cassandra-worker5         Ready    <none>   88s    v1.17.0
+```
+[🏠 Back to Table of Contents](#exercises)
+
+## 8. Create namespace and storageClass
+
+Cass-operator is built to watch over pods running Casandra or DSE in a Kubernetes namespace. We need to create a namespace for the cluster. For the rest of this guide, we will be using the namespace `cass-operator`. You can pick any name you like but you would have to change the commands accordingly.
+
+**✅ Step 7a. Execute the following command to create the namespace**
+```bash
+kubectl create ns cass-operator
+```
+📗 **Expected output**
+```
+namespace/cass-operator created
+```
+
+Kubernetes uses the `StorageClass` resource as an abstraction layer between pods needing persistent storage and the storage resources that a specific Kubernetes cluster can provide. We recommend using the fastest type of networked storage available. Let's create one for your environment.
+
+**✅ Step 7b. Execute the following command to list existing storageClass**
+```bash
+kubectl get storageclass
+```
+📗 **Expected output**
+```bash
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  11m
+```
+
+**✅ Step 7c. Execute the following command describe `default` storageClass**
+```bash
+kubectl describe storageclass standard
+```
+📗 **Expected output** (may vary)
+```
+Name:            standard
+IsDefaultClass:  Yes
+Annotations:     kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"},"name":"standard"},"provisioner":"rancher.io/local-path","reclaimPolicy":"Delete","volumeBindingMode":"WaitForFirstConsumer"}
+,storageclass.kubernetes.io/is-default-class=true
+Provisioner:           rancher.io/local-path
+Parameters:            <none>
+AllowVolumeExpansion:  <unset>
+MountOptions:          <none>
+ReclaimPolicy:         Delete
+VolumeBindingMode:     WaitForFirstConsumer
+Events:                <none>
+```
+
+We are are interested in a few fields to intialize the `yaml` to create a storageClass. You can find more information in the [Reference Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/) and the [dedicated page](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/#changing-the-default-storageclass) to edit those.
+
+One thing thing to note here is `volumeBindingMode: WaitForFirstConsumer`. The default value is `Immediate` and should not be used. It can prevent Cassandra pods from being scheduled on a worker node. If a pod fails to run and its status reports a message like, had volume node affinity conflict, then check the `volumeBindingMode` of the `StorageClass` being used
+
+This file should be adapted tor reflect your *Kubernetes* environment. We have several samples in the repository for [kind](./setup-your-cluster/02-storageclass-kind.yaml), [Minikube](./setup-your-cluster/03-storageclass-minikube.yaml) and [GKE](./setup-your-cluster/04-storageclass-gke.yaml).
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: server-storage
+provisioner: rancher.io/local-path
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+```
+
+**✅ Step 7d. Execute the following command to create a new `storageClass` named `server-storage`**
+For the rest of this guide, we would assume you have defined a `StorageClass` and named it `server-storage`. 
+```bash
+kubectl -n cass-operator apply -f ./setup-your-cluster/02-storageclass-kind.yaml
+```
+
+**✅ Step 7e. Execute the following command to list the storageClass**
+```
+kubectl -n cass-operator get storageClass
+```
+📗 **Expected output**
+```
+NAME                       PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+server-storage (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  25m
+standard (default)         rancher.io/local-path   Delete          WaitForFirstConsumer   false                  88m
+```
+[🏠 Back to Table of Contents](#exercises)
+
+## 9. Working with the Cassandra Operator
+
+At this point your initial kubernetes cluster setup should be in place and ready to launch your Cassandra cluster. Click on the **Instructions** link below to go the _Working with the Cassandra Operator_ section.
+
+| Sections | Material Description
+| - |---|
+| **Working with the Cassandra Operator** | [Instructions](./README_CASSANDRA.MD) |
+
+[🏠 Back to Table of Contents](#sections)
+
+[🏠Back to HOME workshop](https://github.com/DataStax-Academy/cassandra-workshop-series)
+
+THE END.
