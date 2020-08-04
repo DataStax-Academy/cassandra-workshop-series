@@ -82,7 +82,7 @@ class SessionManager(object):
 
                 cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
 
-            elif os.getenv('USE_ASTRA') == false:
+            elif os.getenv('USE_ASTRA') == 'false':
                 cluster = Cluster([os.getenv('CONNECTION_POINTS')],auth_provider=PlainTextAuthProvider(os.getenv('USERNAME'), os.getenv('PASSWORD')))
                 self.keyspace = os.getenv('KEYSPACE')
                 self.initialized = True
