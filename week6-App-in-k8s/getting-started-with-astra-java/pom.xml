@@ -106,7 +106,8 @@
                <artifactId>dockerfile-maven-plugin</artifactId>
                <version>${version.maven.plugin.docker}</version>
               <configuration>
-				<repository>java-backend</repository>
+				<repository>astra-backend</repository>
+				<tag>my-image</tag>
 				<buildArgs>
 					<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 				</buildArgs>

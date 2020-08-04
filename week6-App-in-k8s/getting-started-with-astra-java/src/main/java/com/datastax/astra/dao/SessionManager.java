@@ -73,9 +73,14 @@ public class SessionManager {
         return Arrays.stream(contactPoints.split(","))
                      .map(node -> {
                              String[] address = node.split(":");
-                             return new InetSocketAddress(address[0], Integer.valueOf(address[1]));})
+                             if (address.length > 1) { 
+                                 return new InetSocketAddress(address[0], Integer.valueOf(address[1]));
+                             } else {
+                                 return new InetSocketAddress(address[0], 9042);
+                             }
+                      })
                      .collect(Collectors.toSet());
-    }   
+    }
     
     private static void connectToLocalCassandra() {
         // Username
