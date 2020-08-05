@@ -8,16 +8,14 @@
 
 In this repository, you'll find everything you need related to `week 6` of the **Cassandra Worskhop Series**. For simplicity all exercise instructions will be listed in a single `README` for each language: Java, Python. We recommended you to have some previous experience with the language you choose. 
 
-Now if you are NOT familiar with any of those, we recommended to use Python, the is the simplest. Ready ? go !
-
 ## Workshop Materials
 
 | Materials  | Description and Links
 |---|---|
-| TODOSlidedeck | [SLIDEDECK](./materials/presentation-week6.pdf) |
+| SlideDeck | [HERE](./materials/presentation-week6.pdf) |
 | Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
-| TODOHomework | TODO[here](https://community.datastax.com/questions/6377/materials-and-homework-for-week-3.html) |
+| Homework | [here](https://community.datastax.com/questions/7416/materials-and-homework-for-week-6.html) |
 
 
 ## Table of Contents
@@ -33,59 +31,62 @@ Now if you are NOT familiar with any of those, we recommended to use Python, the
 
 In this week we will explore taking our app from running on bare metal to running our very own kuberneties deployment. 
 
-Note:The examples below are running the python backend.
+**⚠️ Important**
+```
+As a prerequisites you need DOCKER, KUBECTL and KIND install on the machine. Hardware requirements are at least 6GB allocated to Docker Memory. This work has been done last week here are the [installation steps as a reminders] (https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week5-Cass-in-k8s#create-a-kubernetes-cluster)
+```
 
 #### 1. Setup kind
 
 The first thing you need to do is get the week 6 kuberneties cluster up and running. To do that you will need to start in the root directory of the project.  Then run the following
 
-✅  Navigate to working folder
-``` bash
+✅  **Step1a:** Navigate to working folder
+```bash
 cd week6-App-in-k8s/kubefiles
 ```
 
-✅  Create and configure the kind cluster
-``` bash
+✅  **Step1b:** Create and configure the kind cluster
+```bash
 kind create cluster --name kind-cassandra --config 01-kind-config.yaml
 ```
 
-✅  Set the kubectl context to this new cluster
-``` bash
+✅  **Step1c:** Set the kubectl context to this new cluster
+```bash
 kubectl cluster-info --context kind-kind-cassandra
 ```
 #### 2. Start Cassandra
 
-✅  Create the namespace cass-operator
-``` bash
+✅  **Step2a:** Create the namespace cass-operator
+```bash
 kubectl create ns cass-operator
 ```
 
-✅  Create the storage class
-``` bash
+✅  **Step2b:** Create the storage class
+```bash
 kubectl -n cass-operator apply -f 02-storageclass-kind.yaml
 ```
 
-✅  Setup the Cassandra operator this might take some time
-``` bash
+✅  **Step2c:** Setup the Cassandra operator this might take some time
+```bash
 kubectl -n cass-operator apply -f 03-install-cass-operator-v1.3.yaml
 ```
 
-✅  Setup a single-node Cassandra cluster
-``` bash
+✅  **Step2d:** Setup a single-node Cassandra cluster
+```bash
 kubectl -n cass-operator apply -f 04-cassandra-cluster-1nodes.yaml
 ```
 
 This should setup the kuberneties kind cluster with a single cassandra node in the cass-operator namespace.
 
-✅  To verify that all is up an running from another terminal run:
+✅  **Step2e:** To verify that all is up an running from another terminal run:
 
-``` bash
+```bash
 watch kubectl -n cass-operator get pods
 ```
 
 Expected output when done:
 
-``` bash
+```bash
 $ kubectl -n cass-operator get pods
 NAME                             READY   STATUS    RESTARTS   AGE
 cass-operator-56fcb9ff47-cw9k6   1/1     Running   0          11m
@@ -93,15 +94,15 @@ cluster1-dc1-default-sts-0       2/2     Running   0          11m
 ```
 
 
-
-
 #### 3. Containerize Your App
+
 In order to get our app into k8s we will need to contanerize it.  We will be using docker to create two containers.  One for the UI and one for the backend.  
 
 In order to build the docker images, a file named `Dockerfile` needs to be present in the working directory where we build the images. This is a reserved name, and it starts with an uppercase D.
 
-📗  For the python backend the `Dockerfile` will look like the following
-``` vim
+📗 For the python backend the `Dockerfile` will look like the following
+
+```vim
 FROM python:alpine3.7
 COPY . /app
 WORKDIR /app
@@ -111,7 +112,8 @@ CMD ["python", "getting_started_with_astra.py"]
 ```
 
 📗  For the frontend the `Dockerfile` will look like the following
-``` vim
+
+```vim
 FROM node:12
 COPY . /app
 WORKDIR /app
@@ -125,14 +127,16 @@ Note that both these Dockerfiles do essentially the same: They start with a mini
 
 #### 4. Build and Load Your Container Images into Kind
 
-✅  Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minutes. In order to be able to use them in our kind cluster, we need to tag these images (tagging is not optional). We are using the tag `my-image` here in this example.  Choose your favorate language and the corrisponding commands below:
+✅  **Step4a:**  Next you will need to build your docker images with the following commands.  Keep in mind these commands can take the better part of 10 minutes. In order to be able to use them in our kind cluster, we need to tag these images (tagging is not optional). We are using the tag `my-image` here in this example.  Choose your favorate language and the corrisponding commands below:
 
-``` bash
+```bash
 cd ../
 docker build ./getting-started-with-astra-ui -t astra-ui:my-image
 ```
+
 **![JAVA](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-java.png)**
-```
+
+```bash
 mvn clean package dockerfile:build
 ```
 **![PYTHON](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)**
@@ -140,7 +144,7 @@ mvn clean package dockerfile:build
 docker build ./getting-started-with-astra-python -t astra-backend:my-image
 ```
 
-✅  Now we will load the built images into kind. This can take some time...
+✅  **Step4b:** Now we will load the built images into kind. This can take some time...
 
 ``` bash
 kind load docker-image astra-ui:my-image --name kind-cassandra
@@ -148,30 +152,36 @@ kind load docker-image astra-backend:my-image --name kind-cassandra
 ```
 
 #### 5. Setting up your Enviroment
-✅  Since we have all the images built now let's setup the enviromental variables for the containers.  To do this we will need to retrieve the cassandra credentials from the secret store so that we can tell our app to use them when connecting. Run the following command to retrieve the info from the secret
 
-``` bash
+✅ **Step5a:** Since we have all the images built now let's setup the enviromental variables for the containers.  To do this we will need to retrieve the cassandra credentials from the secret store so that we can tell our app to use them when connecting. Run the following command to retrieve the info from the secret
+
+```bash
 kubectl get secret cluster1-superuser -n cass-operator -o yaml
 ```
-📗  Find the line with the credentials.  It should look something like this
-``` bash
+📗 Find the line with the credentials. It should look something like this
+
+```bash
 data:
  password: QzNkRmh0c1I2OHNJSllic19jSV9UejVURkM0WFZpblMtT19mMmpOOUxjMXg2bUhxSW9razJR
  username: Y2x1c3RlcjEtc3VwZXJ1c2Vy
 ```
-✅  Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command. (Mac users: use the `-D` option for the decode.)
 
-``` bash
+✅ **Step5b:** Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command. (Mac users: use the `-D` option for the decode.)
+
+```bash
 echo REPLACEME | base64 -d && echo ""
 ```
+
 The output you see is your password for the database.  Copy that password into the `kubefiles/05-configMap.yaml` into the corresponding field.
 
-✅  Next you will need to get your connection point for the database.  This can be done by running the following command and retrieving the address value from the IP column
-``` bash
+✅ **Step5c:** Next you will need to get your connection point for the database.  This can be done by running the following command and retrieving the address value from the IP column
+```bash
 kubectl get pods -o wide -n cass-operator
 ```
+
 Once you put that value under connection points in the 05-configMap.yaml you should have something that looks this.
-``` vim
+
+```vim
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -184,20 +194,22 @@ data:
   USERNAME: 'cluster1-superuser'
   PASSWORD:'C3dFhtsR68sIJYbs_cI_Tz5TFC4XVinS-O_f2jN9Lc1x6mHqIokk2Q'
 ```
+
 Feel free to look at the 06-backend.yaml and the 07-ui.yaml to see the specific configuration option used there.  
 
-✅  Last item will be to install our schema in the new cassandra cluster we have setup.  To do this we will need to use the password we decoded from the previous section. Replace the CHANGEME in the following commands with the password. Use the following commands to access cqlsh. 
+✅ **Step5d:** Last item will be to install our schema in the new cassandra cluster we have setup.  To do this we will need to use the password we decoded from the previous section. Replace the CHANGEME in the following commands with the password. Use the following commands to access cqlsh. 
 
-``` bash
+```bash
 kubectl exec -it -n cass-operator cluster1-dc1-default-sts-0 /bin/bash
 ```
-``` bash
+
+```bash
 cqlsh -u cluster1-superuser -p CHANGEME
 ```
 
 Then simply copy pase the schema from the root of week6 into the cqlsh prompt and we are good to go. 
 
-``` cql
+```sql
 CREATE KEYSPACE killrvideo WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'dc1' : 1 };
 
 CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_journey_catalog (
@@ -251,46 +263,54 @@ CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_location_over_time (
     PRIMARY KEY ((spacecraft_name, journey_id), reading_time)
 ) WITH CLUSTERING ORDER BY (reading_time DESC);
 ```
-✅  Last we need to exit cqlsh and the kubernetes node
-``` bash
+
+✅  **Step5e:** Last we need to exit cqlsh and the kubernetes node
+
+```bash
 exit
 exit
 ```
 
-✅  Now that we are all set up it is time to turn everything on.  We will create a new namespace for our app.
-``` bash
+✅  **Step5f:** Now that we are all set up it is time to turn everything on.  We will create a new namespace for our app.
+
+```bash
 kubectl create ns my-app
 ```
-✅  Then we need to start applying the yaml files to the namespace.
+✅ **Step5g:** Then we need to start applying the yaml files to the namespace.
 
-``` bash
+```bash
 cd kubefiles
 kubectl -n my-app apply -f 05-configMap.yaml
 kubectl -n my-app apply -f 06-backend.yaml
 kubectl -n my-app apply -f 07-ui.yaml
 ```
-✅  Lastly we need to forward the ports to the host so that we can hit the services from our browser.
-``` bash
+
+✅  **Step5h:** Lastly we need to forward the ports to the host so that we can hit the services from our browser.
+
+```bash
 kubectl -n my-app port-forward pods/astra-backend 5000:5000 &
 kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
 ```
 
-✅  Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:5000](http://localhost:5000) for the backend.
+✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:5000](http://localhost:5000) for the backend.
 
 Note: you will still need a plugin that unblocks CORS requests for you. 
 
 CONGRATULATIONS!!! you now have a full application running in kubernetes.
 
 ### 6. Test
-✅  From the UI at [http://localhost:3000](http://localhost:3000)  setup and run a test journey.  Once it completes run the below command to check what data into the table. Be sure to replace CHANGEME with your saved decoded password from before.
-``` bash
+
+✅  **Step6a:**  From the UI at [http://localhost:3000](http://localhost:3000)  setup and run a test journey.  Once it completes run the below command to check what data into the table. Be sure to replace CHANGEME with your saved decoded password from before.
+
+```bash
 kubectl exec -it -n cass-operator cluster1-dc1-default-sts-0 -- cqlsh -e "select * from killrvideo.spacecraft_journey_catalog limit 5;" -u cluster1-superuser -p CHANGEME
 ```
 
 ### 7. Cleaning Up
 
-✅  To clean up the app simply run the following commands
-``` bash
+✅  **Step7a:** To clean up the app simply run the following commands
+
+```bash
 kubectl delete ns cass-operator
 kubectl delete ns my-app
 kind delete cluster --name=kind-cassandra
