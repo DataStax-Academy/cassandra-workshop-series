@@ -217,10 +217,32 @@ echo REPLACEME | base64 -d && echo ""
 
 The output you see is your password for the database.  Copy that password into the `kubefiles/05-configMap.yaml` into the corresponding field.
 
-✅ **Step5c:** Next you will need to get your connection point for the database.  This can be done by running the following command and retrieving the address value from the IP column
+✅ **Step5c:** Next you will need to get your connection point for the database.  We will use the cluster service for that.
+
+To find the name of the service:
 
 ```bash
-kubectl get pods -o wide -n cass-operator
+kubectl get services -n cass-operator
+```
+
+📗 Expected output:
+
+```bash
+$ kubectl get services -n cass-operator
+NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+cass-operator-metrics                 ClusterIP   10.96.69.243     <none>        8383/TCP,8686/TCP   5h57m
+cassandradatacenter-webhook-service   ClusterIP   10.103.222.183   <none>        443/TCP             5h57m
+cluster1-dc1-all-pods-service         ClusterIP   None             <none>        <none>              5h57m
+cluster1-dc1-service                  ClusterIP   None             <none>        9042/TCP,8080/TCP   5h57m
+cluster1-seed-service                 ClusterIP   None             <none>        <none>              5h57m
+```
+
+The service to use is the `cluster1-dc1-service`. Note that its type is a ClusterIP. 
+
+In order to use it from our pods in a different namespace, we need to provide the DNS name of the service:
+
+```bash
+cluster1-dc1-service.cass-operator.svc.cluster.local
 ```
 
 Once you put that value under connection points in the 05-configMap.yaml you should have something that looks this.
@@ -233,7 +255,7 @@ metadata:
 data:
   BASE_ADDRESS: 'http://localhost:5000/api'
   USE_ASTRA: 'true'
-  CONNECTION_POINTS: '10.32.42.121'
+  CONNECTION_POINTS: 'cluster1-dc1-service.cass-operator.svc.cluster.local'
   KEYSPACE: 'killrvideo'
   USERNAME: 'cluster1-superuser'
   PASSWORD:'C3dFhtsR68sIJYbs_cI_Tz5TFC4XVinS-O_f2jN9Lc1x6mHqIokk2Q'
