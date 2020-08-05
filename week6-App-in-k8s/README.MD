@@ -33,8 +33,11 @@ In this week we will explore taking our app from running on bare metal to runnin
 
 **⚠️ Important**
 ```
-As a prerequisites you need DOCKER, KUBECTL and KIND install on the machine. Hardware requirements are at least 6GB allocated to Docker Memory. This work has been done last week here are the [installation steps as a reminders] (https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week5-Cass-in-k8s#create-a-kubernetes-cluster)
+As a prerequisites you need DOCKER, KUBECTL and KIND install on the machine. 
+Hardware requirements are at least 6GB allocated to Docker Memory. 
+This work has been done last week. We provide you the steps as a reminder below
 ```
+[installation steps as a reminders](https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week5-Cass-in-k8s#create-a-kubernetes-cluster)
 
 #### 1. Setup kind
 
