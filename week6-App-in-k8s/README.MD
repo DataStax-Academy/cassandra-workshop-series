@@ -15,7 +15,7 @@ In this repository, you'll find everything you need related to `week 6` of the *
 | SlideDeck | [HERE](./materials/presentation-week6.pdf) |
 | Chat with us on Discord | [DISCORD](https://bit.ly/cassandra-workshop) |
 | Ask Question during week | [COMMUNITY](https://community.datastax.com/spaces/172/index.html) |
-| Homework | [here](https://community.datastax.com/questions/7416/materials-and-homework-for-week-6.html) |
+| Homework | [HERE](https://community.datastax.com/questions/7416/materials-and-homework-for-week-6.html) |
 
 
 ## Table of Contents
@@ -59,7 +59,7 @@ kubectl cluster-info --context kind-kind-cassandra
 ```
 #### 2. Start Cassandra
 
-✅  **Step2a:** Create the namespace cass-operator
+✅  **Step2a:** Create the namespace `cass-operator`
 ```bash
 kubectl create ns cass-operator
 ```
@@ -87,7 +87,7 @@ This should setup the kuberneties kind cluster with a single cassandra node in t
 watch kubectl -n cass-operator get pods
 ```
 
-Expected output when done:
+Expected output when done. ⚠️ Expect this to take 5 mins. 
 
 ```bash
 $ kubectl -n cass-operator get pods
@@ -114,6 +114,17 @@ EXPOSE 5000
 CMD ["python", "getting_started_with_astra.py"]
 ```
 
+📗  The Java backend `Dockerfile`:
+
+```vim
+FROM openjdk:11
+VOLUME /tmp
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+EXPOSE 5000
+```
+
 📗  For the frontend the `Dockerfile` will look like the following
 
 ```vim
@@ -125,7 +136,7 @@ EXPOSE 3000
 CMD [ "npm", "run", "start" ]
 ```
 
-Note that both these Dockerfiles do essentially the same: They start with a minimum requirement, copy the working directory, install the dependencies, expose a port and define the start command for the container. 
+Note that these Dockerfiles do essentially the same: They start with a minimum requirement, copy the working directory, install the dependencies, expose a port and define the start command for the container. 
 
 
 #### 4. Build and Load Your Container Images into Kind
@@ -143,11 +154,27 @@ docker build ./getting-started-with-astra-ui -t astra-ui:my-image
 mvn clean package dockerfile:build
 ```
 **![PYTHON](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/logo-python.png)**
-```
+
+```bash
 docker build ./getting-started-with-astra-python -t astra-backend:my-image
 ```
+✅  **Step4b:** As an optional step, we can test our docker containers for the connection with Astra, before we use them in the kubernetes cluster.
 
-✅  **Step4b:** Now we will load the built images into kind. This can take some time...
+```bash
+docker run -e USE_ASTRA='true' -p 5000:5000 astra-backend:my-image
+docker run -e USE_ASTRA='true' -e BASE_ADDRESS='http://localhost:5000/api' -p 3000:3000 astra-ui:my-image
+```
+
+Navigate to [http://localhost:5000](http://localhost:5000) and to [http://localhost:3000](http://localhost:3000), complete the connection dialog with your details, and connect to your Astra database. 
+
+Stop the docker containers:
+
+```bash
+docker ps
+docker stop <container_id>
+```
+
+✅  **Step4c:** Now we will load the built images into kind. ⚠️ This can take a few minutes. 
 
 ``` bash
 kind load docker-image astra-ui:my-image --name kind-cassandra
@@ -169,7 +196,7 @@ data:
  username: Y2x1c3RlcjEtc3VwZXJ1c2Vy
 ```
 
-✅ **Step5b:** Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command. (Mac users: use the `-D` option for the decode.)
+✅ **Step5b:** Copy the string from the password field.  You might notice this is a base64 encoded string.  We will need to decode so that we can use it.  Paste the string from the password field instead of the REPLACEME text in the following command. (Mac users: use the `-D` option for the decode.) ⚠️ Important, you can't skip this step, as the password changes with each installation.
 
 ```bash
 echo REPLACEME | base64 -d && echo ""
@@ -178,6 +205,7 @@ echo REPLACEME | base64 -d && echo ""
 The output you see is your password for the database.  Copy that password into the `kubefiles/05-configMap.yaml` into the corresponding field.
 
 ✅ **Step5c:** Next you will need to get your connection point for the database.  This can be done by running the following command and retrieving the address value from the IP column
+
 ```bash
 kubectl get pods -o wide -n cass-operator
 ```
@@ -267,14 +295,14 @@ CREATE TABLE IF NOT EXISTS killrvideo.spacecraft_location_over_time (
 ) WITH CLUSTERING ORDER BY (reading_time DESC);
 ```
 
-✅  **Step5e:** Last we need to exit cqlsh and the kubernetes node
+✅  **Step5e:** Last we need to exit cqlsh, and then kubernetes cassandra pod.
 
 ```bash
 exit
 exit
 ```
 
-✅  **Step5f:** Now that we are all set up it is time to turn everything on.  We will create a new namespace for our app.
+✅  **Step5f:** Now that we are all set up it is time to turn everything on.  We will create a new namespace `my-app` for our app.
 
 ```bash
 kubectl create ns my-app
@@ -297,7 +325,7 @@ kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
 
 ✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:5000](http://localhost:5000) for the backend.
 
-Note: you will still need a plugin that unblocks CORS requests for you. 
+⚠️ You will still need a plugin that unblocks CORS requests for you. 
 
 CONGRATULATIONS!!! you now have a full application running in kubernetes.
 
