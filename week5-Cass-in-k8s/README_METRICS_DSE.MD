@@ -131,16 +131,50 @@ kubectl -n cass-operator create -f ./prometheus_grafana/prometheus/operator.yaml
 
 📘 **3b. Install the instance of prometheus**
 
-⚠️ Wait a bit for the operator to inialize (could be 1 - 10mins) and only then execute the command to create the instance.
+⚠️ Wait a bit for the operator to initialize (could be 20 to 50 mins) and only then execute the command to create the instance.
+On a big machine with **8 CPUs and 32GB of RAM**, it took **25 minutes** for the Prometheus operator to be ready so **be patient**. :)
+
+Watch it by running the following command:
+
+```
+watch kubectl -n cass-operator get pods
+```
+
+You will know it is ready when you see something similar to this:
+
+```
+NAME                                  READY   STATUS    RESTARTS   AGE
+prometheus-operator-cc5458b99-tbgx6   1/1     Running   0          13m
+```
+
+When it is ready, create an instance with this command: 
 
 ```
 kubectl -n cass-operator apply -f ./prometheus_grafana/prometheus/instance.yaml
+```
+
+If successful, you should be able to see a new Prometheus pod running like this:
+
+```
+$ kubectl -n cass-operator get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+prometheus-default-0                  3/3     Running   1          6m52s
+prometheus-operator-cc5458b99-tbgx6   1/1     Running   0          20m
+```
+
+with a service listening on port `9090`:
+
+```
+$ kubectl -n cass-operator get svc
+NAME                  TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+prometheus-operated   ClusterIP   None         <none>        9090/TCP   8m12s
 ```
 
 Got this error ? you did not wait enough, retry a bit few seconds laters.
 ```
 error: unable to recognize "./prometheus_grafana/prometheus/instance.yaml": no matches for kind "Prometheus" in version "monitoring.coreos.com/v1"
 ```
+
 
 📘 **3c. Install Service Monitor**
 ```
