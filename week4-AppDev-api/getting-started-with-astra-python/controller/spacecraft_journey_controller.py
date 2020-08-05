@@ -26,7 +26,7 @@ def journeys_for_spacecraft(spacecraft_name):
         journey_id = min_uuid_from_time(now)
         start = now
         end = now + timedelta(seconds=1000)
-        active = True
+        active = False
         summary = request.get_data(as_text=True)
 
         astra_service.create_new_journey_for_spacecraft(spacecraft_name, journey_id, start, end, active, summary)
