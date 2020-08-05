@@ -87,7 +87,7 @@ This should setup the kuberneties kind cluster with a single cassandra node in t
 watch kubectl -n cass-operator get pods
 ```
 
-Expected output when done. ⚠️ Expect this to take 5 mins. 
+📗 Expected output when done. ⚠️ Expect this to take 5 mins. 
 
 ```bash
 $ kubectl -n cass-operator get pods
@@ -179,6 +179,19 @@ docker stop <container_id>
 ``` bash
 kind load docker-image astra-ui:my-image --name kind-cassandra
 kind load docker-image astra-backend:my-image --name kind-cassandra
+```
+
+📗 Expected output when done:
+
+```bash
+$ kind load docker-image astra-backend:my-image --name kind-cassandra
+Image: "astra-backend:my-image" with ID "sha256:ae76fd47c57d8708e2f3ffaf6610e23e28414b4c093883737de60adcf823529c" not yet present on node "kind-cassandra-control-plane", loading...
+Image: "astra-backend:my-image" with ID "sha256:ae76fd47c57d8708e2f3ffaf6610e23e28414b4c093883737de60adcf823529c" not yet present on node "kind-cassandra-worker", loading...
+
+$ kind load docker-image astra-ui:my-image --name kind-cassandra
+Image: "astra-ui:my-image" with ID "sha256:a82388e953be8383ce9cf3d42a7c8f6de60ee90b5dde0cc6639519f9bf3e0394" not yet present on node "kind-cassandra-control-plane", loading...
+Image: "astra-ui:my-image" with ID "sha256:a82388e953be8383ce9cf3d42a7c8f6de60ee90b5dde0cc6639519f9bf3e0394" not yet present on node "kind-cassandra-worker", loading...
+$ 
 ```
 
 #### 5. Setting up your Enviroment
