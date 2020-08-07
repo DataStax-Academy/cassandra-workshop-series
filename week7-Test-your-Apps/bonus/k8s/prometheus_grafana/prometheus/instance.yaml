@@ -1,0 +1,60 @@
+# https://github.com/coreos/prometheus-operator/blob/master/Documentation/rbac.md
+# With the default prometheus-k8s service account we cannot have cross namespace
+# monitoring:
+# https://github.com/coreos/prometheus-operator/issues/1921
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: cass-operator
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: default
+  labels:
+    prometheus: k8s
+spec:
+  replicas: 1
+  serviceAccountName: prometheus
+  securityContext: {}
+  serviceMonitorSelector:
+    matchLabels:
+      cassandra.datastax.com/cluster: cluster2
+  ruleSelector: {}
+  alerting:
+    alertmanagers:
+      - namespace: cass-operator
+        name: alertmanager-main
+        port: web

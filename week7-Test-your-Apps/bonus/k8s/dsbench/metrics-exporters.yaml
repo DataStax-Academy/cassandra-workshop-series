@@ -1,0 +1,71 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: graphite-exporter-mapping
+data:
+  graphite_mapping.conf: ""
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphite-metrics-exporter
+  labels:
+    app: graphite-metrics-exporter
+spec:
+  ports:
+  - port: 9108
+    name: prometheus
+  - port: 9109
+    name: prometheus-graphite
+  clusterIP: None
+  selector:
+    app: graphite-metrics-exporter
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: exporter
+spec:
+  selector:
+    matchLabels:
+      app: graphite-metrics-exporter # has to match .spec.template.metadata.labels
+  serviceName: "graphite-metrics-exporter"
+  replicas: 4 # Must match the number of jobs intended to run at any given time
+  template:
+    metadata:
+      labels:
+        app: graphite-metrics-exporter # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: graphite-exporter
+        image: prom/graphite-exporter
+        command:
+        - /bin/sh
+        - -x
+        - -c
+        - graphite_exporter --graphite.mapping-config=/etc/prometheus/graphite_mapping.conf
+        ports:
+        - containerPort: 9108
+          name: prometheus
+        - containerPort: 9109
+          name: prom-graphite
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+        volumeMounts:
+        - name: graphite-config-volume
+          mountPath: /etc/prometheus
+          readOnly: true
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      volumes:
+      - name: graphite-config-volume
+        configMap:
+          name: graphite-exporter-mapping

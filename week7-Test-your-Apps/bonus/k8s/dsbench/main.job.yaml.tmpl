@@ -1,0 +1,77 @@
+{%- set cycles = 1000000000 %}
+{%- set numjobs = 4 %}
+{%- for jobid in range(numjobs) %}
+{%- set name = "iot-main-" ~ jobid %}
+{%- set cycles_start = cycles // numjobs * jobid %}
+{%- set cycles_end = cycles // numjobs  * ( jobid + 1 ) %}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ name }}
+  labels:
+    app: dsbench
+    phase: main
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: main
+    spec:
+      containers:
+      - name: dsbench
+        image: datastaxlabs/dsbench
+        command:
+        - dsbench run type=cql yaml=/config/iot.yaml tags=phase:main host=ebs-cluster-ebs-dc-1-service threads=200 cycles={{ cycles_start }}..{{ cycles_end }} rf=3 dc=ebs-dc-1 write_cl=LOCAL_QUORUM read_cl=LOCAL_QUORUM --report-graphite-to 127.0.0.1:9109 && /bin/touch /tmp/watch/signal
+        #resources:
+        #  requests:
+        #    cpu: 4
+        #    memory: 32Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+        - name: sidecar-signal-volume
+          mountPath: /tmp/watch
+      - name: graphite-exporter-sidecar
+        image: bradfordcp/graphite-exporter-sidecar
+        command:
+        - /bin/sh
+        - -x
+        - -c
+        - graphite_exporter --graphite.mapping-config=/etc/prometheus/graphite_mapping.conf & /usr/bin/inotifywait -qq -e create /tmp/watch
+        ports:
+        - containerPort: 9108
+          name: prometheus
+        - containerPort: 9109
+          name: prom-graphite
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+        volumeMounts:
+        - name: graphite-config-volume
+          mountPath: /etc/prometheus
+          readOnly: true
+        - name: sidecar-signal-volume
+          mountPath: /tmp/watch
+          readOnly: true
+
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+        - key: nosched
+          operator: "Exists"
+          effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: graphite-config-volume
+        configMap:
+          name: graphite-exporter-mapping
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+      - name: sidecar-signal-volume
+  backoffLimit: 4
+---
+{% endfor %}

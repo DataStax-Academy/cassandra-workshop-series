@@ -1,0 +1,24 @@
+# nb run driver=cql workload=cql-iot-basic-rampup.yaml threads=auto cycles=100000
+description: |
+  This workload emulates a time-series data model and ramps up data after schema creation.
+
+blocks:
+  - tags:
+      phase: rampup
+    bindings:
+      machine_id: Mod(10000); ToHashedUUID() -> java.util.UUID
+      sensor_name: HashedLineToString('data/variable_words.txt')
+      time: Mul(100); Div(10000L); ToDate()
+      cell_timestamp: Mul(100L); Div(10000L); Mul(1000L)
+      sensor_value: Normal(0.0,5.0); Add(100.0) -> double
+      station_id: Div(10000);Mod(100); ToHashedUUID() -> java.util.UUID
+      data: HashedFileExtractToString('data/lorem_ipsum_full.txt',800,1200)
+    statements:
+     - insert-rampup: |
+        insert into baselines.iot
+        (machine_id, sensor_name, time, sensor_value, station_id, data)
+        values ({machine_id}, {sensor_name}, {time}, {sensor_value}, {station_id}, {data})
+        using timestamp {cell_timestamp}
+       idempotent: true
+       prepared: true
+       cl: LOCAL_QUORUM

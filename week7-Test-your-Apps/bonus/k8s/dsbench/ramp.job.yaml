@@ -1,0 +1,57 @@
+# https://kubernetes.io/docs/tasks/job/parallel-processing-expansion/#multiple-template-parameters
+# 1M
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-ramp-0
+  labels:
+    app: dsbench
+    phase: ramp
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: ramp
+    spec:
+      containers:
+      - name: dsbench
+        image: nosqlbench/nosqlbench
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:rampup 
+        - host=10.244.3.9
+        - threads=256 
+        - stride=1000
+        - cyclerate=175000 
+        - async=2560 
+        - cycles=0..25000 
+        - dc=dc2 
+        - write_cl=LOCAL_ONE 
+        - read_cl=LOCAL_ONE 
+        - --report-graphite-to 
+        - exporter-0.graphite-metrics-exporter:9109
+        - username=cluster2-superuser
+        - password=FQTVerFH5Df5QEatgSn6_JQL2i06sW7gEtzcqJA2Nu0hPNRCKmkwbA
+        resources:
+          requests:
+            cpu: "2"
+            memory: 2Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4

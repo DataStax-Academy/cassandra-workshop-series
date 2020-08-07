@@ -1,0 +1,67 @@
+# nb run driver=cql workload=cql-iot-basic-all.yaml tags=phase:schema threads=auto cycles=3
+# nb run driver=cql workload=cql-iot-basic-all.yaml tags=phase:rampup threads=auto cycles=100000
+# nb run driver=cql workload=cql-iot-basic-all.yaml tags=phase:main threads=auto cycles=100000
+description: |
+  This workload emulates a time-series data model and access patterns.
+
+blocks:
+  - tags:
+      phase: schema
+    params:
+      prepared: false
+    statements:
+     - create-keyspace: |
+        create keyspace if not exists baselines
+        WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}
+        AND durable_writes = true;
+     - create-table : |
+        create table if not exists baselines.iot (
+        machine_id UUID,     // source machine
+        sensor_name text,    // sensor name
+        time timestamp,      // timestamp of collection
+        sensor_value double, //
+        station_id UUID,     // source location
+        data text,
+        PRIMARY KEY ((machine_id, sensor_name), time)
+        ) WITH CLUSTERING ORDER BY (time DESC)
+         AND compression = { 'sstable_compression' : 'LZ4Compressor' }
+         AND compaction = {
+         'class': 'TimeWindowCompactionStrategy',
+         'compaction_window_size': 60,
+         'compaction_window_unit': 'MINUTES'
+        };
+     - truncate-table: |
+         truncate table baselines.iot;
+  - tags:
+      phase: rampup
+    params:
+      cl: LOCAL_QUORUM
+    bindings:
+      machine_id: Mod(10000); ToHashedUUID() -> java.util.UUID
+      sensor_name: HashedLineToString('data/variable_words.txt')
+      time: Mul(100L); Div(10000L); ToDate()
+      cell_timestamp: Mul(100L); Div(10000L); Mul(1000L)
+      sensor_value: Normal(0.0,5.0); Add(100.0) -> double
+      station_id: Div(10000);Mod(100); ToHashedUUID() -> java.util.UUID
+      data: HashedFileExtractToString('data/lorem_ipsum_full.txt',800,1200)
+    statements:
+     - insert-rampup: |
+        insert into  baselines.iot
+        (machine_id, sensor_name, time, sensor_value, station_id, data)
+        values ({machine_id}, {sensor_name}, {time}, {sensor_value}, {station_id}, {data})
+        using timestamp {cell_timestamp}
+       idempotent: true
+
+  - tags:
+      phase: main
+    params:
+      cl: LOCAL_QUORUM
+      prepared: true
+    bindings:
+      machine_id: Mod(10000); ToHashedUUID() -> java.util.UUID
+      sensor_name: HashedLineToString('data/variable_words.txt')
+    statements:
+     - select-read: |
+         select * from baselines.iot
+         where machine_id={machine_id} and sensor_name={sensor_name}
+         limit 10

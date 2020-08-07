@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dsbench
+spec:
+  containers:
+  - name: dsbench
+    image: nosqlbench/nosqlbench
+    envFrom:
+    - configMapRef:
+        name: dsbench-config

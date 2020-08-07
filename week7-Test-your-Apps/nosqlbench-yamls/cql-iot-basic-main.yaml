@@ -1,0 +1,17 @@
+# nb run driver=cql workload=cql-iot-basic-main.yaml threads=auto cycles=100000
+description: |
+  This workload emulates a time-series access pattern.
+
+blocks:
+  - tags:
+      phase: main
+    bindings:
+      machine_id: Mod(10000); ToHashedUUID() -> java.util.UUID
+      sensor_name: HashedLineToString('data/variable_words.txt')
+    statements:
+     - select-read: |
+         select * from baselines.iot
+         where machine_id={machine_id} and sensor_name={sensor_name}
+         limit 10
+       cl: LOCAL_QUORUM
+       prepared: true

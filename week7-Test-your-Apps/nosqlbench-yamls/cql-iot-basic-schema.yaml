@@ -1,0 +1,32 @@
+# nb run driver=cql workload=cql-iot-basic-schema.yaml threads=auto cycles=3
+description: |
+  This workload emulates a time-series data model schema creation.
+
+blocks:
+  - tags:
+      phase: schema
+    params:
+      prepared: false
+    statements:
+     - create-keyspace: |
+        create keyspace if not exists baselines
+        WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}
+        AND durable_writes = true;
+     - create-table : |
+        create table if not exists baselines.iot (
+        machine_id UUID,     // source machine
+        sensor_name text,    // sensor name
+        time timestamp,      // timestamp of collection
+        sensor_value double, //
+        station_id UUID,     // source location
+        data text,
+        PRIMARY KEY ((machine_id, sensor_name), time)
+        ) WITH CLUSTERING ORDER BY (time DESC)
+         AND compression = { 'sstable_compression' : 'LZ4Compressor' }
+         AND compaction = {
+         'class': 'TimeWindowCompactionStrategy',
+         'compaction_window_size': 60,
+         'compaction_window_unit': 'MINUTES'
+        };
+     - truncate-table: |
+         truncate table baselines.iot;

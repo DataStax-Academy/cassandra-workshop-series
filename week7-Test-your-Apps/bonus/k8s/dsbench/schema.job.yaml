@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-schema
+  labels:
+    app: dsbench
+    phase: schema
+spec:
+  completions: 1
+  template:
+    spec:
+      containers:
+      - name: dsbench
+        image: nosqlbench/nosqlbench 
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:schema 
+        - host=10.244.3.9
+        - cycles=3 
+        - rf=1 
+        - dc=dc2 
+        - --report-graphite-to 
+        - exporter-0.graphite-metrics-exporter:9109
+        - username=cluster2-superuser
+        - password=FQTVerFH5Df5QEatgSn6_JQL2i06sW7gEtzcqJA2Nu0hPNRCKmkwbA
+        resources:
+          requests:
+            cpu: 2 
+            memory: 2Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4

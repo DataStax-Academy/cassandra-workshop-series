@@ -1,0 +1,88 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dsbench-config
+data:
+  iot.yaml: |
+    bindings:
+      machine_id: Mod(<<sources:10000>>); ToHashedUUID() -> java.util.UUID
+      sensor_name: HashedLineToString('data/variable_words.txt')
+      time: Mul(<<timespeed:100>>L); Div(<<sources:10000>>L); ToDate()
+      cell_timestamp: Mul(<<timespeed:100>>L); Div(<<sources:10000>>L); Mul(1000L)
+      sensor_value: Normal(0.0,5.0); Add(100.0) -> double
+      station_id: Div(<<sources:10000>>);Mod(<<stations:100>>); ToHashedUUID() -> java.util.UUID
+      data: HashedFileExtractToString('data/lorem_ipsum_full.txt',1199,1200)
+    blocks:
+      - tags:
+          phase: schema
+        params:
+          prepared: false
+        statements:
+        - create-keyspace: |
+            create keyspace if not exists <<keyspace:baselines>>
+            WITH replication = {'class' : 'NetworkTopologyStrategy', '<<dc:dc2>>' : '<<rf:1>>'}
+            AND durable_writes = true;
+        - create-table : |
+            create table if not exists <<keyspace:baselines>>.<<table:iot>> (
+            machine_id UUID,     // source machine
+            sensor_name text,    // sensor name
+            time timestamp,      // timestamp of collection
+            sensor_value double, //
+            station_id UUID,     // source location
+            data text,
+            PRIMARY KEY ((machine_id, sensor_name), time)
+            ) WITH CLUSTERING ORDER BY (time DESC)
+            AND compression = { 'sstable_compression' : '<<compression:LZ4Compressor>>' }
+            AND compaction = {
+            'class': 'TimeWindowCompactionStrategy',
+            'compaction_window_size': <<expiry_minutes:60>>,
+            'compaction_window_unit': 'MINUTES'
+            };
+        - |
+            truncate table baselines.iot;
+      - tags:
+          phase: rampup
+        params:
+          cl: <<write_cl:LOCAL_QUORUM>>
+        statements:
+        - insert-rampup: |
+            insert into  <<keyspace:baselines>>.<<table:iot>>
+            (machine_id, sensor_name, time, sensor_value, station_id, data)
+            values ({machine_id}, {sensor_name}, {time}, {sensor_value}, {station_id}, {data})
+            using timestamp {cell_timestamp}
+          idempotent: true
+      - tags:
+          phase: verify
+          type: read
+        params:
+          ratio: 1
+          cl: <<read_cl:LOCAL_QUORUM>>
+        statements:
+        - select-verify: |
+            select * from <<keyspace:baselines>>.<<table:iot>>
+            where machine_id={machine_id} and sensor_name={sensor_name} and time={time};
+      - tags:
+          phase: main
+          type: read
+        params:
+          ratio: <<read_ratio:1>>
+          cl: <<read_cl:LOCAL_QUORUM>>
+        statements:
+        - select-read: |
+            select * from <<keyspace:baselines>>.<<table:iot>>
+            where machine_id={machine_id} and sensor_name={sensor_name}
+            limit <<limit:10>>
+      - tags:
+          phase: main
+          type: write
+        params:
+          ratio: <<write_ratio:9>>
+          cl: <<write_cl:LOCAL_QUORUM>>
+        statements:
+        - insert-main: |
+            insert into <<keyspace:baselines>>.<<table:iot>>
+            (machine_id, sensor_name, time, sensor_value, station_id, data)
+            values ({machine_id}, {sensor_name}, {time}, {sensor_value}, {station_id}, {data})
+            using timestamp {cell_timestamp}
+          idempotent: true

@@ -1,0 +1,212 @@
+---
+# Source: prometheus-node-exporter/templates/psp.yaml
+
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  labels:     
+    app: prometheus-node-exporter
+  name: demo-prometheus-node-exporter
+spec:
+  privileged: false
+  # Required to prevent escalations to root.
+  # allowPrivilegeEscalation: false
+  # This is redundant with non-root + disallow privilege escalation,
+  # but we can provide it for defense in depth.
+  #requiredDropCapabilities:
+  #  - ALL
+  # Allow core volume types.
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
+    - 'hostPath'
+  hostNetwork: true
+  hostIPC: false
+  hostPID: true
+  hostPorts:
+    - min: 0
+      max: 65535
+  runAsUser:
+    # Permits the container to run with root privileges as well.
+    rule: 'RunAsAny'
+  seLinux:
+    # This policy assumes the nodes are using AppArmor rather than SELinux.
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'MustRunAs'
+    ranges:
+      # Forbid adding the root group.
+      - min: 0
+        max: 65535
+  fsGroup:
+    rule: 'MustRunAs'
+    ranges:
+      # Forbid adding the root group.
+      - min: 0
+        max: 65535
+  readOnlyRootFilesystem: false
+
+---
+# Source: prometheus-node-exporter/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-prometheus-node-exporter
+  labels:
+    app: prometheus-node-exporter
+imagePullSecrets: 
+  []
+  
+---
+# Source: prometheus-node-exporter/templates/psp-clusterrole.yaml
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:     
+    app: prometheus-node-exporter
+  name: psp-demo-prometheus-node-exporter
+rules:
+- apiGroups: ['extensions']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - demo-prometheus-node-exporter
+
+---
+# Source: prometheus-node-exporter/templates/psp-clusterrolebinding.yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:     
+    app: prometheus-node-exporter
+  name: psp-demo-prometheus-node-exporter
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: psp-demo-prometheus-node-exporter
+subjects:
+  - kind: ServiceAccount
+    name: demo-prometheus-node-exporter
+    namespace: cass-operator
+
+---
+# Source: prometheus-node-exporter/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-prometheus-node-exporter
+  annotations:
+    prometheus.io/scrape: "true"
+    
+  labels:     
+    app: prometheus-node-exporter
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9100
+      targetPort: 9100
+      protocol: TCP
+      name: metrics
+  selector:
+    app: prometheus-node-exporter
+
+---
+# Source: prometheus-node-exporter/templates/daemonset.yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: demo-prometheus-node-exporter
+  labels:     
+    app: prometheus-node-exporter
+spec:
+  selector:
+    matchLabels:
+      app: prometheus-node-exporter
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:         
+        app: prometheus-node-exporter
+    spec:
+      serviceAccountName: demo-prometheus-node-exporter
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        
+      containers:
+        - name: node-exporter
+          image: "quay.io/prometheus/node-exporter:v0.18.0"
+          imagePullPolicy: IfNotPresent
+          args:
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+            - --web.listen-address=0.0.0.0:9100
+          ports:
+            - name: metrics
+              containerPort: 9100
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9100
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9100
+          resources:
+            {}
+            
+          volumeMounts:
+            - name: proc
+              mountPath: /host/proc
+              readOnly:  true
+            - name: sys
+              mountPath: /host/sys
+              readOnly: true
+      hostNetwork: true
+      hostPID: true
+      #nodeSelector:
+      #  role: dse-worker
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+        
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys
+
+---
+# Source: prometheus-node-exporter/templates/monitor.yaml
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-prometheus-node-exporter
+  labels:     
+    app: prometheus-node-exporter
+    monitoring: cluster2
+    
+spec:
+  selector:
+    matchLabels:
+      app: prometheus-node-exporter
+  endpoints:
+    - port: metrics
+      scrapeTimeout: 10s
+
+---
+# Source: prometheus-node-exporter/templates/endpoints.yaml
+

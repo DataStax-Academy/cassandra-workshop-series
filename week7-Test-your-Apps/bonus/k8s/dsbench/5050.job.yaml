@@ -1,0 +1,219 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-5050-0
+  labels:
+    app: dsbench
+    phase: main
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: main
+    spec:
+      containers:
+      - name: dsbench
+        image: datastaxlabs/dsbench
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:main 
+        - host=ebs-cluster-ebs-dc-1-service 
+        - threads=128
+        - stride=1000
+        - cycles=0..250000000
+        - dc=ebs-dc-1 
+        - write_cl=LOCAL_QUORUM
+        - read_cl=LOCAL_QUORUM
+        - write_ratio=1
+        - read_ratio=1
+        - --report-graphite-to 
+        - exporter-0.graphite-metrics-exporter:9109
+        resources:
+          requests:
+            cpu: "4"
+            memory: 14Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-5050-1
+  labels:
+    app: dsbench
+    phase: main
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: main
+    spec:
+      containers:
+      - name: dsbench
+        image: datastaxlabs/dsbench
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:main 
+        - host=ebs-cluster-ebs-dc-1-service 
+        - threads=128
+        - stride=1000
+        - cycles=250000000..500000000
+        - dc=ebs-dc-1 
+        - write_cl=LOCAL_QUORUM
+        - read_cl=LOCAL_QUORUM
+        - write_ratio=1
+        - read_ratio=1
+        - --report-graphite-to 
+        - exporter-1.graphite-metrics-exporter:9109
+        resources:
+          requests:
+            cpu: "4"
+            memory: 14Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-5050-2
+  labels:
+    app: dsbench
+    phase: main
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: main
+    spec:
+      containers:
+      - name: dsbench
+        image: datastaxlabs/dsbench
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:main 
+        - host=ebs-cluster-ebs-dc-1-service 
+        - threads=128
+        - stride=1000
+        - cycles=500000000..750000000
+        - dc=ebs-dc-1 
+        - write_cl=LOCAL_QUORUM
+        - read_cl=LOCAL_QUORUM
+        - write_ratio=1
+        - read_ratio=1
+        - --report-graphite-to 
+        - exporter-2.graphite-metrics-exporter:9109
+        resources:
+          requests:
+            cpu: "4"
+            memory: 14Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iot-5050-3
+  labels:
+    app: dsbench
+    phase: main
+spec:
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: dsbench
+        phase: main
+    spec:
+      containers:
+      - name: dsbench
+        image: datastaxlabs/dsbench
+        args:
+        - run 
+        - type=cql 
+        - yaml=/config/iot.yaml 
+        - tags=phase:main 
+        - host=ebs-cluster-ebs-dc-1-service 
+        - threads=128
+        - stride=1000
+        - cycles=750000000..1000000000
+        - dc=ebs-dc-1 
+        - write_cl=LOCAL_QUORUM
+        - read_cl=LOCAL_QUORUM
+        - write_ratio=1
+        - read_ratio=1
+        - --report-graphite-to 
+        - exporter-3.graphite-metrics-exporter:9109
+        resources:
+          requests:
+            cpu: "4"
+            memory: 14Gi
+        volumeMounts:
+        - name: dsbench-config-volume
+          mountPath: /config
+      nodeSelector:
+        role: stress-worker
+      tolerations:
+      - key: nosched
+        operator: "Exists"
+        effect: NoSchedule
+      restartPolicy: Never
+      volumes:
+      - name: dsbench-config-volume
+        configMap:
+          name: dsbench-config
+  backoffLimit: 4
