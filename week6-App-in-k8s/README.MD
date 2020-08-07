@@ -256,7 +256,7 @@ metadata:
   name: env-config
 data:
   BASE_ADDRESS: 'http://localhost:9090/api'
-  USE_ASTRA: 'true'
+  USE_ASTRA: 'false'
   CONNECTION_POINTS: 'cluster1-dc1-service.cass-operator.svc.cluster.local'
   KEYSPACE: 'killrvideo'
   USERNAME: 'cluster1-superuser'
