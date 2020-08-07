@@ -13,14 +13,14 @@
 ### 1a. Running NoSQLBench commands
 At this point you should have downloaded either the binary or jar and are ready to start executing commands with NoSQLBench. We will run a quick scenario just to ensure things are working. Execute the following commands to get going.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): Notice that when using the jar you will to prepend your commands with "java -jar nb.jar", but other than that ALL commands will work exactly the same as the binary. 
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): Notice that when using the jar you will to prepend your commands with "java -jar nb.jar", but other than that ALL commands will work exactly the same as the binary. 
 
 📘 **Command to execute**
 ```
 java -jar nb.jar cql-iot
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -53,14 +53,14 @@ docker exec -it my-cassandra cqlsh -e "DROP KEYSPACE baselines;"
 ### 2a. Create the schema
 In the previous step, we ran a pre-packaged benchmark. In the remainder of this scenario, we'll show you how to un-package and customize tests.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar run driver=cql workload=cql-keyvalue tags=phase:schema
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -89,14 +89,14 @@ Now that we have our newly created table, let's load some data, but before we do
 
 ### 3a. Test activity with stdout
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar start driver=stdout workload=cql-keyvalue tags=phase:rampup cycles=10
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -137,14 +137,14 @@ values (4,351686621);
 ### 3b. This time let's insert the data into our table
 The command in this case will be almost exactly the same with one caveat. Notice the value for the **driver** parameter.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar start driver=cql workload=cql-keyvalue tags=phase:rampup cycles=10
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -180,14 +180,14 @@ If you compare the data from our earlier command using **driver=stdout** the dat
 ## Step 4: Run the Benchmark
 We created our schema, tested our output data, inserted our initial rampup data into the database, and now it's time to run the actual performance benchmark. Here we go.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar start driver=cql workload=cql-keyvalue tags=phase:main cycles=100k cyclerate=5000 threads=50 --progress console:2s
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -235,9 +235,9 @@ Logging to logs/scenario_20200530_140934_635.log
 
 At first glance the log files might feel a little overwhelming because they contain a lot of trace information, but we are interested in performance data so we can filter for "type=TIMER".
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true): For Windows users use your favorite document editor and search for "type=TIMER".
+![Windows](../materials/images/windows32.png?raw=true): For Windows users use your favorite document editor and search for "type=TIMER".
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true) : On linux or OSX run the following command from the directory you are running **nb**. 
+![linux](../materials/images/linux32.png?raw=true) ![osx](../materials/images/mac32.png?raw=true) : On linux or OSX run the following command from the directory you are running **nb**. 
 
 **NOTE:** Replace the scenario log file **scenario_20200530_140934_635.log** with the file from your local run.
 
@@ -274,6 +274,4 @@ Now, this might seem like a lot to understand. Let's break it down.
 
 Ok, so there's a solid amount of data here and you may not know exactly what each of these mean. That's ok, We're going to get into the highlights in the next section and give you tools to visualize metrics data.
 
-## Congratulations, you've executed a set of NoSQLBench commands. Hopefully you are starting to get a feel for how it works. Click [HERE](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/2-grafana-metrics) to go to the next scenario.
-
-![OK](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/welldone.jpg?raw=true)
+## Congratulations, you've executed a set of NoSQLBench commands. Hopefully you are starting to get a feel for how it works. Click [HERE](../2-grafana-metrics/README.md) to go to the next scenario.

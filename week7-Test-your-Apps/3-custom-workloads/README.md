@@ -15,14 +15,14 @@ The benchmarking workloads we have run in previous scenarios we all pre-packaged
 ### 1a. Using --list-workloads
 It's usually easiest to modify an existing workload. We can list the pre-packaged workloads with this command.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar --list-workloads
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -44,14 +44,14 @@ This workload emulates a time-series data model and access patterns.
 ### 1b. Using --list-scenarios
 Named scenarios are found within workloads and allow you to create multiple variations of scenarios. For example, maybe for the **default** scenario I perform queries as I would expect, but I also might want an **allow-filtering** scenario to test out what might happen if I use **ALLOW FILTERING** in my read queries. I can add both to a workload to make it easy to switch between them, reuse the same bindings, or even run them as part of a single benchmark for comparison.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```
 java -jar nb.jar --list-scenarios
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -83,14 +83,14 @@ Ok, so we listed some workloads and scenarios, but all of the pre-packaged ones 
 ### 2a. Using --copy
 Since we've been using the cql-iot workload throughout this workshop let's work with that. Just use the **--copy** option and pass the name of the workload. That's it.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```bash
 java -jar nb.jar --copy cql-iot
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -156,7 +156,7 @@ description: |
   This workload emulates a time-series data model schema creation.
 ```
 
-The remainder of this file is a list named blocks containing a single block. Each block has tags. We use these tags to indicate the phase of the workload. In this example, the phase is **schema**, which is short for schema creation. Remember back in the [**Executing Commands**](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#executing-commands) section when we executed the command ["run driver=cql workload=cql-keyvalue tags=phase:schema"](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#2a-create-the-schema)? This is the *Schema* phase we were referring to in the **cql-keyvalue** workload. When called, it will process everything in the **schema** phase.
+The remainder of this file is a list named blocks containing a single block. Each block has tags. We use these tags to indicate the phase of the workload. In this example, the phase is **schema**, which is short for schema creation. Remember back in the [**Executing Commands**](../1-executing-commands#executing-commands) section when we executed the command ["run driver=cql workload=cql-keyvalue tags=phase:schema"](../1-executing-commands#2a-create-the-schema)? This is the *Schema* phase we were referring to in the **cql-keyvalue** workload. When called, it will process everything in the **schema** phase.
 ```yaml
 blocks:
   - tags:
@@ -232,7 +232,7 @@ blocks:
        cl: LOCAL_QUORUM
 ```
 
-Notice the name of our **phase** tag. Again, remember back to the [**Executing Commands**](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#executing-commands) section when we executed the command ["start driver=stdout workload=cql-keyvalue **tags=phase:rampup** cycles=10"](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#3a-test-activity-with-stdout)? This was executing the **rampup** phase which inserts the initial dataset into our data model and primes us for our benchmark.
+Notice the name of our **phase** tag. Again, remember back to the [**Executing Commands**](../1-executing-commands#executing-commands) section when we executed the command ["start driver=stdout workload=cql-keyvalue **tags=phase:rampup** cycles=10"](../1-executing-commands#3a-test-activity-with-stdout)? This was executing the **rampup** phase which inserts the initial dataset into our data model and primes us for our benchmark.
 ```yaml
 blocks:
   - tags:
@@ -263,7 +263,7 @@ Now notice our insert statement. See the curly braces {} around **machine_id**, 
 ```
 
 ### 3c. Execute your main benchmark
-Now that we have a schema created and our initial rampup data in place, it's time to run our main benchmark. Once more, remember back to the [**Executing Commands**](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#executing-commands) section when we executed the command ["start driver=cql workload=cql-keyvalue tags=**phase:main** cycles=100k cyclerate=5000 threads=50 --progress console:2s"](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands#step-4-run-the-benchmark)? This was executing the **main** phase which starts our performance benchmark.
+Now that we have a schema created and our initial rampup data in place, it's time to run our main benchmark. Once more, remember back to the [**Executing Commands**](../1-executing-commands#executing-commands) section when we executed the command ["start driver=cql workload=cql-keyvalue tags=**phase:main** cycles=100k cyclerate=5000 threads=50 --progress console:2s"](../1-executing-commands#step-4-run-the-benchmark)? This was executing the **main** phase which starts our performance benchmark.
 
 ```yaml
 # nb run driver=cql workload=cql-iot-basic-main.yaml threads=auto cycles=100000
@@ -296,7 +296,7 @@ You can see we have a single **read** query with 2 bindings for **machine_id** a
 # Step 4: Putting it all Together
 Ok, at this point you could actually stop with the **schema**, **rampup**, and **main** phase files and simply work with those. If you wanted you could execute each of these like the following examples and be perfectly fine.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```bash
@@ -305,7 +305,7 @@ java -jar nb.jar run driver=cql workload=cql-iot-basic-rampup.yaml threads=auto 
 java -jar nb.jar run driver=cql workload=cql-iot-basic-main.yaml threads=auto cycles=100000 --progress console:1s
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -386,7 +386,7 @@ blocks:
 
 Let's execute this last set with the single, combined file and notice we are now referencing a single yaml file along with using the **tags=phase:** parameter.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```bash
@@ -395,7 +395,7 @@ java -jar nb.jar run driver=cql workload=cql-iot-basic-all.yaml tags=phase:rampu
 java -jar nb.jar run driver=cql workload=cql-iot-basic-all.yaml tags=phase:main threads=auto cycles=100000 --progress console:1s
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -491,14 +491,14 @@ blocks:
 
 And finally we can run our whole scenario with the following.
 
-![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true)  ![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 📘 **Command to execute**
 ```bash
 java -jar nb.jar ./cql-iot-basic-scenario.yaml default --progress console:1s
 ```
 
-![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To run on linux use the following command.
+![linux](../materials/images/linux32.png?raw=true) : To run on linux use the following command.
 
 📘 **Command to execute**
 ```bash
@@ -506,5 +506,3 @@ java -jar nb.jar ./cql-iot-basic-scenario.yaml default --progress console:1s
 ```
 
 ## Ok, I think it's time to grab a cup of coffee or tea and take a mental break. I threw a good amount at you there. There is a TON more you can do with NoSQLBench, but this should get you started and on your way to benchmarking your data models. Happy benchmarking! 
-
-![OK](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/welldone.jpg?raw=true)

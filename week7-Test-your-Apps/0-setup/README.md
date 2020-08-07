@@ -111,6 +111,4 @@ wget https://github.com/nosqlbench/nosqlbench/releases/latest/download/nb
 # Let's ensure ensure nb is executable
 chmod +x nb
 ```
-## Congratulations, your initial NoSQLBench setup is complete. We'll start running some commands in the next section. Click [HERE](https://github.com/DataStax-Academy/nosqlbench-workshop-online/tree/master/1-executing-commands) to go to the next scenario.
-
-![OK](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/welldone.jpg?raw=true)
+## Congratulations, your initial NoSQLBench setup is complete. We'll start running some commands in the next section. Click [HERE](../1-executing-commands/README.md) to go to the next scenario.
