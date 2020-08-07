@@ -14,7 +14,7 @@
 Even though there are [multiple ways](http://docs.nosqlbench.io/#/docs/getting_started%2F03_reading_metrics) to get metrics from NoSQLBench, by far the easiest and quickest way is to use the **--docker-metrics** parameter. This option tells NoSQLBench to export statistical data so that we can view it in Grafana. It will launch all of the needed components and hook them all up in Docker for you. Let's try it out.
 
 
-![Windows](h../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
+![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
 
 **NOTE:** For Windows users, --docker-metrics is experimental at best. It may not work right out of the box.
 
