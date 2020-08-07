@@ -358,8 +358,8 @@ kubectl -n my-app apply -f 07-ui.yaml
 ✅  **Step5h:** Lastly we need to forward the ports to the host so that we can hit the services from our browser.
 
 ```bash
-kubectl -n my-app port-forward pods/astra-backend 9090:9090 &
-kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
+kubectl -n my-app port-forward --address 0.0.0.0 pod/astra-backend 9090 &
+kubectl -n my-app port-forward --address 0.0.0.0 pod/astra-ui 3000 &
 ```
 
 ✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:9090](http://localhost:9090) for the backend.
