@@ -8,4 +8,4 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
 server:
-  port: 5000
+  port: 9090

@@ -12,4 +12,4 @@ ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 # Exposing expected port by WEBUI
-EXPOSE 5000
+EXPOSE 9090
