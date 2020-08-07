@@ -110,7 +110,7 @@ FROM python:alpine3.7
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-EXPOSE 5000
+EXPOSE 9090
 CMD ["python", "getting_started_with_astra.py"]
 ```
 
@@ -122,7 +122,7 @@ VOLUME /tmp
 ARG JAR_FILE
 ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-EXPOSE 5000
+EXPOSE 9090
 ```
 
 📗  For the frontend the `Dockerfile` will look like the following
@@ -161,11 +161,11 @@ docker build ./getting-started-with-astra-python -t astra-backend:my-image
 ✅  **Step4b:** As an optional step, we can test our docker containers for the connection with Astra, before we use them in the kubernetes cluster.
 
 ```bash
-docker run -e USE_ASTRA='true' -p 5000:5000 astra-backend:my-image
-docker run -e USE_ASTRA='true' -e BASE_ADDRESS='http://localhost:5000/api' -p 3000:3000 astra-ui:my-image
+docker run -e USE_ASTRA='true' -p 9090:9090 astra-backend:my-image
+docker run -e USE_ASTRA='true' -e BASE_ADDRESS='http://localhost:9090/api' -p 3000:3000 astra-ui:my-image
 ```
 
-Navigate to [http://localhost:5000](http://localhost:5000) and to [http://localhost:3000](http://localhost:3000), complete the connection dialog with your details, and connect to your Astra database. 
+Navigate to [http://localhost:9090](http://localhost:9090) and to [http://localhost:3000](http://localhost:3000), complete the connection dialog with your details, and connect to your Astra database. 
 
 Stop the docker containers:
 
@@ -253,7 +253,7 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  BASE_ADDRESS: 'http://localhost:5000/api'
+  BASE_ADDRESS: 'http://localhost:9090/api'
   USE_ASTRA: 'true'
   CONNECTION_POINTS: 'cluster1-dc1-service.cass-operator.svc.cluster.local'
   KEYSPACE: 'killrvideo'
@@ -354,11 +354,11 @@ kubectl -n my-app apply -f 07-ui.yaml
 ✅  **Step5h:** Lastly we need to forward the ports to the host so that we can hit the services from our browser.
 
 ```bash
-kubectl -n my-app port-forward pods/astra-backend 5000:5000 &
+kubectl -n my-app port-forward pods/astra-backend 9090:9090 &
 kubectl -n my-app  port-forward pods/astra-ui 3000:3000 &
 ```
 
-✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:5000](http://localhost:5000) for the backend.
+✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:9090](http://localhost:9090) for the backend.
 
 ⚠️ You will still need a plugin that unblocks CORS requests for you. 
 
