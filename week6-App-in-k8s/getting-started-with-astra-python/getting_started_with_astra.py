@@ -32,4 +32,4 @@ def hello():
     return "Hi, I am the Python backend API. Please connect me to Astra via UI."
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=9090, debug=True)

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  BASE_ADDRESS: 'http://localhost:5000/api'
+  BASE_ADDRESS: 'http://localhost:9090/api'
   LOCAL_DATACENTER: 'dc1'
   USE_ASTRA: 'false'
   CONNECTION_POINTS: 'CHANGEME'

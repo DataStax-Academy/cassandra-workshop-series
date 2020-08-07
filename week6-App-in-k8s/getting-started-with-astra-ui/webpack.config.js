@@ -27,6 +27,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 
 module.exports = {
   devServer: {
+    disableHostCheck: true,
     host: 'localhost',
     port: '3000',
     hot: true,
