@@ -26,23 +26,7 @@ It is **STRONGLY RECOMMENDED** you provide at least 4GBRAM and 4 CPUs to Docker 
 
 ![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true) : To install on **windows** please use the following installer [Docker Dekstop for Windows Installer](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
 
-![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true) : To install on **MAC OS**  use [Docker Dekstop for MAC Installer](https://download.docker.com/mac/stable/Docker.dmg) or [homebrew](https://docs.brew.sh/Installation) with following commands:
-```bash
-# Fetch latest version of homebrew and formula.
-brew update              
-# Tap the Caskroom/Cask repository from Github using HTTPS.
-brew tap caskroom/cask                
-# Searches all known Casks for a partial or exact match.
-brew search docker                    
-# Displays information about the given Cask
-brew cask info docker
-# Install the given cask.
-brew cask install docker              
-# Remove any older versions from the cellar.
-brew cleanup
-# Validate installation
-docker -v
-```
+![osx](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/mac32.png?raw=true) : To install on **MAC OS**  install Docker Desktop for Mac, follow the instructions here [Install Docker Desktop on Mac](https://docs.docker.com/docker-for-mac/install/)
 
 ![linux](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/linux32.png?raw=true) : To install on linux (centOS) you can use the following commands
 ```bash
