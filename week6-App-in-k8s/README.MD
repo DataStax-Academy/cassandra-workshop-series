@@ -165,6 +165,8 @@ docker run -e USE_ASTRA='true' -p 9090:9090 astra-backend:my-image
 docker run -e USE_ASTRA='true' -e BASE_ADDRESS='http://localhost:9090/api' -p 3000:3000 astra-ui:my-image
 ```
 
+![WARNING - Update the code in your cluster](https://community.datastax.com/storage/attachments/1292-workshop-week6-pull-code-update.png)
+
 Navigate to [http://localhost:9090](http://localhost:9090) and to [http://localhost:3000](http://localhost:3000), complete the connection dialog with your details, and connect to your Astra database. 
 
 ⚠️ If you're using a DataStax cloud instance, remember to use the EC2 instance name in place of `localhost`, for example: `http://wksv136191.cws-week6.datastaxtraining.com:9090/`.
@@ -265,6 +267,8 @@ data:
 
 ⚠️ If you're using a DataStax cloud instance, remember to use the EC2 instance name in place of `localhost`, for example: `http://wksv136191.cws-week6.datastaxtraining.com:9090/api`.
 
+![WARNING - Update the code in your cluster](https://community.datastax.com/storage/attachments/1292-workshop-week6-pull-code-update.png)
+
 Feel free to look at the 06-backend.yaml and the 07-ui.yaml to see the specific configuration option used there.  
 
 ✅ **Step5d:** Last item will be to install our schema in the new cassandra cluster we have setup.  To do this we will need to use the password we decoded from the previous section. Replace the CHANGEME in the following commands with the password. Use the following commands to access cqlsh. 
@@ -363,6 +367,8 @@ kubectl -n my-app port-forward --address 0.0.0.0 pod/astra-ui 3000 &
 ```
 
 ✅  **Step5i:** Navigate to [http://localhost:3000](http://localhost:3000) for the UI and [http://localhost:9090](http://localhost:9090) for the backend.
+
+![WARNING - Update the code in your cluster](https://community.datastax.com/storage/attachments/1292-workshop-week6-pull-code-update.png)
 
 ⚠️ You will still need a plugin that unblocks CORS requests for you. 
 
