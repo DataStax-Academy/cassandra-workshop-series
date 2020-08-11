@@ -18,12 +18,6 @@
 
 # Step 1: Starting a benchmark with Grafana metrics enabled
 
-| Steps |
-|---|
-| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
-| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
-| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
-
 ### 1a. Using --docker-metrics
 Even though there are [multiple ways](http://docs.nosqlbench.io/#/docs/getting_started%2F03_reading_metrics) to get metrics from NoSQLBench, by far the easiest and quickest way is to use the **--docker-metrics** parameter. This option tells NoSQLBench to export statistical data so that we can view it in Grafana. It will launch all of the needed components and hook them all up in Docker for you. Let's try it out.
 
@@ -54,6 +48,11 @@ This is letting you know that Grafana is now available at a **default** of http:
 
 # Step 2. View Grafana
 At this point you should be able to open http://localhost:3000 in your browser. Let's do that.
+
+| Steps |
+|---|
+| [2a. Launch Grafana in your browser and login](#2a-Launch-Grafana-in-your-browser-and-login) |
+| [2b. Navigate to the *NoSQLBench* dashboard](#2b-Navigate-to-the-*NoSQLBench*-dashboard) |
 
 ### 2a. Launch Grafana in your browser and login
 📘 **Command to execute**
@@ -89,6 +88,13 @@ The benchmark will need to run for a minute or so to allow statistics to accumul
 
 # Step 3. View Various Metrics
 Let's look at what the various metrics represent.
+
+| Steps |
+|---|
+| [3a. Ops and Successful Ops](#3a-Ops-and-Successful-Ops) |
+| [3b. Error Counts](#3b-Error-Counts) |
+| [3c. Service Time Distribution](#3c-Service-Time-Distribution) |
+| [3d. Ops Tries Distribution](#3d-Ops-Tries-Distribution) |
 
 ### 3a. Ops and Successful Ops
 Notice the *Ops* and *Successful Ops* graph in the top-left of Grafana's display. This graph indicates the operation rate (reads/writes per second) of the benchmark. Use this metric to see the load the benchmark places on the database.
