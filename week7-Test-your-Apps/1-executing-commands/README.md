@@ -110,7 +110,7 @@ Now that we have our newly created table, let's load some data, but before we do
 | Steps |
 |---|
 | [3a. Test activity with stdout](#3a-Test-activity-with-stdout) |
-| [3b. This time let's insert the data into our table](#3b-This-time-let's-insert-the-data-into-our-table) |
+| [3b. This time lets insert the data into our table](#3b-This-time-let's-insert-the-data-into-our-table) |
 | [3c. View the results](#3c-View-the-results) |
 
 ### 3a. Test activity with stdout
