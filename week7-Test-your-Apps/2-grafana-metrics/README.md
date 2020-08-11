@@ -18,6 +18,12 @@
 
 # Step 1: Starting a benchmark with Grafana metrics enabled
 
+| Steps |
+|---|
+| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
+| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
+| [1a. Using --docker-metrics](#1a-Using---docker-metrics) |
+
 ### 1a. Using --docker-metrics
 Even though there are [multiple ways](http://docs.nosqlbench.io/#/docs/getting_started%2F03_reading_metrics) to get metrics from NoSQLBench, by far the easiest and quickest way is to use the **--docker-metrics** parameter. This option tells NoSQLBench to export statistical data so that we can view it in Grafana. It will launch all of the needed components and hook them all up in Docker for you. Let's try it out.
 
