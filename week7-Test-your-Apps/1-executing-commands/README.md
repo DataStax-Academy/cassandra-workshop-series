@@ -107,6 +107,12 @@ Look at the query output. You should see we created a keyspace named **baselines
 ## Step 3: Write Some Test Data
 Now that we have our newly created table, let's load some data, but before we do this we might want to review the activity **nb** will generate. We can do this by setting **driver=stdout**. Let's do it.
 
+| Steps |
+|---|
+| [3a. Test activity with stdout](#3a-Test-activity-with-stdout) |
+| [3b. This time let's insert the data into our table](#3b-This-time-let's-insert-the-data-into-our-table) |
+| [3c. View the results](#3c-View-the-results) |
+
 ### 3a. Test activity with stdout
 
 ![Windows](../materials/images/windows32.png?raw=true)  ![osx](../materials/images/mac32.png?raw=true): To run on Windows or OSX use the jar.
