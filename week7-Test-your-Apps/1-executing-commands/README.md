@@ -100,7 +100,7 @@ java -jar nb.jar start driver=stdout workload=cql-keyvalue tags=phase:rampup cyc
 
 📘 **Command to execute**
 ```bash
-./nb run start driver=stdout workload=cql-keyvalue tags=phase:rampup cycles=10
+./nb start driver=stdout workload=cql-keyvalue tags=phase:rampup cycles=10
 ```
 
 Let's review the parameters for this command:
@@ -148,7 +148,7 @@ java -jar nb.jar start driver=cql workload=cql-keyvalue tags=phase:rampup cycles
 
 📘 **Command to execute**
 ```bash
-./nb run start driver=cql workload=cql-keyvalue tags=phase:rampup cycles=10
+./nb start driver=cql workload=cql-keyvalue tags=phase:rampup cycles=10
 ```
 
 ### 3c. View the results
@@ -191,7 +191,7 @@ java -jar nb.jar start driver=cql workload=cql-keyvalue tags=phase:main cycles=1
 
 📘 **Command to execute**
 ```bash
-./nb run start driver=cql workload=cql-keyvalue tags=phase:main cycles=100k cyclerate=5000 threads=50 --progress console:2s
+./nb start driver=cql workload=cql-keyvalue tags=phase:main cycles=100k cyclerate=5000 threads=50 --progress console:2s
 ```
 
 You're probably familiar with many of the parameters by now, but we'll review them all anyway:
