@@ -8,13 +8,12 @@
 
 
 ## Table of Contents
-| Exercises | Description and Links
-|---|---|
-| [Intro : Custom Workloads](#1-custom-workloads) |
-| [Step 1: Listing Workloads and Named Scenarios](#2-step-1:-listing-workloads-and-named-scenarios) |
-| [Step 2: Copying Workloads](#3-step-2:-copying-workloads) |
-| [Step 3: Building Your First Workload](#4-step-3:-building-your-first-workload) |
-| [Step 4: Putting it all Together](#4-step-4:-putting-it-all-together) |
+|---|
+| [Intro : Custom Workloads](#0-custom-workloads) |
+| [Step 1: Listing Workloads and Named Scenarios](#step-1-listing-workloads-and-named-scenarios) |
+| [Step 2: Copying Workloads](#3-step-2-copying-workloads) |
+| [Step 3: Building Your First Workload](#4-step-3-building-your-first-workload) |
+| [Step 4: Putting it all Together](#4-step-4-putting-it-all-together) |
 
 # Custom Workloads
 This section starts getting into a slightly more advanced topic, but once you understand the pattern you'll be on your way to creating workloads and scenarios for your own data models. This won't be an exhaustive walkthrough, but should give you enough to get going.
