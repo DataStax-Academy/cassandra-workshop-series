@@ -22,6 +22,11 @@ This section starts getting into a slightly more advanced topic, but once you un
 # Step 1: Listing Workloads and Named Scenarios
 The benchmarking workloads we have run in previous scenarios we all pre-packaged. Now, we'll take a look at how these are built so we can start creating our own.
 
+| Steps |
+|---|
+| [1a. Using --list-workloads](#1a-Using---list-workloads) |
+| [1b. Using --list-scenarios](#1b-Using---list-scenarios) |
+
 ### 1a. Using --list-workloads
 It's usually easiest to modify an existing workload. We can list the pre-packaged workloads with this command.
 
@@ -90,6 +95,11 @@ Notice how the above example displays the **default** scenario within the **cql-
 # Step 2: Copying Workloads
 Ok, so we listed some workloads and scenarios, but all of the pre-packaged ones are stored in the nb binary or jar. Instead of trying to create one the first time from scratch it's best to simply copy an existing one and go from there. Luckily, there's a very simple command to do just that.
 
+| Steps |
+|---|
+| [2a. Using --copy](#2a-Using---copy) |
+| [2b. Reading the yaml](#2b-Reading-the-yaml) |
+
 ### 2a. Using --copy
 Since we've been using the cql-iot workload throughout this workshop let's work with that. Just use the **--copy** option and pass the name of the workload. That's it.
 
@@ -121,6 +131,12 @@ Using your favorite text/yaml editor open cql-iot.yaml and inspect the contents
 
 # Step 3: Building Your First Workload
 Since this is our first introduction to workload configuration, we created some stripped-down files to emphsize the important parts. We'll use these stripped-down files instead of the one we extracted, but when we are done, you should be able to make your way through the file you extracted.
+
+| Steps |
+|---|
+| [3a. Create a test schema](#3a-Create-a-test-schema) |
+| [3b. Insert initial seed data](#3b-Insert-initial-seed-data) |
+| [3c. Execute your main benchmark](#3c-Execute-your-main-benchmark) |
 
 ### 3a. Create a test schema
 The first thing a workload wants to do is create the necessary keyspace and tables for the benchmark. Here's an example workload to create the IOT keyspace and tables.
