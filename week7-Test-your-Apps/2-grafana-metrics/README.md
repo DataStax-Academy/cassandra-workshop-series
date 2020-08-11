@@ -52,7 +52,7 @@ At this point you should be able to open http://localhost:3000 in your browser. 
 | Steps |
 |---|
 | [2a. Launch Grafana in your browser and login](#2a-Launch-Grafana-in-your-browser-and-login) |
-| [2b. Navigate to the *NoSQLBench* dashboard](#2b-Navigate-to-the-*NoSQLBench*-dashboard) |
+| [2b. Navigate to the *NoSQLBench* dashboard](#2b-Navigate-to-the-NoSQLBench-dashboard) |
 
 ### 2a. Launch Grafana in your browser and login
 📘 **Command to execute**
