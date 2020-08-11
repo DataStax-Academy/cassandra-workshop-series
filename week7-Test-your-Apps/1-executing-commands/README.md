@@ -23,7 +23,7 @@
 |---|
 | [1a. Running NoSQLBench Commands](#1a-running-nosqlbench-commands) |
 | [1b. Some initial results](#1b-some-initial-results) |
-| [1c. Let's clean up](#1c-let's-clean-up) |
+| [1c. Let's clean up](#1c-lets-clean-up) |
 
 ### 1a. Running NoSQLBench Commands
 At this point you should have downloaded either the binary or jar and are ready to start executing commands with NoSQLBench. We will run a quick scenario just to ensure things are working. Execute the following commands to get going.
