@@ -65,6 +65,10 @@ docker exec -it my-cassandra cqlsh -e "DROP KEYSPACE baselines;"
 
 ## Step 2: Create a Test Schema
 
+| Steps |
+|---|
+| [2a. Create the schema](#2a-Create-the-schema) |
+
 ### 2a. Create the schema
 In the previous step, we ran a pre-packaged benchmark. In the remainder of this scenario, we'll show you how to un-package and customize tests.
 
