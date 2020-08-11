@@ -22,7 +22,7 @@ For those of you who would like to have a basic setup working on your own machin
 
 Docker is an open-source project that automates the deployment of software applications inside containers by providing an additional layer of abstraction and automation of OS-level virtualization on Linux.
 
-It is **STRONGLY RECOMMENDED** you provide at least 4GBRAM and 4 CPUs to Docker to handle this workload. If you do not have those resources available then I suggest using the Katacoda scenarios.
+![It is **STRONGLY RECOMMENDED** you provide at least 4GB of RAM and 4 CPUs to Docker to handle this workload. If you do not have those resources available then I suggest using the Katacoda scenarios.](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/workshop-week6-docker-requirements.png)
 
 ![Windows](https://github.com/DataStax-Academy/nosqlbench-workshop-online/blob/master/materials/images/windows32.png?raw=true) : To install on **windows** please use the following installer [Docker Dekstop for Windows Installer](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
 
@@ -62,6 +62,8 @@ docker images
 docker run hello-world
 docker -v
 ```
+
+**NOTE**: To install Docker on Ubuntu, follow the **Install Docker Engine** section in [https://community.datastax.com/questions/5369/](https://community.datastax.com/questions/5369/).
 
 ### 2. Start Cassandra
 Obviously NoSQLBench needs something to benchmark against and in this workshop we will use an Apache Cassandra™ database. 
