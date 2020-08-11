@@ -8,9 +8,9 @@
 
 
 ## Table of Contents
-| Exercises |
+| Steps |
 |---|
-| [Intro : Custom Workloads](#0-custom-workloads) |
+| [Intro : Custom Workloads](#custom-workloads) |
 | [Step 1: Listing Workloads and Named Scenarios](#step-1-listing-workloads-and-named-scenarios) |
 | [Step 2: Copying Workloads](#step-2-copying-workloads) |
 | [Step 3: Building Your First Workload](#step-3-building-your-first-workload) |

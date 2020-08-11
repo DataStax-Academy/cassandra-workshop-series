@@ -6,6 +6,15 @@
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
 
+## Table of Contents
+| Steps |
+|---|
+| [Step 1: Initial Run](#step-1-initial-run) |
+| [Step 2: Create a Test Schema](#step-2-create-a-test-schema) |
+| [Step 3: Write Some Test Data](#step-3-write-some-test-data) |
+| [Step 4: Run the Benchmark](#step-4-run-the-benchmark) |
+| [Step 5: Understand the Results](#step-5-understand-the-results) |
+
 # Executing Commands
 
 # Step 1: Initial Run

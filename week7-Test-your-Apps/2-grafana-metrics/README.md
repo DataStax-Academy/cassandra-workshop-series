@@ -6,6 +6,14 @@
 [![License Apache2](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Discord](https://img.shields.io/discord/685554030159593522)](https://discord.com/widget?id=685554030159593522&theme=dark)
 
+## Table of Contents
+| Steps |
+|---|
+| [Step 1: Starting a benchmark with Grafana metrics enabled](#step-1-starting-a-benchmark-with-grafana-metrics-enabled) |
+| [Step 2. View Grafana](#step-2-view-grafana) |
+| [Step 3. View Various Metrics](#step-3-view-various-metrics) |
+| [Step 4. Launch Prometheus and View Metrics](#step-4-launch-prometheus-and-view-metrics) |
+
 # Understanding Metrics
 
 # Step 1: Starting a benchmark with Grafana metrics enabled
