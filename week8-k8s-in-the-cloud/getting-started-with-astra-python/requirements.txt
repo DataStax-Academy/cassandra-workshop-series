@@ -1,0 +1,4 @@
+flask
+flask-cors
+cassandra-driver
+python-dotenv

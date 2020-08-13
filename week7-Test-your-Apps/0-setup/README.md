@@ -11,6 +11,8 @@ If you wish to use our Katacoda scenarios then go here -> https://katacoda.com/d
 
 The Katacoda scenarios will bring you through a step-by-step experience in environments you can easily restart and play around with. It does require a sign-up, but is completely **FREE** to use.
 
+![Please do NOT run Katakoda scenarios during the workshop.](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/workshop-week7-do-not-run-katakoda.png)
+
 # Initial Setup On Your Local Machine
 For those of you who would like to have a basic setup working on your own machine follow the steps below. **If you are using Katacoda you DO NOT NEED THESE STEPS**. All scenarios will play out within Katacoda.
 

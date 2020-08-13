@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  BASE_ADDRESS: 'http://localhost:9090/api'
+  LOCAL_DATACENTER: 'dc1'
+  USE_ASTRA: 'false'
+  CONNECTION_POINTS: 'CHANGEME'
+  KEYSPACE: 'killrvideo'
+  USERNAME: 'cluster1-superuser'
+  PASSWORD: 'CHANGEME'

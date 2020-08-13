@@ -19,6 +19,7 @@ Feel free to bookmark this page for future reference!
 | **NoSQLBench Katacoda scenarios** | [Scenarios](https://katacoda.com/datastax/courses/nosqlbench-intro) |
 | **NoSQLBench source** | [Github repo](https://github.com/nosqlbench/nosqlbench) |
 
+![Please do NOT run Katakoda scenarios during the workshop.](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/workshop-week7-do-not-run-katakoda.png)
 
 ## Exercises
 
