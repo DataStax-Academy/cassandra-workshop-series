@@ -92,7 +92,7 @@ export default function LocationDisplay(props) {
 
     return (
         <div>
-            <Typography variant="h8" className={classes.list}>
+            <Typography variant="h6" className={classes.list}>
                 Current Spacecraft Location
           </Typography>
             <hr className={classes.grey} />

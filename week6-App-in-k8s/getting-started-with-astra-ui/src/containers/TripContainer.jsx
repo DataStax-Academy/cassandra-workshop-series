@@ -43,9 +43,9 @@ export default function TripContainer(props) {
     const [pressureGauge, setPressureGauge] = useState({ min: 90, max: 105, units: "kPa" });
     const [speedGauge, setSpeedGauge] = useState({ min: 20000, max: 40000, units: "km/h" });
     const [currentValues, setCurrentValues] = useState({
-        temperature: null,
-        pressure: null,
-        speed: null,
+        temperature: 0,
+        pressure: 0,
+        speed: 0,
         location: { x_coordinate: 0, y_coordinate: 0, z_coordinate: 0 },
         index: 0
     });
@@ -56,9 +56,9 @@ export default function TripContainer(props) {
     ///Reset the current playing state when it is finished
     useEffect(() => {
         setCurrentValues({
-            temperature: null,
-            pressure: null,
-            speed: null,
+            temperature: 0,
+            pressure: 0,
+            speed: 0,
             location: { x_coordinate: 0, y_coordinate: 0, z_coordinate: 0 },
             index: 0
         })
