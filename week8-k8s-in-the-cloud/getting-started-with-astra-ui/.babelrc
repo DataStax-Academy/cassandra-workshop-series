@@ -1,0 +1,14 @@
+{
+  "presets": ["@babel/react", ["@babel/env", { "modules": false }]],
+  "plugins": [
+    "react-hot-loader/babel",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-async-to-generator",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "env": {
+    "test": {
+      "presets": ["@babel/react", ["@babel/env", { "modules": "commonjs" }]]
+    }
+  }
+}
