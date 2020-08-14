@@ -165,7 +165,7 @@ docker run -e USE_ASTRA='true' -p 9090:9090 astra-backend:my-image
 docker run -e USE_ASTRA='true' -e BASE_ADDRESS='http://localhost:9090/api' -p 3000:3000 astra-ui:my-image
 ```
 
-![WARNING - Update the code in your cluster](https://community.datastax.com/storage/attachments/1292-workshop-week6-pull-code-update.png)
+![WARNING - Update the code in your cluster](https://community.datastax.com/questions/7478/index.html)
 
 Navigate to [http://localhost:9090](http://localhost:9090) and to [http://localhost:3000](http://localhost:3000), complete the connection dialog with your details, and connect to your Astra database. 
 
