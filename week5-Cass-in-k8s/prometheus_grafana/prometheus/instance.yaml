@@ -51,7 +51,7 @@ spec:
   securityContext: {}
   serviceMonitorSelector:
     matchLabels:
-      cassandra.datastax.com/cluster: cluster2
+      cassandra.datastax.com/cluster: cluster1
   ruleSelector: {}
   alerting:
     alertmanagers:
