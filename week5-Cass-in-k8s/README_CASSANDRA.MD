@@ -372,6 +372,19 @@ UN  10.244.2.3  65.3 KiB   100.0%            ae2fe508-dde0-43c2-ad14-42973e6c982
 
 We notice a working cluster with only 1 node. Let's dig into it. The operator makes a Kubernetes headless service available at `<clusterName>-<datacenterName>-service`. Any CQL client inside the Kubernetes cluster should be able to connect to `cluster1-dc1-service.cass-operator` and use the nodes in a round-robin fashion as contact points.
 
+*Here is a Magic command to display both user and password.*
+```
+echo 'username:' && \
+kubectl -n cass-operator \
+get secret cluster1-superuser -o jsonpath="{.data.username}" | \
+base64 --decode && \
+echo && echo 'password:' && \
+kubectl -n cass-operator get secret cluster1-superuser -o jsonpath="{.data.password}" | \
+base64 --decode && echo
+```
+
+
+
 **✅ Step 3f. Start a `cqlsh` console**
 ```bash
 cqlsh cluster1-dc1-service.cass-operator -u cluster1-superuser -p h5iMHm8RpoOfSXUXNiGT-WPfJa7tbwV9plj4ITYwHyghxJlQO2ySUQ
