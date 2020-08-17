@@ -39,11 +39,11 @@ To get a more detailed understanding of the cost, I set up daily billing exports
 
 On the left hand side panel in the Console (accessible by the hamburger button in the top left corner), select Storage:
 
-![](screenshot-2020-08-16-at-04-57-14.png)
+<img width="526" alt="Screenshot 2020-08-16 at 04 57 14" src="https://user-images.githubusercontent.com/20337262/90419818-040bc400-e0af-11ea-9948-7ab61c690a7c.png">
 
 Go into the storage browser and create a bucket:
 
-![](screenshot-2020-08-16-at-04-58-05.png)
+<img width="583" alt="Screenshot 2020-08-16 at 04 58 05" src="https://user-images.githubusercontent.com/20337262/90419884-1980ee00-e0af-11ea-8524-8f7cd2ab70fc.png">
 
 Choose a unique name (I chose workshop-billing) and accept all defaults. This is how the configuration looks in my case:
 
