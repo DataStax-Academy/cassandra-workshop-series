@@ -83,9 +83,9 @@ Click on the connect button to open a console to control this cluster
 
 Select to run in Cloud Shell:
 
-![](screenshot-2020-08-16-at-05-22-27.png)
+<img width="783" alt="Screenshot 2020-08-16 at 05 22 27" src="https://user-images.githubusercontent.com/20337262/90420274-a5931580-e0af-11ea-934d-0f23f9623d47.png">
 
-![](screenshot-2020-08-16-at-05-23-43.png)
+<img width="1364" alt="Screenshot 2020-08-16 at 05 23 27" src="https://user-images.githubusercontent.com/20337262/90420298-adeb5080-e0af-11ea-892c-cc6f7bd2b84a.png">
 
 # Exercise 1 - Minimal deployment
 
@@ -140,7 +140,7 @@ touch configMap.yaml
 Choose the Open Editor option
 
 
-![](screenshot-2020-08-16-at-05-45-51.png)
+<img width="1369" alt="Screenshot 2020-08-16 at 05 23 43" src="https://user-images.githubusercontent.com/20337262/90420350-c3607a80-e0af-11ea-966c-35e2941a050d.png">
 
 Here is the file content. We will fill in the BASE_ADDRESS once we know it:
 
