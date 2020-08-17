@@ -74,7 +74,9 @@ kubectl get svc -n cass-operator --show-labels=true
 
 This project is a component of the Operator Framework, an open source toolkit to manage Kubernetes native applications, called Operators, in an effective, automated, and scalable way. Read more in the introduction blog post and learn about practical use cases at OLM-Book.
 
-OLM extends *Kubernetes* to provide a declarative way to install, manage, and upgrade Operators and their dependencies in a cluster. You can find more information in the [reference documentation](https://github.com/operator-framework/operator-lifecycle-manager)
+OLM extends *Kubernetes* to provide a declarative way to install, manage, and upgrade Operators and their dependencies in a cluster. You can find more information in the [reference documentation](https://github.com/operator-framework/operator-lifecycle-manager). The installation scripts can be retrieved and execute like this `curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.15.1/install.sh | bash -s 0.15.1
+`
+
 
 📘 **2a. Set env var `namespace`**
 ```bash
@@ -83,9 +85,12 @@ echo $namespace
 ```
 
 📘 **2b.Install OLM**
+
 ```bash
 ./prometheus_grafana/install-olm.sh 0.14.1
 ```
+
+
 📗 **Expected output**
 ```
 customresourcedefinition.apiextensions.k8s.io/clusterserviceversions.operators.coreos.com created
