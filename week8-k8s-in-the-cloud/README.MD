@@ -47,7 +47,7 @@ Go into the storage browser and create a bucket:
 
 Choose a unique name (I chose workshop-billing) and accept all defaults. This is how the configuration looks in my case:
 
-![](screenshot-2020-08-16-at-04-59-04.png)
+<img width="630" alt="Screenshot 2020-08-16 at 04 59 04" src="https://user-images.githubusercontent.com/20337262/90419956-374e5300-e0af-11ea-899a-f9adc4bc2628.png">
 
 Remember its name, we will give it to the billing export.
 
@@ -56,12 +56,12 @@ On the left hand side panel in the Console, go back to Billing, select Billing e
 
 Configure to use your created bucket for daily exports. You will have to wait a day before you can see an export.
 
-![](screenshot-2020-08-16-at-05-05-20.png)
+<img width="711" alt="Screenshot 2020-08-16 at 05 05 20" src="https://user-images.githubusercontent.com/20337262/90419999-47fec900-e0af-11ea-9242-99aa1fa5b624.png">
 
 ## Create your Google Kubernetes Engine cluster
 On the left hand side panel in the Console, go to Kubernetes Engine > Clusters
 
-![](screenshot-2020-08-16-at-05-09-18.png)
+<img width="451" alt="Screenshot 2020-08-16 at 05 09 18" src="https://user-images.githubusercontent.com/20337262/90420046-551bb800-e0af-11ea-8817-4862c6322305.png">
 
 Select CREATE CLUSTER
 
@@ -69,15 +69,15 @@ For my first experiment I accepted all the defaults (apart from region, where I 
 
 For this exercise, I am following the guide for the recommended starter cluster:
 
-![](screenshot-2020-08-16-at-05-15-11.png)
+<img width="783" alt="Screenshot 2020-08-16 at 05 15 11" src="https://user-images.githubusercontent.com/20337262/90420081-649b0100-e0af-11ea-8372-afec9e250e2e.png">
 
 It takes a bit of time until this is created. In this screenshot you see cluster-1 set up and running (this is the cluster with all the defaults) and my-first-cluster-1 being created.
 
-![](screenshot-2020-08-16-at-05-17-23.png)
+<img width="1026" alt="Screenshot 2020-08-16 at 05 17 23" src="https://user-images.githubusercontent.com/20337262/90420121-72e91d00-e0af-11ea-981b-7978cc0e4d1a.png">
 
 Once created, you see the difference in allocated resource:
 
-![](screenshot-2020-08-16-at-05-20-25.png)
+<img width="969" alt="Screenshot 2020-08-16 at 05 20 25" src="https://user-images.githubusercontent.com/20337262/90420157-7f6d7580-e0af-11ea-860a-3b33c3affe29.png">
 
 Click on the connect button to open a console to control this cluster
 
