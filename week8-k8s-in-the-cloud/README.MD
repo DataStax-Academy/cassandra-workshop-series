@@ -31,7 +31,7 @@ You can access the billing overview from the Console in the left hand side panel
 
 Reports shows how much you've been charged so far.
 
-![](screenshot-2020-08-16-at-04-53-08.png)
+<img width="522" alt="Screenshot 2020-08-16 at 04 53 08" src="https://user-images.githubusercontent.com/20337262/90419685-d757ac80-e0ae-11ea-8f25-25410f05f405.png">
 
 To get a more detailed understanding of the cost, I set up daily billing exports to csv. Before we can enable billing export, we need to create a storage bucket where the csv files will be exported to. 
 
