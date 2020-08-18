@@ -71,13 +71,13 @@ For this exercise, I am following the guide for the recommended starter cluster:
 
 <img width="783" alt="Screenshot 2020-08-16 at 05 15 11" src="https://user-images.githubusercontent.com/20337262/90420081-649b0100-e0af-11ea-8372-afec9e250e2e.png">
 
-It takes a bit of time until this is created. In this screenshot you see cluster-1 set up and running (this is the cluster with all the defaults) and my-first-cluster-1 being created.
+It takes a bit of time until this is created (3-5mins). Here you see `my-first-cluster-1` being created.
 
-<img width="1026" alt="Screenshot 2020-08-16 at 05 17 23" src="https://user-images.githubusercontent.com/20337262/90420121-72e91d00-e0af-11ea-981b-7978cc0e4d1a.png">
+<img width="802" alt="Screenshot 2020-08-18 at 11 09 04" src="https://user-images.githubusercontent.com/20337262/90500909-7332f800-e143-11ea-9392-fe597b65b835.png">
 
-Once created, you see the difference in allocated resource:
+Once created, you see the allocated resource:
 
-<img width="969" alt="Screenshot 2020-08-16 at 05 20 25" src="https://user-images.githubusercontent.com/20337262/90420157-7f6d7580-e0af-11ea-860a-3b33c3affe29.png">
+
 
 Click on the connect button to open a console to control this cluster
 
