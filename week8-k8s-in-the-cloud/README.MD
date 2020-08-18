@@ -77,7 +77,7 @@ It takes a bit of time until this is created (3-5mins). Here you see `my-first-c
 
 Once created, you see the allocated resource:
 
-
+<img width="900" alt="Screenshot 2020-08-18 at 11 13 04" src="https://user-images.githubusercontent.com/20337262/90501159-d0c74480-e143-11ea-930f-3f27b948a11f.png">
 
 Click on the connect button to open a console to control this cluster
 
