@@ -602,7 +602,7 @@ UN  10.244.2.3  114.89 KiB  1            17.4%             ae2fe508-dde0-43c2-ad
 
 **✅ Step 5a. Execute the command to login ton `cqlsh`**
 ```bash
-cqlsh cluster1-dc1-service.cass-operator -u cluster1-superuser -p h5iMHm8RpoOfSXUXNiGT-WPfJa7tbwV9plj4ITYwHyghxJlQO2ySUQ
+cqlsh -u cluster1-superuser -p h5iMHm8RpoOfSXUXNiGT-WPfJa7tbwV9plj4ITYwHyghxJlQO2ySUQ
 ```
 📗 **Sample output**
 ```bash
