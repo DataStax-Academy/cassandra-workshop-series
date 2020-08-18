@@ -139,8 +139,7 @@ touch configMap.yaml
 
 Choose the Open Editor option
 
-
-<img width="1369" alt="Screenshot 2020-08-16 at 05 23 43" src="https://user-images.githubusercontent.com/20337262/90420350-c3607a80-e0af-11ea-966c-35e2941a050d.png">
+<img width="1124" alt="Screenshot 2020-08-18 at 11 15 29" src="https://user-images.githubusercontent.com/20337262/90501377-37e4f900-e144-11ea-81b2-8354734bf806.png">
 
 Here is the file content. We will fill in the BASE_ADDRESS once we know it:
 
