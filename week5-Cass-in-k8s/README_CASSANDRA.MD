@@ -387,7 +387,7 @@ base64 --decode && echo
 
 **✅ Step 3f. Start a `cqlsh` console**
 ```bash
-cqlsh cluster1-dc1-service.cass-operator -u cluster1-superuser -p h5iMHm8RpoOfSXUXNiGT-WPfJa7tbwV9plj4ITYwHyghxJlQO2ySUQ
+cqlsh -u cluster1-superuser -p h5iMHm8RpoOfSXUXNiGT-WPfJa7tbwV9plj4ITYwHyghxJlQO2ySUQ
 ```
 
 📗 **Sample output**
