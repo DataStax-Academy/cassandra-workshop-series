@@ -6,6 +6,8 @@ Nodeports are easy to set up, but they have a big disadvantage: they are bound t
 
 A way to abstract this node binding is to deploy the pods as deployments and to use load balancer services to address the pods in the deployment and correctly route any external traffic.
 
+### 0 - Clean up from the previous exercise
+
 Let's reconfigure our kubernetes cluster for this exercise:
 
 ```
@@ -31,7 +33,7 @@ Deleted [https://www.googleapis.com/compute/v1/projects/majestic-stage-286312/gl
 
 Do the same for the other rule you set up.
 
-### 1 - Recreate a namespace
+### 1 - Recreate the namespace
 
 ```
 kubectl create namespace my-app
