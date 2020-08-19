@@ -39,7 +39,9 @@ Before you can create pods using your application docker images, you need to pub
 https://hub.docker.com/u/datastaxdevs
 
 We will use two images in our pods:
+
 `datastaxdevs/cws-week8-frontend:latest`
+
 `datastaxdevs/cws-week8-backend:latest`
 
 ### 3 - Create the Kuberrnetes yamls for the backend
