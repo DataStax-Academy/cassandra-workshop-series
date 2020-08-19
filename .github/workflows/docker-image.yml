@@ -3,13 +3,13 @@ name: Docker Build
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build --tag cws-backend:python-master ./week8-k8s-in-the-cloud/getting-started-with-astra-python
+    - name: Build the image
+      run: docker build --tag datastaxdevs/cws-week8-backend:master ./week8-k8s-in-the-cloud/getting-started-with-astra-python
+    - name: Push the image
+      run: docker push datastaxdevs/cws-week8-backend:master
