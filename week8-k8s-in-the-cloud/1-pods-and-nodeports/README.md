@@ -34,11 +34,13 @@ We will need the external IP addresses to access our cluster from outside of the
 
 ### 2 - Optional Step: Publish your own application to docker hub
 
-Before you can create pods using your application docker images, you need to publish them to an accessible repository. I published them to Dockerhub, so that you can use them for your pods.  
+Before you can create pods using your application docker images, you need to publish them to an accessible repository. We published them to Dockerhub, so that you can use them for your pods.  
 
-https://hub.docker.com/r/bswynnerton/workshop/tags
+https://hub.docker.com/u/datastaxdevs
 
-I published them both into the same repo and tagged by function, one with UI tag, one with backend tag.
+We will use two images in our pods:
+`datastaxdevs/cws-week8-frontend:latest`
+`datastaxdevs/cws-week8-backend:latest`
 
 ### 3 - Create the Kuberrnetes yamls for the backend
 
@@ -88,7 +90,7 @@ metadata:
 spec:
   containers:
   - name: astra-backend
-    image: bswynnerton/workshop:backend      
+    image: datastaxdevs/cws-week8-backend:latest      
     ports:
         - containerPort: 5000
     envFrom:
@@ -241,7 +243,7 @@ metadata:
 spec:
   containers:
   - name: astra-ui
-    image: bswynnerton/workshop:ui
+    image: datastaxdevs/cws-week8-frontend:latest
     envFrom:
     - configMapRef:
         name: env-config
