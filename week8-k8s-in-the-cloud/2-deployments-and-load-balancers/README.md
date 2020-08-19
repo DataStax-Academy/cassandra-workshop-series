@@ -70,7 +70,7 @@ spec:
     spec:
       containers:
       - name: astra-backend
-        image: bswynnerton/workshop:backend
+        image: datastaxdevs/cws-week8-backend:latest
         ports:
         - containerPort: 5000
         envFrom:
@@ -215,7 +215,7 @@ spec:
     spec:
       containers:
       - name: astra-ui
-        image: bswynnerton/workshop:ui
+        image: datastaxdevs/cws-week8-frontend:latest
         ports:
         - containerPort: 3000
         envFrom:
