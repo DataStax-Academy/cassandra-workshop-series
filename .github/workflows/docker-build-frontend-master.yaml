@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the image
-      run: docker build --tag datastaxdevs/cws-week8-frontend:master ./week8-k8s-in-the-cloud/getting-started-with-astra-ui
+      run: docker build --tag datastaxdevs/cws-week8-frontend:latest ./week8-k8s-in-the-cloud/getting-started-with-astra-ui
     - name: Login to hub.docker.com
       run: docker login -u ${{ secrets.DOCKER_USER }} -p  ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the image
-      run: docker push datastaxdevs/cws-week8-frontend:master
+      run: docker push datastaxdevs/cws-week8-frontend:latest
