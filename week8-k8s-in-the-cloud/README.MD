@@ -47,7 +47,7 @@ Go into the storage browser and create a bucket:
 
 Choose a unique name (I chose workshop-billing) and accept all defaults. This is how the configuration looks in my case:
 
-<img width="630" alt="Screenshot 2020-08-16 at 04 59 04" src="https://user-images.githubusercontent.com/20337262/90419956-374e5300-e0af-11ea-899a-f9adc4bc2628.png">
+<img width="600" alt="Screenshot 2020-08-16 at 04 59 04" src="https://user-images.githubusercontent.com/20337262/90419956-374e5300-e0af-11ea-899a-f9adc4bc2628.png">
 
 Remember its name, we will give it to the billing export.
 
@@ -69,23 +69,23 @@ For my first experiment I accepted all the defaults (apart from region, where I 
 
 For this exercise, I am following the guide for the recommended starter cluster:
 
-<img width="783" alt="Screenshot 2020-08-16 at 05 15 11" src="https://user-images.githubusercontent.com/20337262/90420081-649b0100-e0af-11ea-8372-afec9e250e2e.png">
+<img width="600" alt="Screenshot 2020-08-16 at 05 15 11" src="https://user-images.githubusercontent.com/20337262/90420081-649b0100-e0af-11ea-8372-afec9e250e2e.png">
 
 It takes a bit of time until this is created (3-5mins). Here you see `my-first-cluster-1` being created.
 
-<img width="802" alt="Screenshot 2020-08-18 at 11 09 04" src="https://user-images.githubusercontent.com/20337262/90500909-7332f800-e143-11ea-9392-fe597b65b835.png">
+<img width="600" alt="Screenshot 2020-08-18 at 11 09 04" src="https://user-images.githubusercontent.com/20337262/90500909-7332f800-e143-11ea-9392-fe597b65b835.png">
 
 Once created, you see the allocated resource:
 
-<img width="900" alt="Screenshot 2020-08-18 at 11 13 04" src="https://user-images.githubusercontent.com/20337262/90501159-d0c74480-e143-11ea-930f-3f27b948a11f.png">
+<img width="600" alt="Screenshot 2020-08-18 at 11 13 04" src="https://user-images.githubusercontent.com/20337262/90501159-d0c74480-e143-11ea-930f-3f27b948a11f.png">
 
 Click on the connect button to open a console to control this cluster
 
 Select to run in Cloud Shell:
 
-<img width="783" alt="Screenshot 2020-08-16 at 05 22 27" src="https://user-images.githubusercontent.com/20337262/90420274-a5931580-e0af-11ea-934d-0f23f9623d47.png">
+<img width="600" alt="Screenshot 2020-08-16 at 05 22 27" src="https://user-images.githubusercontent.com/20337262/90420274-a5931580-e0af-11ea-934d-0f23f9623d47.png">
 
-<img width="1364" alt="Screenshot 2020-08-16 at 05 23 27" src="https://user-images.githubusercontent.com/20337262/90420298-adeb5080-e0af-11ea-892c-cc6f7bd2b84a.png">
+<img width="600" alt="Screenshot 2020-08-16 at 05 23 27" src="https://user-images.githubusercontent.com/20337262/90420298-adeb5080-e0af-11ea-892c-cc6f7bd2b84a.png">
 
 # Exercise 1 - Minimal deployment
 
@@ -139,7 +139,7 @@ touch configMap.yaml
 
 Choose the Open Editor option
 
-<img width="1124" alt="Screenshot 2020-08-18 at 11 15 29" src="https://user-images.githubusercontent.com/20337262/90501377-37e4f900-e144-11ea-81b2-8354734bf806.png">
+<img width="600" alt="Screenshot 2020-08-18 at 11 15 29" src="https://user-images.githubusercontent.com/20337262/90501377-37e4f900-e144-11ea-81b2-8354734bf806.png">
 
 Here is the file content. We will fill in the BASE_ADDRESS once we know it:
 
@@ -427,7 +427,7 @@ This might take a little bit (3-5 mins)
 
 Then we create a new minimal cluster based on the recommendations, again this might take 3-5mins. You can do this while the other cluster is deleting.
 
-<img width="883" alt="Screenshot 2020-08-18 at 09 59 14" src="https://user-images.githubusercontent.com/20337262/90498703-8abcb180-e140-11ea-86db-be4b12fb854d.png">
+<img width="600" alt="Screenshot 2020-08-18 at 09 59 14" src="https://user-images.githubusercontent.com/20337262/90498703-8abcb180-e140-11ea-86db-be4b12fb854d.png">
 
 Connect to the terminal and create a namespace:
 
@@ -499,27 +499,27 @@ astra-backend-7bbf8d5644-gs6ws   1/1     Running   0          13s
 
 We can now see the deployment in our workloads:
 
-<img width="955" alt="Screenshot 2020-08-18 at 10 15 10" src="https://user-images.githubusercontent.com/20337262/90498780-a627bc80-e140-11ea-8e62-916b73a59404.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 15 10" src="https://user-images.githubusercontent.com/20337262/90498780-a627bc80-e140-11ea-8e62-916b73a59404.png">
 
 Click on the deployment to see its details, and then scroll down until you see the EXPOSE option for exposing services:
 
-<img width="1118" alt="Screenshot 2020-08-18 at 10 16 33" src="https://user-images.githubusercontent.com/20337262/90498836-b63f9c00-e140-11ea-87a8-5e41e9ed1871.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 16 33" src="https://user-images.githubusercontent.com/20337262/90498836-b63f9c00-e140-11ea-87a8-5e41e9ed1871.png">
 
 Enter the target port 5000 and click the EXPOSE button.
 
-<img width="819" alt="Screenshot 2020-08-18 at 10 18 06" src="https://user-images.githubusercontent.com/20337262/90498882-c48db800-e140-11ea-988b-28d98bf8596b.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 18 06" src="https://user-images.githubusercontent.com/20337262/90498882-c48db800-e140-11ea-988b-28d98bf8596b.png">
 
 This will create a new service `astra-backend`. You'll see a few spinning wheels while this is happening.
 
-<img width="675" alt="Screenshot 2020-08-18 at 10 18 23" src="https://user-images.githubusercontent.com/20337262/90498954-d53e2e00-e140-11ea-953b-e05c90ee7dea.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 18 23" src="https://user-images.githubusercontent.com/20337262/90498954-d53e2e00-e140-11ea-953b-e05c90ee7dea.png">
 
 When done, it will look like this:
 
-<img width="682" alt="Screenshot 2020-08-18 at 10 20 03" src="https://user-images.githubusercontent.com/20337262/90498986-e129f000-e140-11ea-8776-fe6d8862c0d0.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 20 03" src="https://user-images.githubusercontent.com/20337262/90498986-e129f000-e140-11ea-8776-fe6d8862c0d0.png">
 
 Now click on the external endpoint, this opens a new window, and we see the homepage of the Python backend.
 
-<img width="660" alt="Screenshot 2020-08-18 at 10 20 54" src="https://user-images.githubusercontent.com/20337262/90499035-f272fc80-e140-11ea-9423-3684acf8e97d.png">
+<img width="600" alt="Screenshot 2020-08-18 at 10 20 54" src="https://user-images.githubusercontent.com/20337262/90499035-f272fc80-e140-11ea-9423-3684acf8e97d.png">
 
 How does this all look in kubernetes structure?
 
@@ -639,7 +639,6 @@ We specify target port 3000, expose and wait for the load balancer to be created
 From here it is as before: Enter your credentials in the dialog and connect to Astra!
 
 
-# Exercise 3 - Scale
 
 
 
