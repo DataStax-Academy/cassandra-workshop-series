@@ -17,16 +17,18 @@ In this repository, you'll find everything you need related to `week 8` of the *
 
 Feel free to bookmark this page for future reference!
 
-### Available Material
+### Available Materials
 
-| Title  | Description
-|---|---|
-| **Slides** | [PRESENTATIONS](materials/presentation.pdf) |
-
+* [Presentation](materials/presentation.pdf)
+* Workshop recordings
+  * [First run (Cedrick Lunven, Eric Zietlow)](https://youtu.be/bk5e6QWijSc)
+  * [second run (Bettina Swynnerton, Aleks Volochnev)](https://youtu.be/I6xzFjcfehY)
+* [Discord Chat](https://bit.ly/cassandra-workshop)
+* [Questions and Answers](https://community.datastax.com/spaces/172/summer-bootcamp-2020.html)
+* [Week 8 Validation Form](https://docs.google.com/forms/d/e/1FAIpQLScbbGaeY1b41K1q4LbQw8p_jbBTSpE8lmxmdS7r6G2_Ndk79Q/viewform)
 
 ## This is an example for hosting on Google Cloud Platform
 Other solutions are available, for example AWS or Azure. 
-
 
 ### Exercises
 
