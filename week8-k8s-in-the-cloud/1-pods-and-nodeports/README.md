@@ -324,3 +324,5 @@ You should see your usual UI with the dialog that allows to upload your credenti
 Once the UI dialog is served, connect to Astra for your usual tests. 
 
 The nodeport was very easy to set up, but the obvious disadvantage is that it is per worker node. If the pod gets launched on a different worker node, then we would need to look up the IP of this node first and point the UI to a different base address. 
+
+## Ok great, you've explored pods and nodeports. Now, let's jump into deployments and load balancers [HERE](../2-deployments-and-load-balancers).
