@@ -1,3 +1,5 @@
+![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
+
 # Porting my application to Google Cloud Platform
 # Summary
 Cloud Native App needs to live in the cloud
