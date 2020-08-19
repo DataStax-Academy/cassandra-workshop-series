@@ -11,8 +11,25 @@ Let's reconfigure our kubernetes cluster for this exercise:
 ```
 kubectl  delete namespace my-app
 ```
-
 Wait a moment until all pods and services are deleted. 
+
+
+Delete your firewall rules that you created earlier:
+
+```
+gcloud compute firewall-rules delete test-node-port
+```
+
+You will see an output like this:
+
+```
+The following firewalls will be deleted:
+ - [test-node-port]
+Do you want to continue (Y/n)?  Y
+Deleted [https://www.googleapis.com/compute/v1/projects/majestic-stage-286312/global/firewalls/test-node-port].
+```
+
+Do the same for the other rule you set up.
 
 ### 1 - Recreate a namespace
 
