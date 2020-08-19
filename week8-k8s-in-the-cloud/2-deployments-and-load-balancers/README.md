@@ -247,9 +247,11 @@ We specify target port 3000, expose and wait for the load balancer to be created
 
 No firewall rules need to get created.
 
-From here it is as before: Enter your credentials in the dialog and connect to Astra!
+From here it is as before: Enter your credentials in the dialog and connect to Astra! 
 
+## BOOM! You've now deployed an application powered by Kubernetes using the Google Kubernetes Engine and backed by DataStax Astra. Nothing is stopping you now. Go, create, and bring us all your awesome!
 
+![Well Done](../../materials/images/welldone.jpg?raw=true)
 
 
 
