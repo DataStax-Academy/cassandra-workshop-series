@@ -22,7 +22,7 @@ Feel free to bookmark this page for future reference!
 * [Presentation](materials/presentation.pdf)
 * Workshop recordings
   * [First run (Cedrick Lunven, Eric Zietlow)](https://youtu.be/bk5e6QWijSc)
-  * [second run (Bettina Swynnerton, Aleks Volochnev)](https://youtu.be/I6xzFjcfehY)
+  * [Second run (Bettina Swynnerton, Aleks Volochnev)](https://youtu.be/I6xzFjcfehY)
 * [Discord Chat](https://bit.ly/cassandra-workshop)
 * [Questions and Answers](https://community.datastax.com/spaces/172/summer-bootcamp-2020.html)
 * [Week 8 Validation Form](https://docs.google.com/forms/d/e/1FAIpQLScbbGaeY1b41K1q4LbQw8p_jbBTSpE8lmxmdS7r6G2_Ndk79Q/viewform)
