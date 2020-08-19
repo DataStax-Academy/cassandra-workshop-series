@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build --tag cws-backend:python-master ./cassandra-workshop-series/week8-k8s-in-the-cloud/getting-started-with-astra-python
+      run: docker build --tag cws-backend:python-master ./week8-k8s-in-the-cloud/getting-started-with-astra-python
