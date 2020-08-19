@@ -7,27 +7,28 @@
 
 `Cassandra Workshop Series` are an interactive experience. Datastax Developer Advocates share some knowledge about Apache Cassandra™ NoSQL database and how you build Cloud Native applications. You interact with them through chats *([youtube](https://www.youtube.com/channel/UCAIQY251avaMv7bBv5PCo-A) and [discord](https://discord.com/widget?id=685554030159593522&theme=dark))*, quizzes (menti.com), and exercises. 
 
-# Summary
-Cloud Native App needs to live in the cloud
+## Summary
+Go Cloud Native with your app
 
-Advantages: Low cost, immediate availability, publicly accessible, low management overhead
+Advantages: 
+Low cost, immediate availability, publicly accessible, low management overhead
 
-In this repository, you'll find everything you need related to `week 8` of the **Cassandra Worskhop Series**. For simplicity all exercise instructions will be listed in a single `README`. 
+In this repository, you'll find everything you need related to `week 8` of the **Cassandra Worskhop Series**. 
 
 Feel free to bookmark this page for future reference!
 
-## Available Material
+### Available Material
 
 | Title  | Description
 |---|---|
 | **Slides** | [PRESENTATIONS](materials/presentation.pdf) |
 
 
-# This is an example for hosting on Google Cloud Platform
+## This is an example for hosting on Google Cloud Platform
 Other solutions are available, for example AWS or Azure. 
 
 
-## Exercises
+### Exercises
 
 
 | Title  | Description |
