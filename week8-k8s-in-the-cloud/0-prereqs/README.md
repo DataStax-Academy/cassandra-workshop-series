@@ -89,3 +89,5 @@ Select to `Run in Cloud Shell`:
 <img width="600" alt="Screenshot 2020-08-16 at 05 22 27" src="https://user-images.githubusercontent.com/20337262/90420274-a5931580-e0af-11ea-934d-0f23f9623d47.png">
 
 <img width="600" alt="Screenshot 2020-08-16 at 05 23 27" src="https://user-images.githubusercontent.com/20337262/90420298-adeb5080-e0af-11ea-892c-cc6f7bd2b84a.png">
+
+## Congratulations, you created your cluster. Now, let's explore nodes and pods [HERE](../1-pods-and-nodeports).
