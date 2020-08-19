@@ -30,11 +30,12 @@ Other solutions are available, for example AWS or Azure.
 ## Exercises
 
 
-| Title  | Description 
-|---|---|---|
-| **0 - Prerequisites** | [Instructions](0-prereqs/README.md) 
-| **1 - Pods and Nodeports** | [Instructions](1-pods-and-nodeports/README.md)  
-| **2 - Deployments and Load Balancer Services** | [Instructions](2-deployments-and-load-balancers/README.md)  
+| Title  | Description |
+|---|---|
+| **0 - Prerequisites and Setup** | [Instructions](0-prereqs/README.md) |
+| **1 - Pods and Nodeports** | [Instructions](1-pods-and-nodeports/README.md)  |
+| **2 - Deployments and Load Balancer Services** | [Instructions](2-deployments-and-load-balancers/README.md)  |
+
 
 
 
