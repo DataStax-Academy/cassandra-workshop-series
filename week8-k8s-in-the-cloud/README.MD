@@ -421,7 +421,7 @@ A way to abstract this node binding is to deploy the pods as deployments and to 
 
 Let's delete the cluster that we had so far:
 
-<img width="926" alt="Screenshot 2020-08-18 at 09 56 24" src="https://user-images.githubusercontent.com/20337262/90498580-6a8cf280-e140-11ea-8cb6-f3be7874a34b.png">
+<img width="600" alt="Screenshot 2020-08-18 at 09 56 24" src="https://user-images.githubusercontent.com/20337262/90498580-6a8cf280-e140-11ea-8cb6-f3be7874a34b.png">
 
 This might take a little bit (3-5 mins)
 
