@@ -1,10 +1,21 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
-  #- init: echo "Welcome to the Cassandra Workshop Series"
-  #- command: pip install cassandra-driver
-  #- command: npm install cassandra-driver
-  #- command: cd week4-AppDev-api/getting-started-with-astra-ui && npm install
-  #- command: cd week4-AppDev-api/getting-started-with-astra-java && mvn clean compile
+  - name: astra-ui
+    before: cd week4-AppDev-api/getting-started-with-astra-ui 
+    init: npm install
+    command: |
+      echo "BASE_ADDRESS=$(gp url 8080)/api" > .env
+      npm run start
+  - name: astra-java
+    before: cd week4-AppDev-api/getting-started-with-astra-java 
+    init: mvn clean compile
+    command: mvn spring-boot:run
+    openMode: split-right
 
 ports:
-  - port: 3000-8999
-    #onOpen: ignore
+  - port: 3000
+    onOpen: open-preview
+  - port: 8080
+    onOpen: ignore
