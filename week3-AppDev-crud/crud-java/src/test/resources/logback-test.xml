@@ -1,15 +1,14 @@
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-       		<pattern>%d{HH:mm:ss.SSS} %magenta(%-5level) %cyan(%-10logger) : %msg%n</pattern>
+       		<pattern>%d{HH:mm:ss.SSS} %magenta(%-5level) %cyan(%-25logger{0}) : %msg%n</pattern>
         </encoder>
     </appender>
     <root level="WARN">
         <appender-ref ref="STDOUT"/>
     </root>
-    <logger name="Exercise2" level="INFO"/>
-    <logger name="Exercise3" level="INFO"/>
-    <logger name="Exercise4" level="INFO"/>
+
+    <logger name="com.datastax.workshop" level="INFO"/>
     
     <logger name="com.datastax.oss"     level="ERROR"/>
     <logger name="org.junit.vintage"    level="ERROR" />

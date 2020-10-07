@@ -75,11 +75,11 @@ public class JourneyRepository implements DataModelConstants {
      *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
      */
     public void takeoff(UUID journeyId, String spacecraft) {
-        cqlSession.execute(SimpleStatement.builder(SOLUTION_TAKEOFF)
-                .addPositionalValue(Instant.now())
-                .addPositionalValue(spacecraft)
-                .addPositionalValue(journeyId)
-                .build());
+      cqlSession.execute(SimpleStatement.builder(SOLUTION_TAKEOFF)
+        .addPositionalValue(Instant.now())
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build());
     }
     
     /**
@@ -91,7 +91,10 @@ public class JourneyRepository implements DataModelConstants {
      *  - Timestamps are Instant in the Java world 
      *  
      *  Check result with 
-     *  select journey_id, spacecraft_name,summary,start,end,active from killrvideo.spacecraft_journey_catalog; 
+     *  SELECT * FROM killrvideo.spacecraft_speed_over_time;
+     *  SELECT * FROM killrvideo.spacecraft_temperature_over_time;
+     *  SELECT * FROM killrvideo.spacecraft_pressure_over_time;
+     *  SELECT * FROM killrvideo.spacecraft_location_over_time;
      */
     public void log(UUID journeyId, String spacecraft, double speed, 
             double pressure, double temperature, 
@@ -153,16 +156,16 @@ public class JourneyRepository implements DataModelConstants {
                  .build());
         cqlSession.execute(bb.build());
     }
-    
+
     public void landing(UUID journeyId, String spacecraft) {
-        cqlSession.execute(SimpleStatement.builder(SOLUTION_LANDING)
-                .addPositionalValue(Instant.now())
-                .addPositionalValue(spacecraft)
-                .addPositionalValue(journeyId)
-                .build());
+      cqlSession.execute(SimpleStatement.builder(SOLUTION_LANDING)
+        .addPositionalValue(Instant.now())
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build());
     }
-    
-    public void delete(UUID journeyId, String spacecraft) {
+
+    public void delete(String spacecraft, UUID journeyId) {
         BatchStatementBuilder bb = new BatchStatementBuilder(BatchType.LOGGED);
         // Delete the journey
         bb.addStatements(SimpleStatement.builder(
@@ -172,33 +175,29 @@ public class JourneyRepository implements DataModelConstants {
                 .addPositionalValue(journeyId)
                 .build());
         // Delete all relevant metrics per partition
-        bb.addStatement(SimpleStatement.builder(
-           "DELETE FROM spacecraft_speed_over_time ("
-         + "WHERE spacecraft_name=? AND journey_id=?")
-            .addPositionalValue(spacecraft)
-            .addPositionalValue(journeyId)
-            .build());
-        bb.addStatement(SimpleStatement.builder(
-                "DELETE FROM spacecraft_location_over_time ("
-              + "WHERE spacecraft_name=? AND journey_id=?")
-                 .addPositionalValue(spacecraft)
-                 .addPositionalValue(journeyId)
-                 .build());
-        bb.addStatement(SimpleStatement.builder(
-                "DELETE FROM spacecraft_pressure_over_time ("
-              + "WHERE spacecraft_name=? AND journey_id=?")
-                 .addPositionalValue(spacecraft)
-                 .addPositionalValue(journeyId)
-                 .build());
-        bb.addStatement(SimpleStatement.builder(
-                "DELETE FROM spacecraft_temperature_over_time ("
-              + "WHERE spacecraft_name=? AND journey_id=?")
-                 .addPositionalValue(spacecraft)
-                 .addPositionalValue(journeyId)
-                 .build());
+        bb.addStatement(deleteSpeedsStmt(spacecraft, journeyId));
+        bb.addStatement(deleteTemperaturesStmt(spacecraft, journeyId));
+        bb.addStatement(deletePressuresStmt(spacecraft, journeyId));
+        bb.addStatement(deleteLocationsStmt(spacecraft, journeyId));
+
         cqlSession.execute(bb.build());
     }
-    
+
+    /**
+     * Delete all sensors readings keyed by (spacecraft, journeyId)
+     * NOTE: the journey description data in spacecraft_journey_catalog is NOT deleted
+     */
+    public void deleteSensorReadings(String spacecraft, UUID journeyId) {
+      BatchStatementBuilder bb = new BatchStatementBuilder(BatchType.LOGGED);
+
+      bb.addStatement(deleteSpeedsStmt(spacecraft, journeyId));
+      bb.addStatement(deleteTemperaturesStmt(spacecraft, journeyId));
+      bb.addStatement(deletePressuresStmt(spacecraft, journeyId));
+      bb.addStatement(deleteLocationsStmt(spacecraft, journeyId));
+
+      cqlSession.execute(bb.build());
+  }
+
     public Optional<Journey> find(UUID journeyId, String spacecraft) {
         ResultSet rs = cqlSession.execute(SimpleStatement.builder(SOLUTION_READ_JOURNEY)
                 .addPositionalValue(spacecraft)
@@ -219,24 +218,64 @@ public class JourneyRepository implements DataModelConstants {
         j.setId(row.getUuid(JOURNEY_ID));
         return j;
     }
+
+    private SimpleStatement deleteSpeedsStmt(String spacecraft, UUID journeyId) {
+      return SimpleStatement.builder(
+          "DELETE FROM spacecraft_speed_over_time " +
+          "WHERE spacecraft_name=? AND journey_id=?"
+        )
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build();         
+    }
+    
+    private SimpleStatement deleteTemperaturesStmt(String spacecraft, UUID journeyId) {
+      return SimpleStatement.builder(
+          "DELETE FROM spacecraft_temperature_over_time " +
+          "WHERE spacecraft_name=? AND journey_id=?"
+        )
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build();         
+    }
+    
+    private SimpleStatement deletePressuresStmt(String spacecraft, UUID journeyId) {
+      return SimpleStatement.builder(
+          "DELETE FROM spacecraft_pressure_over_time " +
+          "WHERE spacecraft_name=? AND journey_id=?"
+        )
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build();         
+    }
+    
+    private SimpleStatement deleteLocationsStmt(String spacecraft, UUID journeyId) {
+      return SimpleStatement.builder(
+          "DELETE FROM spacecraft_location_over_time " +
+          "WHERE spacecraft_name=? AND journey_id=?"
+        )
+        .addPositionalValue(spacecraft)
+        .addPositionalValue(journeyId)
+        .build();         
+    }
     
     // == SOLUTIONS ==
     
     private static final String SOLUTION_INSERT = 
-            "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
-          + "VALUES(?,?,?,?)";
-    
+      "INSERT INTO spacecraft_journey_catalog (spacecraft_name, journey_id, active, summary) "
+      + "VALUES(?,?,?,?)";
+
     private static final String SOLUTION_TAKEOFF =
-            "UPDATE spacecraft_journey_catalog "
-                    + "SET active=true, start=? "
-                    + "WHERE spacecraft_name=? AND journey_id=?";
-    
-    private static final String SOLUTION_LANDING = 
-            "UPDATE spacecraft_journey_catalog "
-                    + "SET active=false, end=? "
-                    + "WHERE spacecraft_name=? AND journey_id=?";
+      "UPDATE spacecraft_journey_catalog "
+      + "SET active=true, start=? "
+      + "WHERE spacecraft_name=? AND journey_id=?";
+
+    private static final String SOLUTION_LANDING =
+      "UPDATE spacecraft_journey_catalog "
+      + "SET active=false, end=? "
+      + "WHERE spacecraft_name=? AND journey_id=?";
     
     private static final String SOLUTION_READ_JOURNEY =
-            "SELECT * FROM spacecraft_journey_catalog "
-                    + "WHERE spacecraft_name=? AND journey_id=?";
+      "SELECT * FROM spacecraft_journey_catalog "
+      + "WHERE spacecraft_name=? AND journey_id=?";
 }
